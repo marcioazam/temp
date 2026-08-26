@@ -1,6 +1,7 @@
 import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
 import { GatewayFlow } from "@/components/gateway-flow"
+import { RouteComparison } from "@/components/route-comparison"
 import { Features } from "@/components/features"
 import { Harnesses } from "@/components/harnesses"
 import { NpmSection } from "@/components/npm-section"
@@ -18,6 +19,7 @@ export default function Page() {
         <Hero />
         <Harnesses />
         <GatewayFlow />
+        <RouteComparison />
         <NpmSection />
         <Features />
         <CatalogSection />
