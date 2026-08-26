@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { RotorMark } from "@/components/logo"
 
 
 const nav = [
@@ -41,9 +42,12 @@ export function SiteHeader() {
           <Link
             href="/"
             aria-label="Nycode — início"
-            className="font-[family-name:var(--font-inter)] text-2xl font-bold leading-none tracking-tight text-foreground transition-opacity hover:opacity-70"
+            className="flex items-center gap-2.5 text-foreground transition-opacity hover:opacity-70"
           >
-            nycode
+            <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0" />
+            <span className="font-[family-name:var(--font-inter)] text-2xl font-bold leading-none tracking-tight">
+              nycode
+            </span>
           </Link>
 
           <nav

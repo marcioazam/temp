@@ -1,12 +1,17 @@
 import Link from "next/link"
-import { NyMark } from "@/components/logo"
+import { RotorMark } from "@/components/logo"
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border">
       <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-8 px-4 py-12 md:flex-row md:items-end md:justify-between md:px-9">
         <div>
-          <NyMark className="h-8 w-auto text-foreground" />
+          <div className="flex items-center gap-2.5 text-foreground">
+            <RotorMark aria-hidden="true" className="h-8 w-8" />
+            <span className="font-[family-name:var(--font-inter)] text-2xl font-bold leading-none tracking-tight">
+              nycode
+            </span>
+          </div>
           <p className="mt-4 max-w-xs font-mono text-xs leading-relaxed text-muted-foreground">
             Gateway de LLM para geração de código e agents. Um endpoint, todos os modelos.
           </p>
