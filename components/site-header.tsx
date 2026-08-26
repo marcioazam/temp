@@ -41,7 +41,7 @@ export function SiteHeader() {
           <Link
             href="/"
             aria-label="Nycode — início"
-            className="font-[family-name:var(--font-inter)] text-3xl font-bold leading-none tracking-tight text-foreground transition-opacity hover:opacity-70"
+            className="font-[family-name:var(--font-inter)] text-2xl font-bold leading-none tracking-tight text-foreground transition-opacity hover:opacity-70"
           >
             nycode
           </Link>
