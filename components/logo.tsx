@@ -1,42 +1,42 @@
 import type { SVGProps } from "react"
 
 /**
- * "nycode" wordmark in the nylla geometric sans.
- * The `n` and `y` are the exact filled glyphs from the supplied nylla SVG;
- * `c`, `o`, `d`, `e` are drawn as centerline strokes at the same weight
- * (16.8) and x-height (66.48) so the whole word reads as one typeface.
+ * Flat "nycode" pixel wordmark — inherits currentColor.
+ * Glyphs are grouped so each letter can be shifted right, producing
+ * optical letter-spacing that raw pixel paths can't express.
  */
 export function NycodeWordmark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 496 152"
+      viewBox="0 0 163 36"
+      className="pixel-crisp"
       role="img"
       aria-label="nycode"
       {...props}
     >
-      <g transform="translate(24,117.6)">
-        {/* n and y — exact glyphs from the nylla wordmark */}
-        <path
-          fill="currentColor"
-          d="M71.64 -39.0V0.0H54.84V-36.72Q54.84 -44.64 50.88 -48.9Q46.92 -53.16 40.08 -53.16Q33.12 -53.16 29.1 -48.9Q25.08 -44.64 25.08 -36.72V0.0H8.28V-66.48H25.08V-58.2Q28.44 -62.52 33.66 -64.98Q38.88 -67.44 45.12 -67.44Q57.0 -67.44 64.32 -59.94Q71.64 -52.44 71.64 -39.0Z"
-        />
-        <path
-          fill="currentColor"
-          d="M149.7 -66.48 108.54 31.44H90.66L105.06 -1.68L78.42 -66.48H97.26L114.42 -20.04L131.82 -66.48Z"
-        />
-        {/* c, o, d, e — matching geometric strokes */}
-        <g fill="none" stroke="currentColor" strokeWidth={16.8} strokeLinecap="butt" strokeLinejoin="round">
-          {/* c */}
-          <path d="M209.97 -49.21 A24.84 24.84 0 1 0 209.97 -17.27" />
-          {/* o */}
-          <circle cx="265.42" cy="-33.24" r="24.84" />
-          {/* d */}
-          <circle cx="339.9" cy="-33.24" r="24.84" />
-          <path d="M364.74 -88.8 V0" />
-          {/* e */}
-          <path d="M389.54 -33.24 H439.22" />
-          <path d="M439.22 -33.24 A24.84 24.84 0 1 0 433.41 -17.27" />
+      <g fill="currentColor">
+        {/* n */}
+        <path d="M4 9h13v5h-13zM0 14h6v22h-6zM15 14h6v22h-6z" />
+        {/* y */}
+        <g transform="translate(2.5 0)">
+          <path d="M26 9h5v11h-5zM41 9h5v11h-5zM31 18h3v7h-3zM38 18h3v7h-3zM29 20h2v5h-2zM41 20h2v5h-2zM34 22h4v10h-4zM33 25h1v11h-1zM38 25h1v7h-1zM29 32h4v4h-4z" />
+        </g>
+        {/* c */}
+        <g transform="translate(5 0)">
+          <path d="M55 9h13v5h-13zM51 14h6v17h-6zM66 14h6v5h-6zM66 26h6v5h-6zM55 31h13v5h-13z" />
+        </g>
+        {/* o */}
+        <g transform="translate(7.5 0)">
+          <path d="M81 9h13v5h-13zM77 14h6v17h-6zM92 14h6v17h-6zM81 31h13v5h-13z" />
+        </g>
+        {/* d */}
+        <g transform="translate(10 0)">
+          <path d="M118 0h6v36h-6zM107 9h11v5h-11zM103 14h6v17h-6zM107 31h11v5h-11z" />
+        </g>
+        {/* e */}
+        <g transform="translate(12.5 0)">
+          <path d="M133 9h13v5h-13zM129 14h6v17h-6zM144 14h6v11h-6zM135 20h9v5h-9zM133 31h13v5h-13z" />
         </g>
       </g>
     </svg>
