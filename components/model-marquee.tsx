@@ -68,7 +68,7 @@ export function ModelMarquee() {
   return (
     <section
       aria-label="Empresas que confiam em infraestrutura de IA"
-      className="overflow-hidden border-b border-border bg-background py-3"
+      className="overflow-hidden bg-background py-3"
     >
       <div className="marquee-track flex w-max">
         <BrandCards />
