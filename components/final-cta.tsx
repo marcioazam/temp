@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export function FinalCta() {
   return (
-    <section className="px-4 py-16 md:px-9 md:py-24" aria-labelledby="final-cta-title">
+    <section className="px-4 pb-8 pt-16 md:px-9 md:pb-10 md:pt-24" aria-labelledby="final-cta-title">
       <div
         className="mx-auto flex min-h-[420px] w-full max-w-screen-2xl flex-col items-center justify-center gap-7 overflow-hidden rounded-xl bg-cover bg-center px-6 py-20 text-center text-[#171612] md:min-h-[520px]"
         style={{ backgroundImage: "url('/images/nylla-cta-landscape.png')" }}
