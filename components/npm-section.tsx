@@ -60,7 +60,7 @@ export function NpmSection() {
                 <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
               </div>
               <span className="absolute left-1/2 -translate-x-1/2 font-mono text-[11px] text-muted-foreground">
-                nylla — zsh
+                nylla · zsh
               </span>
             </div>
             <pre className="term-pane overflow-x-auto p-4 font-mono text-xs leading-relaxed text-foreground md:p-6 md:text-sm">

@@ -14,7 +14,7 @@ export function AgentsSection() {
           </p>
           <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
             Despache tarefas, acompanhe sessões e revise diffs de qualquer harness conectado ao gateway. Você decide o
-            que construir — os agents escrevem, testam e abrem o PR.
+            que construir. Os agents escrevem, testam e abrem o PR.
           </p>
         </Reveal>
 

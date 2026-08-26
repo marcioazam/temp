@@ -249,7 +249,7 @@ export function HermesTerminalMock() {
           <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         </div>
         <span className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-sans text-[8px] font-medium tracking-[-0.01em] text-[#aaa69f] md:text-[10px]">
-          Hermes Agent — /opt/hermes
+          Hermes Agent · /opt/hermes
         </span>
       </div>
 

@@ -68,7 +68,7 @@ import {
 } from "@/components/logo-variants-ai-2"
 
 export const metadata: Metadata = {
-  title: "marca — nylla",
+  title: "marca · nylla",
   description:
     "Sistema de marca do nylla: variantes pixel, glitch, tetromino e dado do logotipo.",
 }
@@ -114,7 +114,7 @@ export default function LogoPage() {
             Sistema de marca
           </h1>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            O logotipo do nylla nasce do pixel — a menor unidade de renderização, a mesma célula
+            O logotipo do nylla nasce do pixel · a menor unidade de renderização, a mesma célula
             que compõe um token. Cada variante explora um comportamento do pixel: corrupção,
             queda, sorte e dissolução.
           </p>
@@ -181,7 +181,7 @@ export default function LogoPage() {
         </section>
 
         <h2 className="mt-16 mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          estudos — ia minimalista
+          estudos · ia minimalista
         </h2>
 
         <section
@@ -230,7 +230,7 @@ export default function LogoPage() {
         </section>
 
         <h2 className="mt-16 mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          estudos — ia minimalista, série 2
+          estudos · ia minimalista, série 2
         </h2>
 
         <section
@@ -343,7 +343,7 @@ export default function LogoPage() {
         </section>
 
         <h2 className="mt-16 mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          estáticas — conceitos do produto
+          estáticas · conceitos do produto
         </h2>
 
         <section

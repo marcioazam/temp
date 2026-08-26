@@ -41,7 +41,7 @@ export function SiteHeader() {
         <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center px-4 md:px-9">
           <Link
             href="/"
-            aria-label="nylla — início"
+            aria-label="nylla, início"
             className="flex items-center gap-2.5 text-foreground"
           >
             <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0" />

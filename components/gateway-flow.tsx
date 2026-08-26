@@ -63,7 +63,7 @@ export function GatewayFlow() {
         </div>
 
         <p className="mt-8 max-w-xl leading-relaxed text-muted-foreground">
-          Prioridade por custo, latência ou qualidade. Se um provedor falha, o Nylla reencaminha automaticamente — sem
+          Prioridade por custo, latência ou qualidade. Se um provedor falha, o Nylla reencaminha automaticamente sem
           mudar uma linha no seu código.
         </p>
       </div>

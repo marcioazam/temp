@@ -35,14 +35,14 @@ const PHASES: Phase[] = [
       { kind: "bullet", text: "Vou explorar o codebase para te dar uma visão completa." },
       { kind: "tool", text: "Explore(Explore codebase structure)", result: "Done (17 tool uses · 38.0k tokens · 28s)" },
       { kind: "spinner" },
-      { kind: "bullet", text: "TaskFlow API — Codebase Overview" },
+      { kind: "bullet", text: "TaskFlow API : Codebase Overview" },
       { kind: "text", text: "Bem-vindo ao time! Esta é uma REST API em Node.js/Express para gestão de tarefas com colaboração. A estrutura do projeto:" },
       {
         kind: "tree",
         rows: [
           "taskflow/",
           "├── src/",
-          "│   ├── index.js          # Entry point — sobe o servidor",
+          "│   ├── index.js          # Entry point : sobe o servidor",
           "│   ├── app.js            # Configuração do Express",
           "│   ├── auth/             # JWT & Passport",
         ],
@@ -59,7 +59,7 @@ const PHASES: Phase[] = [
       { kind: "bullet", text: "Vou rastrear o fluxo de sessão e listar os riscos." },
       { kind: "tool", text: 'Search(Grep "verifySession" · 42 arquivos)', result: "Done (9 tool uses · 21.4k tokens · 12s)" },
       { kind: "spinner" },
-      { kind: "bullet", text: "Auth Flow — Findings" },
+      { kind: "bullet", text: "Auth Flow : Findings" },
       { kind: "text", text: "A verificação de sessão acontece depois da leitura do payload, então dados do usuário são acessados antes da autorização." },
       {
         kind: "tree",
@@ -67,7 +67,7 @@ const PHASES: Phase[] = [
           "src/auth/",
           "├── verify.js             # confia no payload antes do JWT",
           "├── middleware.js         # ordem invertida na cadeia",
-          "└── session.js            # ok — assinatura validada",
+          "└── session.js            # ok : assinatura validada",
         ],
       },
     ],
@@ -82,7 +82,7 @@ const PHASES: Phase[] = [
       { kind: "bullet", text: "Movendo a autorização para antes de qualquer acesso a dados." },
       { kind: "tool", text: "Edit(src/auth/verify.js, src/auth/middleware.js)", result: "Done (12 tool uses · 26.8k tokens · 19s)" },
       { kind: "spinner" },
-      { kind: "bullet", text: "Patch aplicado — 3 arquivos" },
+      { kind: "bullet", text: "Patch aplicado : 3 arquivos" },
       { kind: "text", text: "Sessão verificada no servidor, entrada validada por schema e consultas restritas ao usuário autenticado." },
       {
         kind: "tree",
@@ -261,7 +261,7 @@ function ClaudeCodeSession() {
           <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         </div>
-        <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#aaa69f] md:text-[10px]">Claude Code — taskflow</span>
+        <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#aaa69f] md:text-[10px]">Claude Code : taskflow</span>
       </div>
       <div ref={scrollerRef} className="min-h-0 flex-1 overflow-y-auto px-4 py-3 [scrollbar-color:#55524c_transparent] [scrollbar-width:thin] sm:px-6 sm:py-5 md:px-8 md:py-6">
         <div className="flex items-start gap-3">

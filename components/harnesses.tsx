@@ -26,11 +26,11 @@ export function Harnesses() {
         <div className="mt-4 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-xl">
             <p className="text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
-              Seu agente favorito. Uma inteligência sem limites.
+              Conecta em qualquer ferramenta que você já usa.
             </p>
             <p className="mt-6 text-pretty leading-relaxed text-muted-foreground">
               Conecte o Nylla às ferramentas que já fazem parte do seu fluxo. Um único gateway reúne os melhores
-              modelos, aplica fallback automático e mantém cada agente trabalhando sem interrupções — no editor, no
+              modelos, aplica fallback automático e mantém cada agente trabalhando sem interrupções no editor, no
               terminal ou via SDK.
             </p>
           </div>

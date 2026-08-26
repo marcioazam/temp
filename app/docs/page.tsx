@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { CopyCommand } from "@/components/copy-command"
 
 export const metadata: Metadata = {
-  title: "Docs — Nylla",
+  title: "Docs | Nylla",
   description: "Documentação do Nylla: instalação, configuração de harnesses e uso do gateway de LLM.",
 }
 
