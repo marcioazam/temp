@@ -34,13 +34,6 @@ export function SiteFooter() {
       <div>
         <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between px-4 py-4 md:px-9">
           <p className="font-mono text-[11px] text-muted-foreground">© {new Date().getFullYear()} nylla</p>
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-mono text-[11px] text-muted-foreground">
-            <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
-              <span className="flow-pulse absolute inline-flex h-full w-full rounded-full bg-ultra/50" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ultra" />
-            </span>
-            gateway operacional
-          </span>
         </div>
       </div>
     </footer>
