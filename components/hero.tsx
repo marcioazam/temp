@@ -5,7 +5,7 @@ import { Reveal } from "@/components/reveal"
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border bg-background">
-      <div className="relative mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+      <div className="relative mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
         <div className="max-w-3xl">
           <Reveal>
             <h1 className="font-sans text-[2.75rem] font-medium leading-[1.02] tracking-[-0.04em] text-foreground sm:text-[3.5rem] md:text-6xl">
@@ -18,7 +18,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={80}>
-            <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-[1.0625rem]">
+            <p className="mt-6 max-w-xl text-pretty font-mono text-base leading-relaxed text-muted-foreground md:text-[1.0625rem]">
               Conecte <span className="text-foreground">Claude Code, Codex, Cursor, VS Code</span> ou seu próprio agent a
               qualquer modelo com <span className="text-foreground">uma linha de comando</span>. Sem lock-in, sem
               reescrever integração. Feito para código e agents em produção.

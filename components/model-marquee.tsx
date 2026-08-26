@@ -31,7 +31,7 @@ export function ModelMarquee() {
         </ul>
       </div>
 
-      <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 md:px-9">
         <dl className="grid grid-cols-1 border-t border-border sm:grid-cols-3">
           {[
             { k: "modelos", v: "120+" },

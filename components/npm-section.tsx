@@ -16,7 +16,7 @@ const termLines = [
 export function NpmSection() {
   return (
     <section className="border-b border-border">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-16 md:grid-cols-2 md:items-center md:px-6 md:py-24">
+      <div className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-10 px-4 py-16 md:grid-cols-2 md:items-center md:px-9 md:py-24">
         <Reveal>
           <h2 className="font-mono text-xs text-muted-foreground">
             <span aria-hidden="true">{"// "}</span>pacote npm

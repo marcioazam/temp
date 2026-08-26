@@ -9,7 +9,7 @@ export function GatewayFlow() {
 
   return (
     <section ref={ref} className="border-b border-border">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6 md:py-24">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <h2 className="font-mono text-xs text-muted-foreground">
           <span aria-hidden="true">{"// "}</span>roteamento
         </h2>
