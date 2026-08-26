@@ -11,13 +11,13 @@ export function FinalCta() {
           id="final-cta-title"
           className="max-w-4xl text-balance font-sans text-5xl font-normal leading-none tracking-[-0.04em] md:text-7xl"
         >
-          Teste Nylla Agora.
+          Um endpoint, todos os modelos.
         </h2>
         <Link
           href="/#planos"
-          className="inline-flex items-center justify-center rounded-full bg-[#171612] px-6 py-3 font-sans text-sm font-medium text-[#F4F3F1] transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#171612]"
+          className="inline-flex items-center justify-center rounded-none bg-[#F4F3F1] px-5 py-3 font-sans text-sm font-medium text-[#171612] transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#171612]"
         >
-          Começar agora
+          Começar
         </Link>
       </div>
     </section>
