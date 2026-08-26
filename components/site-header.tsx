@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
-import { NycodeWordmark } from "@/components/logo"
+
 
 const nav = [
   { label: "Recursos", href: "/#recursos" },
@@ -38,8 +38,12 @@ export function SiteHeader() {
         }`}
       >
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 md:px-6">
-          <Link href="/" aria-label="Nycode — início" className="text-foreground transition-opacity hover:opacity-70">
-            <NycodeWordmark className="h-[23px] w-auto" />
+          <Link
+            href="/"
+            aria-label="Nycode — início"
+            className="font-[family-name:var(--font-inter)] text-2xl font-bold leading-none tracking-tight text-foreground transition-opacity hover:opacity-70"
+          >
+            nycode
           </Link>
 
           <nav
