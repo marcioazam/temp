@@ -66,6 +66,9 @@ export function SiteHeader() {
                 href={item.href}
                 className="group relative py-1 transition-colors hover:text-foreground"
               >
+                <span aria-hidden="true" className="mr-1.5 text-primary">
+                  //
+                </span>
                 {item.label}
                 <span
                   aria-hidden="true"
