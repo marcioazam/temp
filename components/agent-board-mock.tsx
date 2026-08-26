@@ -55,7 +55,7 @@ export function AgentBoardMock() {
   }, [tick])
 
   return (
-    <div ref={ref} className="group/win term-pane overflow-hidden rounded-xl bg-card elev-window">
+    <div ref={ref} className="group/win term-pane overflow-hidden rounded-[10px] border border-[#34322f] bg-[#080806] elev-window">
       {/* macOS titlebar */}
       <div className="relative flex items-center border-b border-border px-4 py-2.5">
         <div className="flex items-center gap-2" aria-hidden="true">
