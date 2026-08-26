@@ -47,7 +47,7 @@ type Phase = { model: string; lines: Line[] }
 
 const PHASES: Phase[] = [
   {
-    model: "hermes-4-405b",
+    model: "glm-5.2",
     lines: [
       { kind: "prompt", text: "quais skills posso usar pra revisar um PR?" },
       { kind: "spinner" },
@@ -56,10 +56,10 @@ const PHASES: Phase[] = [
     ],
   },
   {
-    model: "deepseek-v4",
+    model: "claude-sonnet-5",
     lines: [
-      { kind: "slash", text: "/model deepseek-v4" },
-      { kind: "sys", text: "Nylla Gateway → deepseek-v4 · 18ms" },
+      { kind: "slash", text: "/model claude-sonnet-5" },
+      { kind: "sys", text: "Nylla Gateway → claude-sonnet-5 · 18ms" },
       { kind: "prompt", text: "revise o PR #482 e rode a suíte de testes" },
       { kind: "spinner" },
       { kind: "tool", text: "Browser(github.com/nylla/taskflow/pull/482)", result: "Done (11 tool uses · 24.6k tokens · 14s)" },
@@ -319,7 +319,10 @@ export function HermesTerminalMock() {
 
       <div className="shrink-0 border-t border-[#5b5852]/65 bg-[#0d0c07] px-2.5 py-1 sm:px-3 md:px-4">
         <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap text-[#8a8672]">
-          <span aria-hidden="true">⚡</span>
+          <span className="font-semibold text-[#e8c547]">nylla gateway</span>
+          <span className="text-[#4a4636]" aria-hidden="true">
+            →
+          </span>
           <span className="font-semibold text-[#e8c547]">{currentModel}</span>
           <span className="text-[#4a4636]" aria-hidden="true">
             |
@@ -336,10 +339,10 @@ export function HermesTerminalMock() {
         </div>
       </div>
 
-      <div className="flex min-h-5 shrink-0 items-center gap-1.5 border-t border-[#5b5852]/65 bg-[#080806] px-2.5 py-1 sm:px-3 md:min-h-7 md:px-4">
+      <div className="flex min-h-6 shrink-0 items-center gap-2 border-t border-[#5b5852]/65 bg-[#080806] px-2.5 py-1.5 text-[9px] sm:px-3 sm:text-[10px] md:min-h-8 md:px-4 md:text-[12px]">
         <span className="text-[#e8c547]">›</span>
         <span
-          className={`min-w-0 flex-1 overflow-hidden whitespace-nowrap ${nextLine?.kind === "slash" ? "text-[#e8c547]" : "text-[#d6d3c4]"}`}
+          className={`min-w-0 flex-1 overflow-hidden whitespace-nowrap font-medium ${nextLine?.kind === "slash" ? "text-[#e8c547]" : "text-[#d6d3c4]"}`}
         >
           {draft}
         </span>
