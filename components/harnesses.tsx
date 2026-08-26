@@ -29,7 +29,9 @@ export function Harnesses() {
           </div>
 
           <Reveal delay={80}>
-            <CommandPaletteMock />
+            <div className="bg-[url('/images/vscode-landscape.png')] bg-cover bg-center p-5 sm:p-7 lg:p-8">
+              <CommandPaletteMock />
+            </div>
           </Reveal>
         </div>
       </div>
