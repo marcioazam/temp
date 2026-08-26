@@ -88,6 +88,10 @@ export function GatewayFlow() {
                     <p className="font-mono text-xl text-foreground">24/7</p>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">fallback automático</p>
                   </div>
+                  <div>
+                    <p className="font-mono text-xl text-foreground">Baixa latência</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">roteamento otimizado</p>
+                  </div>
                 </div>
               </aside>
             </div>
