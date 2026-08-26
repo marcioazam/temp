@@ -77,20 +77,20 @@ export function GatewayFlow() {
                 <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">uma integração</p>
                 <div className="mt-5 flex flex-col gap-5">
                   <div>
-                    <p className="font-mono text-xl text-foreground">1 endpoint</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">para todos os modelos</p>
+                    <p className="font-mono text-lg text-foreground">1 endpoint</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">para todos os modelos</p>
                   </div>
                   <div>
-                    <p className="font-mono text-xl text-foreground">OpenAI</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">formato compatível</p>
+                    <p className="font-mono text-lg text-foreground">OpenAI</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">formato compatível</p>
                   </div>
                   <div>
-                    <p className="font-mono text-xl text-foreground">24/7</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">fallback automático</p>
+                    <p className="font-mono text-lg text-foreground">24/7</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">fallback automático</p>
                   </div>
                   <div>
-                    <p className="font-mono text-xl text-foreground">Baixa latência</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">roteamento otimizado</p>
+                    <p className="whitespace-nowrap font-mono text-lg text-foreground">Baixa latência</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">roteamento otimizado</p>
                   </div>
                 </div>
               </aside>
