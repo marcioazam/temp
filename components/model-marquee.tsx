@@ -1,21 +1,36 @@
+const icon = (slug: string, variant = "default") =>
+  `https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${slug}/${variant}.svg`
+
 const brands = [
-  { name: "Aider", mark: "aider" },
-  { name: "Goose", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/goose-codename/default.svg" },
-  { name: "Cursor", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/cursor/mono.svg" },
-  { name: "Cline", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/cline/default.svg" },
-  { name: "GitHub Copilot", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/github-copilot/default.svg" },
-  { name: "Windsurf", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/windsurf/default.svg" },
-  { name: "Zed", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/zed/default.svg" },
-  { name: "Continue", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/continue/default.svg" },
-  { name: "OpenCode", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/opencode/default.svg" },
-  { name: "Kilo Code", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/kilo-code/default.svg" },
+  { name: "Claude Code", src: icon("claude-code") },
+  { name: "Codex", src: icon("codex") },
+  { name: "Cursor", src: icon("cursor", "mono") },
+  { name: "GitHub Copilot", src: icon("github-copilot") },
+  { name: "Gemini CLI", src: icon("gemini-cli") },
+  { name: "Antigravity", src: icon("google-antigravity") },
+  { name: "Windsurf", src: icon("windsurf") },
+  { name: "Zed", src: icon("zed") },
+  { name: "Cline", src: icon("cline") },
   { name: "Roo Code", mark: "R" },
-  { name: "Amp", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/amp/default.svg" },
-  { name: "Codex", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/codex/default.svg" },
-  { name: "Claude Code", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/claude-code/default.svg" },
-  { name: "Vercel", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/vercel/mono.svg" },
-  { name: "Gemini CLI", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/gemini-cli/default.svg" },
-  { name: "Llama", src: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/meta/default.svg" },
+  { name: "Kilo Code", src: icon("kilo-code") },
+  { name: "OpenCode", src: icon("opencode") },
+  { name: "Continue", src: icon("continue") },
+  { name: "Aider", mark: "aider" },
+  { name: "Goose", src: icon("goose-codename") },
+  { name: "Amp", src: icon("amp") },
+  { name: "Kiro", src: icon("kiro") },
+  { name: "Trae", src: icon("trae", "mono") },
+  { name: "Qwen Code", src: icon("qwen") },
+  { name: "Amazon Q", src: icon("amazon-q") },
+  { name: "OpenHands", src: icon("openhands", "mono") },
+  { name: "Warp", src: icon("warp", "mono") },
+  { name: "JetBrains AI", src: icon("jetbrains") },
+  { name: "Cody", src: icon("cody") },
+  { name: "Void", src: icon("void") },
+  { name: "Replit", src: icon("replit", "mono") },
+  { name: "Bolt", src: icon("bolt") },
+  { name: "Lovable", src: icon("lovable") },
+  { name: "v0", src: icon("vercel", "mono") },
 ]
 
 function BrandCards({ hidden = false }: { hidden?: boolean }) {
@@ -24,31 +39,31 @@ function BrandCards({ hidden = false }: { hidden?: boolean }) {
       {brands.map((brand) => (
         <li
           key={brand.name}
-          className="flex h-24 w-44 shrink-0 items-center justify-center border border-black/10 bg-[#F4F3F1] px-7"
+          className="flex h-28 w-36 shrink-0 flex-col items-center justify-center gap-3 border border-black/10 bg-[#F4F3F1] px-4"
         >
-          <div className="flex items-center justify-center gap-2.5 text-[#090909]">
+          <div className="flex h-7 items-center justify-center text-[#090909]">
             {brand.src && (
               <img
-                src={brand.src}
+                src={brand.src || "/placeholder.svg"}
                 alt=""
-                className="h-6 w-6 object-contain grayscale brightness-0"
+                className="h-7 w-7 object-contain grayscale brightness-0"
                 loading="lazy"
               />
             )}
             {brand.mark && (
               <span
                 aria-hidden="true"
-                className={`flex h-6 min-w-6 items-center justify-center font-mono font-bold ${
-                  brand.mark === "aider" ? "text-[8px] tracking-tight" : "text-lg"
+                className={`flex h-7 min-w-7 items-center justify-center font-mono font-bold ${
+                  brand.mark === "aider" ? "text-[10px] tracking-tight" : "text-xl"
                 }`}
               >
                 {brand.mark}
               </span>
             )}
-            <span className="whitespace-nowrap font-sans text-xl font-semibold tracking-tight">
-              {brand.name}
-            </span>
           </div>
+          <span className="whitespace-nowrap text-center font-sans text-sm font-medium tracking-tight text-[#090909]">
+            {brand.name}
+          </span>
         </li>
       ))}
     </ul>
@@ -57,10 +72,7 @@ function BrandCards({ hidden = false }: { hidden?: boolean }) {
 
 export function ModelMarquee() {
   return (
-    <section
-      aria-label="Harnesses compatíveis com a Nylla"
-      className="overflow-hidden bg-background py-3"
-    >
+    <section aria-label="Harnesses compatíveis com a Nylla" className="overflow-hidden bg-background py-3">
       <div className="marquee-track flex w-max">
         <BrandCards />
         <BrandCards hidden />
