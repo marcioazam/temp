@@ -58,12 +58,16 @@ export function GatewayFlow() {
             </div>
 
             <div className="grid lg:grid-cols-[1fr_12rem]">
-              <div className="overflow-x-auto py-5">
-                <div className="min-w-[34rem] font-mono text-xs leading-6">
+              <div className="overflow-hidden py-5">
+                <div className="w-full font-mono text-[11px] leading-6 sm:text-xs">
                   {CODE_LINES.map((line) => (
-                    <div key={line.number} className="flex px-4">
+                    <div key={line.number} className="flex min-w-0 px-4">
                       <span className="w-8 shrink-0 select-none text-muted-foreground/40">{line.number}</span>
-                      <code className={line.number === "02" ? "text-primary" : "text-foreground/80"}>{line.content}</code>
+                      <code
+                        className={`whitespace-pre ${line.number === "02" ? "text-primary" : "text-foreground/80"}`}
+                      >
+                        {line.content}
+                      </code>
                     </div>
                   ))}
                 </div>
