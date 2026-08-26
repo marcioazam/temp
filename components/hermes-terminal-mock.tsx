@@ -99,9 +99,12 @@ function TranscriptLine({ line }: { line: Line }) {
   }
 
   if (line.kind === "sys") {
+    const [gatewayLabel, routeDetails] = line.text.split(" → ")
+
     return (
       <div className="claude-line mt-1.5 pl-3 text-[#8a8672]">
-        <span className="text-[#e8c547]">::</span> {line.text}
+        <span className="text-[#e8c547]">:: {gatewayLabel}</span>
+        {routeDetails ? ` → ${routeDetails}` : null}
       </div>
     )
   }
