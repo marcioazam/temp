@@ -40,7 +40,7 @@ export function SiteHeader() {
       <header
         className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
           scrolled
-            ? "border-transparent bg-background after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-5 after:bg-gradient-to-b after:from-background/80 after:to-transparent"
+            ? "border-primary/15 bg-background after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-5 after:bg-gradient-to-b after:from-background/80 after:to-transparent"
             : "border-transparent bg-background"
         }`}
       >
