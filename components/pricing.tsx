@@ -102,7 +102,7 @@ export function Pricing() {
               </ul>
               <Link
                 href="/docs"
-                className={`mt-8 inline-flex h-10 items-center justify-center rounded-[8px] border font-mono text-xs transition-all active:scale-[0.98] ${
+                className={`mt-8 inline-flex h-10 items-center justify-center border font-mono text-xs transition-all active:scale-[0.98] ${
                   plan.highlighted
                     ? "border-foreground bg-foreground text-background hover:opacity-85"
                     : "border-border text-foreground hover:bg-muted"

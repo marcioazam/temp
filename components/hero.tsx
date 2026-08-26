@@ -31,7 +31,7 @@ export function Hero() {
                 href="https://www.npmjs.com/package/nycode"
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex h-11 items-center justify-center gap-2 rounded-[8px] border border-foreground bg-foreground px-5 font-mono text-sm text-background transition-opacity duration-200 hover:opacity-90 active:scale-[0.98]"
+                className="group inline-flex h-11 items-center justify-center gap-2 border border-foreground bg-foreground px-5 font-mono text-sm text-background transition-opacity duration-200 hover:opacity-90 active:scale-[0.98]"
               >
                 install
                 <svg
@@ -48,7 +48,7 @@ export function Hero() {
 
               <Link
                 href="/docs"
-                className="group inline-flex h-11 items-center justify-center gap-2 rounded-[8px] border border-border px-5 font-mono text-sm text-muted-foreground transition-all duration-200 hover:bg-muted hover:text-foreground active:scale-[0.98]"
+                className="group inline-flex h-11 items-center justify-center gap-2 border border-border px-5 font-mono text-sm text-muted-foreground transition-all duration-200 hover:bg-muted hover:text-foreground active:scale-[0.98]"
               >
                 ler docs
                 <span
