@@ -48,7 +48,7 @@ export function GatewayFlow() {
                   key={m}
                   aria-current={isActive ? "true" : undefined}
                   className={`flex items-center justify-between gap-2 px-3 py-3 transition-colors duration-300 ${
-                    isActive ? "bg-ultra text-primary-foreground" : "bg-card text-muted-foreground"
+                    isActive ? "bg-ultra text-white" : "bg-card text-muted-foreground"
                   }`}
                 >
                   <span className="font-mono text-xs">{m}</span>
