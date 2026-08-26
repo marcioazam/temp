@@ -27,7 +27,7 @@ export function HeroFlow() {
         </div>
 
         {/* Node: Nylla */}
-        <div className="relative border border-primary/45 bg-muted px-4 py-3 text-foreground shadow-[0_0_22px_-10px_var(--primary)]">
+        <div className="relative border border-primary/45 bg-muted px-4 py-3 text-foreground shadow-[0_0_10px_-7px_var(--primary)]">
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 shrink-0 bg-primary" aria-hidden="true" />
             <span className="text-[10px] uppercase tracking-[0.2em] text-foreground">Nylla</span>
