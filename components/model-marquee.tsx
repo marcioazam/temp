@@ -65,15 +65,7 @@ export function ModelMarquee() {
   return (
     <section aria-label="Harnesses compatíveis com a Nylla" className="bg-background py-3">
       <div className="mx-auto w-full max-w-screen-2xl px-4 md:px-9">
-        <div
-          className="overflow-hidden"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent 0%, rgb(0 0 0 / 20%) 3%, rgb(0 0 0 / 55%) 6%, black 11%, black 89%, rgb(0 0 0 / 55%) 94%, rgb(0 0 0 / 20%) 97%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, rgb(0 0 0 / 20%) 3%, rgb(0 0 0 / 55%) 6%, black 11%, black 89%, rgb(0 0 0 / 55%) 94%, rgb(0 0 0 / 20%) 97%, transparent 100%)",
-          }}
-        >
+        <div className="overflow-hidden">
           <div className="marquee-track flex w-max">
             <BrandCards />
             <BrandCards hidden />
