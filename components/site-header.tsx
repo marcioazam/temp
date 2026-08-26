@@ -71,7 +71,7 @@ export function SiteHeader() {
 
           <Link
             href="/#planos"
-            className="group relative ml-auto inline-flex items-center gap-1.5 overflow-hidden border border-[#45A787] bg-[#45A787] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
+            className="group relative ml-auto inline-flex items-center gap-1.5 overflow-hidden border border-foreground bg-foreground px-3.5 py-1.5 font-mono text-xs text-background transition-opacity hover:opacity-90"
           >
             Começar
             <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
