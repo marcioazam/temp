@@ -430,7 +430,7 @@ export function EditorMock() {
     >
       <img src="/images/desktop-wallpaper.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full select-none object-cover" />
       <WindowsTaskbar />
-      <div className="absolute left-3 top-3 h-[72%] w-[82%] sm:left-5 sm:top-5 sm:h-[74%] sm:w-[78%] md:left-7 md:top-6 md:h-[76%] md:w-[74%]">
+      <div className="absolute left-3 top-3 h-[58%] w-[68%] sm:left-4 sm:top-4 sm:h-[60%] sm:w-[64%] md:left-5 md:top-5 md:h-[62%] md:w-[60%]">
         <ClaudeCodeSession />
       </div>
     </div>
