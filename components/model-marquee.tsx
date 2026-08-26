@@ -16,6 +16,7 @@ const brands = [
   { name: "Hermes Agent", mark: "H" },
   { name: "OpenClaw", src: "/images/openclaw.svg" },
   { name: "Kilo Code", src: "/images/kilo-code.svg" },
+  { name: "Goose", src: icon("goose") },
 ]
 
 export function ModelMarquee() {
