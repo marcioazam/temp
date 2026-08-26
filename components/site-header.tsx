@@ -74,10 +74,10 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center">
             {languageEnabled && (
               <div
-                className="flex h-[30px] items-center border border-foreground/25 bg-transparent p-0.5 font-mono text-[10px]"
+                className="mr-6 flex h-[30px] items-center border border-foreground/25 bg-transparent p-0.5 font-mono text-[10px]"
                 role="group"
                 aria-label={locale === "pt" ? "Selecionar idioma" : "Select language"}
                 data-no-translate
@@ -100,21 +100,23 @@ export function SiteHeader() {
                 ))}
               </div>
             )}
-            <Link
-              href="/docs"
-              className="inline-flex items-center border border-foreground/45 bg-transparent px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-foreground hover:bg-foreground/5"
-            >
-              Ler Docs
-            </Link>
-            <Link
-              href="/#planos"
-              className="group relative inline-flex items-center gap-1.5 overflow-hidden border border-[#F4F3F1] bg-[#F4F3F1] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
-            >
-              Começar
-              <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
-                →
-              </span>
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/docs"
+                className="inline-flex items-center border border-foreground/45 bg-transparent px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-foreground hover:bg-foreground/5"
+              >
+                Ler Docs
+              </Link>
+              <Link
+                href="/#planos"
+                className="group relative inline-flex items-center gap-1.5 overflow-hidden border border-[#F4F3F1] bg-[#F4F3F1] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
+              >
+                Começar
+                <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
