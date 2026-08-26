@@ -6,6 +6,7 @@ import { Harnesses } from "@/components/harnesses"
 import { NpmSection } from "@/components/npm-section"
 import { CatalogSection } from "@/components/catalog-section"
 import { Pricing } from "@/components/pricing"
+import { FaqSection } from "@/components/faq-section"
 import { FinalCta } from "@/components/final-cta"
 import { SiteFooter } from "@/components/site-footer"
 
@@ -21,6 +22,7 @@ export default function Page() {
         <Features />
         <CatalogSection />
         <Pricing />
+        <FaqSection />
         <FinalCta />
       </main>
       <SiteFooter />

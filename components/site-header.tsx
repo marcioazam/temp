@@ -10,6 +10,7 @@ const nav = [
   { label: "Harnesses", href: "/#harnesses" },
   { label: "Catálogo", href: "/#catalogo" },
   { label: "Planos", href: "/#planos" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Docs", href: "/docs" },
 ]
 
