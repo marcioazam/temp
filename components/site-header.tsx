@@ -50,8 +50,8 @@ export function SiteHeader() {
             aria-label="Nylla, início"
             className="flex items-center gap-2.5 text-foreground"
           >
-            <span className="grid size-7 shrink-0 place-items-center rounded-full bg-primary text-foreground">
-              <RotorMark aria-hidden="true" className="size-5" />
+            <span className="grid size-10 shrink-0 place-items-center bg-primary text-primary-foreground">
+              <RotorMark aria-hidden="true" className="size-7" />
             </span>
             <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-[0.02em]">
               Nylla
