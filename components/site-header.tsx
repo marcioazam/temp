@@ -40,7 +40,7 @@ export function SiteHeader() {
       <header
         className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
           scrolled
-            ? "border-border bg-background after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-5 after:bg-gradient-to-b after:from-background/80 after:to-transparent"
+            ? "border-border/60 bg-background/90 shadow-[0_1px_0_color-mix(in_oklab,var(--border)_35%,transparent)] backdrop-blur-xl after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-4 after:bg-gradient-to-b after:from-background/55 after:via-background/15 after:to-transparent"
             : "border-transparent bg-background"
         }`}
       >
