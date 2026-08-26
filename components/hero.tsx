@@ -29,7 +29,7 @@ export function Hero() {
                   rel="noreferrer"
                   className="group inline-flex h-11 items-center justify-center gap-2 border border-[#F4F3F1] bg-[#F4F3F1] px-5 font-mono text-sm text-[#090909] transition-opacity duration-200 hover:opacity-90 active:scale-[0.98]"
                 >
-                  install
+                  Cadastrar-se
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 12 12"
@@ -46,7 +46,7 @@ export function Hero() {
                   href="/docs"
                   className="group inline-flex h-11 items-center justify-center gap-2 border border-border px-5 font-mono text-sm text-muted-foreground transition-all duration-200 hover:bg-muted hover:text-foreground active:scale-[0.98]"
                 >
-                  ler docs
+                  Install
                   <span
                     aria-hidden="true"
                     className="opacity-50 transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
