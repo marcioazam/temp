@@ -4,7 +4,7 @@ import { Reveal } from "@/components/reveal"
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border bg-background">
+    <section className="relative overflow-hidden bg-background">
       <div className="relative mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
         <div className="max-w-3xl">
           <Reveal>
