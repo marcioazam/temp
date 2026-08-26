@@ -246,7 +246,7 @@ function ClaudeCodeSession() {
   return (
     <div
       data-current-model={currentModel}
-      className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-white/[0.07] bg-[#262624] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_24px_55px_-22px_rgba(0,0,0,0.72),0_10px_24px_-16px_rgba(0,0,0,0.55),0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/20 sm:text-[9px] md:rounded-xl md:text-[10px]"
+      className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#34322f] bg-[#262624] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[9px] md:text-[10px]"
     >
       <div className="relative flex h-7 shrink-0 items-center border-b border-black/25 bg-[#2b2a28] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
         <div className="flex items-center gap-1.5" aria-hidden="true">
