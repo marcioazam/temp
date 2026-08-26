@@ -93,7 +93,7 @@ export function Pricing() {
               <ul className="mt-6 flex-1 space-y-2">
                 {plan.features.map((f) => (
                   <li key={f} className="flex gap-2 font-mono text-xs leading-relaxed text-muted-foreground">
-                    <span className="text-foreground/60" aria-hidden="true">
+                    <span className="shrink-0 text-base leading-none text-foreground/60" aria-hidden="true">
                       +
                     </span>
                     <span>{f}</span>
