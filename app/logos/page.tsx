@@ -11,6 +11,16 @@ import {
   Chakra_Petch,
   Orbitron,
   Major_Mono_Display,
+  DotGothic16,
+  Pixelify_Sans,
+  Handjet,
+  Doto,
+  Rubik_Mono_One,
+  Fira_Code,
+  Red_Hat_Mono,
+  Sometype_Mono,
+  Anonymous_Pro,
+  Syne_Mono,
 } from "next/font/google"
 import { NyllaWordmark } from "@/components/logo"
 
@@ -24,11 +34,21 @@ const plexMono = IBM_Plex_Mono({ weight: "500", subsets: ["latin"] })
 const chakra = Chakra_Petch({ weight: "600", subsets: ["latin"] })
 const orbitron = Orbitron({ weight: "600", subsets: ["latin"] })
 const majorMono = Major_Mono_Display({ weight: "400", subsets: ["latin"] })
+const dotGothic = DotGothic16({ weight: "400", subsets: ["latin"] })
+const pixelify = Pixelify_Sans({ weight: "500", subsets: ["latin"] })
+const handjet = Handjet({ weight: "500", subsets: ["latin"] })
+const doto = Doto({ weight: "700", subsets: ["latin"] })
+const rubikMonoOne = Rubik_Mono_One({ weight: "400", subsets: ["latin"] })
+const firaCode = Fira_Code({ weight: "600", subsets: ["latin"] })
+const redHatMono = Red_Hat_Mono({ weight: "500", subsets: ["latin"] })
+const sometypeMono = Sometype_Mono({ weight: "600", subsets: ["latin"] })
+const anonymousPro = Anonymous_Pro({ weight: "700", subsets: ["latin"] })
+const syneMono = Syne_Mono({ weight: "400", subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "logos · Nylla",
   description:
-    "Estudo tipográfico da marca Nylla: a palavra desenhada em 10 fontes que dialogam com o wordmark pixel.",
+    "Estudo tipográfico da marca Nylla: a palavra desenhada em 20 fontes que dialogam com o wordmark pixel.",
 }
 
 const studies = [
@@ -69,7 +89,7 @@ const studies = [
   },
   {
     name: "jetbrains mono",
-    note: "mono de editor · onde a nylla vive",
+    note: "mono de editor · onde a Nylla vive",
     className: jetbrains.className,
     size: "text-4xl md:text-5xl",
     tracking: "tracking-tight",
@@ -102,6 +122,76 @@ const studies = [
     size: "text-4xl md:text-5xl",
     tracking: "tracking-tight",
   },
+  {
+    name: "dotgothic16",
+    note: "bitmap japonesa · retícula fina",
+    className: dotGothic.className,
+    size: "text-5xl md:text-6xl",
+    tracking: "tracking-tight",
+  },
+  {
+    name: "pixelify sans",
+    note: "pixel arredondado · tom amigável",
+    className: pixelify.className,
+    size: "text-5xl md:text-6xl",
+    tracking: "tracking-tight",
+  },
+  {
+    name: "handjet",
+    note: "pixel condensada · painel led",
+    className: handjet.className,
+    size: "text-6xl md:text-7xl",
+    tracking: "tracking-normal",
+  },
+  {
+    name: "doto",
+    note: "matriz de pontos · display digital",
+    className: doto.className,
+    size: "text-5xl md:text-6xl",
+    tracking: "tracking-tight",
+  },
+  {
+    name: "rubik mono one",
+    note: "mono pesada · impacto de bloco",
+    className: rubikMonoOne.className,
+    size: "text-3xl md:text-4xl",
+    tracking: "tracking-tight",
+  },
+  {
+    name: "fira code",
+    note: "mono de código · ligaduras",
+    className: firaCode.className,
+    size: "text-4xl md:text-5xl",
+    tracking: "tracking-tight",
+  },
+  {
+    name: "red hat mono",
+    note: "mono humanista · leitura suave",
+    className: redHatMono.className,
+    size: "text-4xl md:text-5xl",
+    tracking: "tracking-tight",
+  },
+  {
+    name: "sometype mono",
+    note: "mono contemporânea · detalhes vivos",
+    className: sometypeMono.className,
+    size: "text-4xl md:text-5xl",
+    tracking: "tracking-tight",
+  },
+  {
+    name: "anonymous pro",
+    note: "mono clássica · herança de terminal",
+    className: anonymousPro.className,
+    size: "text-4xl md:text-5xl",
+    tracking: "tracking-tight",
+  },
+  {
+    name: "syne mono",
+    note: "mono expressiva · traço artístico",
+    className: syneMono.className,
+    size: "text-4xl md:text-5xl",
+    tracking: "tracking-tight",
+  },
 ]
 
 export default function LogosPage() {
@@ -127,7 +217,7 @@ export default function LogosPage() {
             Estudo tipográfico
           </h1>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            A palavra &quot;nylla&quot; desenhada em 10 fontes que dialogam com o wordmark pixel:
+            A palavra &quot;Nylla&quot; desenhada em 20 fontes que dialogam com o wordmark pixel:
             das irmãs bitmap diretas às monospace de editor, passando por grotescas técnicas.
           </p>
         </header>
@@ -157,9 +247,9 @@ export default function LogosPage() {
             >
               <div className="flex min-h-44 flex-1 items-center justify-center p-10">
                 <span
-                  className={`${study.className} ${study.size} ${study.tracking} lowercase leading-none text-foreground`}
+                  className={`${study.className} ${study.size} ${study.tracking} leading-none text-foreground`}
                 >
-                  nylla
+                  Nylla
                 </span>
               </div>
               <div className="flex items-baseline justify-between gap-4 border-t border-border px-5 py-3.5">
@@ -175,7 +265,7 @@ export default function LogosPage() {
         </section>
 
         <footer className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-2 border-t border-border pt-6">
-          <span className="font-mono text-xs text-muted-foreground">caixa: sempre minúscula</span>
+          <span className="font-mono text-xs text-muted-foreground">caixa: N maiúsculo</span>
           <span className="font-mono text-xs text-muted-foreground">cor: monocromatico</span>
           <span className="font-mono text-xs text-muted-foreground">
             critério: harmonia com o grid pixel
