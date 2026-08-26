@@ -390,20 +390,11 @@ function WeatherWidget() {
 function WindowsTaskbar() {
   return (
     <div className="absolute inset-x-0 bottom-0 flex h-9 items-center border-t border-white/[0.06] bg-[#24262d]/95 px-2 font-sans text-white/70 backdrop-blur-xl md:h-11 md:px-4">
-<div className="absolute left-1/2 grid -translate-x-1/2 grid-cols-4 items-center" aria-hidden="true">
-<span className="grid h-7 w-8 place-items-center text-white/80 md:h-9 md:w-11">
-<RotorMark className="h-4 w-4 md:h-[18px] md:w-[18px]" />
-</span>
-<span className="grid h-7 w-8 place-items-center md:h-9 md:w-11">
-<span className="relative h-3 w-3 rounded-full border border-white/65 after:absolute after:-bottom-1 after:-right-1 after:h-1.5 after:w-px after:-rotate-45 after:bg-white/65" />
-</span>
-<span className="grid h-7 w-8 place-items-center md:h-9 md:w-11">
-<span className="h-3 w-4 rounded-[2px] border border-white/60 before:block before:h-[3px] before:w-1.5 before:-translate-y-1 before:rounded-t-[1px] before:border-x before:border-t before:border-white/60 md:h-3.5 md:w-[18px]" />
-</span>
-<span className="grid h-7 w-8 place-items-center md:h-9 md:w-11">
-<span className="grid h-4 w-4 place-items-center rounded-full border border-white/55"><i className="h-1.5 w-1.5 rounded-full bg-white/35" /></span>
-</span>
-</div>
+      <div className="absolute left-1/2 grid -translate-x-1/2 place-items-center" aria-hidden="true">
+        <span className="grid h-7 w-8 place-items-center text-white/80 md:h-9 md:w-11">
+          <RotorMark className="h-4 w-4 md:h-[18px] md:w-[18px]" />
+        </span>
+      </div>
 
       <div className="ml-auto flex items-center gap-2 md:gap-3">
         <WeatherWidget />
