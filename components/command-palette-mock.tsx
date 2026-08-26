@@ -84,7 +84,7 @@ export function CommandPaletteMock() {
           </div>
           <p className="text-[#77746e]">Explorou 18 arquivos, 6 configurações</p>
           <p>Vou conectar os harnesses ao endpoint compatível com OpenAI, configurar fallback entre modelos e validar o streaming dentro do workspace.</p>
-          <p className="text-[#8e8b85]">Trabalhou por <span className="text-[#28c840]">40s</span></p>
+          <p className="text-[#8e8b85]">Trabalhou por <span className="text-[#7f9b76]">40s</span></p>
           <p className="text-[#77746e]">Validou credenciais e roteamento</p>
           <p>Pronto. O workspace agora alterna modelos pelo Nylla sem alterar o fluxo do agente.</p>
 
