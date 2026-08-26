@@ -24,54 +24,42 @@ const brands = [
   { name: "Void", src: icon("void") },
 ]
 
-function BrandCards({ hidden = false }: { hidden?: boolean }) {
+export function ModelMarquee() {
   return (
-    <ul className="flex shrink-0 gap-2 pr-2" aria-hidden={hidden || undefined}>
+    <ul
+      aria-label="Ferramentas compatíveis com a Nylla"
+      className="grid grid-cols-3 gap-2 sm:grid-cols-4"
+    >
       {brands.map((brand) => (
         <li
           key={brand.name}
-          className="flex h-28 w-36 shrink-0 flex-col items-center justify-center gap-3 border border-black/10 bg-[#F4F3F1] px-4"
+          className="flex min-h-16 flex-col items-center justify-center gap-2 border border-border bg-[#F4F3F1] px-2 py-3"
         >
-          <div className="flex h-7 items-center justify-center text-[#090909]">
+          <div className="flex h-5 items-center justify-center text-[#090909]">
             {brand.src && (
               <img
-                src={brand.src || "/placeholder.svg"}
+                src={brand.src}
                 alt=""
-                className="h-7 w-7 object-contain grayscale brightness-0"
+                className="h-5 w-5 object-contain grayscale brightness-0"
                 loading="lazy"
               />
             )}
             {brand.mark && (
               <span
                 aria-hidden="true"
-                className={`flex h-7 min-w-7 items-center justify-center font-mono font-bold ${
-                  brand.mark === "aider" ? "text-[10px] tracking-tight" : "text-xl"
+                className={`flex h-5 min-w-5 items-center justify-center font-mono font-bold ${
+                  brand.mark === "aider" ? "text-[8px] tracking-tight" : "text-sm"
                 }`}
               >
                 {brand.mark}
               </span>
             )}
           </div>
-          <span className="whitespace-nowrap text-center font-sans text-sm font-medium tracking-tight text-[#090909]">
+          <span className="max-w-full truncate text-center font-sans text-[11px] font-medium tracking-tight text-[#090909]">
             {brand.name}
           </span>
         </li>
       ))}
     </ul>
-  )
-}
-
-export function ModelMarquee() {
-  return (
-    <section aria-label="Harnesses compatíveis com a Nylla" className="bg-background py-3">
-      <div className="mx-auto w-full max-w-screen-2xl px-4 md:px-9">
-        <div className="overflow-hidden">
-          <div className="marquee-track flex w-max">
-            <BrandCards />
-            <BrandCards hidden />
-          </div>
-        </div>
-      </div>
-    </section>
   )
 }

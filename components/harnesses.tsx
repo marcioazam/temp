@@ -1,6 +1,5 @@
-import Link from "next/link"
-
 import { CommandPaletteMock } from "@/components/command-palette-mock"
+import { ModelMarquee } from "@/components/model-marquee"
 import { Reveal } from "@/components/reveal"
 
 export function Harnesses() {
@@ -20,12 +19,10 @@ export function Harnesses() {
               modelos, aplica fallback automático e mantém cada agente trabalhando sem interrupções no editor, no
               terminal ou via SDK.
             </p>
-            <Link
-              href="#planos"
-              className="mt-8 inline-flex items-center justify-center bg-[#F4F3F1] px-5 py-2.5 font-mono text-sm font-medium text-[#090909] transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F3F1] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              Assinar
-            </Link>
+            <div className="mt-8 flex flex-col gap-4">
+              <p className="font-mono text-sm text-foreground">Nylla é compatível com:</p>
+              <ModelMarquee />
+            </div>
           </div>
 
           <Reveal delay={80}>

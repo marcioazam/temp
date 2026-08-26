@@ -1,6 +1,5 @@
 import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
-import { ModelMarquee } from "@/components/model-marquee"
 import { GatewayFlow } from "@/components/gateway-flow"
 import { Features } from "@/components/features"
 import { Harnesses } from "@/components/harnesses"
@@ -15,7 +14,6 @@ export default function Page() {
       <SiteHeader />
       <main>
         <Hero />
-        <ModelMarquee />
         <Harnesses />
         <GatewayFlow />
         <Features />
