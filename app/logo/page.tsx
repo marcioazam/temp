@@ -38,6 +38,34 @@ import {
   GateDotMark,
   MeshMark,
 } from "@/components/logo-variants-ai"
+import {
+  StackMark,
+  SplitCubeMark,
+  VertexCubeMark,
+  LoopMark,
+  QuadKnotMark,
+  BraidMark,
+  TunnelMark,
+  SlitPortalMark,
+  IrisMark,
+  RiseMark,
+  DotBurstMark,
+  SpinBurstMark,
+  PixelStarMark,
+  AtomMark,
+  TwinOrbitMark,
+  PixelOrbitMark,
+  StrokeYMark,
+  StrokeNYMark,
+  CoilMark,
+  NestedGateMark,
+  FlowGateMark,
+  GridMeshMark,
+  HubMark,
+  PathMark,
+  PulseMark,
+  SparkMark,
+} from "@/components/logo-variants-ai-2"
 
 export const metadata: Metadata = {
   title: "marca — nycode",
@@ -198,6 +226,119 @@ export default function LogoPage() {
 
           <VariantCard name="malha" note="inferência distribuída">
             <MeshMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+        </section>
+
+        <h2 className="mt-16 mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          estudos — ia minimalista, série 2
+        </h2>
+
+        <section
+          aria-label="variantes de IA minimalistas, série 2"
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+        >
+          <VariantCard name="pilha" note="camadas de modelo">
+            <StackMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="cubo fatiado" note="glitch volumétrico">
+            <SplitCubeMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="vértices" note="volume implícito">
+            <VertexCubeMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="laço" note="dois estados">
+            <LoopMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="nó quádruplo" note="flor técnica">
+            <QuadKnotMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="trança" note="arcos cruzados">
+            <BraidMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="túnel" note="hexágonos aninhados">
+            <TunnelMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="fresta" note="token saindo do portal">
+            <SlitPortalMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="íris" note="diafragma hexagonal">
+            <IrisMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="amanhecer" note="raios no horizonte">
+            <RiseMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="burst pontos" note="raios que dissipam">
+            <DotBurstMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="rotor" note="energia em rotação">
+            <SpinBurstMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="estrela pixel" note="burst diagonal quantizado">
+            <PixelStarMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="átomo" note="elipses cruzadas">
+            <AtomMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="órbita dupla" note="dois satélites">
+            <TwinOrbitMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="órbita pixel" note="anel quantizado">
+            <PixelOrbitMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="traço y" note="monograma contínuo">
+            <StrokeYMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="ligadura ny" note="haste partilhada">
+            <StrokeNYMark className="h-14 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="espiral" note="convergência ao centro">
+            <CoilMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="gate duplo" note="escopo aninhado">
+            <NestedGateMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="fluxo" note="tokens na barreira">
+            <FlowGateMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="malha quadrada" note="todas as ligações">
+            <GridMeshMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="hub" note="anel de nós">
+            <HubMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="caminho" note="inferência em passos">
+            <PathMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="pulso" note="batimento digital">
+            <PulseMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="faísca" note="glint da geração">
+            <SparkMark className="h-16 w-auto text-foreground" />
           </VariantCard>
         </section>
 
