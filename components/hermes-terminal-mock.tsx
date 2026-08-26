@@ -255,7 +255,7 @@ export function HermesTerminalMock() {
 
       <div
         ref={scrollerRef}
-        className="min-h-0 flex-1 overflow-y-auto px-2.5 py-2 [scrollbar-color:#4a4636_transparent] [scrollbar-width:thin] sm:px-3 md:px-4 md:py-3"
+        className="min-h-0 flex-1 overflow-y-auto px-2.5 py-2 [scrollbar-color:#55524c_transparent] [scrollbar-width:thin] sm:px-3 md:px-4 md:py-3"
       >
         <div className="text-[#f2d857]">
           {BANNER_HERMES.map((row, i) => (
