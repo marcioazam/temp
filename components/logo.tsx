@@ -23,7 +23,7 @@ export function RotorMark(props: SVGProps<SVGSVGElement>) {
 }
 
 /**
- * Flat "nylla" pixel wordmark — inherits currentColor.
+ * Flat "Nylla" pixel wordmark — inherits currentColor.
  * Glyphs are grouped so each letter can be shifted right, producing
  * optical letter-spacing that raw pixel paths can't express.
  */
@@ -34,7 +34,7 @@ export function NyllaWordmark(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 163 36"
       className="pixel-crisp"
       role="img"
-      aria-label="nylla"
+      aria-label="Nylla"
       {...props}
     >
       <g fill="currentColor">

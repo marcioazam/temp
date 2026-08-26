@@ -68,9 +68,9 @@ import {
 } from "@/components/logo-variants-ai-2"
 
 export const metadata: Metadata = {
-  title: "marca · nylla",
+  title: "marca · Nylla",
   description:
-    "Sistema de marca do nylla: variantes pixel, glitch, tetromino e dado do logotipo.",
+    "Sistema de marca da Nylla: variantes pixel, glitch, tetromino e dado do logotipo.",
 }
 
 function VariantCard({
@@ -114,7 +114,7 @@ export default function LogoPage() {
             Sistema de marca
           </h1>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            O logotipo do nylla nasce do pixel · a menor unidade de renderização, a mesma célula
+            O logotipo da Nylla nasce do pixel · a menor unidade de renderização, a mesma célula
             que compõe um token. Cada variante explora um comportamento do pixel: corrupção,
             queda, sorte e dissolução.
           </p>

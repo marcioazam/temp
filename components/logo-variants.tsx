@@ -42,7 +42,7 @@ export function SliceGlitch({
 }) {
   const Mark = wordmark ? NyllaWordmark : NyMark
   return (
-    <div className={`relative ${className ?? ""}`} aria-label={wordmark ? "nylla glitch" : "ny glitch"}>
+    <div className={`relative ${className ?? ""}`} aria-label={wordmark ? "Nylla glitch" : "ny glitch"}>
       {/* invisible sizer keeps layout stable */}
       <Mark className="invisible h-full w-auto" aria-hidden />
       {SLICES.map((s, i) => (
