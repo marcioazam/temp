@@ -42,7 +42,7 @@ export function SiteHeader() {
           <Link
             href="/"
             aria-label="nycode — início"
-            className="flex items-center gap-2.5 text-foreground transition-opacity hover:opacity-70"
+            className="flex items-center gap-2.5 text-foreground"
           >
             <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0" />
             <span className="font-[family-name:var(--font-inter)] text-2xl font-bold leading-none tracking-tight">
