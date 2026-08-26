@@ -57,9 +57,13 @@ export function HeroFlow() {
         {/* Node: LLMs */}
         <div className="border border-border px-4 py-3">
           <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">LLMs</span>
-          <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+          <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
             {MODELS.map((model, i) => (
-              <span key={model} className="hf-model text-foreground" style={{ "--model": i } as React.CSSProperties}>
+              <span
+                key={model}
+                className="hf-model border border-border px-2 py-1 text-foreground"
+                style={{ "--model": i } as React.CSSProperties}
+              >
                 {model}
               </span>
             ))}
