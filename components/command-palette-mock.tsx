@@ -1,4 +1,4 @@
-import { ArrowUp, GitBranch, LoaderCircle, PanelLeft, PanelRight, PanelsTopLeft, Play, Search } from "lucide-react"
+import { ArrowUp, GitBranch, LoaderCircle, PanelLeft, PanelRight, PanelsTopLeft, Search } from "lucide-react"
 
 const thisWeek = [
   { label: "Nylla Gateway no VS Code", active: true, type: "dot" },
@@ -84,23 +84,9 @@ export function CommandPaletteMock() {
           </div>
           <p className="text-[#77746e]">Explorou 18 arquivos, 6 configurações</p>
           <p>Vou conectar os harnesses ao endpoint compatível com OpenAI, configurar fallback entre modelos e validar o streaming dentro do workspace.</p>
-          <p className="text-[#8e8b85]">Trabalhou por <span className="text-[#b98145]">8m 46s</span></p>
+          <p className="text-[#8e8b85]">Trabalhou por <span className="text-[#28c840]">40s</span></p>
           <p className="text-[#77746e]">Validou credenciais e roteamento</p>
           <p>Pronto. O workspace agora alterna modelos pelo Nylla sem alterar o fluxo do agente.</p>
-
-          <div className="relative h-24 w-48 overflow-hidden rounded-md bg-[#aaa18d] sm:h-28 sm:w-56">
-            <div className="absolute inset-2 flex overflow-hidden rounded-sm bg-[#191814] shadow-lg">
-              <div className="w-12 border-r border-[#34322f] p-1.5">
-                {[26, 18, 22, 16].map((width, index) => <div key={index} className="mb-1 h-1 bg-[#45423b]" style={{ width }} />)}
-              </div>
-              <div className="flex-1 p-2">
-                {[70, 42, 58, 50, 65, 44].map((width, index) => <div key={index} className="mb-1.5 h-1 bg-[#35332d]" style={{ width: `${width}%` }} />)}
-              </div>
-            </div>
-            <span className="absolute left-1/2 top-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/70">
-              <Play className="size-4 fill-white text-white" />
-            </span>
-          </div>
 
           <div className="mt-auto rounded-md border border-[#3a3833] bg-[#201f1b] p-2">
             <p className="text-[#9a9790]">Enviar uma continuação...</p>
