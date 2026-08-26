@@ -28,7 +28,7 @@ export function ModelMarquee() {
       {brands.map((brand) => (
         <li
           key={brand.name}
-          className="group flex min-h-[76px] flex-col items-center justify-center gap-2 border border-transparent bg-[#F4F3F1] px-3 py-3 transition-colors hover:border-[#F4F3F1] hover:bg-[#ebe9e5]"
+          className="group flex min-h-[76px] flex-col items-center justify-center gap-2 border border-border/70 bg-card px-3 py-3 transition-all hover:border-primary/60 hover:bg-muted"
         >
           <div className="flex h-7 w-10 items-center justify-center text-foreground transition-transform group-hover:scale-110">
             {brand.src && (
@@ -50,7 +50,7 @@ export function ModelMarquee() {
               </span>
             )}
           </div>
-          <span className="max-w-full truncate text-center font-sans text-[11px] font-medium leading-4 tracking-tight text-[#090909]">
+          <span className="max-w-full truncate text-center font-sans text-[11px] font-medium leading-4 tracking-tight text-foreground">
             {brand.name}
           </span>
         </li>
