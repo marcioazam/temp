@@ -7,7 +7,6 @@ const brands = [
   { name: "Cursor", src: icon("cursor", "mono") },
   { name: "GitHub Copilot", src: icon("github-copilot") },
   { name: "Gemini CLI", src: icon("gemini-cli") },
-  { name: "Antigravity", src: icon("google-antigravity") },
   { name: "Windsurf", src: icon("windsurf") },
   { name: "Zed", src: icon("zed") },
   { name: "Cline", src: icon("cline") },
@@ -17,20 +16,10 @@ const brands = [
   { name: "Continue", src: icon("continue") },
   { name: "Aider", mark: "aider" },
   { name: "Goose", src: icon("goose-codename") },
-  { name: "Amp", src: icon("amp") },
-  { name: "Kiro", src: icon("kiro") },
-  { name: "Trae", src: icon("trae", "mono") },
   { name: "Qwen Code", src: icon("qwen") },
-  { name: "Amazon Q", src: icon("amazon-q") },
   { name: "OpenHands", src: icon("openhands", "mono") },
-  { name: "Warp", src: icon("warp", "mono") },
-  { name: "JetBrains AI", src: icon("jetbrains") },
   { name: "Cody", src: icon("cody") },
   { name: "Void", src: icon("void") },
-  { name: "Replit", src: icon("replit", "mono") },
-  { name: "Bolt", src: icon("bolt") },
-  { name: "Lovable", src: icon("lovable") },
-  { name: "v0", src: icon("vercel", "mono") },
 ]
 
 function BrandCards({ hidden = false }: { hidden?: boolean }) {
