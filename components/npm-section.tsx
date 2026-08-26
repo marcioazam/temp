@@ -30,8 +30,8 @@ export function NpmSection() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="elev-window overflow-hidden rounded-xl border border-border bg-card">
-            <div className="flex items-center justify-between border-b border-border bg-muted/60 px-4 py-3">
+          <div className="elev-window w-full overflow-hidden rounded-[10px] border border-border bg-card shadow-[0_1px_1px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.1),0_6px_12px_rgba(0,0,0,0.1),0_16px_32px_rgba(0,0,0,0.12)]">
+            <div className="relative flex items-center justify-between border-b border-border px-4 py-3">
               <div className="flex items-center gap-1.5" aria-hidden="true">
                 <span className="h-2.5 w-2.5 rounded-full bg-foreground/25" />
                 <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
