@@ -89,11 +89,11 @@ function TranscriptLine({ line }: { line: Line }) {
     return (
       <div
         className={`claude-line mt-2 flex gap-1.5 rounded-[3px] px-2 py-1 ${
-          isUserMessage ? "bg-foreground text-background" : ""
+          isUserMessage ? "bg-[#2b2b29] text-[#e7e4de]" : ""
         }`}
       >
-        <span className={isUserMessage ? "text-background/65" : "text-[#e8c547]"}>›</span>
-        <span className={isUserMessage ? "text-background" : "text-[#e8c547]"}>{line.text}</span>
+        <span className={isUserMessage ? "text-[#aaa69f]" : "text-[#e8c547]"}>›</span>
+        <span className={isUserMessage ? "text-[#e7e4de]" : "text-[#e8c547]"}>{line.text}</span>
       </div>
     )
   }
@@ -340,7 +340,7 @@ export function HermesTerminalMock() {
         <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap text-[#8a8672]">
           <span className="font-semibold text-[#e8c547]">nylla gateway</span>
           <span className="text-[#4a4636]" aria-hidden="true">
-            →
+            ���
           </span>
           <span className="font-semibold text-[#e8c547]">{currentModel}</span>
           <span className="text-[#4a4636]" aria-hidden="true">

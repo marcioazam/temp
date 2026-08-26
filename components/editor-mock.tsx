@@ -120,12 +120,12 @@ function TranscriptLine({ line, delay }: { line: Line; delay: number }) {
     return (
       <div
         className={`claude-line claude-line-prompt mt-3 flex gap-2 rounded-[3px] px-2 py-1 ${
-          isUserMessage ? "bg-foreground text-background" : "bg-[#31302d]"
+          isUserMessage ? "bg-[#2b2b29] text-[#e7e4de]" : "bg-[#31302d]"
         }`}
         style={style}
       >
-        <span className={isUserMessage ? "text-background/65" : "text-[#7c7871]"}>&gt;</span>
-        <span className={isUserMessage ? "text-background" : "text-[#d97757]"}>{line.text}</span>
+        <span className={isUserMessage ? "text-[#aaa69f]" : "text-[#7c7871]"}>&gt;</span>
+        <span className={isUserMessage ? "text-[#e7e4de]" : "text-[#d97757]"}>{line.text}</span>
       </div>
     )
   }
