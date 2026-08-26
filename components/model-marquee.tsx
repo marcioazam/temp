@@ -63,10 +63,20 @@ function BrandCards({ hidden = false }: { hidden?: boolean }) {
 
 export function ModelMarquee() {
   return (
-    <section aria-label="Harnesses compatíveis com a Nylla" className="overflow-hidden bg-background py-3">
-      <div className="marquee-track flex w-max">
-        <BrandCards />
-        <BrandCards hidden />
+    <section aria-label="Harnesses compatíveis com a Nylla" className="bg-background py-3">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 md:px-9">
+        <div
+          className="overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+          }}
+        >
+          <div className="marquee-track flex w-max">
+            <BrandCards />
+            <BrandCards hidden />
+          </div>
+        </div>
       </div>
     </section>
   )
