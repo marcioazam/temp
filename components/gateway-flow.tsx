@@ -1,4 +1,11 @@
-const USE_CASES = ["SaaS com IA", "Copilotos internos", "APIs e automações"]
+const USE_CASES = [
+  "SaaS com IA",
+  "Copilotos internos",
+  "APIs e automações",
+  "Agentes autônomos",
+  "Busca e RAG",
+  "Atendimento inteligente",
+]
 
 const CODE_LINES = [
   { number: "01", content: "const response = await fetch(" },
@@ -34,13 +41,22 @@ export function GatewayFlow() {
               experiência. O Nylla cuida dos modelos, da disponibilidade e do roteamento de cada requisição.
             </p>
 
-            <ul className="mt-8 flex flex-wrap gap-2" aria-label="Aplicações do endpoint Nylla">
-              {USE_CASES.map((item) => (
-                <li key={item} className="border border-border bg-card px-3 py-2 font-mono text-xs text-foreground/80">
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-9 max-w-xl">
+              <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                Feito para diferentes produtos
+              </p>
+              <ul className="mt-3 grid grid-cols-2 gap-x-6" aria-label="Aplicações do endpoint Nylla">
+                {USE_CASES.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-2 border-t border-border py-3 font-mono text-xs text-foreground/80"
+                  >
+                    <span className="h-1 w-1 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div
