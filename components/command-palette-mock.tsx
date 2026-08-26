@@ -1,4 +1,29 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import { ArrowUp, GitBranch, LoaderCircle, PanelLeft, PanelRight, PanelsTopLeft, Search } from "lucide-react"
+
+const models = ["Opus 5", "GPT-5.3", "Gemini 3.1 Pro", "Kimi K2.5"]
+
+function ModelSelector() {
+  const [activeModel, setActiveModel] = useState(0)
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveModel((current) => (current + 1) % models.length)
+    }, 1800)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
+  return (
+    <span className="inline-flex min-w-[74px] items-center text-[#99968f]" aria-label={`Modelo selecionado: ${models[activeModel]}`}>
+      <span key={models[activeModel]} className="animate-in fade-in slide-in-from-bottom-1 duration-300">
+        {models[activeModel]}⌄
+      </span>
+    </span>
+  )
+}
 
 const thisWeek = [
   { label: "Nylla Gateway no VS Code", active: true, type: "dot" },
@@ -91,7 +116,7 @@ export function CommandPaletteMock() {
           <div className="mt-auto rounded-md border border-[#3a3833] bg-[#201f1b] p-2">
             <p className="text-[#9a9790]">Enviar uma continuação...</p>
             <div className="mt-2 flex items-center justify-between text-[9px] text-[#99968f]">
-              <span>∞ Agent⌄ &nbsp; Opus 5⌄</span>
+              <span className="flex items-center gap-2"><span>∞ Agent⌄</span><ModelSelector /></span>
               <span className="flex size-5 items-center justify-center rounded-full bg-[#36342f]"><ArrowUp className="size-3" /></span>
             </div>
           </div>
