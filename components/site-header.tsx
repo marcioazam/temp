@@ -13,7 +13,6 @@ const nav = [
   { label: "Catálogo", href: "/#catalogo" },
   { label: "Planos", href: "/#planos" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Docs", href: "/docs" },
 ]
 
 export function SiteHeader() {
@@ -73,15 +72,26 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <Link
-            href="/#planos"
-            className="group relative ml-auto inline-flex items-center gap-1.5 overflow-hidden border border-[#F4F3F1] bg-[#F4F3F1] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
-          >
-            Começar
-            <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
-              →
-            </span>
-          </Link>
+          <div className="ml-auto flex items-center gap-2">
+            <Link
+              href="/docs"
+              className="group relative inline-flex items-center gap-1.5 overflow-hidden border border-[#F4F3F1] bg-[#F4F3F1] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
+            >
+              Docs
+              <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
+                →
+              </span>
+            </Link>
+            <Link
+              href="/#planos"
+              className="group relative inline-flex items-center gap-1.5 overflow-hidden border border-[#F4F3F1] bg-[#F4F3F1] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
+            >
+              Começar
+              <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
+                →
+              </span>
+            </Link>
+          </div>
         </div>
       </header>
     </>
