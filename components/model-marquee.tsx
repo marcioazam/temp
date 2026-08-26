@@ -12,8 +12,10 @@ const brands = [
   { name: "Cline", src: icon("cline") },
   { name: "OpenCode", src: icon("opencode") },
   { name: "Qwen Code", src: icon("qwen") },
-  { name: "Kimi CLI", src: "/images/kimi-cli.svg" },
+  { name: "Kimi Code", src: "/images/kimi-cli.svg" },
   { name: "Hermes Agent", mark: "H" },
+  { name: "OpenClaw", src: "/images/openclaw.svg" },
+  { name: "Kilo Code", src: "/images/kilo-code.svg" },
 ]
 
 export function ModelMarquee() {
