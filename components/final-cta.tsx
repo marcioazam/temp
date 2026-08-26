@@ -15,9 +15,9 @@ export function FinalCta() {
         </h2>
         <Link
           href="/#planos"
-          className="inline-flex items-center justify-center rounded-none bg-[#F4F3F1] px-5 py-3 font-sans text-sm font-medium text-[#171612] transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#171612]"
+          className="inline-flex items-center justify-center rounded-none bg-[#171612] px-8 py-4 font-sans text-base font-medium text-[#F4F3F1] transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#171612]"
         >
-          Começar
+          Experimente Nylla
         </Link>
       </div>
     </section>
