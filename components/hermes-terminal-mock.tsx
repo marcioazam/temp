@@ -267,7 +267,7 @@ export function HermesTerminalMock() {
 
         <div className="mt-2 flex justify-end text-[#e8c547]">Hermes Agent v0.6.0 (2026.3.30)</div>
 
-        <div className="mt-1 flex gap-3 border border-[#e8c547]/30 p-2 md:gap-4 md:p-2.5">
+        <div className="mt-1 flex gap-3 border border-[#5b5852]/65 p-2 md:gap-4 md:p-2.5">
           <div className="hidden shrink-0 flex-col items-center md:flex">
             <div className="text-[#c9a83a]">
               {CADUCEUS.map((row, i) => (
@@ -323,7 +323,7 @@ export function HermesTerminalMock() {
         </div>
       </div>
 
-      <div className="shrink-0 border-t border-[#e8c547]/25 bg-[#0d0c07] px-2.5 py-1 sm:px-3 md:px-4">
+      <div className="shrink-0 border-t border-[#5b5852]/65 bg-[#0d0c07] px-2.5 py-1 sm:px-3 md:px-4">
         <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap text-[#8a8672]">
           <span aria-hidden="true">⚡</span>
           <span className="font-semibold text-[#e8c547]">{currentModel}</span>
@@ -342,7 +342,7 @@ export function HermesTerminalMock() {
         </div>
       </div>
 
-      <div className="flex min-h-5 shrink-0 items-center gap-1.5 border-t border-[#e8c547]/25 bg-[#080806] px-2.5 py-1 sm:px-3 md:min-h-7 md:px-4">
+      <div className="flex min-h-5 shrink-0 items-center gap-1.5 border-t border-[#5b5852]/65 bg-[#080806] px-2.5 py-1 sm:px-3 md:min-h-7 md:px-4">
         <span className="text-[#e8c547]">›</span>
         <span
           className={`min-w-0 flex-1 overflow-hidden whitespace-nowrap ${nextLine?.kind === "slash" ? "text-[#e8c547]" : "text-[#d6d3c4]"}`}
