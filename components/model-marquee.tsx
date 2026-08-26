@@ -18,6 +18,7 @@ const brands = [
   { name: "Aider", mark: "aider" },
   { name: "Goose", src: icon("goose-codename") },
   { name: "Qwen Code", src: icon("qwen") },
+  { name: "Kimi CLI", src: icon("kimi") },
   { name: "OpenHands", src: icon("openhands", "mono") },
   { name: "Cody", src: icon("cody") },
   { name: "Void", src: icon("void") },
