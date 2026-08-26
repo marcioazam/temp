@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { RotorMark } from "@/components/logo"
 
 export function FinalCta() {
   return (
@@ -8,12 +7,11 @@ export function FinalCta() {
         className="mx-auto flex min-h-[420px] w-full max-w-screen-2xl flex-col items-center justify-center gap-7 overflow-hidden rounded-xl bg-cover bg-center px-6 py-20 text-center text-[#171612] md:min-h-[520px]"
         style={{ backgroundImage: "url('/images/nylla-cta-landscape.png')" }}
       >
-        <RotorMark aria-hidden="true" className="h-14 w-14 md:h-16 md:w-16" />
         <h2
           id="final-cta-title"
-          className="max-w-3xl text-balance font-sans text-4xl font-medium leading-tight tracking-tight md:text-6xl"
+          className="max-w-4xl text-balance font-sans text-5xl font-normal leading-none tracking-[-0.04em] md:text-7xl"
         >
-          Experimente Nylla Agora.
+          Teste Nylla Agora.
         </h2>
         <Link
           href="/#planos"
