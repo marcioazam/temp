@@ -284,7 +284,7 @@ function ClaudeCodeSession() {
         </div>
       </div>
 
-      <div className="shrink-0 bg-[#262624] px-4 pb-3 sm:px-6 sm:pb-4 md:px-8 md:pb-5">
+      <div className="shrink-0 bg-[#080806] px-4 pb-3 sm:px-6 sm:pb-4 md:px-8 md:pb-5">
         <div className="border-y border-[#5b5852]/65">
           <div className="flex min-h-7 items-center gap-2 px-1 py-1 md:min-h-9">
             <span className="text-[#dcd8d2]">&gt;</span>
