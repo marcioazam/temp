@@ -22,7 +22,7 @@ export function HeroFlow() {
         <div className="relative flex h-11 justify-center" aria-hidden="true">
           <div className="relative h-full w-px bg-border">
             <span className="hf-dot hf-dot-a-down bg-foreground" />
-            <span className="hf-dot hf-dot-a-up bg-primary" />
+            <span className="hf-dot hf-dot-a-up bg-foreground" />
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export function HeroFlow() {
         <div className="relative flex h-11 justify-center" aria-hidden="true">
           <div className="relative h-full w-px bg-border">
             <span className="hf-dot hf-dot-b-down bg-foreground" />
-            <span className="hf-dot hf-dot-b-up bg-primary" />
+            <span className="hf-dot hf-dot-b-up bg-foreground" />
           </div>
         </div>
 
