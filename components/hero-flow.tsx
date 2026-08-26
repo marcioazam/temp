@@ -1,5 +1,5 @@
 const MODELS = ["GPT", "Claude", "Gemini", "Deepseek", "Nylla LLM"]
-const STEPS = ["VALIDA", "ROTEIA", "ENTREGA"]
+const STEPS = ["Valida", "Roteia", "Entrega"]
 
 /**
  * Minimalist animated map of Nylla's role: your tool on top, Nylla in the
