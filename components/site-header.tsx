@@ -20,15 +20,15 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
   const { locale, setLocale, enabled: languageEnabled } = useLanguage()
 
-  // A 1px sentinel above the header reports the scroll state through the
-  // observer, so there is no scroll handler running on the main thread and
-  // nothing to recompute per frame while the user scrolls.
+  // Keep a small dead zone at the top so subpixel scrolling and trackpad
+  // bounce cannot repeatedly toggle the header treatment.
   useEffect(() => {
     const node = sentinelRef.current
     if (!node || typeof IntersectionObserver === "undefined") return
 
     const observer = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting), {
-      threshold: 1,
+      rootMargin: "-8px 0px 0px",
+      threshold: 0,
     })
     observer.observe(node)
     return () => observer.disconnect()
