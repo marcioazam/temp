@@ -39,15 +39,15 @@
 :root {
   color-scheme: dark;
   --background: #090909;
-  --foreground: #d8d3c8;
+  --foreground: #ededed;
   --card: #14130f;
-  --card-foreground: #d8d3c8;
+  --card-foreground: #ededed;
   --popover: #14130f;
-  --popover-foreground: #d8d3c8;
+  --popover-foreground: #ededed;
   --primary: #e8a317;
   --primary-foreground: #090909;
   --secondary: #29261e;
-  --secondary-foreground: #d8d3c8;
+  --secondary-foreground: #ededed;
   --muted: #14130f;
   --muted-foreground: #8f8a80;
   --accent: #e8a317;
