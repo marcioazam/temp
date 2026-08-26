@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import useSWR from "swr"
 import { HermesTerminalMock } from "@/components/hermes-terminal-mock"
+import { RotorMark } from "@/components/logo"
 
 function ClaudeMascot() {
   return (
@@ -390,13 +391,8 @@ function WindowsTaskbar() {
   return (
     <div className="absolute inset-x-0 bottom-0 flex h-9 items-center border-t border-white/[0.06] bg-[#24262d]/95 px-2 font-sans text-white/70 backdrop-blur-xl md:h-11 md:px-4">
       <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-1 md:gap-2" aria-hidden="true">
-        <span className="grid h-7 w-7 place-items-center md:h-9 md:w-9">
-          <span className="grid grid-cols-2 gap-[2px]">
-            <i className="h-[3px] w-[3px] bg-white/75 md:h-1 md:w-1" />
-            <i className="h-[3px] w-[3px] bg-white/75 md:h-1 md:w-1" />
-            <i className="h-[3px] w-[3px] bg-white/75 md:h-1 md:w-1" />
-            <i className="h-[3px] w-[3px] bg-white/75 md:h-1 md:w-1" />
-          </span>
+        <span className="grid h-7 w-7 place-items-center text-white/80 md:h-9 md:w-9">
+          <RotorMark className="h-4 w-4 md:h-[18px] md:w-[18px]" />
         </span>
         <span className="grid h-7 w-7 place-items-center md:h-9 md:w-9">
           <span className="relative h-3 w-3 rounded-full border border-white/65 after:absolute after:-bottom-1 after:-right-1 after:h-1.5 after:w-px after:-rotate-45 after:bg-white/65" />
