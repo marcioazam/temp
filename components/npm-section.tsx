@@ -30,14 +30,14 @@ export function NpmSection() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="elev-window w-full overflow-hidden rounded-[10px] border border-[#34322f] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
-            <div className="relative flex items-center justify-between border-b border-border px-4 py-3">
+          <div className="elev-window w-full overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
+            <div className="relative flex h-7 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
               <div className="flex items-center gap-1.5" aria-hidden="true">
-                <span className="h-2.5 w-2.5 rounded-full bg-foreground/25" />
-                <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
-                <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
+                <span className="size-2.5 rounded-full bg-[#ff5f57]" />
+                <span className="size-2.5 rounded-full bg-[#febc2e]" />
+                <span className="size-2.5 rounded-full bg-[#28c840]" />
               </div>
-              <span className="font-mono text-[11px] text-muted-foreground">npx nylla connect</span>
+              <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">npx nylla connect</span>
             </div>
             <div className="space-y-6 p-5 md:p-6">
               <div>
