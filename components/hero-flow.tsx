@@ -15,7 +15,7 @@ export function HeroFlow() {
         {/* Node: user + tool */}
         <div className="border border-border px-4 py-3">
           <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Você + ferramenta</span>
-          <p className="mt-1 text-xs text-foreground">Claude Code, Cursor, seu agent</p>
+          <p className="mt-1 text-xs text-foreground">Claude Code, Codex, Cursor, Gemini CLI, seu agent</p>
         </div>
 
         {/* Connector A */}
