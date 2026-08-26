@@ -38,7 +38,7 @@
 
 :root {
   color-scheme: dark;
-  --background: #0a0a0a;
+  --background: #090909;
   --foreground: #ededed;
   --card: #101010;
   --card-foreground: #ededed;
@@ -55,8 +55,8 @@
   --destructive: #ff5c5c;
   --border: #232323;
   --input: #232323;
-  --ring: #2b3cff;
-  --ultra: #2b3cff;
+  --ring: #E8A317;
+  --ultra: #E8A317;
   --radius: 0rem;
 }
 
