@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 
+import { HermesCaduceus } from "@/components/hermes-caduceus"
+
 const BANNER_HERMES = [
   "█  █ ████ ███  █   █ ████ ████",
   "█  █ █    █  █ ██ ██ █    █   ",
@@ -16,20 +18,6 @@ const BANNER_AGENT = [
   "████ █ ██ ███  █ ██   █  ",
   "█  █ █  █ █    █  █   █  ",
   "█  █ ████ ████ █  █   █  ",
-]
-
-const CADUCEUS = [
-  "      .:*:.      ",
-  "    .* /|\\ *.    ",
-  "   :  / | \\  :   ",
-  "   . \\  |  / .   ",
-  "    :  \\|/  :    ",
-  "     .  |  .     ",
-  "    :  /|\\  :    ",
-  "   .  \\ | /  .   ",
-  "    :  \\|/  :    ",
-  "     .  |  .     ",
-  "       (o)       ",
 ]
 
 const TOOLSETS: Array<[string, string]> = [
@@ -269,13 +257,7 @@ export function HermesTerminalMock() {
 
         <div className="mt-1 flex gap-3 border border-[#5b5852]/65 p-2 md:gap-4 md:p-2.5">
           <div className="hidden shrink-0 flex-col items-center md:flex">
-            <div className="text-[#c9a83a]">
-              {CADUCEUS.map((row, i) => (
-                <span key={i} className="block whitespace-pre leading-[1.05]">
-                  {row}
-                </span>
-              ))}
-            </div>
+              <HermesCaduceus className="w-[104px] lg:w-[124px]" />
             <div className="mt-1.5 text-center">
               <p className="font-semibold text-[#e8c547]">
                 {currentModel} <span className="font-normal text-[#8a8672]">· Nylla Gateway</span>
