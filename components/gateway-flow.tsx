@@ -48,14 +48,26 @@ export function GatewayFlow() {
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
             <div className="mx-auto w-full max-w-[42rem] overflow-hidden rounded-[10px] border border-border bg-card shadow-[0_1px_1px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.1),0_6px_12px_rgba(0,0,0,0.1),0_16px_32px_rgba(0,0,0,0.12)]">
-              <div className="flex items-center justify-between border-b border-border px-4 py-3">
-              <div className="flex items-center gap-2" aria-hidden="true">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+              <div className="relative flex items-center justify-between border-b border-border px-4 py-3">
+                <div className="flex items-center gap-2" aria-hidden="true">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                </div>
+                <span className="absolute left-1/2 -translate-x-1/2 font-mono text-[10px] text-muted-foreground">
+                  api.nylla.ai
+                </span>
+                <svg
+                  aria-hidden="true"
+                  className="h-3.5 w-3.5 text-muted-foreground"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect x="2.5" y="4.5" width="7" height="7" stroke="currentColor" />
+                  <path d="M6.5 4.5V2.5H13.5V9.5H9.5" stroke="currentColor" />
+                </svg>
               </div>
-              <span className="font-mono text-[10px] text-muted-foreground">api.nylla.ai</span>
-            </div>
 
             <div className="grid lg:grid-cols-[1fr_12rem]">
               <div className="overflow-hidden py-5">
