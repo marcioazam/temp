@@ -6,6 +6,7 @@ const brands = [
   { name: "Codex", src: icon("codex") },
   { name: "Cursor", src: icon("cursor", "mono") },
   { name: "GitHub Copilot", src: icon("github-copilot") },
+  { name: "VS Code", src: icon("visual-studio-code") },
   { name: "Gemini CLI", src: icon("gemini-cli") },
   { name: "Windsurf", src: icon("windsurf") },
   { name: "Zed", src: icon("zed") },
