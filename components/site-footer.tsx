@@ -9,7 +9,7 @@ export function SiteFooter() {
           <div className="flex items-center gap-2.5 text-foreground">
             <RotorMark aria-hidden="true" className="h-8 w-8" />
             <span className="font-[family-name:var(--font-inter)] text-2xl font-bold leading-none tracking-tight">
-              nycode
+              Nylla
             </span>
           </div>
           <p className="mt-4 max-w-xs font-mono text-xs leading-relaxed text-muted-foreground">
@@ -33,7 +33,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between px-4 py-4 md:px-9">
-          <p className="font-mono text-[11px] text-muted-foreground">© {new Date().getFullYear()} nycode</p>
+          <p className="font-mono text-[11px] text-muted-foreground">© {new Date().getFullYear()} Nylla</p>
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 font-mono text-[11px] text-muted-foreground">
             <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
               <span className="flow-pulse absolute inline-flex h-full w-full rounded-full bg-ultra/50" />
