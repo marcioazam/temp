@@ -113,7 +113,7 @@ export function GatewayFlow() {
                 <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#7f9b76]" aria-hidden="true" />
                 pronto para produção
               </p>
-              <code className="font-mono text-xs text-foreground/70">POST /v1/chat/completions</code>
+              <code className="font-mono text-[11px] text-foreground/70">POST /v1/chat/completions</code>
             </div>
             </div>
           </div>
