@@ -20,7 +20,7 @@ export function NpmSection() {
           </p>
           <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
             O NPM do Nylla configura o harness que você já usa e aponta tudo para o Nylla Gateway. Selecione a ferramenta,
-            informe a URL e cole sua chave — o restante fica por conta do CLI.
+            informe a URL e cole sua chave. O restante fica por conta do CLI.
           </p>
           <ul className="mt-6 space-y-2 font-mono text-sm text-muted-foreground">
             <li><span className="text-emerald-500" aria-hidden="true">+ </span>configuração guiada por harness</li>
