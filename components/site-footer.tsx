@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-2.5 text-foreground">
             <RotorMark aria-hidden="true" className="h-8 w-8" />
-            <span className="font-[family-name:var(--font-inter)] text-2xl font-bold leading-none tracking-tight">
+            <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-[0.02em]">
               Nylla
             </span>
           </div>

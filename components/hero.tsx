@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { EditorMock } from "@/components/editor-mock"
 import { Reveal } from "@/components/reveal"
@@ -15,14 +17,6 @@ export function Hero() {
               <br />
               <span className="text-muted-foreground">Qualquer harness.</span>
             </h1>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <p className="mt-6 max-w-xl text-pretty font-mono text-base leading-relaxed text-muted-foreground md:text-[1.0625rem]">
-              Conecte <span className="text-foreground">Claude Code, Codex, Cursor, VS Code</span> ou seu próprio agent a
-              qualquer modelo com <span className="text-foreground">uma linha de comando</span>. Sem lock-in, sem
-              reescrever integração. Feito para código e agents em produção.
-            </p>
           </Reveal>
 
           <Reveal delay={160}>

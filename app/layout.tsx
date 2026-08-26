@@ -1,11 +1,12 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Inter } from 'next/font/google'
+import { Fira_Code, Geist, Geist_Mono, Inter } from 'next/font/google'
 import './globals.css'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const firaCode = Fira_Code({ subsets: ['latin'], variable: '--font-fira-code' })
 
 export const metadata: Metadata = {
   title: 'Nylla | LLM Gateway for Code Generation & Agents',
@@ -25,7 +26,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={`bg-background ${geist.variable} ${geistMono.variable} ${inter.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`bg-background ${geist.variable} ${geistMono.variable} ${inter.variable} ${firaCode.variable}`}
+    >
       <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

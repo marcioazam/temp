@@ -401,6 +401,77 @@ kbd {
   animation: progress-slide 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+/* Metered usage bar creeping toward the cap, then resetting. */
+@keyframes meter-fill {
+  0% {
+    transform: scaleX(0.06);
+  }
+  85% {
+    transform: scaleX(0.96);
+  }
+  92% {
+    transform: scaleX(0.96);
+  }
+  100% {
+    transform: scaleX(0.06);
+  }
+}
+.meter-fill {
+  animation: meter-fill 5.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+/* Meter needle ticks pulsing as tokens are counted. */
+@keyframes meter-tick {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scaleY(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+.meter-tick {
+  transform-origin: bottom;
+  animation: meter-tick 1.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Request route draws from client to response, then restarts. */
+@keyframes request-path {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  72%,
+  88% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 100%);
+  }
+}
+.request-path {
+  animation: request-path 4.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: clip-path;
+}
+
+@media (max-width: 1023px) {
+  @keyframes request-path {
+    0% {
+      clip-path: inset(0 0 100% 0);
+    }
+    72%,
+    88% {
+      clip-path: inset(0 0 0 0);
+    }
+    100% {
+      clip-path: inset(100% 0 0 0);
+    }
+  }
+}
+
 /* Card settle-in when a session changes column */
 @keyframes card-in {
   from {
@@ -778,6 +849,9 @@ kbd {
   .status-pulse,
   .status-pulse::after,
   .progress-slide,
+  .meter-fill,
+  .meter-tick,
+  .request-path,
     .card-in,
     .type-line,
     .glitch-ghost-a,
@@ -797,6 +871,15 @@ kbd {
     }
     .token-emit {
       opacity: 1;
+    }
+    .meter-fill {
+      transform: scaleX(0.72);
+    }
+    .meter-tick {
+      opacity: 1;
+    }
+    .request-path {
+      clip-path: none;
     }
     .gw-hop {
       opacity: 0.6;
