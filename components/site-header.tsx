@@ -10,7 +10,6 @@ const nav = [
   { label: "Recursos", href: "/#recursos" },
   { label: "Harnesses", href: "/#harnesses" },
   { label: "Rotas", href: "/#rotas" },
-  { label: "Como funciona", href: "/#como-funciona" },
   { label: "Catálogo", href: "/#catalogo" },
   { label: "Planos", href: "/#planos" },
   { label: "FAQ", href: "/#faq" },
@@ -21,15 +20,15 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
   const { locale, setLocale, enabled: languageEnabled } = useLanguage()
 
-  // A 1px sentinel above the header reports the scroll state through the
-  // observer, so there is no scroll handler running on the main thread and
-  // nothing to recompute per frame while the user scrolls.
+  // Keep a small dead zone at the top so subpixel scrolling and trackpad
+  // bounce cannot repeatedly toggle the header treatment.
   useEffect(() => {
     const node = sentinelRef.current
     if (!node || typeof IntersectionObserver === "undefined") return
 
     const observer = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting), {
-      threshold: 1,
+      rootMargin: "-8px 0px 0px",
+      threshold: 0,
     })
     observer.observe(node)
     return () => observer.disconnect()
@@ -39,8 +38,10 @@ export function SiteHeader() {
     <>
       <div ref={sentinelRef} aria-hidden="true" className="absolute top-0 h-3 w-px" />
       <header
-        className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-          scrolled ? "border-border bg-background" : "border-transparent bg-background"
+        className={`sticky top-0 z-50 border-b bg-background transition-colors duration-300 ${
+          scrolled
+            ? "border-foreground/15 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-5 after:bg-gradient-to-b after:from-background/80 after:to-transparent"
+            : "border-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center px-4 md:px-9">
