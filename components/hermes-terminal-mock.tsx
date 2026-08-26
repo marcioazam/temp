@@ -84,10 +84,16 @@ const SESSION = PHASES.flatMap((phase) => phase.lines.map((line) => ({ ...line, 
 
 function TranscriptLine({ line }: { line: Line }) {
   if (line.kind === "prompt" || line.kind === "slash") {
+    const isUserMessage = line.kind === "prompt"
+
     return (
-      <div className="claude-line mt-2 flex gap-1.5">
-        <span className="text-[#e8c547]">›</span>
-        <span className={line.kind === "slash" ? "text-[#e8c547]" : "text-[#d6d3c4]"}>{line.text}</span>
+      <div
+        className={`claude-line mt-2 flex gap-1.5 rounded-[3px] px-2 py-1 ${
+          isUserMessage ? "bg-foreground text-background" : ""
+        }`}
+      >
+        <span className={isUserMessage ? "text-background/65" : "text-[#e8c547]"}>›</span>
+        <span className={isUserMessage ? "text-background" : "text-[#e8c547]"}>{line.text}</span>
       </div>
     )
   }

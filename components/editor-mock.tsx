@@ -115,10 +115,17 @@ function TranscriptLine({ line, delay }: { line: Line; delay: number }) {
   const style = { "--delay": `${delay}ms` } as React.CSSProperties
 
   if (line.kind === "prompt" || line.kind === "slash") {
+    const isUserMessage = line.kind === "prompt"
+
     return (
-      <div className="claude-line claude-line-prompt mt-3 flex gap-2 rounded-[3px] bg-[#31302d] px-2 py-1" style={style}>
-        <span className="text-[#7c7871]">&gt;</span>
-        <span className={line.kind === "slash" ? "text-[#d97757]" : "text-[#dcd8d2]"}>{line.text}</span>
+      <div
+        className={`claude-line claude-line-prompt mt-3 flex gap-2 rounded-[3px] px-2 py-1 ${
+          isUserMessage ? "bg-foreground text-background" : "bg-[#31302d]"
+        }`}
+        style={style}
+      >
+        <span className={isUserMessage ? "text-background/65" : "text-[#7c7871]"}>&gt;</span>
+        <span className={isUserMessage ? "text-background" : "text-[#d97757]"}>{line.text}</span>
       </div>
     )
   }
