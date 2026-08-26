@@ -1,8 +1,13 @@
+"use client"
+
 import Link from "next/link"
 import { EditorMock } from "@/components/editor-mock"
 import { Reveal } from "@/components/reveal"
+import { useLanguage } from "@/components/language-provider"
 
 export function Hero() {
+  const { locale } = useLanguage()
+
   return (
     <section className="relative overflow-hidden bg-background">
       <div className="relative mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
@@ -18,10 +23,12 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={80}>
-            <p className="mt-6 max-w-xl text-pretty font-mono text-base leading-relaxed text-muted-foreground md:text-[1.0625rem]">
-              Conecte <span className="text-foreground">Claude Code, Codex, Cursor, VS Code</span> ou seu próprio agent a
-              qualquer modelo com <span className="text-foreground">uma linha de comando</span>. Sem lock-in, sem
-              reescrever integração. Feito para código e agents em produção.
+            <p className="mt-6 max-w-xl text-pretty font-mono text-base leading-relaxed text-muted-foreground md:text-[1.0625rem]" data-no-translate>
+              {locale === "pt" ? (
+                <>Conecte <span className="text-foreground">Claude Code, Codex, Cursor, VS Code</span> ou seu próprio agent a qualquer modelo com <span className="text-foreground">uma linha de comando</span>. Sem lock-in, sem reescrever integração. Feito para código e agents em produção.</>
+              ) : (
+                <>Connect <span className="text-foreground">Claude Code, Codex, Cursor, VS Code</span> or your own agent to any model with <span className="text-foreground">one command</span>. No lock-in, no integration rewrites. Built for production code and agents.</>
+              )}
             </p>
           </Reveal>
 

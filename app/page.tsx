@@ -11,10 +11,11 @@ import { Pricing } from "@/components/pricing"
 import { FaqSection } from "@/components/faq-section"
 import { FinalCta } from "@/components/final-cta"
 import { SiteFooter } from "@/components/site-footer"
+import { LanguageProvider } from "@/components/language-provider"
 
 export default function Page() {
   return (
-    <>
+    <LanguageProvider>
       <SiteHeader />
       <main>
         <Hero />
@@ -30,6 +31,6 @@ export default function Page() {
         <FinalCta />
       </main>
       <SiteFooter />
-    </>
+    </LanguageProvider>
   )
 }
