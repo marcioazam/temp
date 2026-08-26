@@ -26,6 +26,18 @@ import {
   CursorStatic,
   ClusterStatic,
 } from "@/components/logo-variants"
+import {
+  CubeMark,
+  CubeWireMark,
+  KnotMark,
+  PortalMark,
+  SunburstMark,
+  PixelBurstMark,
+  OrbitMark,
+  StrokeNMark,
+  GateDotMark,
+  MeshMark,
+} from "@/components/logo-variants-ai"
 
 export const metadata: Metadata = {
   title: "marca — nycode",
@@ -137,6 +149,55 @@ export default function LogoPage() {
               <NycodeWordmark className="h-9 w-auto text-foreground" />
               <SliceGlitch wordmark className="h-9" />
             </div>
+          </VariantCard>
+        </section>
+
+        <h2 className="mt-16 mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          estudos — ia minimalista
+        </h2>
+
+        <section
+          aria-label="variantes de IA minimalistas"
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+        >
+          <VariantCard name="cubo" note="volume em 3 tons">
+            <CubeMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="cubo aberto" note="arestas + núcleo">
+            <CubeWireMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="nó" note="3 laços entrelaçados">
+            <KnotMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="portal" note="hexágono duplo">
+            <PortalMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="starburst" note="raios irregulares">
+            <SunburstMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="burst pixel" note="starburst quantizado">
+            <PixelBurstMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="órbita" note="núcleo + contexto">
+            <OrbitMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="traço n" note="monograma contínuo">
+            <StrokeNMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="gate" note="token entre barras">
+            <GateDotMark className="h-16 w-auto text-foreground" />
+          </VariantCard>
+
+          <VariantCard name="malha" note="inferência distribuída">
+            <MeshMark className="h-16 w-auto text-foreground" />
           </VariantCard>
         </section>
 
