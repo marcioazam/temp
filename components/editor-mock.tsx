@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import useSWR from "swr"
+import { HermesTerminalMock } from "@/components/hermes-terminal-mock"
 
 function ClaudeMascot() {
   return (
@@ -432,6 +433,9 @@ export function EditorMock() {
       <WindowsTaskbar />
       <div className="absolute left-3 top-3 h-[58%] w-[68%] sm:left-4 sm:top-4 sm:h-[60%] sm:w-[64%] md:left-5 md:top-5 md:h-[62%] md:w-[60%]">
         <ClaudeCodeSession />
+      </div>
+      <div className="absolute bottom-11 right-3 z-10 h-[52%] w-[46%] sm:right-4 sm:h-[54%] sm:w-[44%] md:bottom-14 md:right-5 md:h-[56%] md:w-[42%]">
+        <HermesTerminalMock />
       </div>
     </div>
   )
