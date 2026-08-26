@@ -1,0 +1,815 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'SFMono-Regular', monospace;
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-ultra: var(--ultra);
+  --radius-sm: 0rem;
+  --radius-md: 0rem;
+  --radius-lg: 0rem;
+  --radius-xl: 0rem;
+  --radius-2xl: 0rem;
+  --radius-3xl: 0rem;
+  --radius-4xl: 0rem;
+}
+
+:root {
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --card: #101010;
+  --card-foreground: #ededed;
+  --popover: #101010;
+  --popover-foreground: #ededed;
+  --primary: #ededed;
+  --primary-foreground: #0a0a0a;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ededed;
+  --muted: #161616;
+  --muted-foreground: #8a8a8a;
+  --accent: #1a1a1a;
+  --accent-foreground: #ededed;
+  --destructive: #ff5c5c;
+  --border: #232323;
+  --input: #232323;
+  --ring: #2b3cff;
+  --ultra: #2b3cff;
+  --radius: 0rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+::selection {
+  background: var(--ultra);
+  color: #ffffff;
+}
+
+/* Pixel-crisp rendering for logo SVGs */
+.pixel-crisp {
+  shape-rendering: crispEdges;
+  image-rendering: pixelated;
+}
+
+/* Blinking terminal cursor */
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.cursor-blink {
+  animation: blink 640ms step-end infinite;
+}
+
+@keyframes claude-activity-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.88); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes claude-dot-two {
+  0%, 32% { opacity: 0; }
+  33%, 100% { opacity: 1; }
+}
+
+@keyframes claude-dot-three {
+  0%, 65% { opacity: 0; }
+  66%, 100% { opacity: 1; }
+}
+
+.claude-activity-mark {
+  animation: claude-activity-pulse 620ms ease-in-out infinite;
+  background: transparent;
+  line-height: 1;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.claude-dot-two,
+.claude-dot-three {
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+
+.claude-dot-two { animation-name: claude-dot-two; }
+.claude-dot-three { animation-name: claude-dot-three; }
+
+/* Scanline shimmer for the hero mark */
+@keyframes scan-dim {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.mark-breathe {
+  animation: scan-dim 4s ease-in-out infinite;
+}
+
+/* Expanding pulse ring for the gateway node */
+@keyframes flow-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.flow-pulse {
+  animation: flow-pulse 2.2s ease-out infinite;
+}
+
+/* Anchored sections clear the sticky header */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ---- Rendering performance ------------------------------------- */
+
+/* Continuously animating layers are promoted to their own compositor
+   layer so each frame is a GPU transform with no layout or paint work.
+   `will-change` is scoped to these elements only — applying it broadly
+   would waste memory and slow the page down instead. */
+.marquee-track,
+.ambient-drift,
+.progress-slide,
+.edge-sweep,
+.flow-pulse {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Marquee and terminal panes never affect outside layout, so the browser
+   can skip re-laying-out the rest of the page while they animate. */
+.marquee-mask,
+.term-pane {
+  contain: layout paint style;
+}
+
+/* Text-heavy panes render with the fast path and never trigger a
+   font-swap reflow mid-animation. */
+.term-pane,
+.code-pane {
+  text-rendering: optimizeSpeed;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal[data-visible='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Infinite marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Sweeping hairline highlight along a card edge */
+@keyframes edge-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.edge-sweep {
+  animation: edge-sweep 3.2s ease-in-out infinite;
+}
+
+/* ---- macOS-inspired surfaces ---------------------------------- */
+
+/* Window vibrancy: translucent panel over blurred backdrop.
+   Blur radius is kept modest and the layer is isolated so the expensive
+   backdrop sample never re-runs for unrelated paints. */
+.vibrancy {
+  background: color-mix(in oklab, var(--card) 80%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  isolation: isolate;
+  contain: paint;
+}
+
+/* Realistic layered elevation: each layer doubles the blur at low opacity */
+.elev-window {
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 1px 1px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 6px 12px rgba(0, 0, 0, 0.1),
+    0 16px 32px rgba(0, 0, 0, 0.12),
+    0 32px 64px -12px rgba(0, 0, 0, 0.18);
+}
+.elev-float {
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 1px 2px rgba(0, 0, 0, 0.14),
+    0 3px 6px rgba(0, 0, 0, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.12),
+    0 20px 40px rgba(0, 0, 0, 0.16),
+    0 40px 80px -16px rgba(0, 0, 0, 0.24);
+}
+
+/* Traffic-light controls (monochrome, brand-consistent) */
+.traffic {
+  height: 0.625rem;
+  width: 0.625rem;
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--muted-foreground) 38%, transparent);
+  transition: background 0.25s ease;
+}
+.group\/win:hover .traffic {
+  background: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+}
+
+/* Physical keycaps */
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  padding: 0.1rem 0.35rem;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+/* Spotlight-style panel entrance */
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.panel-in {
+  animation: panel-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Slow ambient light drift behind the hero */
+@keyframes ambient-drift {
+  0%,
+  100% {
+    transform: translate3d(-4%, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, -3%, 0) scale(1.12);
+  }
+}
+.ambient-drift {
+  animation: ambient-drift 26s ease-in-out infinite;
+}
+
+/* Row highlight sliding through a list (command palette) */
+@keyframes row-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.row-glow {
+  animation: row-glow 2.4s ease-in-out infinite;
+}
+
+/* Soft pulsing dot for live agent status.
+   Compositor-only: a pseudo-element ring scales instead of animating box-shadow. */
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+@keyframes status-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+.status-pulse {
+  position: relative;
+  animation: status-pulse 1.8s ease-in-out infinite;
+}
+.status-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: status-ring 1.8s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Indeterminate progress bar inside agent cards */
+@keyframes progress-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(260%);
+  }
+}
+.progress-slide {
+  animation: progress-slide 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Card settle-in when a session changes column */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.card-in {
+  animation: card-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Terminal lines typing in with stagger */
+@keyframes term-line {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+  .term-line {
+    opacity: 0;
+    animation: term-line 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--line, 0) * 260ms);
+  }
+
+  /* Character-by-character typing driven entirely by the compositor.
+     `steps(var(--chars))` advances the clip edge one character at a time, so
+     the code pane types itself without React re-rendering on every frame. */
+  @keyframes type-line {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+  .type-line {
+    display: inline-block;
+    clip-path: inset(0 100% 0 0);
+    animation: type-line var(--type-dur, 600ms) steps(var(--chars, 20)) var(--type-delay, 0ms) forwards;
+  }
+
+/* Claude Code transcript: compositor-only entrance and model handoff. */
+@keyframes claude-line-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.claude-line {
+  opacity: 0;
+  animation: claude-line-in 520ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards;
+  will-change: transform, opacity;
+}
+
+.claude-line-prompt {
+  animation-duration: 360ms;
+}
+
+.claude-line-tool {
+  transform-origin: left center;
+  animation-duration: 680ms;
+}
+
+@keyframes claude-tool-result {
+  from {
+    opacity: 0;
+    transform: translate3d(-4px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.claude-line-tool > div:last-child {
+  animation: claude-tool-result 420ms ease-out 260ms both;
+}
+
+@keyframes claude-model-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.claude-model-enter {
+  animation: claude-model-enter 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+/* Subtle hover lift for iOS-style cards.
+   The shadow lives on a pseudo-element and cross-fades via opacity, so the
+   hover never triggers a box-shadow repaint — only compositor work. */
+.card-lift {
+  position: relative;
+  transition:
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.28s ease;
+}
+.card-lift::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.08),
+    0 3px 6px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.1),
+    0 20px 40px -12px rgba(0, 0, 0, 0.18);
+}
+.card-lift:hover {
+  transform: translate3d(0, -2px, 0);
+}
+.card-lift:hover::after {
+  opacity: 1;
+}
+
+/* ---- Pixel / glitch logo system ------------------------------------- */
+/* All effects run on transform/opacity/clip-path only (compositor work),
+   with steps() timing for a digital, quantized feel. */
+
+/* Ghost layers that snap into brief offsets, like a corrupted frame. */
+@keyframes glitch-ghost-a {
+  0%,
+  82%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  84% {
+    transform: translate3d(-4px, 2px, 0);
+    opacity: 0.55;
+  }
+  87% {
+    transform: translate3d(3px, -1px, 0);
+    opacity: 0.35;
+  }
+  90% {
+    transform: translate3d(-2px, 0, 0);
+    opacity: 0.45;
+  }
+  93% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+}
+@keyframes glitch-ghost-b {
+  0%,
+  83%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  85% {
+    transform: translate3d(4px, -2px, 0);
+    opacity: 0.4;
+  }
+  88% {
+    transform: translate3d(-3px, 1px, 0);
+    opacity: 0.55;
+  }
+  91% {
+    transform: translate3d(2px, 0, 0);
+    opacity: 0.3;
+  }
+  94% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+}
+.glitch-ghost-a {
+  animation: glitch-ghost-a 4.2s steps(2, jump-none) infinite;
+}
+.glitch-ghost-b {
+  animation: glitch-ghost-b 4.2s steps(2, jump-none) infinite;
+}
+
+/* Horizontal slice bands that briefly tear sideways. */
+@keyframes glitch-slice {
+  0%,
+  78%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  81% {
+    transform: translate3d(var(--slice-x, 5px), 0, 0);
+  }
+  86% {
+    transform: translate3d(calc(var(--slice-x, 5px) * -0.6), 0, 0);
+  }
+  91% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.glitch-slice {
+  animation: glitch-slice var(--slice-dur, 3.6s) steps(2, jump-none) infinite;
+  animation-delay: var(--slice-delay, 0s);
+}
+
+/* Tetromino assembly: blocks drop in quantized steps and settle. */
+@keyframes tetris-drop {
+  0% {
+    transform: translate3d(0, calc(var(--drop, 3) * -12px), 0);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+.tetris-drop {
+  animation: tetris-drop 0.9s steps(var(--drop, 3), jump-end) both;
+  animation-delay: calc(var(--order, 0) * 140ms);
+}
+
+/* Loose pixels flickering at the mark's dissolving edge. */
+@keyframes px-flicker {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+.px-flicker {
+  animation: px-flicker var(--fl-dur, 1.8s) steps(2, jump-none) infinite;
+  animation-delay: var(--fl-delay, 0s);
+}
+
+/* Slow quantized rotation for the dice variant. */
+@keyframes dice-tumble {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+  74% {
+    transform: rotate(90deg);
+  }
+  82% {
+    transform: rotate(90deg);
+  }
+  86% {
+    transform: rotate(180deg);
+  }
+  94% {
+    transform: rotate(180deg);
+  }
+  98% {
+    transform: rotate(270deg);
+  }
+}
+.dice-tumble {
+  animation: dice-tumble 7s steps(1, jump-none) infinite;
+}
+
+/* Token — cells light up in sequence, like tokens being emitted. */
+@keyframes token-emit {
+  0%,
+  8% {
+    opacity: 0.14;
+  }
+  10%,
+  52% {
+    opacity: 1;
+  }
+  62%,
+  100% {
+    opacity: 0.14;
+  }
+}
+.token-emit {
+  animation: token-emit var(--tk-dur, 3.2s) steps(1, jump-none) infinite;
+  animation-delay: var(--tk-delay, 0s);
+}
+
+/* Gateway — a pixel packet traveling left to right in quantized hops. */
+@keyframes gw-hop {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  44% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  56% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--gw-dist, 48px));
+    opacity: 0;
+  }
+}
+.gw-hop {
+  animation: gw-hop var(--gw-dur, 2.8s) steps(var(--gw-steps, 12), jump-none) infinite;
+  animation-delay: var(--gw-delay, 0s);
+}
+
+/* Chunk — blocks of the mark shift out of register and snap back. */
+@keyframes chunk-shift {
+  0%,
+  78%,
+  100% {
+    transform: translate(0, 0);
+  }
+  80%,
+  86% {
+    transform: translate(var(--ck-x, 3px), var(--ck-y, 0px));
+  }
+  88%,
+  94% {
+    transform: translate(calc(var(--ck-x, 3px) * -0.6), var(--ck-y, 0px));
+  }
+}
+.chunk-shift {
+  animation: chunk-shift var(--ck-dur, 5s) steps(1, jump-none) infinite;
+  animation-delay: var(--ck-delay, 0s);
+}
+
+/* Stream — a column of bits scrolling upward in steps. */
+@keyframes bit-scroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+.bit-scroll {
+  animation: bit-scroll var(--bs-dur, 4s) steps(var(--bs-steps, 8), jump-none) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink,
+  .mark-breathe,
+  .flow-pulse,
+  .marquee-track,
+  .edge-sweep,
+  .ambient-drift,
+  .row-glow,
+  .panel-in,
+  .status-pulse,
+  .status-pulse::after,
+  .progress-slide,
+    .card-in,
+    .type-line,
+    .glitch-ghost-a,
+    .glitch-ghost-b,
+    .glitch-slice,
+    .tetris-drop,
+    .px-flicker,
+    .dice-tumble,
+    .token-emit,
+    .gw-hop,
+    .chunk-shift,
+  .bit-scroll,
+  .term-line,
+  .claude-line,
+  .claude-model-enter {
+      animation: none;
+    }
+    .token-emit {
+      opacity: 1;
+    }
+    .gw-hop {
+      opacity: 0.6;
+    }
+    .tetris-drop {
+      opacity: 1;
+      transform: none;
+    }
+    .glitch-ghost-a,
+    .glitch-ghost-b {
+      opacity: 0;
+    }
+    .term-line {
+      opacity: 1;
+    }
+    .type-line {
+      clip-path: none;
+    }
+  .card-lift {
+    transition: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
