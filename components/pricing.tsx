@@ -50,7 +50,7 @@ export function Pricing() {
     <section id="planos">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <h2 className="font-mono text-xs text-muted-foreground">
-          <span aria-hidden="true">{"// "}</span>planos
+          <span aria-hidden="true" className="text-primary">{"// "}</span>planos
         </h2>
         <p className="mt-4 max-w-2xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
           LLMs ilimitados. Créditos para os modelos frontier.

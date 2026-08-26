@@ -31,7 +31,7 @@ export function GatewayFlow() {
         <div className="grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
           <div className="lg:order-2 lg:sticky lg:top-28">
             <h2 className="font-mono text-xs text-muted-foreground">
-              <span aria-hidden="true">{"// "}</span>endpoint
+              <span aria-hidden="true" className="text-primary">{"// "}</span>endpoint
             </h2>
             <p className="mt-4 max-w-xl text-balance font-mono text-3xl font-medium tracking-tight text-foreground md:text-4xl">
               A inteligência do Nylla dentro do seu produto.
