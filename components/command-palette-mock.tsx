@@ -102,11 +102,6 @@ export function CommandPaletteMock() {
             </span>
           </div>
 
-          <div>
-            <p className="font-medium">Resumo</p>
-            <p className="mt-1">Endpoint Nylla configurado no VS Code com fallback automático, streaming validado e métricas por harness habilitadas.</p>
-          </div>
-
           <div className="mt-auto rounded-md border border-[#3a3833] bg-[#201f1b] p-2">
             <p className="text-[#9a9790]">Enviar uma continuação...</p>
             <div className="mt-2 flex items-center justify-between text-[9px] text-[#99968f]">
