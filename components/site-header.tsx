@@ -51,7 +51,7 @@ export function SiteHeader() {
             className="flex items-center gap-2.5 text-foreground"
           >
             <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
-              <RotorMark aria-hidden="true" className="size-7" />
+              <RotorMark aria-hidden="true" className="size-8" />
             </span>
             <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-[0.02em]">
               Nylla
