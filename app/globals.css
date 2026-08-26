@@ -439,6 +439,39 @@ kbd {
   will-change: transform, opacity;
 }
 
+/* Request route draws from client to response, then restarts. */
+@keyframes request-path {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  72%,
+  88% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 100%);
+  }
+}
+.request-path {
+  animation: request-path 4.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: clip-path;
+}
+
+@media (max-width: 1023px) {
+  @keyframes request-path {
+    0% {
+      clip-path: inset(0 0 100% 0);
+    }
+    72%,
+    88% {
+      clip-path: inset(0 0 0 0);
+    }
+    100% {
+      clip-path: inset(100% 0 0 0);
+    }
+  }
+}
+
 /* Card settle-in when a session changes column */
 @keyframes card-in {
   from {
@@ -818,6 +851,7 @@ kbd {
   .progress-slide,
   .meter-fill,
   .meter-tick,
+  .request-path,
     .card-in,
     .type-line,
     .glitch-ghost-a,
@@ -843,6 +877,9 @@ kbd {
     }
     .meter-tick {
       opacity: 1;
+    }
+    .request-path {
+      clip-path: none;
     }
     .gw-hop {
       opacity: 0.6;
