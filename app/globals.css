@@ -859,18 +859,6 @@ kbd {
   animation: hf-dot-a-up 6.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Nylla internal steps lighting up in sequence while the packet is inside. */
-@keyframes hf-step {
-  0%, 18%, 46%, 100% { opacity: 0.4; }
-  22%, 42% { opacity: 1; }
-}
-.hf-step {
-  opacity: 0.4;
-  animation: hf-step 6.4s ease-in-out infinite;
-  animation-delay: calc(var(--step, 0) * 0.58s);
-  will-change: opacity;
-}
-
 /* One model highlighted while the request lands on it. The 19.2s period is
    three 6.4s cycles; each model's active window aligns with 58–72% of its
    own cycle (19.3–24% of the full period), rotating the highlight. */
@@ -918,11 +906,9 @@ kbd {
   .hf-dot-a-up,
   .hf-dot-b-down,
   .hf-dot-b-up,
-  .hf-step,
   .hf-model {
       animation: none;
     }
-    .hf-step,
     .hf-model {
       opacity: 1;
     }
