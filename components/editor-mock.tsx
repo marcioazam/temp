@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import useSWR from "swr"
 import { HermesTerminalMock } from "@/components/hermes-terminal-mock"
+import { RotorMark } from "@/components/logo"
 
 function ClaudeMascot() {
   return (
@@ -396,14 +397,10 @@ function WeatherWidget() {
 function WindowsTaskbar() {
   return (
     <div className="absolute inset-x-0 bottom-0 z-30 flex h-9 items-center border-t border-white/[0.08] bg-[#17191f]/75 px-2 font-sans text-white/70 shadow-[0_-8px_24px_rgba(0,0,0,0.18)] backdrop-blur-2xl backdrop-saturate-50 md:h-11 md:px-4">
-      <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2" aria-hidden="true">
-        <img
-          src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/visual-studio-code/default.svg"
-          alt=""
-          className="size-4 md:size-[18px]"
-          draggable={false}
-        />
-        <span className="text-[10px] font-medium text-white/80 md:text-xs">VS Code</span>
+      <div className="absolute left-1/2 grid -translate-x-1/2 place-items-center" aria-hidden="true">
+        <span className="grid h-7 w-8 place-items-center text-white/80 md:h-9 md:w-11">
+          <RotorMark className="h-4 w-4 md:h-[18px] md:w-[18px]" />
+        </span>
       </div>
 
       <div className="ml-auto flex items-center gap-2 md:gap-3">
