@@ -171,6 +171,7 @@ export function HermesTerminalMock() {
   const [visibleCount, setVisibleCount] = useState(0)
   const [draft, setDraft] = useState("")
   const scrollerRef = useRef<HTMLDivElement>(null)
+  const draftScrollerRef = useRef<HTMLDivElement>(null)
 
   const visibleLines = useMemo(() => SESSION.slice(0, visibleCount), [visibleCount])
   const nextLine = SESSION[visibleCount]
@@ -223,6 +224,15 @@ export function HermesTerminalMock() {
     })
     return () => window.cancelAnimationFrame(frame)
   }, [visibleCount, draft])
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const draftScroller = draftScrollerRef.current
+      if (!draftScroller) return
+      draftScroller.scrollLeft = draftScroller.scrollWidth
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [draft])
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-white/[0.07] bg-[#080806] font-mono text-[7px] leading-[1.55] text-[#d6d3c4] shadow-[0_24px_55px_-22px_rgba(0,0,0,0.72),0_10px_24px_-16px_rgba(0,0,0,0.55),0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/20 sm:text-[8px] md:rounded-xl md:text-[9px]">
@@ -343,13 +353,18 @@ export function HermesTerminalMock() {
       </div>
 
       <div className="flex min-h-6 shrink-0 items-center gap-2 border-t border-[#5b5852]/65 bg-[#080806] px-2.5 py-1.5 sm:px-3 md:min-h-8 md:px-4">
-        <span className="text-[#e8c547]">›</span>
-        <span
-          className={`min-w-0 flex-1 overflow-hidden whitespace-nowrap font-medium ${nextLine?.kind === "slash" ? "text-[#e8c547]" : "text-[#d6d3c4]"}`}
+        <span className="shrink-0 text-[#e8c547]">›</span>
+        <div
+          ref={draftScrollerRef}
+          className="min-w-0 flex-1 overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {draft}
-        </span>
-        <span className="cursor-blink h-2.5 w-1 shrink-0 bg-[#e8c547] md:h-3" aria-hidden="true" />
+          <span
+            className={`font-medium ${nextLine?.kind === "slash" ? "text-[#e8c547]" : "text-[#d6d3c4]"}`}
+          >
+            {draft}
+          </span>
+          <span className="cursor-blink ml-0.5 inline-block h-2.5 w-1 bg-[#e8c547] align-middle md:h-3" aria-hidden="true" />
+        </div>
       </div>
     </div>
   )
