@@ -21,8 +21,8 @@ export function GatewayFlow() {
   return (
     <section id="endpoint">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <div className="grid items-start gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
+          <div className="lg:order-2 lg:sticky lg:top-28">
             <h2 className="font-mono text-xs text-muted-foreground">
               <span aria-hidden="true">{"// "}</span>endpoint
             </h2>
