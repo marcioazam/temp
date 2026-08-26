@@ -3,7 +3,16 @@
 import { useEffect, useState } from "react"
 import { ArrowUp, GitBranch, LoaderCircle, PanelLeft, PanelRight, PanelsTopLeft, Search } from "lucide-react"
 
-const models = ["Opus 5", "GPT-5.3", "Gemini 3.1 Pro", "Kimi K2.5"]
+const models = [
+  "Opus 5",
+  "GPT 5.6 Sol",
+  "GLM 5.2",
+  "Kimi K3",
+  "Gemini Flash 3.7",
+  "Qwen 3.8",
+  "Deepseek V4",
+  "Grok 4.6",
+]
 
 function ModelSelector() {
   const [activeModel, setActiveModel] = useState(0)
