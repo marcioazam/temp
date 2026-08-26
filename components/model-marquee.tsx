@@ -35,7 +35,7 @@ export function ModelMarquee() {
               <img
                 src={brand.src}
                 alt={`${brand.name} logo`}
-                className="h-6 w-6 object-contain grayscale brightness-0"
+                className="h-6 w-6 object-contain grayscale brightness-0 invert"
                 loading="lazy"
               />
             )}
