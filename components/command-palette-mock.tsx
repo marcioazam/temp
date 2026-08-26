@@ -1,4 +1,4 @@
-import { ArrowUp, GitBranch, LoaderCircle, LockKeyhole, Play, RotateCw } from "lucide-react"
+import { ArrowUp, ChevronLeft, ChevronRight, GitBranch, LoaderCircle, PanelLeft, PanelRight, PanelsTopLeft, Play, Search } from "lucide-react"
 
 const thisWeek = [
   { label: "Acme Research Dashboard", active: true, type: "dot" },
@@ -12,12 +12,16 @@ const thisMonth = [
   { label: "Auth Token Rotation", type: "branch" },
 ]
 
-function CursorMark() {
+function VSCodeBrand() {
   return (
-    <span className="relative block size-4 rotate-30 bg-[#f0f0ee]" aria-hidden="true">
-      <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[#181713]" />
-      <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-[#181713]" />
-    </span>
+    <div className="flex items-center gap-2 text-[#d6d4cf]">
+      <img
+        src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/visual-studio-code/default.svg"
+        alt=""
+        className="size-5"
+      />
+      <span className="text-[11px] font-medium">VS Code</span>
+    </div>
   )
 }
 
@@ -49,23 +53,28 @@ function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) 
 export function CommandPaletteMock() {
   return (
     <div className="overflow-hidden rounded-[10px] border border-[#34322f] bg-[#181713] shadow-[0_24px_55px_rgba(0,0,0,0.42),0_8px_22px_rgba(0,0,0,0.3)]">
-      <div className="flex h-10 items-center border-b border-[#34322f] bg-[#1f1e1b] px-3">
-        <div className="flex gap-1.5" aria-hidden="true">
+      <div className="grid h-10 grid-cols-[74px_1fr_74px] items-center border-b border-[#34322f] bg-[#1f1e1b] px-3">
+        <div className="flex items-center gap-1.5" aria-label="Controles da janela do macOS">
           <span className="size-2 rounded-full bg-[#5b5a56]" />
           <span className="size-2 rounded-full bg-[#5b5a56]" />
           <span className="size-2 rounded-full bg-[#5b5a56]" />
+          <ChevronLeft className="ml-3 size-3 text-[#64615c]" aria-hidden="true" />
+          <ChevronRight className="size-3 text-[#46443f]" aria-hidden="true" />
         </div>
-        <div className="mx-auto flex h-6 w-64 items-center justify-between rounded-md border border-[#373530] bg-[#24231f] px-2.5 text-[9px] text-[#8e8b85]">
-          <LockKeyhole className="size-3" />
-          <span>cursor.com/agent</span>
-          <RotateCw className="size-3" />
+        <div className="mx-auto flex h-6 w-full max-w-64 items-center justify-center gap-1.5 border border-[#45423d] bg-[#292824] px-2.5 text-[9px] text-[#aaa7a0] shadow-[inset_0_1px_rgba(255,255,255,0.025)]">
+          <Search className="size-3" aria-hidden="true" />
+          <span>Search</span>
         </div>
-        <div className="w-[34px]" />
+        <div className="flex items-center justify-end gap-2 text-[#85827c]" aria-hidden="true">
+          <PanelLeft className="size-3" />
+          <PanelsTopLeft className="size-3" />
+          <PanelRight className="size-3" />
+        </div>
       </div>
 
       <div className="grid h-[330px] grid-cols-[174px_1fr] bg-[#181713] sm:h-[360px] sm:grid-cols-[190px_1fr]">
         <aside className="flex min-w-0 flex-col gap-4 border-r border-[#302e29] p-3">
-          <CursorMark />
+          <VSCodeBrand />
           <TaskGroup title="This Week" tasks={thisWeek} />
           <TaskGroup title="This Month" tasks={thisMonth} />
         </aside>
