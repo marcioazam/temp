@@ -2,8 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 
-import { HermesCaduceus } from "@/components/hermes-caduceus"
-
 const BANNER_HERMES = [
   "█  █ ████ ███  █   █ ████ ████",
   "█  █ █    █  █ ██ ██ █    █   ",
@@ -257,7 +255,21 @@ export function HermesTerminalMock() {
 
         <div className="mt-1 flex gap-3 border border-[#5b5852]/65 p-2 md:gap-4 md:p-2.5">
           <div className="hidden shrink-0 flex-col items-center md:flex">
-              <HermesCaduceus className="w-[104px] lg:w-[124px]" />
+              <div
+                role="img"
+                aria-label="Logo do Hermes Agent"
+                className="aspect-square w-[104px] bg-[#e8c547] lg:w-[124px]"
+                style={{
+                  maskImage: "url('/hermes-agent-logo.svg')",
+                  WebkitMaskImage: "url('/hermes-agent-logo.svg')",
+                  maskPosition: "center",
+                  WebkitMaskPosition: "center",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskSize: "contain",
+                  WebkitMaskSize: "contain",
+                }}
+              />
             <div className="mt-1.5 text-center">
               <p className="font-semibold text-[#e8c547]">
                 {currentModel} <span className="font-normal text-[#8a8672]">· Nylla Gateway</span>
