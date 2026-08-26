@@ -23,9 +23,9 @@ export function NpmSection() {
             informe a URL e cole sua chave — o restante fica por conta do CLI.
           </p>
           <ul className="mt-6 space-y-2 font-mono text-sm text-muted-foreground">
-            <li><span className="text-foreground/60" aria-hidden="true">+ </span>configuração guiada por harness</li>
-            <li><span className="text-foreground/60" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
-            <li><span className="text-foreground/60" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
+            <li><span className="text-emerald-500" aria-hidden="true">+ </span>configuração guiada por harness</li>
+            <li><span className="text-emerald-500" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
+            <li><span className="text-emerald-500" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
           </ul>
         </Reveal>
 
