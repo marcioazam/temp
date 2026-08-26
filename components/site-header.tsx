@@ -75,12 +75,9 @@ export function SiteHeader() {
           <div className="ml-auto flex items-center gap-2">
             <Link
               href="/docs"
-              className="group relative inline-flex items-center gap-1.5 overflow-hidden border border-[#F4F3F1] bg-[#F4F3F1] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
+              className="inline-flex items-center border border-foreground/45 bg-transparent px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-foreground hover:bg-foreground/5"
             >
               Docs
-              <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
-                →
-              </span>
             </Link>
             <Link
               href="/#planos"
