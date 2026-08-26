@@ -27,6 +27,7 @@
   --color-foreground: var(--foreground);
   --color-background: var(--background);
   --color-ultra: var(--ultra);
+  --color-logo: var(--logo);
   --radius-sm: 0rem;
   --radius-md: 0rem;
   --radius-lg: 0rem;
@@ -57,6 +58,7 @@
   --input: #232323;
   --ring: #5391fe;
   --ultra: #5391fe;
+  --logo: #f5a524;
   --radius: 0rem;
 }
 
