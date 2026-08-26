@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { EditorMock } from "@/components/editor-mock"
 import { Reveal } from "@/components/reveal"
+import { HeroFlow } from "@/components/hero-flow"
 
 export function Hero() {
   return (
@@ -58,34 +59,7 @@ export function Hero() {
           </div>
 
           <Reveal delay={240} className="w-full lg:max-w-md">
-            <figure aria-label="Papel da Nylla no fluxo entre sua ferramenta e os LLMs" className="font-mono">
-              <div className="flex flex-col gap-2">
-                <div className="border border-border px-4 py-3">
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Você + ferramenta</span>
-                  <p className="mt-1 text-xs text-foreground">Claude Code, Cursor, seu agent</p>
-                </div>
-
-                <div className="flex items-center gap-3 pl-4 text-[10px] text-muted-foreground">
-                  <span aria-hidden="true" className="text-sm leading-none">↕</span>
-                  <span>uma requisição, um formato</span>
-                </div>
-
-                <div className="border border-foreground/60 bg-foreground/5 px-4 py-3">
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-foreground">Nylla</span>
-                  <p className="mt-1 text-xs text-muted-foreground">valida, roteia e faz fallback entre modelos</p>
-                </div>
-
-                <div className="flex items-center gap-3 pl-4 text-[10px] text-muted-foreground">
-                  <span aria-hidden="true" className="text-sm leading-none">↕</span>
-                  <span>melhor rota no momento</span>
-                </div>
-
-                <div className="border border-border px-4 py-3">
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">LLMs</span>
-                  <p className="mt-1 text-xs text-foreground">GPT, Claude, Gemini, e o que vier</p>
-                </div>
-              </div>
-            </figure>
+            <HeroFlow />
           </Reveal>
         </div>
 

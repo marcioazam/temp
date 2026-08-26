@@ -804,6 +804,87 @@ kbd {
   animation: bit-scroll var(--bs-dur, 4s) steps(var(--bs-steps, 8), jump-none) infinite;
 }
 
+/* Hero flow diagram — one 6.4s cycle shared by every element.
+   Request packet travels down connector A (2–16%), Nylla steps light up in
+   sequence (~18–46%), the packet crosses connector B (46–58%), a model
+   activates (58–72%), then the response packet climbs back up B (72–82%)
+   and A (84–96%). Compositor-only: opacity + translate. */
+.hf-dot {
+  position: absolute;
+  left: -1.5px;
+  top: 0;
+  width: 4px;
+  height: 4px;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@keyframes hf-dot-a-down {
+  0%, 2% { opacity: 0; transform: translateY(0); }
+  4% { opacity: 1; }
+  14% { opacity: 1; transform: translateY(40px); }
+  16%, 100% { opacity: 0; transform: translateY(40px); }
+}
+.hf-dot-a-down {
+  animation: hf-dot-a-down 6.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes hf-dot-b-down {
+  0%, 46% { opacity: 0; transform: translateY(0); }
+  48% { opacity: 1; }
+  56% { opacity: 1; transform: translateY(40px); }
+  58%, 100% { opacity: 0; transform: translateY(40px); }
+}
+.hf-dot-b-down {
+  animation: hf-dot-b-down 6.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes hf-dot-b-up {
+  0%, 72% { opacity: 0; transform: translateY(40px); }
+  74% { opacity: 1; }
+  80% { opacity: 1; transform: translateY(0); }
+  82%, 100% { opacity: 0; transform: translateY(0); }
+}
+.hf-dot-b-up {
+  animation: hf-dot-b-up 6.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes hf-dot-a-up {
+  0%, 84% { opacity: 0; transform: translateY(40px); }
+  86% { opacity: 1; }
+  94% { opacity: 1; transform: translateY(0); }
+  96%, 100% { opacity: 0; transform: translateY(0); }
+}
+.hf-dot-a-up {
+  animation: hf-dot-a-up 6.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Nylla internal steps lighting up in sequence while the packet is inside. */
+@keyframes hf-step {
+  0%, 18%, 46%, 100% { opacity: 0.4; }
+  22%, 42% { opacity: 1; }
+}
+.hf-step {
+  opacity: 0.4;
+  animation: hf-step 6.4s ease-in-out infinite;
+  animation-delay: calc(var(--step, 0) * 0.58s);
+  will-change: opacity;
+}
+
+/* One model highlighted while the request lands on it. The 19.2s period is
+   three 6.4s cycles; each model's active window aligns with 58–72% of its
+   own cycle (19.3–24% of the full period), rotating the highlight. */
+@keyframes hf-model {
+  0%, 18.6%, 24.6%, 100% { opacity: 0.35; }
+  19.6%, 23.6% { opacity: 1; }
+}
+.hf-model {
+  opacity: 0.35;
+  animation: hf-model 19.2s ease-in-out infinite;
+  animation-delay: calc(var(--model, 0) * 6.4s);
+  will-change: opacity;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cursor-blink,
   .mark-breathe,
@@ -832,8 +913,18 @@ kbd {
   .bit-scroll,
   .term-line,
   .claude-line,
-  .claude-model-enter {
+  .claude-model-enter,
+  .hf-dot-a-down,
+  .hf-dot-a-up,
+  .hf-dot-b-down,
+  .hf-dot-b-up,
+  .hf-step,
+  .hf-model {
       animation: none;
+    }
+    .hf-step,
+    .hf-model {
+      opacity: 1;
     }
     .token-emit {
       opacity: 1;
