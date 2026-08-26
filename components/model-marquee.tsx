@@ -11,7 +11,7 @@ const brands = [
   { name: "Antigravity AI", src: icon("antigravity-google", "mono") },
   { name: "Cline", src: icon("cline") },
   { name: "OpenCode", src: icon("opencode") },
-  { name: "Qwen Code", src: icon("qwen"), accent: true },
+  { name: "Qwen Code", src: icon("qwen") },
   { name: "Kimi Code", src: "/images/kimi-cli.svg" },
   { name: "Hermes Agent", mark: "H" },
   { name: "OpenClaw", src: "/images/openclaw.svg" },
@@ -28,13 +28,9 @@ export function ModelMarquee() {
       {brands.map((brand) => (
         <li
           key={brand.name}
-          className={`group flex min-h-[76px] flex-col items-center justify-center gap-2 border px-3 py-3 transition-all ${
-            brand.accent
-              ? "border-primary bg-primary text-primary-foreground hover:border-primary hover:bg-primary/90"
-              : "border-border/70 bg-card text-foreground hover:border-primary/60 hover:bg-muted"
-          }`}
+          className="group flex min-h-[76px] flex-col items-center justify-center gap-2 border border-border/70 bg-card px-3 py-3 transition-all hover:border-primary/60 hover:bg-muted"
         >
-          <div className="flex h-7 w-10 items-center justify-center transition-transform group-hover:scale-110">
+          <div className="flex h-7 w-10 items-center justify-center text-foreground transition-transform group-hover:scale-110">
             {brand.src && (
               <img
                 src={brand.src}
@@ -54,7 +50,7 @@ export function ModelMarquee() {
               </span>
             )}
           </div>
-          <span className="max-w-full truncate text-center font-sans text-[11px] font-medium leading-4 tracking-tight">
+          <span className="max-w-full truncate text-center font-sans text-[11px] font-medium leading-4 tracking-tight text-foreground">
             {brand.name}
           </span>
         </li>
