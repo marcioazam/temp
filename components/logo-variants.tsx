@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { NyMark, NycodeWordmark } from "@/components/logo"
+import { NyMark, NyllaWordmark } from "@/components/logo"
 
 /* ------------------------------------------------------------------ */
 /* Glitch ghost — the mark plus two offset ghost copies that snap in   */
@@ -40,9 +40,9 @@ export function SliceGlitch({
   className?: string
   wordmark?: boolean
 }) {
-  const Mark = wordmark ? NycodeWordmark : NyMark
+  const Mark = wordmark ? NyllaWordmark : NyMark
   return (
-    <div className={`relative ${className ?? ""}`} aria-label={wordmark ? "nycode glitch" : "ny glitch"}>
+    <div className={`relative ${className ?? ""}`} aria-label={wordmark ? "nylla glitch" : "ny glitch"}>
       {/* invisible sizer keeps layout stable */}
       <Mark className="invisible h-full w-auto" aria-hidden />
       {SLICES.map((s, i) => (

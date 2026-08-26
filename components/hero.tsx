@@ -28,7 +28,7 @@ export function Hero() {
           <Reveal delay={160}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <a
-                href="https://www.npmjs.com/package/nycode"
+                href="https://www.npmjs.com/package/nylla"
                 target="_blank"
                 rel="noreferrer"
                 className="group inline-flex h-11 items-center justify-center gap-2 border border-foreground bg-foreground px-5 font-mono text-sm text-background transition-opacity duration-200 hover:opacity-90 active:scale-[0.98]"

@@ -9,7 +9,7 @@ export function RotorMark(props: SVGProps<SVGSVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 64 64"
       role="img"
-      aria-label="Nycode"
+      aria-label="Nylla"
       {...props}
     >
       <g stroke="currentColor" strokeWidth="5" strokeLinecap="round" fill="none">
@@ -23,18 +23,18 @@ export function RotorMark(props: SVGProps<SVGSVGElement>) {
 }
 
 /**
- * Flat "nycode" pixel wordmark — inherits currentColor.
+ * Flat "nylla" pixel wordmark — inherits currentColor.
  * Glyphs are grouped so each letter can be shifted right, producing
  * optical letter-spacing that raw pixel paths can't express.
  */
-export function NycodeWordmark(props: SVGProps<SVGSVGElement>) {
+export function NyllaWordmark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 163 36"
       className="pixel-crisp"
       role="img"
-      aria-label="nycode"
+      aria-label="nylla"
       {...props}
     >
       <g fill="currentColor">

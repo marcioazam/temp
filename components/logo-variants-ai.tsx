@@ -3,7 +3,7 @@ import type { SVGProps } from "react"
 /**
  * Minimal AI marks — estudos inspirados em cursor.com, openai.com e claude.ai.
  * Todas monocromáticas via currentColor, geometria limpa, sem pixel-crisp:
- * são a contraparte "moderna e suave" do sistema pixel do nycode.
+ * são a contraparte "moderna e suave" do sistema pixel do nylla.
  */
 
 /** 01 — Cubo isométrico com faces em três tons (estudo cursor). */
@@ -76,7 +76,7 @@ export function SunburstMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 06 — Starburst quantizado em pixels: a ponte entre claude e o DNA nycode. */
+/** 06 — Starburst quantizado em pixels: a ponte entre claude e o DNA nylla. */
 export function PixelBurstMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" className="pixel-crisp" role="img" aria-label="burst pixel" {...props}>

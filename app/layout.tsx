@@ -8,7 +8,7 @@ const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Nycode — LLM Gateway for Code Generation & Agents',
+  title: 'Nylla — LLM Gateway for Code Generation & Agents',
   description:
     'Um gateway de LLM que conecta qualquer harness — Claude Code, Codex, Cursor, VS Code, Aermes Agent e mais — a todos os modelos e ferramentas. Plug and play via npm.',
   generator: 'v0.app',

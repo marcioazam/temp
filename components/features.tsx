@@ -19,7 +19,7 @@ const features = [
   {
     id: "04",
     title: "Failover e roteamento",
-    body: "Se um provedor cai, o gateway redireciona a requisição. Defina prioridades por modelo, custo ou latência — o Nycode cuida do resto.",
+    body: "Se um provedor cai, o gateway redireciona a requisição. Defina prioridades por modelo, custo ou latência — o Nylla cuida do resto.",
   },
 ]
 

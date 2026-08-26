@@ -1,13 +1,13 @@
 import { Reveal } from "@/components/reveal"
 
 const termLines = [
-  { text: "$ npx nycode connect", dim: false },
+  { text: "$ npx nylla connect", dim: false },
   { text: "", dim: false },
   { text: "  detectando harness...        claude-code [ok]", dim: true },
   { text: "  gerando configuração...      ok", dim: true },
   { text: "  validando gateway...         ok", dim: true },
   { text: "", dim: false },
-  { text: "  conectado → gateway.nycode.dev", dim: false },
+  { text: "  conectado → gateway.nylla.dev", dim: false },
   { text: "", dim: false },
   { text: "  modelos disponíveis: 47", dim: true },
   { text: "  latência: 38ms", dim: true },
@@ -60,7 +60,7 @@ export function NpmSection() {
                 <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
               </div>
               <span className="absolute left-1/2 -translate-x-1/2 font-mono text-[11px] text-muted-foreground">
-                nycode — zsh
+                nylla — zsh
               </span>
             </div>
             <pre className="term-pane overflow-x-auto p-4 font-mono text-xs leading-relaxed text-foreground md:p-6 md:text-sm">

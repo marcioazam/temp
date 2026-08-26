@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { NyMark, NycodeWordmark } from "@/components/logo"
+import { NyMark, NyllaWordmark } from "@/components/logo"
 import {
   GlitchGhostMark,
   SliceGlitch,
@@ -68,9 +68,9 @@ import {
 } from "@/components/logo-variants-ai-2"
 
 export const metadata: Metadata = {
-  title: "marca — nycode",
+  title: "marca — nylla",
   description:
-    "Sistema de marca do nycode: variantes pixel, glitch, tetromino e dado do logotipo.",
+    "Sistema de marca do nylla: variantes pixel, glitch, tetromino e dado do logotipo.",
 }
 
 function VariantCard({
@@ -114,7 +114,7 @@ export default function LogoPage() {
             Sistema de marca
           </h1>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            O logotipo do nycode nasce do pixel — a menor unidade de renderização, a mesma célula
+            O logotipo do nylla nasce do pixel — a menor unidade de renderização, a mesma célula
             que compõe um token. Cada variante explora um comportamento do pixel: corrupção,
             queda, sorte e dissolução.
           </p>
@@ -174,7 +174,7 @@ export default function LogoPage() {
 
           <VariantCard name="wordmark" note="assinatura completa" wide>
             <div className="flex w-full flex-col items-center gap-12 py-6">
-              <NycodeWordmark className="h-9 w-auto text-foreground" />
+              <NyllaWordmark className="h-9 w-auto text-foreground" />
               <SliceGlitch wordmark className="h-9" />
             </div>
           </VariantCard>

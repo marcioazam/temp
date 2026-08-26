@@ -29,7 +29,7 @@ export function Harnesses() {
         <div className="mt-6 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="max-w-xl leading-relaxed text-muted-foreground">
-              Um endpoint compatível com todos os clientes. Aponte seu harness para o Nycode e continue trabalhando —
+              Um endpoint compatível com todos os clientes. Aponte seu harness para o Nylla e continue trabalhando —
               sem reconfigurar nada quando trocar de modelo.
             </p>
             <p className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs text-muted-foreground">

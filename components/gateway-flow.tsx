@@ -34,7 +34,7 @@ export function GatewayFlow() {
           <div className="flex items-center justify-center">
             <div className="relative flex h-24 w-24 items-center justify-center border border-border bg-card">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/ny-anim-scan.svg" alt="Nycode gateway" className="pixel-crisp h-12 w-12" />
+              <img src="/ny-anim-scan.svg" alt="Nylla gateway" className="pixel-crisp h-12 w-12" />
               <span className="flow-pulse pointer-events-none absolute inset-0 border border-foreground/30" aria-hidden="true" />
             </div>
           </div>
@@ -63,7 +63,7 @@ export function GatewayFlow() {
         </div>
 
         <p className="mt-8 max-w-xl leading-relaxed text-muted-foreground">
-          Prioridade por custo, latência ou qualidade. Se um provedor falha, o Nycode reencaminha automaticamente — sem
+          Prioridade por custo, latência ou qualidade. Se um provedor falha, o Nylla reencaminha automaticamente — sem
           mudar uma linha no seu código.
         </p>
       </div>
