@@ -8,6 +8,7 @@ import { RotorMark } from "@/components/logo"
 const nav = [
   { label: "Recursos", href: "/#recursos" },
   { label: "Harnesses", href: "/#harnesses" },
+  { label: "Catálogo", href: "/#catalogo" },
   { label: "Planos", href: "/#planos" },
   { label: "Docs", href: "/docs" },
 ]

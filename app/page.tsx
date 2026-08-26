@@ -4,6 +4,7 @@ import { GatewayFlow } from "@/components/gateway-flow"
 import { Features } from "@/components/features"
 import { Harnesses } from "@/components/harnesses"
 import { NpmSection } from "@/components/npm-section"
+import { CatalogSection } from "@/components/catalog-section"
 import { Pricing } from "@/components/pricing"
 import { FinalCta } from "@/components/final-cta"
 import { SiteFooter } from "@/components/site-footer"
@@ -18,6 +19,7 @@ export default function Page() {
         <GatewayFlow />
         <NpmSection />
         <Features />
+        <CatalogSection />
         <Pricing />
         <FinalCta />
       </main>
