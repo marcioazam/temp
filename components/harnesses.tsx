@@ -23,20 +23,15 @@ export function Harnesses() {
         <h2 className="font-mono text-xs text-muted-foreground">
           <span aria-hidden="true">{"// "}</span>harnesses
         </h2>
-        <p className="mt-4 max-w-2xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
-          Conecta em qualquer ferramenta que você já usa.
-        </p>
-        <div className="mt-6 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <p className="max-w-xl leading-relaxed text-muted-foreground">
-              Um endpoint compatível com todos os clientes. Aponte seu harness para o Nylla e continue trabalhando —
-              sem reconfigurar nada quando trocar de modelo.
+        <div className="mt-4 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="max-w-xl">
+            <p className="text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+              Seu agente favorito. Uma inteligência sem limites.
             </p>
-            <p className="mt-6 flex flex-wrap items-center gap-2 font-mono text-xs text-muted-foreground">
-              Abra a paleta com
-              <kbd>cmd</kbd>
-              <kbd>K</kbd>
-              e escolha o harness.
+            <p className="mt-6 text-pretty leading-relaxed text-muted-foreground">
+              Conecte o Nylla às ferramentas que já fazem parte do seu fluxo. Um único gateway reúne os melhores
+              modelos, aplica fallback automático e mantém cada agente trabalhando sem interrupções — no editor, no
+              terminal ou via SDK.
             </p>
           </div>
 
