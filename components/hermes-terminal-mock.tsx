@@ -291,7 +291,7 @@ export function HermesTerminalMock() {
               />
             <div className="mt-1.5 text-center">
               <p className="font-semibold text-[#e8c547]">
-                {currentModel} <span className="font-normal text-[#8a8672]">· Nylla Gateway</span>
+                {currentModel} <span className="font-normal text-[#d97757]">· Nylla Gateway</span>
               </p>
               <p className="text-[#7d7a68]">/opt/hermes</p>
             </div>

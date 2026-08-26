@@ -312,7 +312,7 @@ function ClaudeCodeSession() {
   <span className="leading-none">Thinking on</span>
             </span>
             <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-            <span className="hidden text-[#8d8981] sm:inline">Nylla Gateway</span>
+            <span className="hidden text-[#d97757] sm:inline">Nylla Gateway</span>
             <span className="hidden text-[#4f4c47] sm:inline" aria-hidden="true">·</span>
             <span className="max-w-24 truncate text-[#d97757] sm:max-w-none">{currentModel}</span>
             <span className="hidden text-[#4f4c47] md:inline" aria-hidden="true">·</span>
