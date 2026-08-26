@@ -1,4 +1,4 @@
-import { ArrowUp, GitBranch, LoaderCircle, LockKeyhole, Play, RotateCw } from "lucide-react"
+import { ArrowUp, ChevronLeft, ChevronRight, GitBranch, LoaderCircle, PanelLeft, PanelRight, Play, Search } from "lucide-react"
 
 const thisWeek = [
   { label: "Acme Research Dashboard", active: true, type: "dot" },
@@ -49,18 +49,26 @@ function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) 
 export function CommandPaletteMock() {
   return (
     <div className="overflow-hidden rounded-[10px] border border-[#34322f] bg-[#181713] shadow-[0_24px_55px_rgba(0,0,0,0.42),0_8px_22px_rgba(0,0,0,0.3)]">
-      <div className="flex h-10 items-center border-b border-[#34322f] bg-[#1f1e1b] px-3">
-        <div className="flex gap-1.5" aria-hidden="true">
-          <span className="size-2 rounded-full bg-[#5b5a56]" />
-          <span className="size-2 rounded-full bg-[#5b5a56]" />
-          <span className="size-2 rounded-full bg-[#5b5a56]" />
+      <div className="flex h-10 items-center border-b border-[#34322f] bg-[#1f1e1b] px-3 text-[#85827c]">
+        <div className="flex w-[88px] items-center gap-1.5" aria-hidden="true">
+          <span className="size-2.5 rounded-full bg-[#5b5a56]" />
+          <span className="size-2.5 rounded-full bg-[#5b5a56]" />
+          <span className="size-2.5 rounded-full bg-[#5b5a56]" />
         </div>
-        <div className="mx-auto flex h-6 w-64 items-center justify-between rounded-md border border-[#373530] bg-[#24231f] px-2.5 text-[9px] text-[#8e8b85]">
-          <LockKeyhole className="size-3" />
-          <span>cursor.com/agent</span>
-          <RotateCw className="size-3" />
+        <div className="flex flex-1 items-center justify-center gap-2">
+          <div className="hidden items-center gap-1 sm:flex" aria-hidden="true">
+            <ChevronLeft className="size-3" />
+            <ChevronRight className="size-3 text-[#4f4d48]" />
+          </div>
+          <div className="flex h-6 w-full max-w-64 items-center justify-center gap-1.5 rounded-md border border-[#403e39] bg-[#292824] px-3 text-[9px] text-[#aaa7a0] shadow-inner">
+            <Search className="size-3" />
+            <span>Search</span>
+          </div>
         </div>
-        <div className="w-[34px]" />
+        <div className="flex w-[88px] items-center justify-end gap-2" aria-hidden="true">
+          <PanelLeft className="size-3" />
+          <PanelRight className="size-3" />
+        </div>
       </div>
 
       <div className="grid h-[330px] grid-cols-[174px_1fr] bg-[#181713] sm:h-[360px] sm:grid-cols-[190px_1fr]">
