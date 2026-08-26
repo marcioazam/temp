@@ -43,8 +43,12 @@ export function GatewayFlow() {
             </ul>
           </div>
 
-          <div className="overflow-hidden rounded-[10px] border border-border bg-card shadow-[0_1px_1px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.1),0_6px_12px_rgba(0,0,0,0.1),0_16px_32px_rgba(0,0,0,0.12)]">
-            <div className="flex items-center justify-between border-b border-border px-4 py-3">
+          <div
+            className="flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:p-10"
+            style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
+          >
+            <div className="mx-auto w-full max-w-[42rem] overflow-hidden rounded-[10px] border border-border bg-card shadow-[0_1px_1px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.1),0_6px_12px_rgba(0,0,0,0.1),0_16px_32px_rgba(0,0,0,0.12)]">
+              <div className="flex items-center justify-between border-b border-border px-4 py-3">
               <div className="flex items-center gap-2" aria-hidden="true">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
@@ -90,6 +94,7 @@ export function GatewayFlow() {
                 pronto para produção
               </p>
               <code className="font-mono text-xs text-foreground/70">POST /v1/chat/completions</code>
+            </div>
             </div>
           </div>
         </div>
