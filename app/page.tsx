@@ -6,6 +6,7 @@ import { Features } from "@/components/features"
 import { Harnesses } from "@/components/harnesses"
 import { NpmSection } from "@/components/npm-section"
 import { Pricing } from "@/components/pricing"
+import { FinalCta } from "@/components/final-cta"
 import { SiteFooter } from "@/components/site-footer"
 
 export default function Page() {
@@ -20,6 +21,7 @@ export default function Page() {
         <Features />
         <NpmSection />
         <Pricing />
+        <FinalCta />
       </main>
       <SiteFooter />
     </>
