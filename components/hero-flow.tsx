@@ -28,16 +28,16 @@ export function HeroFlow() {
         </div>
 
         {/* Node: Nylla */}
-        <div className="relative border border-foreground/60 bg-foreground/5 px-4 py-3">
+        <div className="relative border border-foreground bg-foreground px-4 py-3 text-background">
           <div className="flex items-center gap-2">
             <span className="status-pulse relative h-1.5 w-1.5 shrink-0 bg-primary" aria-hidden="true" />
-            <span className="text-[10px] uppercase tracking-[0.2em] text-foreground">Nylla</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-background">Nylla</span>
           </div>
-          <div className="mt-1.5 flex items-center gap-2 text-xs text-muted-foreground">
+          <div className="mt-1.5 flex items-center gap-2 text-xs text-background/60">
             {STEPS.map((step, i) => (
               <span key={step} className="flex items-center gap-2">
                 {i > 0 && (
-                  <span aria-hidden="true" className="text-foreground/30">
+                  <span aria-hidden="true" className="text-background/30">
                     →
                   </span>
                 )}
