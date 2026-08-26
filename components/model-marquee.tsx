@@ -23,26 +23,26 @@ export function ModelMarquee() {
   return (
     <ul
       aria-label="Ferramentas compatíveis com a Nylla"
-      className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5"
+      className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
     >
       {brands.map((brand) => (
         <li
           key={brand.name}
-          className="flex min-h-16 flex-col items-center justify-center gap-2 border border-border bg-[#F4F3F1] px-2 py-3"
+          className="group flex min-h-[76px] flex-col items-center justify-center gap-2 border border-transparent bg-[#F4F3F1] px-3 py-3 transition-colors hover:border-[#F4F3F1] hover:bg-[#ebe9e5]"
         >
-          <div className="flex h-5 items-center justify-center text-[#090909]">
+          <div className="flex h-7 w-10 items-center justify-center text-foreground transition-transform group-hover:scale-110">
             {brand.src && (
               <img
                 src={brand.src}
-                alt=""
-                className="h-5 w-5 object-contain grayscale brightness-0"
+                alt={`${brand.name} logo`}
+                className="h-6 w-6 object-contain grayscale brightness-0"
                 loading="lazy"
               />
             )}
             {brand.mark && (
               <span
                 aria-hidden="true"
-                className={`flex h-5 min-w-5 items-center justify-center font-mono font-bold ${
+                className={`flex h-6 min-w-6 items-center justify-center font-mono font-bold ${
                   brand.mark === "aider" ? "text-[8px] tracking-tight" : "text-sm"
                 }`}
               >
@@ -50,7 +50,7 @@ export function ModelMarquee() {
               </span>
             )}
           </div>
-          <span className="max-w-full truncate text-center font-sans text-[11px] font-medium tracking-tight text-[#090909]">
+          <span className="max-w-full truncate text-center font-sans text-[11px] font-medium leading-4 tracking-tight text-[#090909]">
             {brand.name}
           </span>
         </li>
