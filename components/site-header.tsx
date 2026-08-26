@@ -77,7 +77,7 @@ export function SiteHeader() {
               href="/docs"
               className="inline-flex items-center border border-foreground/45 bg-transparent px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-foreground hover:bg-foreground/5"
             >
-              Docs
+              Ler Docs
             </Link>
             <Link
               href="/#planos"
