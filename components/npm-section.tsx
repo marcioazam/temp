@@ -15,7 +15,7 @@ const termLines = [
 
 export function NpmSection() {
   return (
-    <section className="border-b border-border">
+    <section>
       <div className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-10 px-4 py-16 md:grid-cols-2 md:items-center md:px-9 md:py-24">
         <Reveal>
           <h2 className="font-mono text-xs text-muted-foreground">
