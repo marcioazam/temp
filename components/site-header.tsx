@@ -49,7 +49,7 @@ export function SiteHeader() {
             className="flex items-center gap-2.5 text-foreground"
           >
             <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0" />
-            <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-tight">
+            <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-[-0.12em]">
               Nylla
             </span>
           </Link>
