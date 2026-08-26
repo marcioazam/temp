@@ -38,7 +38,7 @@ export function SiteHeader() {
     <>
       <div ref={sentinelRef} aria-hidden="true" className="absolute top-0 h-3 w-px" />
       <header
-        className={`sticky top-0 z-50 border-b border-foreground/15 bg-background ${
+        className={`sticky top-0 z-50 bg-background ${
           scrolled
             ? "after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-5 after:bg-gradient-to-b after:from-background/80 after:to-transparent"
             : ""
