@@ -20,7 +20,7 @@ export function Harnesses() {
               terminal ou via SDK.
             </p>
             <div className="mt-8 flex flex-col gap-4">
-              <p className="font-mono text-sm text-foreground">Nylla é compatível com:</p>
+              <p className="font-mono text-sm text-foreground">Exemplos de conectividade:</p>
               <ModelMarquee />
             </div>
           </div>
