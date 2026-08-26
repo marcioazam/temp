@@ -342,8 +342,8 @@ export function HermesTerminalMock() {
         </div>
       </div>
 
-      <div className="flex min-h-6 shrink-0 items-center gap-2 border-t border-[#5b5852]/65 bg-[#080806] px-2.5 py-1.5 text-[9px] sm:px-3 sm:text-[10px] md:min-h-8 md:px-4 md:text-[12px]">
-        <span className="text-[#e8c547]">���</span>
+      <div className="flex min-h-6 shrink-0 items-center gap-2 border-t border-[#5b5852]/65 bg-[#080806] px-2.5 py-1.5 sm:px-3 md:min-h-8 md:px-4">
+        <span className="text-[#e8c547]">›</span>
         <span
           className={`min-w-0 flex-1 overflow-hidden whitespace-nowrap font-medium ${nextLine?.kind === "slash" ? "text-[#e8c547]" : "text-[#d6d3c4]"}`}
         >
