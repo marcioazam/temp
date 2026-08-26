@@ -20,7 +20,7 @@ export function ModelMarquee() {
   return (
     <ul
       aria-label="Ferramentas compatíveis com a Nylla"
-      className="grid grid-cols-3 gap-2 sm:grid-cols-4"
+      className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5"
     >
       {brands.map((brand) => (
         <li
