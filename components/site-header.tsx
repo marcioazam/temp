@@ -38,7 +38,7 @@ export function SiteHeader() {
           scrolled ? "border-border bg-background" : "border-transparent bg-background"
         }`}
       >
-        <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center justify-between px-4 md:px-9">
+        <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center px-4 md:px-9">
           <Link
             href="/"
             aria-label="nylla — início"
@@ -52,7 +52,7 @@ export function SiteHeader() {
 
           <nav
             aria-label="Navegação principal"
-            className="hidden items-center gap-7 font-mono text-xs text-muted-foreground md:flex"
+            className="hidden items-center gap-7 font-mono text-xs text-muted-foreground md:ml-10 md:flex"
           >
             {nav.map((item) => (
               <Link
@@ -71,7 +71,7 @@ export function SiteHeader() {
 
           <Link
             href="/#planos"
-            className="group relative inline-flex items-center gap-1.5 overflow-hidden border border-foreground bg-foreground px-3.5 py-1.5 font-mono text-xs text-background transition-opacity hover:opacity-90"
+            className="group relative ml-auto inline-flex items-center gap-1.5 overflow-hidden border border-foreground bg-foreground px-3.5 py-1.5 font-mono text-xs text-background transition-opacity hover:opacity-90"
           >
             Começar
             <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
