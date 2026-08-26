@@ -236,7 +236,7 @@ export function HermesTerminalMock() {
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#34322f] bg-[#080806] font-mono text-[7px] leading-[1.55] text-[#d6d3c4] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[8px] md:text-[9px]">
-      <div className="relative flex h-7 shrink-0 items-center border-b border-black/25 bg-[#2b2a28] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
+      <div className="relative flex h-7 shrink-0 items-center border-b border-[#34322f] bg-[#1f1e1b] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
         <div className="flex items-center gap-1.5" aria-hidden="true">
           <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
