@@ -39,15 +39,15 @@ function BrandCards({ hidden = false }: { hidden?: boolean }) {
           key={brand.name}
           className="flex h-24 w-44 shrink-0 items-center justify-center border border-black/10 bg-[#F4F3F1] px-7"
         >
-          <div className="flex items-center justify-center gap-2.5 text-[#808080]">
+          <div className="flex items-center justify-center gap-2.5 text-[#090909]">
             {brand.src && (
               <img
                 src={brand.src}
                 alt=""
                 className={
                   brand.includesName
-                    ? "h-7 max-w-24 object-contain grayscale brightness-0 opacity-50"
-                    : "h-6 w-6 object-contain grayscale brightness-0 opacity-50"
+                    ? "h-7 max-w-24 object-contain grayscale brightness-0"
+                    : "h-6 w-6 object-contain grayscale brightness-0"
                 }
                 loading="lazy"
               />
