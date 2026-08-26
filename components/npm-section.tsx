@@ -30,7 +30,8 @@ export function NpmSection() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="elev-window w-full overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
+          <div className="flex min-h-[31rem] items-center bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
+            <div className="elev-window w-full overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
             <div className="relative flex h-7 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
               <div className="flex items-center gap-1.5" aria-hidden="true">
                 <span className="size-2.5 rounded-full bg-[#ff5f57]" />
@@ -83,6 +84,7 @@ export function NpmSection() {
                 <span className="text-muted-foreground">pronto para configurar {selectedHarness}</span>
                 <span className="text-foreground/70" aria-hidden="true">→</span>
               </div>
+            </div>
             </div>
           </div>
         </Reveal>
