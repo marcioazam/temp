@@ -11,16 +11,32 @@ function ModelSelector() {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveModel((current) => (current + 1) % models.length)
-    }, 1800)
+    }, 1400)
 
     return () => window.clearInterval(interval)
   }, [])
 
   return (
-    <span className="inline-flex min-w-[74px] items-center text-[#99968f]" aria-label={`Modelo selecionado: ${models[activeModel]}`}>
-      <span key={models[activeModel]} className="animate-in fade-in slide-in-from-bottom-1 duration-300">
-        {models[activeModel]}⌄
+    <span className="relative inline-flex min-w-[74px] items-center text-[#99968f]" aria-label={`Modelo selecionado: ${models[activeModel]}`}>
+      <span
+        className="absolute bottom-full left-0 z-20 mb-1 w-32 overflow-hidden rounded-md border border-[#45423d] bg-[#24231f] p-1 shadow-[0_12px_28px_rgba(0,0,0,0.55)]"
+        role="listbox"
+        aria-label="Modelos disponíveis"
+      >
+        {models.map((model, index) => (
+          <span
+            key={model}
+            role="option"
+            aria-selected={index === activeModel}
+            className={`flex rounded px-2 py-1.5 transition-colors duration-300 ${
+              index === activeModel ? "bg-[#3a3833] text-[#f4f3f1]" : "text-[#8f8c85]"
+            }`}
+          >
+            {model}
+          </span>
+        ))}
       </span>
+      <span>{models[activeModel]}⌃</span>
     </span>
   )
 }
