@@ -49,7 +49,10 @@ const PHASES: Phase[] = [
   {
     model: "glm-5.2",
     lines: [
-      { kind: "prompt", text: "quais skills posso usar pra revisar um PR?" },
+      {
+        kind: "prompt",
+        text: "quais skills e ferramentas posso usar para revisar um PR completo, identificar regressões e validar a suíte de testes?",
+      },
       { kind: "spinner" },
       { kind: "tool", text: "Skill(github/codebase-inspection)", result: "Done (4 tool uses · 12.1k tokens · 6s)" },
       { kind: "out", text: "3 skills compatíveis: code-review, requesting-code-review, github-code-r..." },
@@ -340,7 +343,7 @@ export function HermesTerminalMock() {
       </div>
 
       <div className="flex min-h-6 shrink-0 items-center gap-2 border-t border-[#5b5852]/65 bg-[#080806] px-2.5 py-1.5 text-[9px] sm:px-3 sm:text-[10px] md:min-h-8 md:px-4 md:text-[12px]">
-        <span className="text-[#e8c547]">›</span>
+        <span className="text-[#e8c547]">���</span>
         <span
           className={`min-w-0 flex-1 overflow-hidden whitespace-nowrap font-medium ${nextLine?.kind === "slash" ? "text-[#e8c547]" : "text-[#d6d3c4]"}`}
         >
