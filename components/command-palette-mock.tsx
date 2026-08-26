@@ -1,4 +1,4 @@
-import { ArrowUp, ChevronLeft, ChevronRight, GitBranch, LoaderCircle, PanelLeft, PanelRight, PanelsTopLeft, Play, Search } from "lucide-react"
+import { ArrowUp, GitBranch, LoaderCircle, PanelLeft, PanelRight, PanelsTopLeft, Play, Search } from "lucide-react"
 
 const thisWeek = [
   { label: "Acme Research Dashboard", active: true, type: "dot" },
@@ -52,14 +52,12 @@ function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) 
 
 export function CommandPaletteMock() {
   return (
-    <div className="overflow-hidden rounded-[10px] border border-[#34322f] bg-[#181713] shadow-[0_24px_55px_rgba(0,0,0,0.42),0_8px_22px_rgba(0,0,0,0.3)]">
-      <div className="grid h-10 grid-cols-[74px_1fr_74px] items-center border-b border-[#34322f] bg-[#1f1e1b] px-3">
+    <div className="overflow-hidden rounded-[10px] border border-[#34322f] bg-[#181713] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
+      <div className="grid h-10 grid-cols-[74px_1fr_74px] items-center border-b border-[#34322f] bg-[#1f1e1b] px-3 shadow-[inset_0_1px_rgba(255,255,255,0.035)]">
         <div className="flex items-center gap-1.5" aria-label="Controles da janela do macOS">
-          <span className="size-2 rounded-full bg-[#5b5a56]" />
-          <span className="size-2 rounded-full bg-[#5b5a56]" />
-          <span className="size-2 rounded-full bg-[#5b5a56]" />
-          <ChevronLeft className="ml-3 size-3 text-[#64615c]" aria-hidden="true" />
-          <ChevronRight className="size-3 text-[#46443f]" aria-hidden="true" />
+          <span className="size-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="size-2.5 rounded-full bg-[#febc2e]" />
+          <span className="size-2.5 rounded-full bg-[#28c840]" />
         </div>
         <div className="mx-auto flex h-6 w-full max-w-64 items-center justify-center gap-1.5 border border-[#45423d] bg-[#292824] px-2.5 text-[9px] text-[#aaa7a0] shadow-[inset_0_1px_rgba(255,255,255,0.025)]">
           <Search className="size-3" aria-hidden="true" />
