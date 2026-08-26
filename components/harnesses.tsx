@@ -3,21 +3,6 @@ import Link from "next/link"
 import { CommandPaletteMock } from "@/components/command-palette-mock"
 import { Reveal } from "@/components/reveal"
 
-const harnesses = [
-  { name: "Claude Code", status: "estável" },
-  { name: "Codex", status: "estável" },
-  { name: "Cursor", status: "estável" },
-  { name: "VS Code", status: "estável" },
-  { name: "Aermes Agent", status: "estável" },
-  { name: "Zed", status: "estável" },
-  { name: "OpenCode", status: "estável" },
-  { name: "Cline", status: "estável" },
-  { name: "Windsurf", status: "estável" },
-  { name: "JetBrains", status: "beta" },
-  { name: "Neovim", status: "beta" },
-  { name: "API / SDK", status: "estável" },
-]
-
 export function Harnesses() {
   return (
     <section id="harnesses" className="border-b border-border">
@@ -47,34 +32,6 @@ export function Harnesses() {
             <CommandPaletteMock />
           </Reveal>
         </div>
-
-        <ul className="mt-14 grid grid-cols-2 border-l border-t border-border sm:grid-cols-3 lg:grid-cols-4">
-          {harnesses.map((h, i) => (
-            <Reveal
-              as="li"
-              key={h.name}
-              delay={i * 45}
-              className="group relative flex items-center justify-between gap-2 border-b border-r border-border bg-card px-4 py-4 transition-colors duration-300 hover:bg-muted"
-            >
-              <span className="flex items-center gap-2.5">
-                <span
-                  aria-hidden="true"
-                  className={`h-1.5 w-1.5 transition-colors duration-300 ${
-                    h.status === "beta" ? "bg-border group-hover:bg-muted-foreground" : "bg-ultra/50 group-hover:bg-ultra"
-                  }`}
-                />
-                <span className="font-mono text-sm text-foreground">{h.name}</span>
-              </span>
-              <span
-                className={`font-mono text-[10px] uppercase transition-opacity duration-300 ${
-                  h.status === "beta" ? "text-muted-foreground" : "text-foreground/50 group-hover:text-foreground/80"
-                }`}
-              >
-                {h.status}
-              </span>
-            </Reveal>
-          ))}
-        </ul>
       </div>
     </section>
   )
