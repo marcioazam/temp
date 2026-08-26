@@ -236,15 +236,15 @@ export function HermesTerminalMock() {
   }, [visibleCount, draft])
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#e8c547]/25 bg-[#080806] font-mono text-[7px] leading-[1.55] text-[#d6d3c4] shadow-[0_24px_55px_-22px_rgba(0,0,0,0.8),0_10px_24px_-16px_rgba(0,0,0,0.6)] ring-1 ring-black/40 sm:text-[8px] md:rounded-xl md:text-[9px]">
-      <div className="relative flex h-6 shrink-0 items-center border-b border-[#e8c547]/20 bg-[#111008] px-2 md:h-8 md:px-3">
+    <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-white/[0.07] bg-[#080806] font-mono text-[7px] leading-[1.55] text-[#d6d3c4] shadow-[0_24px_55px_-22px_rgba(0,0,0,0.72),0_10px_24px_-16px_rgba(0,0,0,0.55),0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/20 sm:text-[8px] md:rounded-xl md:text-[9px]">
+      <div className="relative flex h-7 shrink-0 items-center border-b border-black/25 bg-[#2b2a28] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
         <div className="flex items-center gap-1.5" aria-hidden="true">
-          <span className="h-2 w-2 rounded-full bg-[#ff5f57] md:h-2.5 md:w-2.5" />
-          <span className="h-2 w-2 rounded-full bg-[#febc2e] md:h-2.5 md:w-2.5" />
-          <span className="h-2 w-2 rounded-full bg-[#28c840] md:h-2.5 md:w-2.5" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         </div>
-        <span className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-sans text-[7px] font-medium tracking-[-0.01em] text-[#b0a97f] md:text-[9px]">
-          hermes-agent — /opt/hermes
+        <span className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-sans text-[8px] font-medium tracking-[-0.01em] text-[#aaa69f] md:text-[10px]">
+          Hermes Agent — /opt/hermes
         </span>
       </div>
 
