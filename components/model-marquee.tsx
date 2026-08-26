@@ -9,7 +9,7 @@ const brands = [
   { name: "VS Code", src: icon("visual-studio-code") },
   { name: "Windsurf", src: icon("windsurf") },
   { name: "Zed", src: icon("zed") },
-  { name: "Antigravity AI", mark: "A" },
+  { name: "Antigravity AI", src: "/images/antigravity-ai.png" },
   { name: "Cline", src: icon("cline") },
   { name: "Kilo Code", src: icon("kilo-code") },
   { name: "OpenCode", src: icon("opencode") },
