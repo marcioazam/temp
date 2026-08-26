@@ -4,7 +4,7 @@ import { AgentBoardMock } from "@/components/agent-board-mock"
 export function AgentsSection() {
   return (
     <section id="agents" className="border-b border-border">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6 md:py-24">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
           <h2 className="font-mono text-xs text-muted-foreground">
             <span aria-hidden="true">{"// "}</span>agents
@@ -14,7 +14,7 @@ export function AgentsSection() {
           </p>
           <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
             Despache tarefas, acompanhe sessões e revise diffs de qualquer harness conectado ao gateway. Você decide o
-            que construir — os agents escrevem, testam e abrem o PR.
+            que construir. Os agents escrevem, testam e abrem o PR.
           </p>
         </Reveal>
 

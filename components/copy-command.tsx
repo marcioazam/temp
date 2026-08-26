@@ -9,7 +9,7 @@ const RUNNERS = [
 ] as const
 
 type Props = {
-  /** Command without the runner prefix, e.g. "nycode connect" */
+  /** Command without the runner prefix, e.g. "nylla connect" */
   command: string
   /** Show the macOS-style segmented runner switcher */
   runners?: boolean

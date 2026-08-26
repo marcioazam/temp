@@ -1,53 +1,60 @@
-const models = [
-  "claude-sonnet-4.5",
-  "gpt-5.1-codex",
-  "gemini-3-pro",
-  "deepseek-v3.2",
-  "kimi-k2-thinking",
-  "llama-4-maverick",
-  "mistral-large-3",
-  "qwen3-coder",
-  "grok-code-fast",
-  "glm-4.6",
+const icon = (slug: string, variant = "default") =>
+  `https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${slug}/${variant}.svg`
+
+const brands = [
+  { name: "Claude Code", src: icon("claude-code") },
+  { name: "Codex", src: icon("codex") },
+  { name: "Cursor", src: icon("cursor", "mono") },
+  { name: "GitHub Copilot", src: icon("github-copilot") },
+  { name: "VS Code", src: icon("visual-studio-code") },
+  { name: "Windsurf", src: icon("windsurf") },
+  { name: "Antigravity AI", src: "/images/antigravity-ai.png" },
+  { name: "Cline", src: icon("cline") },
+  { name: "OpenCode", src: icon("opencode") },
+  { name: "Qwen Code", src: icon("qwen") },
+  { name: "Kimi Code", src: "/images/kimi-cli.svg" },
+  { name: "Hermes Agent", mark: "H" },
+  { name: "OpenClaw", src: "/images/openclaw.svg" },
+  { name: "Kilo Code", src: "/images/kilo-code.svg" },
+  { name: "Goose", src: icon("goose") },
 ]
 
 export function ModelMarquee() {
-  const track = [...models, ...models]
-
   return (
-    <section aria-label="Modelos disponíveis no gateway" className="border-b border-border bg-card/40">
-      <div className="marquee-mask relative overflow-hidden py-4">
-        <ul className="marquee-track flex w-max items-center gap-8 pl-8">
-          {track.map((model, i) => (
-            <li
-              key={`${model}-${i}`}
-              aria-hidden={i >= models.length ? "true" : undefined}
-              className="flex shrink-0 items-center gap-3 font-mono text-xs text-muted-foreground"
-            >
-              <span className="h-1 w-1 bg-border" aria-hidden="true" />
-              {model}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-        <dl className="grid grid-cols-1 border-t border-border sm:grid-cols-3">
-          {[
-            { k: "modelos", v: "120+" },
-            { k: "harnesses", v: "12" },
-            { k: "latência p50", v: "38ms" },
-          ].map((s) => (
-            <div
-              key={s.k}
-              className="border-b border-border px-4 py-6 sm:border-b-0 sm:border-r sm:last:border-r-0"
-            >
-              <dd className="font-mono text-2xl font-medium text-foreground">{s.v}</dd>
-              <dt className="mt-1 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">{s.k}</dt>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </section>
+    <ul
+      aria-label="Ferramentas compatíveis com a Nylla"
+      className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
+    >
+      {brands.map((brand) => (
+        <li
+          key={brand.name}
+          className="group flex min-h-[76px] flex-col items-center justify-center gap-2 border border-border/70 bg-card px-3 py-3 transition-all hover:border-primary/60 hover:bg-muted"
+        >
+          <div className="flex h-7 w-10 items-center justify-center text-foreground transition-transform group-hover:scale-110">
+            {brand.src && (
+              <img
+                src={brand.src}
+                alt={`${brand.name} logo`}
+                className="h-6 w-6 object-contain grayscale brightness-0 invert"
+                loading="lazy"
+              />
+            )}
+            {brand.mark && (
+              <span
+                aria-hidden="true"
+                className={`flex h-6 min-w-6 items-center justify-center font-mono font-bold ${
+                  brand.mark === "aider" ? "text-[8px] tracking-tight" : "text-sm"
+                }`}
+              >
+                {brand.mark}
+              </span>
+            )}
+          </div>
+          <span className="max-w-full truncate text-center font-sans text-[11px] font-medium leading-4 tracking-tight text-foreground">
+            {brand.name}
+          </span>
+        </li>
+      ))}
+    </ul>
   )
 }

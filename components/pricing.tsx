@@ -47,8 +47,8 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section id="planos" className="border-b border-border">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6 md:py-24">
+    <section id="planos">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <h2 className="font-mono text-xs text-muted-foreground">
           <span aria-hidden="true">{"// "}</span>planos
         </h2>
@@ -102,7 +102,7 @@ export function Pricing() {
               </ul>
               <Link
                 href="/docs"
-                className={`mt-8 inline-flex h-10 items-center justify-center rounded-lg border font-mono text-xs transition-all active:scale-[0.98] ${
+                className={`mt-8 inline-flex h-10 items-center justify-center border font-mono text-xs transition-all active:scale-[0.98] ${
                   plan.highlighted
                     ? "border-foreground bg-foreground text-background hover:opacity-85"
                     : "border-border text-foreground hover:bg-muted"

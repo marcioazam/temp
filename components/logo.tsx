@@ -1,18 +1,40 @@
 import type { SVGProps } from "react"
 
+/** Rotor mark — AI energy in continuous motion. Inherits currentColor. */
+export function RotorMark(props: SVGProps<SVGSVGElement>) {
+  const arms = [0, 60, 120, 180, 240, 300]
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 64 64"
+      role="img"
+      aria-label="Nylla"
+      {...props}
+    >
+      <g stroke="currentColor" strokeWidth="5" strokeLinecap="round" fill="none">
+        {arms.map((angle) => (
+          <path key={angle} d="M32 20 Q42 14 44 6" transform={`rotate(${angle} 32 32)`} />
+        ))}
+      </g>
+      <circle cx="32" cy="32" r="5" fill="currentColor" />
+    </svg>
+  )
+}
+
 /**
- * Flat "nycode" pixel wordmark — inherits currentColor.
+ * Flat "Nylla" pixel wordmark — inherits currentColor.
  * Glyphs are grouped so each letter can be shifted right, producing
  * optical letter-spacing that raw pixel paths can't express.
  */
-export function NycodeWordmark(props: SVGProps<SVGSVGElement>) {
+export function NyllaWordmark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 163 36"
       className="pixel-crisp"
       role="img"
-      aria-label="nycode"
+      aria-label="Nylla"
       {...props}
     >
       <g fill="currentColor">

@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import useSWR from "swr"
+import { HermesTerminalMock } from "@/components/hermes-terminal-mock"
+import { RotorMark } from "@/components/logo"
 
 function ClaudeMascot() {
   return (
@@ -33,14 +35,14 @@ const PHASES: Phase[] = [
       { kind: "bullet", text: "Vou explorar o codebase para te dar uma visão completa." },
       { kind: "tool", text: "Explore(Explore codebase structure)", result: "Done (17 tool uses · 38.0k tokens · 28s)" },
       { kind: "spinner" },
-      { kind: "bullet", text: "TaskFlow API — Codebase Overview" },
+      { kind: "bullet", text: "TaskFlow API : Codebase Overview" },
       { kind: "text", text: "Bem-vindo ao time! Esta é uma REST API em Node.js/Express para gestão de tarefas com colaboração. A estrutura do projeto:" },
       {
         kind: "tree",
         rows: [
           "taskflow/",
           "├── src/",
-          "│   ├── index.js          # Entry point — sobe o servidor",
+          "│   ├── index.js          # Entry point : sobe o servidor",
           "│   ├── app.js            # Configuração do Express",
           "│   ├── auth/             # JWT & Passport",
         ],
@@ -57,7 +59,7 @@ const PHASES: Phase[] = [
       { kind: "bullet", text: "Vou rastrear o fluxo de sessão e listar os riscos." },
       { kind: "tool", text: 'Search(Grep "verifySession" · 42 arquivos)', result: "Done (9 tool uses · 21.4k tokens · 12s)" },
       { kind: "spinner" },
-      { kind: "bullet", text: "Auth Flow — Findings" },
+      { kind: "bullet", text: "Auth Flow : Findings" },
       { kind: "text", text: "A verificação de sessão acontece depois da leitura do payload, então dados do usuário são acessados antes da autorização." },
       {
         kind: "tree",
@@ -65,7 +67,7 @@ const PHASES: Phase[] = [
           "src/auth/",
           "├── verify.js             # confia no payload antes do JWT",
           "├── middleware.js         # ordem invertida na cadeia",
-          "└── session.js            # ok — assinatura validada",
+          "└── session.js            # ok : assinatura validada",
         ],
       },
     ],
@@ -80,7 +82,7 @@ const PHASES: Phase[] = [
       { kind: "bullet", text: "Movendo a autorização para antes de qualquer acesso a dados." },
       { kind: "tool", text: "Edit(src/auth/verify.js, src/auth/middleware.js)", result: "Done (12 tool uses · 26.8k tokens · 19s)" },
       { kind: "spinner" },
-      { kind: "bullet", text: "Patch aplicado — 3 arquivos" },
+      { kind: "bullet", text: "Patch aplicado : 3 arquivos" },
       { kind: "text", text: "Sessão verificada no servidor, entrada validada por schema e consultas restritas ao usuário autenticado." },
       {
         kind: "tree",
@@ -113,10 +115,17 @@ function TranscriptLine({ line, delay }: { line: Line; delay: number }) {
   const style = { "--delay": `${delay}ms` } as React.CSSProperties
 
   if (line.kind === "prompt" || line.kind === "slash") {
+    const isUserMessage = line.kind === "prompt"
+
     return (
-      <div className="claude-line claude-line-prompt mt-3 flex gap-2 rounded-[3px] bg-[#31302d] px-2 py-1" style={style}>
-        <span className="text-[#7c7871]">&gt;</span>
-        <span className={line.kind === "slash" ? "text-[#d97757]" : "text-[#dcd8d2]"}>{line.text}</span>
+      <div
+        className={`claude-line claude-line-prompt mt-3 flex gap-2 rounded-[3px] px-2 py-1 ${
+          isUserMessage ? "bg-[#2b2b29] text-[#e7e4de]" : "bg-[#31302d]"
+        }`}
+        style={style}
+      >
+        <span className={isUserMessage ? "text-[#aaa69f]" : "text-[#7c7871]"}>&gt;</span>
+        <span className={isUserMessage ? "text-[#e7e4de]" : "text-[#d97757]"}>{line.text}</span>
       </div>
     )
   }
@@ -244,15 +253,15 @@ function ClaudeCodeSession() {
   return (
     <div
       data-current-model={currentModel}
-      className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-white/[0.07] bg-[#262624] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_24px_55px_-22px_rgba(0,0,0,0.72),0_10px_24px_-16px_rgba(0,0,0,0.55),0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/20 sm:text-[9px] md:rounded-xl md:text-[10px]"
+      className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#34322f] bg-[#080806] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[9px] md:text-[10px]"
     >
-      <div className="relative flex h-7 shrink-0 items-center border-b border-black/25 bg-[#2b2a28] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
+      <div className="relative flex h-7 shrink-0 items-center border-b border-[#34322f] bg-[#1f1e1b] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
         <div className="flex items-center gap-1.5" aria-hidden="true">
           <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         </div>
-        <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#aaa69f] md:text-[10px]">Claude Code — taskflow</span>
+        <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#aaa69f] md:text-[10px]">Claude Code : taskflow</span>
       </div>
       <div ref={scrollerRef} className="min-h-0 flex-1 overflow-y-auto px-4 py-3 [scrollbar-color:#55524c_transparent] [scrollbar-width:thin] sm:px-6 sm:py-5 md:px-8 md:py-6">
         <div className="flex items-start gap-3">
@@ -275,7 +284,7 @@ function ClaudeCodeSession() {
         </div>
       </div>
 
-      <div className="shrink-0 bg-[#262624] px-4 pb-3 sm:px-6 sm:pb-4 md:px-8 md:pb-5">
+      <div className="shrink-0 bg-[#080806] px-4 pb-3 sm:px-6 sm:pb-4 md:px-8 md:pb-5">
         <div className="border-y border-[#5b5852]/65">
           <div className="flex min-h-7 items-center gap-2 px-1 py-1 md:min-h-9">
             <span className="text-[#dcd8d2]">&gt;</span>
@@ -303,7 +312,7 @@ function ClaudeCodeSession() {
   <span className="leading-none">Thinking on</span>
             </span>
             <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-            <span className="hidden text-[#8d8981] sm:inline">Nylla Gateway</span>
+            <span className="hidden text-[#d97757] sm:inline">Nylla Gateway</span>
             <span className="hidden text-[#4f4c47] sm:inline" aria-hidden="true">·</span>
             <span className="max-w-24 truncate text-[#d97757] sm:max-w-none">{currentModel}</span>
             <span className="hidden text-[#4f4c47] md:inline" aria-hidden="true">·</span>
@@ -387,24 +396,10 @@ function WeatherWidget() {
 
 function WindowsTaskbar() {
   return (
-    <div className="absolute inset-x-0 bottom-0 flex h-9 items-center border-t border-white/[0.06] bg-[#24262d]/95 px-2 font-sans text-white/70 backdrop-blur-xl md:h-11 md:px-4">
-      <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-1 md:gap-2" aria-hidden="true">
-        <span className="grid h-7 w-7 place-items-center md:h-9 md:w-9">
-          <span className="grid grid-cols-2 gap-[2px]">
-            <i className="h-[3px] w-[3px] bg-white/75 md:h-1 md:w-1" />
-            <i className="h-[3px] w-[3px] bg-white/75 md:h-1 md:w-1" />
-            <i className="h-[3px] w-[3px] bg-white/75 md:h-1 md:w-1" />
-            <i className="h-[3px] w-[3px] bg-white/75 md:h-1 md:w-1" />
-          </span>
-        </span>
-        <span className="grid h-7 w-7 place-items-center md:h-9 md:w-9">
-          <span className="relative h-3 w-3 rounded-full border border-white/65 after:absolute after:-bottom-1 after:-right-1 after:h-1.5 after:w-px after:-rotate-45 after:bg-white/65" />
-        </span>
-        <span className="grid h-7 w-7 place-items-center md:h-9 md:w-9">
-          <span className="h-3 w-4 rounded-[2px] border border-white/60 before:block before:h-[3px] before:w-1.5 before:-translate-y-1 before:rounded-t-[1px] before:border-x before:border-t before:border-white/60 md:h-3.5 md:w-[18px]" />
-        </span>
-        <span className="grid h-7 w-7 place-items-center md:h-9 md:w-9">
-          <span className="grid h-4 w-4 place-items-center rounded-full border border-white/55"><i className="h-1.5 w-1.5 rounded-full bg-white/35" /></span>
+    <div className="absolute inset-x-0 bottom-0 z-30 flex h-9 items-center border-t border-white/[0.08] bg-[#17191f]/75 px-2 font-sans text-white/70 shadow-[0_-8px_24px_rgba(0,0,0,0.18)] backdrop-blur-2xl backdrop-saturate-50 md:h-11 md:px-4">
+      <div className="absolute left-1/2 grid -translate-x-1/2 place-items-center" aria-hidden="true">
+        <span className="grid h-7 w-8 place-items-center text-white/80 md:h-9 md:w-11">
+          <RotorMark className="h-4 w-4 md:h-[18px] md:w-[18px]" />
         </span>
       </div>
 
@@ -430,8 +425,11 @@ export function EditorMock() {
     >
       <img src="/images/desktop-wallpaper.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full select-none object-cover" />
       <WindowsTaskbar />
-      <div className="absolute left-3 top-3 h-[72%] w-[82%] sm:left-5 sm:top-5 sm:h-[74%] sm:w-[78%] md:left-7 md:top-6 md:h-[76%] md:w-[74%]">
+      <div className="absolute left-3 top-3 h-[58%] w-[68%] sm:left-4 sm:top-4 sm:h-[60%] sm:w-[64%] md:left-5 md:top-5 md:h-[62%] md:w-[60%]">
         <ClaudeCodeSession />
+      </div>
+      <div className="absolute bottom-11 right-3 z-10 h-[52%] w-[46%] sm:right-4 sm:h-[54%] sm:w-[44%] md:bottom-14 md:right-5 md:h-[56%] md:w-[42%]">
+        <HermesTerminalMock />
       </div>
     </div>
   )

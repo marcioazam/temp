@@ -19,14 +19,14 @@ const features = [
   {
     id: "04",
     title: "Failover e roteamento",
-    body: "Se um provedor cai, o gateway redireciona a requisição. Defina prioridades por modelo, custo ou latência — o Nycode cuida do resto.",
+    body: "Se um provedor cai, o gateway redireciona a requisição. Defina prioridades por modelo, custo ou latência. O Nylla cuida do resto.",
   },
 ]
 
 export function Features() {
   return (
-    <section id="recursos" className="border-b border-border">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6 md:py-24">
+    <section id="recursos">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <h2 className="font-mono text-xs text-muted-foreground">
           <span aria-hidden="true">{"// "}</span>recursos
         </h2>

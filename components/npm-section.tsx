@@ -1,91 +1,89 @@
+"use client"
+
+import { useState } from "react"
 import { Reveal } from "@/components/reveal"
 
-const termLines = [
-  { text: "$ npx nycode connect", dim: false },
-  { text: "", dim: false },
-  { text: "  detectando harness...        claude-code [ok]", dim: true },
-  { text: "  gerando configuração...      ok", dim: true },
-  { text: "  validando gateway...         ok", dim: true },
-  { text: "", dim: false },
-  { text: "  conectado → gateway.nycode.dev", dim: false },
-  { text: "", dim: false },
-  { text: "  modelos disponíveis: 47", dim: true },
-  { text: "  latência: 38ms", dim: true },
-]
+const harnesses = ["Claude Code", "Codex", "Cursor", "Hermes Agent", "VS Code", "OpenCode"]
 
 export function NpmSection() {
+  const [selectedHarness, setSelectedHarness] = useState(harnesses[0])
+
   return (
-    <section className="border-b border-border">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-16 md:grid-cols-2 md:items-center md:px-6 md:py-24">
+    <section>
+      <div className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-10 px-4 py-16 md:grid-cols-2 md:items-start md:px-9 md:py-24">
         <Reveal>
           <h2 className="font-mono text-xs text-muted-foreground">
-            <span aria-hidden="true">{"// "}</span>pacote npm
+            <span aria-hidden="true">{"// "}</span>plug and play
           </h2>
-          <p className="mt-4 text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
-            Um comando. Gateway conectado.
+          <p className="mt-4 max-w-lg text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+            Um pacote para conectar qualquer harness.
           </p>
           <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
-            O CLI detecta o harness instalado, gera a configuração e aponta a ferramenta para o gateway. Sem editar
-            arquivos de config na mão, sem gerenciar chaves de provedor.
+            O NPM do Nylla configura o harness que você já usa e aponta tudo para o Nylla Gateway. Selecione a ferramenta,
+            informe a URL e cole sua chave. O restante fica por conta do CLI.
           </p>
           <ul className="mt-6 space-y-2 font-mono text-sm text-muted-foreground">
-            <li>
-              <span className="text-foreground/60" aria-hidden="true">
-                +{" "}
-              </span>
-              detecção automática do harness
-            </li>
-            <li>
-              <span className="text-foreground/60" aria-hidden="true">
-                +{" "}
-              </span>
-              uma única chave para todos os modelos
-            </li>
-            <li>
-              <span className="text-foreground/60" aria-hidden="true">
-                +{" "}
-              </span>
-              troca de modelo sem reconfigurar
-            </li>
+            <li><span className="text-emerald-500" aria-hidden="true">+ </span>configuração guiada por harness</li>
+            <li><span className="text-emerald-500" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
+            <li><span className="text-emerald-500" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
           </ul>
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="elev-window overflow-hidden rounded-xl border border-border bg-card">
-            {/* macOS titlebar */}
-            <div className="relative flex items-center border-b border-border bg-muted/60 px-4 py-2.5">
+          <div className="elev-window w-full overflow-hidden rounded-[10px] border border-[#34322f] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
+            <div className="relative flex items-center justify-between border-b border-border px-4 py-3">
               <div className="flex items-center gap-1.5" aria-hidden="true">
                 <span className="h-2.5 w-2.5 rounded-full bg-foreground/25" />
                 <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
                 <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
               </div>
-              <span className="absolute left-1/2 -translate-x-1/2 font-mono text-[11px] text-muted-foreground">
-                nycode — zsh
-              </span>
+              <span className="font-mono text-[11px] text-muted-foreground">npx nylla connect</span>
             </div>
-            <pre className="term-pane overflow-x-auto p-4 font-mono text-xs leading-relaxed text-foreground md:p-6 md:text-sm">
-              <code>
-                {termLines.map((line, i) => (
-                  <span
-                    key={i}
-                    className={`term-line block ${line.dim ? "text-muted-foreground" : "text-foreground"}`}
-                    style={{ "--line": i } as React.CSSProperties}
-                  >
-                    {line.text || "\u00A0"}
-                  </span>
-                ))}
-                <span
-                  className="term-line block"
-                  style={{ "--line": termLines.length } as React.CSSProperties}
-                >
-                  {"$ "}
-                  <span
-                    className="cursor-blink inline-block h-4 w-2 translate-y-0.5 bg-foreground"
-                    aria-hidden="true"
+            <div className="space-y-6 p-5 md:p-6">
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">01 · escolha seu harness</p>
+                <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                  {harnesses.map((harness) => (
+                    <button
+                      key={harness}
+                      type="button"
+                      onClick={() => setSelectedHarness(harness)}
+                      aria-pressed={selectedHarness === harness}
+                      className={`border px-3 py-2 text-left font-mono text-xs transition-colors ${
+                        selectedHarness === harness
+                          ? "border-foreground bg-foreground text-background"
+                          : "border-border text-muted-foreground hover:border-foreground/50 hover:text-foreground"
+                      }`}
+                    >
+                      {harness}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-4">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">02 · conecte ao gateway</p>
+                <label className="block space-y-2">
+                  <span className="font-mono text-xs text-muted-foreground">URL do Nylla Gateway</span>
+                  <input
+                    type="url"
+                    defaultValue="https://api.nylla.ai/v1"
+                    className="w-full border border-border bg-background px-3 py-2.5 font-mono text-xs text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/60"
                   />
-                </span>
-              </code>
-            </pre>
+                </label>
+                <label className="block space-y-2">
+                  <span className="font-mono text-xs text-muted-foreground">Chave da API</span>
+                  <input
+                    type="password"
+                    placeholder="nylla_••••••••••••"
+                    className="w-full border border-border bg-background px-3 py-2.5 font-mono text-xs text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/60"
+                  />
+                </label>
+              </div>
+              <div className="flex items-center justify-between border-t border-border pt-4 font-mono text-xs">
+                <span className="text-muted-foreground">pronto para configurar {selectedHarness}</span>
+                <span className="text-foreground/70" aria-hidden="true">→</span>
+              </div>
+            </div>
           </div>
         </Reveal>
       </div>
