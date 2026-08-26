@@ -68,8 +68,10 @@ export function ModelMarquee() {
         <div
           className="overflow-hidden"
           style={{
-            maskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
-            WebkitMaskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+            maskImage:
+              "linear-gradient(to right, transparent 0%, rgb(0 0 0 / 20%) 3%, rgb(0 0 0 / 55%) 6%, black 11%, black 89%, rgb(0 0 0 / 55%) 94%, rgb(0 0 0 / 20%) 97%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, rgb(0 0 0 / 20%) 3%, rgb(0 0 0 / 55%) 6%, black 11%, black 89%, rgb(0 0 0 / 55%) 94%, rgb(0 0 0 / 20%) 97%, transparent 100%)",
           }}
         >
           <div className="marquee-track flex w-max">
