@@ -46,7 +46,6 @@ export function HeroFlow() {
                 </span>
               </span>
             ))}
-            <span className="ml-auto hidden text-[10px] text-foreground/40 sm:inline">fallback automático</span>
           </div>
         </div>
 
