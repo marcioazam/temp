@@ -12,11 +12,12 @@ const STEPS = ["Valida", "Roteia", "Entrega"]
  */
 export function HeroFlow() {
   return (
-    <figure aria-label="Papel da Nylla no fluxo entre sua ferramenta e os LLMs" className="font-mono">
-      <div
-        className="flex flex-col bg-cover bg-center p-5 sm:p-8 lg:p-10"
-        style={{ backgroundImage: "url('/images/hero-flow-landscape.png')" }}
-      >
+    <figure
+      aria-label="Papel da Nylla no fluxo entre sua ferramenta e os LLMs"
+      className="bg-cover bg-center font-mono"
+      style={{ backgroundImage: "url('/images/hero-flow-landscape.png')" }}
+    >
+      <div className="flex flex-col p-5 sm:p-8 lg:p-10">
         {/* Node: user + tool */}
         <div className="flex flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
           <span className="text-muted-foreground">Você:</span>
