@@ -36,38 +36,29 @@ export function Features() {
           </h2>
         </Reveal>
 
-        <div className="mt-6 grid items-stretch gap-10 lg:grid-cols-[minmax(20rem,0.8fr)_minmax(0,1.2fr)] lg:gap-12">
-          <div
-            className="photo-grain h-full overflow-hidden bg-cover bg-center p-6 sm:p-8 lg:order-1"
-            style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
-          >
-            <Reveal className="relative z-[2] bg-background/85 p-5 backdrop-blur-md sm:p-6">
-              <p className="type-title max-w-xl text-balance text-foreground">
-                Um gateway. Todas as rotas resolvidas.
-              </p>
-              <p className="type-lead mt-6 max-w-md text-pretty text-muted-foreground">
-                Cada provedor tem seu SDK e seu limite. O Nylla absorve essa diferença e entrega uma superfície única
-                para o seu código.
-              </p>
-            </Reveal>
-          </div>
+        <Reveal className="mt-6">
+          <p className="type-title text-balance text-foreground">Um gateway. Todas as rotas resolvidas.</p>
+          <p className="type-lead mt-6 max-w-3xl text-pretty text-muted-foreground">
+            Cada provedor tem seu SDK e seu limite. O Nylla absorve essa diferença e entrega uma superfície única para
+            o seu código.
+          </p>
+        </Reveal>
 
-          <Reveal delay={80} className="h-full lg:order-2">
-            <ul className="grid h-full border-y border-border/70 sm:grid-cols-2 sm:grid-rows-2">
-              {features.map((f, index) => (
-                <li
-                  key={f.key}
-                  className={`flex flex-col justify-start px-1 py-7 sm:px-7 sm:py-8 ${
-                    index < 2 ? "border-b border-border/70" : ""
-                  } ${index % 2 === 1 ? "sm:border-l sm:border-border/70" : ""}`}
-                >
-                  <h3 className="type-subheading max-w-xs text-pretty text-foreground">{f.title}</h3>
-                  <p className="type-body mt-3 max-w-xs text-pretty text-muted-foreground">{f.body}</p>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
+        <Reveal delay={80} className="mt-10">
+          <ul className="grid border-y border-border/70 sm:grid-cols-2">
+            {features.map((f, index) => (
+              <li
+                key={f.key}
+                className={`flex flex-col justify-start px-1 py-7 sm:px-7 sm:py-8 ${
+                  index < 2 ? "border-b border-border/70" : ""
+                } ${index % 2 === 1 ? "sm:border-l sm:border-border/70" : ""}`}
+              >
+                <h3 className="type-subheading max-w-xs text-pretty text-foreground">{f.title}</h3>
+                <p className="type-body mt-3 max-w-xs text-pretty text-muted-foreground">{f.body}</p>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   )
