@@ -352,7 +352,7 @@ export function HermesTerminalMock() {
         </div>
       </div>
 
-      <div className="shrink-0 border-t border-[#5b5852]/65 bg-[#0d0c07] px-2.5 py-1 sm:px-3 md:px-4">
+      <div className="shrink-0 border-t border-[#5b5852]/65 px-2.5 py-1 sm:px-3 md:px-4">
         <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap text-[#8a8672]">
           <span className="font-semibold text-primary">Nylla Gateway</span>
           <span className="text-[#4a4636]" aria-hidden="true">
