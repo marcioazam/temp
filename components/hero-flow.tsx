@@ -8,7 +8,7 @@ const STEPS = ["Valida", "Roteia", "Entrega"]
  * middle, LLMs below. A request packet travels down the spine, Nylla's
  * internal steps light up in sequence, a model activates, and a response
  * packet (accent color) travels back up. Every animation is compositor-only
- * (opacity/transform) on a shared 6.4s cycle.
+ * (opacity/transform) on a shared 3.2s cycle.
  */
 export function HeroFlow() {
   return (
