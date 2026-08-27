@@ -336,6 +336,18 @@ className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border bor
   )
 }
 
+export function ClaudeCodeMock() {
+  return (
+    <div
+      className="pointer-events-none aspect-[16/10] w-full select-none"
+      role="img"
+      aria-label="Claude Code conectado ao Nylla Gateway alternando entre KIMI K3, DeepSeek V4 e GPT 5.6 SOL"
+    >
+      <ClaudeCodeSession />
+    </div>
+  )
+}
+
 function VisitorClock() {
   const [now, setNow] = useState<Date | null>(null)
 
