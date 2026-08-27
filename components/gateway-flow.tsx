@@ -70,7 +70,7 @@ export function GatewayFlow() {
           </div>
 
           <div
-            className="flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
+            className="photo-grain flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
             <div className="mx-auto w-full max-w-[42rem] overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">

@@ -48,7 +48,7 @@ export function Features() {
               key={f.key}
               delay={i * 70}
               className={`group relative border-b border-border py-8 md:py-10 ${
-                i === 0 ? "bg-feature-landscape p-6 md:p-8" : ""
+                i === 0 ? "photo-grain bg-feature-landscape p-6 md:p-8" : ""
               } ${i === 1 ? "md:pt-0" : ""} ${i === features.length - 1 ? "border-b-0" : ""} ${
                 i === features.length - 2 ? "md:border-b-0" : ""
               }`}
