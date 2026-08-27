@@ -25,7 +25,7 @@ const features = [
     body: "LLMs padrão ilimitados e créditos para modelos frontier. Sem chaves por provedor, cobrança surpresa ou complexidade.",
     link: "Conhecer os planos",
     href: "#planos",
-    image: "/images/endpoint-landscape.png",
+    image: "/images/frontier-moorland.png",
   },
 ]
 
