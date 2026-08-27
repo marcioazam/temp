@@ -12,7 +12,7 @@ export function Harnesses() {
         </h2>
         <div className="mt-6 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-xl lg:order-2">
-            <p className="type-heading text-balance text-foreground">
+            <p className="type-title text-balance text-foreground">
               Conecte a Nylla às ferramentas que você já usa.
             </p>
             <p className="type-lead mt-6 text-pretty text-muted-foreground">
