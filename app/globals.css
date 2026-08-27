@@ -1063,6 +1063,7 @@ kbd {
   top: 0;
   width: 6px;
   height: 6px;
+  border-radius: 9999px;
   opacity: 0;
   will-change: transform, opacity;
 }
