@@ -44,7 +44,7 @@ export function Pricing() {
 
         <div className="relative mt-14">
           <p className="type-caption mb-4 flex items-center justify-start gap-2 text-subtle-foreground">
-            <span aria-hidden="true" className="size-1 rounded-full bg-ultra" />
+            <span aria-hidden="true" className="inline-flex h-[1em] items-center text-ultra">*</span>
             Créditos renovados mensalmente. Cancele quando quiser.
           </p>
           <div className="photo-grain grid grid-cols-1 gap-px bg-[url('/images/pricing-landscape.png')] bg-cover bg-center px-6 py-16 md:px-12 md:py-24 lg:grid-cols-3 lg:gap-px lg:px-16 lg:py-32">
