@@ -162,7 +162,7 @@ export function CookieConsent() {
           }
         }}
         data-entered={entered}
-        className="elev-float pointer-events-auto w-full border-t border-border bg-popover/95 backdrop-blur-xl opacity-0 transition-[opacity,transform] duration-300 ease-out outline-none translate-y-3 data-[entered=true]:translate-y-0 data-[entered=true]:opacity-100 motion-reduce:transition-none"
+        className="pointer-events-auto w-full border-t border-border bg-popover/95 backdrop-blur-xl opacity-0 transition-[opacity,transform] duration-300 ease-out outline-none translate-y-3 data-[entered=true]:translate-y-0 data-[entered=true]:opacity-100 motion-reduce:transition-none"
       >
         <div className="mx-auto w-full max-w-screen-2xl px-4 py-4 md:px-9 md:py-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-10">
