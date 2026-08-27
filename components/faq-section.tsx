@@ -32,16 +32,6 @@ const questions = [
       "Instale o pacote com npm i -g nylla e rode npx nylla connect. O CLI detecta seu ambiente e o harness instalado, aponta o gateway e valida sua chave sem edição manual de arquivos.",
   },
   {
-    question: "Preciso das minhas próprias chaves de cada provedor?",
-    answer:
-      "Não. A Nylla concentra o acesso em uma única chave: você não cria nem gerencia credenciais separadas de Anthropic, OpenAI, Google e demais provedores.",
-  },
-  {
-    question: "A API é compatível com o formato OpenAI?",
-    answer:
-      "Sim. O endpoint /v1/chat/completions aceita o mesmo formato de requisição que você já usa, então SDKs e código existentes funcionam apenas trocando a URL base e a chave.",
-  },
-  {
     question: "O que são créditos frontier e o que acontece quando acabam?",
     answer:
       "Créditos frontier cobrem os modelos de ponta e são renovados a cada mês: dev inclui US$5 e pro US$25. Ao esgotar, os modelos padrão seguem ilimitados e você pode comprar créditos extras sob demanda.",
@@ -50,16 +40,6 @@ const questions = [
     question: "Qual a diferença entre os planos dev, pro e team?",
     answer:
       "O dev cobre um harness para uso individual, o pro libera harnesses ilimitados com políticas de roteamento avançadas e suporte prioritário, e o team adiciona créditos compartilhados, gestão central de chaves, analytics por membro e SSO.",
-  },
-  {
-    question: "Como funciona o modelo 'auto' no roteamento?",
-    answer:
-      "Com model: \"auto\" a Nylla escolhe o modelo mais adequado para cada requisição. No plano pro você define políticas próprias de roteamento para forçar preferências por tarefa ou custo.",
-  },
-  {
-    question: "Com que frequência novos modelos entram no catálogo?",
-    answer:
-      "O catálogo é revisado semanalmente para acompanhar lançamentos, melhorias e mudanças dos provedores. Modelos novos ficam disponíveis no mesmo endpoint, sem atualização de configuração.",
   },
   {
     question: "Posso cancelar ou trocar de plano quando quiser?",
