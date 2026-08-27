@@ -63,28 +63,35 @@ export function Pricing() {
             {plans.map((plan) => (
               <article
                 key={plan.name}
-                className={`flex flex-col bg-background/[0.86] backdrop-blur-[1px] ${
-                  plan.highlighted ? "ring-1 ring-inset ring-ultra/35" : ""
+                className={`flex flex-col ${
+                  plan.highlighted
+                    ? "bg-foreground ring-1 ring-inset ring-foreground"
+                    : "bg-background/[0.86] backdrop-blur-[1px]"
                 }`}
               >
                 <div className="flex items-baseline justify-between px-5 pt-5">
-                  <h3 className={`type-micro ${plan.highlighted ? "text-ultra" : "text-foreground"}`}>{plan.name}</h3>
-                  <span className={`type-eyebrow ${plan.highlighted ? "text-ultra" : "text-subtle-foreground"}`}>
+                  <h3 className={`type-micro ${plan.highlighted ? "text-background" : "text-foreground"}`}>{plan.name}</h3>
+                  <span className={`type-eyebrow ${plan.highlighted ? "text-background/60" : "text-subtle-foreground"}`}>
                     {plan.tagline}
                   </span>
                 </div>
 
-                <p className="flex items-baseline gap-1.5 px-5 pt-6 font-sans text-foreground">
+                <p className={`flex items-baseline gap-1.5 px-5 pt-6 font-sans ${plan.highlighted ? "text-background" : "text-foreground"}`}>
                   <span className="text-[2rem] font-medium tracking-[-0.04em] tabular-nums">{plan.price}</span>
-                  <span className="type-label text-subtle-foreground">{plan.period}</span>
+                  <span className={`type-label ${plan.highlighted ? "text-background/60" : "text-subtle-foreground"}`}>{plan.period}</span>
                 </p>
 
                 <ul className="flex-1 px-5 pt-7">
                   {plan.features.map((f) => (
-                    <li key={f} className="type-caption flex gap-2.5 py-2 text-muted-foreground">
+                    <li
+                      key={f}
+                      className={`type-caption flex gap-2.5 py-2 ${
+                        plan.highlighted ? "text-background/65" : "text-muted-foreground"
+                      }`}
+                    >
                       <span
                         aria-hidden="true"
-                        className={`mt-[7px] h-px w-2.5 shrink-0 ${plan.highlighted ? "bg-ultra" : "bg-foreground/30"}`}
+                        className={`mt-[7px] h-px w-2.5 shrink-0 ${plan.highlighted ? "bg-background/40" : "bg-foreground/30"}`}
                       />
                       <span>{f}</span>
                     </li>
