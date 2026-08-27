@@ -5,7 +5,6 @@ import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import {
   CONSENT_CATEGORIES,
   CONSENT_OPEN_EVENT,
-  CONSENT_VERSION,
   DEFAULT_CHOICES,
   createRecord,
   readConsent,
@@ -163,102 +162,113 @@ export function CookieConsent() {
           }
         }}
         data-entered={entered}
-        className="elev-float pointer-events-auto w-full border border-border bg-popover/95 p-4 backdrop-blur-xl opacity-0 transition-[opacity,transform] duration-300 ease-out outline-none translate-y-3 data-[entered=true]:translate-y-0 data-[entered=true]:opacity-100 motion-reduce:transition-none sm:p-5"
+        className="pointer-events-auto w-full border-t border-border bg-popover/95 backdrop-blur-xl opacity-0 transition-[opacity,transform] duration-300 ease-out outline-none translate-y-3 data-[entered=true]:translate-y-0 data-[entered=true]:opacity-100 motion-reduce:transition-none"
       >
-        <p className="type-micro flex items-center gap-2 text-subtle-foreground">
-          <span aria-hidden="true" className="h-1 w-1 bg-primary" />
-          Cookies
-        </p>
-
-        <h2 id={titleId} className="type-subheading mt-3 text-foreground">
-          Você escolhe o que guardamos
-        </h2>
-
-        <p id={descriptionId} className="type-caption mt-1.5 text-muted-foreground">
-          Cookies necessários mantêm o site em pé. Análise e marketing só rodam se você
-          autorizar — e a decisão pode ser mudada quando quiser.{' '}
-          <Link
-            href="/privacidade"
-            className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-primary"
-          >
-            Aviso de privacidade
-          </Link>
-        </p>
-
-        {showDetails && (
-          <div
-            ref={detailsRef}
-            tabIndex={-1}
-            className="mt-4 divide-y divide-border border-t border-border outline-none"
-          >
-            {CONSENT_CATEGORIES.map((category) => {
-              const describedBy = `${titleId}-${category.id}`
-              return (
-                <div key={category.id} className="flex items-start gap-3 py-3">
-                  <Switch
-                    checked={category.required ? true : choices[category.id]}
-                    disabled={category.required}
-                    label={category.label}
-                    describedBy={describedBy}
-                    onChange={(next) => toggle(category.id, next)}
-                  />
-                  <div className="min-w-0">
-                    <p className="type-label text-foreground">
-                      {category.label}
-                      {category.required && (
-                        <span className="type-micro ml-2 text-subtle-foreground">
-                          sempre ativo
-                        </span>
-                      )}
-                    </p>
-                    <p id={describedBy} className="type-caption mt-0.5 text-muted-foreground">
-                      {category.description}
-                    </p>
+        <div className="mx-auto flex w-full max-w-screen-2xl flex-col px-4 py-4 md:px-9 md:py-5">
+          {showDetails && (
+            <div
+              ref={detailsRef}
+              tabIndex={-1}
+              className="mb-4 grid gap-x-10 gap-y-4 border-b border-border pb-4 outline-none md:grid-cols-3"
+            >
+              {CONSENT_CATEGORIES.map((category) => {
+                const describedBy = `${titleId}-${category.id}`
+                return (
+                  <div key={category.id} className="flex items-start gap-3">
+                    <Switch
+                      checked={category.required ? true : choices[category.id]}
+                      disabled={category.required}
+                      label={category.label}
+                      describedBy={describedBy}
+                      onChange={(next) => toggle(category.id, next)}
+                    />
+                    <div className="min-w-0">
+                      <p className="type-label text-foreground">
+                        {category.label}
+                        {category.required && (
+                          <span className="type-micro ml-2 text-subtle-foreground">
+                            sempre ativo
+                          </span>
+                        )}
+                      </p>
+                      <p id={describedBy} className="type-caption mt-0.5 text-muted-foreground">
+                        {category.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
-        )}
-
-        {/* Recusar e aceitar têm o mesmo peso visual: nada de dark pattern. */}
-        <div className="mt-4 flex flex-col gap-2 sm:flex-row">
-          <button
-            type="button"
-            onClick={() => save('reject-all', DEFAULT_CHOICES)}
-            className="type-label h-9 flex-1 border border-border bg-transparent px-4 text-foreground transition-colors duration-200 outline-none hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring/70 motion-reduce:transition-none"
-          >
-            Recusar
-          </button>
-          {showDetails ? (
-            <button
-              type="button"
-              onClick={() => save('custom', choices)}
-              className="type-label h-9 flex-1 border border-primary/70 bg-primary/15 px-4 text-primary transition-colors duration-200 outline-none hover:bg-primary/25 focus-visible:ring-2 focus-visible:ring-ring/70 motion-reduce:transition-none"
-            >
-              Salvar escolhas
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => save('accept-all', { necessary: true, analytics: true, marketing: true })}
-              className="type-label h-9 flex-1 border border-primary/70 bg-primary/15 px-4 text-primary transition-colors duration-200 outline-none hover:bg-primary/25 focus-visible:ring-2 focus-visible:ring-ring/70 motion-reduce:transition-none"
-            >
-              Aceitar
-            </button>
+                )
+              })}
+            </div>
           )}
-        </div>
 
-        <div className="mt-3 flex items-center justify-between gap-3">
-          <button
-            type="button"
-            aria-expanded={showDetails}
-            onClick={() => setShowDetails((current) => !current)}
-            className="type-micro text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70 motion-reduce:transition-none"
-          >
-            {showDetails ? 'Ocultar detalhes' : 'Personalizar'}
-          </button>
-          <span className="type-micro text-subtle-foreground">v{CONSENT_VERSION}</span>
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-10">
+            <div className="min-w-0 md:max-w-2xl">
+              <p className="type-micro text-primary">
+                Cookies
+              </p>
+              <h2 id={titleId} className="type-label mt-2 text-foreground">
+                Você escolhe o que guardamos
+              </h2>
+              <p id={descriptionId} className="type-caption mt-1 text-pretty text-muted-foreground">
+                Necessários mantêm o site em pé. Análise e marketing só rodam se você
+                autorizar.{' '}
+                <Link
+                  href="/privacidade"
+                  className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-primary"
+                >
+                  Aviso de privacidade
+                </Link>
+              </p>
+            </div>
+
+            {/* Recusar e aceitar têm o mesmo peso visual: nada de dark pattern. */}
+            <div className="flex flex-none items-center gap-2">
+              <button
+                type="button"
+                aria-expanded={showDetails}
+                onClick={() => setShowDetails((current) => !current)}
+                className="type-micro mr-1 hidden text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70 motion-reduce:transition-none sm:inline-flex"
+              >
+                {showDetails ? 'Ocultar' : 'Personalizar'}
+              </button>
+              <button
+                type="button"
+                onClick={() => save('reject-all', DEFAULT_CHOICES)}
+                className="type-label h-9 flex-1 border border-border bg-transparent px-5 text-foreground transition-colors duration-200 outline-none hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring/70 motion-reduce:transition-none sm:flex-none"
+              >
+                Recusar
+              </button>
+              {showDetails ? (
+                <button
+                  type="button"
+                  onClick={() => save('custom', choices)}
+                  className="type-label h-9 flex-1 border border-primary/70 bg-primary/15 px-5 text-primary transition-colors duration-200 outline-none hover:bg-primary/25 focus-visible:ring-2 focus-visible:ring-ring/70 motion-reduce:transition-none sm:flex-none"
+                >
+                  Salvar
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() =>
+                    save('accept-all', { necessary: true, analytics: true, marketing: true })
+                  }
+                  className="type-label h-9 flex-1 border border-primary/70 bg-primary/15 px-5 text-primary transition-colors duration-200 outline-none hover:bg-primary/25 focus-visible:ring-2 focus-visible:ring-ring/70 motion-reduce:transition-none sm:flex-none"
+                >
+                  Aceitar
+                </button>
+              )}
+            </div>
+
+            <button
+              type="button"
+              aria-expanded={showDetails}
+              onClick={() => setShowDetails((current) => !current)}
+              className="type-micro self-start text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/70 motion-reduce:transition-none sm:hidden"
+            >
+              {showDetails ? 'Ocultar detalhes' : 'Personalizar'}
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
