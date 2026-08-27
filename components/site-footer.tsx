@@ -16,7 +16,10 @@ export function SiteFooter() {
             Gateway de LLM para geração de código e agents. Um endpoint, todos os modelos.
           </p>
         </div>
-        <nav aria-label="Rodapé" className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs text-muted-foreground">
+        <nav
+          aria-label="Rodapé"
+          className="flex flex-wrap gap-x-4 gap-y-3 font-mono text-xs text-muted-foreground [&>a:not(:last-child)]:after:ml-4 [&>a:not(:last-child)]:after:text-border [&>a:not(:last-child)]:after:content-['/']"
+        >
           <Link href="/#sobre" className="transition-colors hover:text-foreground">
             Sobre
           </Link>
