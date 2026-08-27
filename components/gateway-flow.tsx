@@ -139,8 +139,8 @@ export function GatewayFlow() {
             className="flex min-h-[30rem] items-center overflow-hidden bg-cover bg-center p-5 sm:p-8 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
-            <div className="win mx-auto w-full max-w-[42rem]">
-              <div className="win-bar justify-between">
+            <div className="win mx-auto w-full max-w-[42rem] bg-card [background-image:none]">
+              <div className="win-bar justify-between [background-image:none]">
                 <div className="win-dots" aria-hidden="true">
                   <span className="win-dot win-dot--close" />
                   <span className="win-dot win-dot--min" />
@@ -159,12 +159,12 @@ export function GatewayFlow() {
                 </svg>
               </div>
 
-            <div className="grid lg:grid-cols-[1fr_12rem]">
-              <div className="overflow-hidden py-5">
+            <div className="grid bg-card [background-image:none] lg:grid-cols-[1fr_12rem]">
+              <div className="overflow-hidden bg-card py-5 [background-image:none]">
                 <AnimatedCode />
               </div>
 
-              <aside className="border-t border-border bg-background/50 p-5 lg:border-l lg:border-t-0">
+              <aside className="border-t border-border bg-card p-5 [background-image:none] lg:border-l lg:border-t-0">
                 <p className="type-eyebrow text-subtle-foreground">uma integração</p>
                 <div className="mt-6 flex flex-col gap-5">
                   <div>
