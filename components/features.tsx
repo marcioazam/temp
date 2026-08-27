@@ -63,22 +63,13 @@ export function Features() {
               <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">{f.body}</p>
 
               {i === 0 ? (
-                <>
-                  <a
-                    href="#catalogo"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm text-primary transition-colors hover:text-primary/80"
-                  >
-                    Ver catálogo completo
-                    <span aria-hidden="true">&rarr;</span>
-                  </a>
-                  <span className="photo-grain mt-6 block overflow-hidden rounded-lg">
-                    <img
-                      src="/images/mist-lake.png"
-                      alt="Paisagem de lago com névoa entre montanhas"
-                      className="block aspect-[4/3] w-full select-none object-cover"
-                    />
-                  </span>
-                </>
+                <span className="photo-grain mt-6 block overflow-hidden rounded-lg">
+                  <img
+                    src="/images/mist-lake.png"
+                    alt="Paisagem de lago com névoa entre montanhas"
+                    className="block aspect-[4/3] w-full select-none object-cover"
+                  />
+                </span>
               ) : null}
             </Reveal>
           ))}
