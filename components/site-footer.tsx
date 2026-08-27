@@ -18,7 +18,7 @@ export function SiteFooter() {
         </div>
         <nav
           aria-label="Rodapé"
-          className="flex flex-wrap gap-x-4 gap-y-3 font-mono text-xs text-muted-foreground [&>a:not(:last-child)]:after:ml-4 [&>a:not(:last-child)]:after:text-border [&>a:not(:last-child)]:after:content-['/']"
+          className="grid grid-flow-col grid-rows-4 gap-x-12 gap-y-3 font-mono text-xs text-muted-foreground"
         >
           <Link href="/#sobre" className="transition-colors hover:text-foreground">
             Sobre
