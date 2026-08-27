@@ -114,7 +114,7 @@ export function GatewayFlow() {
         </Reveal>
 
         <div className="mt-6 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28 lg:order-2">
+          <div className="lg:order-2">
             <p className="type-title max-w-xl text-balance text-foreground">
               A inteligência do Nylla dentro do seu produto.
             </p>
