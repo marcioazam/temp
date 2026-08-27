@@ -862,14 +862,60 @@ kbd {
 }
 
 @keyframes hf-dot-a-up {
-  0%, 84% { opacity: 0; transform: translateY(40px); }
-  86% { opacity: 1; }
-  94% { opacity: 1; transform: translateY(0); }
-  96%, 100% { opacity: 0; transform: translateY(0); }
+  0%, 88% { opacity: 0; transform: translateY(40px); }
+  89% { opacity: 1; }
+  97% { opacity: 1; transform: translateY(0); }
+  98%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-a-up {
   animation: hf-dot-a-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
+/* Nylla's internal steps light up in order, synced to the packet.
+   Inbound (packet inside Nylla, 16–46%): Valida → arrow → Roteia.
+   Outbound (packet back inside Nylla, 82–88%): arrow → Entrega.
+   Everything resets to white at 98%, when the packet reaches "Você". */
+.hf-step {
+  color: var(--foreground);
+  animation-duration: 3.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes hf-step-1 {
+  0%, 17.9% { color: var(--foreground); }
+  18%, 97.9% { color: var(--primary); }
+  98%, 100% { color: var(--foreground); }
+}
+.hf-step-1 { animation-name: hf-step-1; }
+
+@keyframes hf-step-2 {
+  0%, 25.9% { color: var(--foreground); }
+  26%, 97.9% { color: var(--primary); }
+  98%, 100% { color: var(--foreground); }
+}
+.hf-step-2 { animation-name: hf-step-2; }
+
+@keyframes hf-step-3 {
+  0%, 33.9% { color: var(--foreground); }
+  34%, 97.9% { color: var(--primary); }
+  98%, 100% { color: var(--foreground); }
+}
+.hf-step-3 { animation-name: hf-step-3; }
+
+@keyframes hf-step-4 {
+  0%, 81.9% { color: var(--foreground); }
+  82%, 97.9% { color: var(--primary); }
+  98%, 100% { color: var(--foreground); }
+}
+.hf-step-4 { animation-name: hf-step-4; }
+
+@keyframes hf-step-5 {
+  0%, 85.9% { color: var(--foreground); }
+  86%, 97.9% { color: var(--primary); }
+  98%, 100% { color: var(--foreground); }
+}
+.hf-step-5 { animation-name: hf-step-5; }
 
 /* One model highlighted while the request lands on it. The 9.6s period is
    three 3.2s cycles; each model's active window aligns with 58–72% of its
@@ -919,6 +965,7 @@ kbd {
   .hf-dot-a-up,
   .hf-dot-b-down,
   .hf-dot-b-up,
+  .hf-step,
   .hf-model {
       animation: none;
     }

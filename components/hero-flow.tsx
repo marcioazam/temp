@@ -35,11 +35,11 @@ export function HeroFlow() {
             {STEPS.map((step, i) => (
               <span key={step} className="flex items-center gap-2">
                 {i > 0 && (
-                  <span aria-hidden="true" className="text-primary/55">
+                  <span aria-hidden="true" className={`hf-step hf-step-${i * 2}`}>
                     →
                   </span>
                 )}
-                <span>{step}</span>
+                <span className={`hf-step hf-step-${i * 2 + 1}`}>{step}</span>
               </span>
             ))}
           </div>
