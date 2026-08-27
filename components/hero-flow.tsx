@@ -32,7 +32,7 @@ export function HeroFlow() {
         </div>
 
         {/* Node: Nylla */}
-        <div className="relative flex min-h-16 items-center justify-between gap-6 bg-muted px-5 py-4 text-foreground">
+        <div className="relative flex min-h-16 items-center justify-between gap-6 border-0 bg-muted px-5 py-4 text-foreground outline-none ring-0">
           <NyllaLogo aria-hidden="true" className="hero-logo-unfold h-7 w-auto shrink-0 text-foreground" />
           <div className="flex items-center gap-2 text-xs text-foreground">
             {STEPS.map((step, i) => (
