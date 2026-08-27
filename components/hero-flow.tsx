@@ -3,6 +3,13 @@ import { NyllaLogo } from "@/components/logo"
 const icon = (slug: string, variant = "default") =>
   `https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${slug}/${variant}.svg`
 
+const TOOLS = [
+  { name: "Claude Code", src: icon("claude-code", "mono") },
+  { name: "Codex", src: icon("codex", "light") },
+  { name: "Cursor", src: icon("cursor", "mono") },
+  { name: "Gemini CLI", src: icon("gemini") },
+]
+
 const MODELS = [
   { name: "GPT", src: icon("openai") },
   { name: "Claude", src: icon("claude") },
@@ -28,9 +35,19 @@ export function HeroFlow() {
     >
       <div className="flex h-full flex-col justify-center p-5 sm:p-8 lg:p-10">
         {/* Node: user + tool */}
-        <div className="flex min-h-[50px] flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
+        <div className="flex min-h-[50px] flex-wrap items-center gap-x-4 gap-y-2 border border-border bg-background/90 px-4 py-3 text-xs">
           <span className="text-muted-foreground">Você:</span>
-          <span className="text-foreground">Claude Code, Codex, Cursor, Gemini CLI, etc...</span>
+          {TOOLS.map((tool) => (
+            <span key={tool.name} className="flex items-center gap-1.5 whitespace-nowrap text-foreground">
+              <img
+                src={tool.src}
+                alt=""
+                className="size-3 shrink-0 object-contain grayscale brightness-0 invert"
+                loading="lazy"
+              />
+              {tool.name}
+            </span>
+          ))}
         </div>
 
         {/* Connector A */}
