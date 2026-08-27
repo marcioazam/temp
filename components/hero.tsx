@@ -10,9 +10,9 @@ export function Hero() {
         <div className="grid items-stretch gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div>
             <Reveal>
-              <p className="font-mono text-xs text-muted-foreground">
-                <span aria-hidden="true" className="mr-2 inline-block text-xl leading-none text-primary">{"●"}</span>
-                o que é o Nylla
+              <p className="flex items-center gap-2 font-mono text-xs leading-none tracking-wide text-muted-foreground">
+                <span aria-hidden="true" className="size-2 shrink-0 rounded-full bg-primary" />
+                <span>o que é o Nylla</span>
               </p>
               <h2 id="about-title" className="mt-5 max-w-xl text-balance font-sans text-4xl font-medium leading-tight tracking-[-0.04em] text-foreground md:text-6xl">
                 A camada entre você e qualquer LLM.
