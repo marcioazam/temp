@@ -47,14 +47,8 @@ export function Features() {
               as="article"
               key={f.key}
               delay={i * 70}
-              className={`group relative border-b border-border py-8 md:py-10 ${
-                i === features.length - 1 ? "border-b-0" : ""
-              }`}
+              className="py-8 md:py-10"
             >
-              <span
-                aria-hidden="true"
-                className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100"
-              />
               <h3 className="w-fit font-mono text-base font-medium leading-snug text-foreground">
                 {f.title}
               </h3>
