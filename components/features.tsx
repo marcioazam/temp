@@ -41,16 +41,14 @@ export function Features() {
           <span aria-hidden="true" className="text-primary">{"// "}</span>recursos
         </h2>
 
-        <div className="mt-4 grid grid-cols-1 gap-x-12 md:grid-cols-2 lg:gap-x-20">
+        <div className="mt-4 flex flex-col">
           {features.map((f, i) => (
             <Reveal
               as="article"
               key={f.key}
               delay={i * 70}
               className={`group relative border-b border-border py-8 md:py-10 ${
-                i === 1 ? "md:pt-0" : ""
-              } ${i === features.length - 1 ? "border-b-0" : ""} ${
-                i === features.length - 2 ? "md:border-b-0" : ""
+                i === features.length - 1 ? "border-b-0" : ""
               }`}
             >
               <span
@@ -61,16 +59,6 @@ export function Features() {
                 {f.title}
               </h3>
               <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-
-              {i === 0 ? (
-                <span className="photo-grain mt-6 block overflow-hidden rounded-lg">
-                  <img
-                    src="/images/mist-lake.png"
-                    alt="Paisagem de lago com névoa entre montanhas"
-                    className="block aspect-[4/3] w-full select-none object-cover"
-                  />
-                </span>
-              ) : null}
             </Reveal>
           ))}
         </div>

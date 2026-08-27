@@ -954,12 +954,6 @@ kbd {
   will-change: border-color, color, opacity;
 }
 
-.bg-feature-landscape {
-  background-image: url('/images/mist-lake.png');
-  background-position: 20% 45%;
-  background-size: cover;
-}
-
 /* Grain padrão para fotos de fundo — mesmo noise do body (fractalNoise .72, tile 240px) */
 .photo-grain {
   position: relative;
