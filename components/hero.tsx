@@ -28,7 +28,7 @@ export function Hero() {
 
           <Reveal
             delay={180}
-            className="photo-grain w-full bg-[url('/images/hero-flow-landscape.png')] bg-cover bg-center"
+            className="photo-grain w-full overflow-hidden border border-foreground/15 bg-[url('/images/hero-flow-landscape.png')] bg-cover bg-center shadow-[0_0_0_5px_var(--background),0_0_0_6px_var(--border)]"
           >
             <HeroFlow />
           </Reveal>
