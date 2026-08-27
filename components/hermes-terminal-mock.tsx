@@ -31,9 +31,6 @@ const SKILLSETS: Array<[string, string]> = [
   ["autonomous-ai-agents:", "claude-code, codex, hermes-agent"],
   ["devops:", "webhook-subscriptions"],
   ["github:", "codebase-inspection, github-auth..."],
-  ["mcp:", "mcporter, native-mcp"],
-  ["research:", "arxiv, blogwatcher, polymarket..."],
-  ["software-development:", "code-review, plan, suba..."],
 ]
 
 type Line =
