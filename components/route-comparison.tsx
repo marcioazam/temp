@@ -1,3 +1,4 @@
+import { RotorMark } from "@/components/logo"
 import { Reveal } from "@/components/reveal"
 
 const rows = [
@@ -40,8 +41,9 @@ export function RouteComparison() {
         <Reveal>
           <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
             <div className="p-5 md:p-6">
-              <h2 className="font-mono text-xs text-muted-foreground">
-                <span aria-hidden="true" className="text-primary">{"// "}</span>comparativo
+              <h2 className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+                <RotorMark aria-hidden="true" className="size-4 shrink-0 text-primary" />
+                <span>Nylla Gateway</span>
               </h2>
               <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
                 Compare a rota, não o hype.
