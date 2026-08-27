@@ -105,19 +105,19 @@ export function GatewayFlow() {
                 <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">uma integração</p>
                 <div className="mt-5 flex flex-col gap-5">
                   <div>
-                    <p className="font-mono text-lg text-foreground">1 endpoint</p>
+                    <p className="font-mono text-xl font-medium text-primary">1 endpoint</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">para todos os modelos</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg text-foreground">OpenAI</p>
+                    <p className="font-mono text-xl font-medium text-primary">OpenAI</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">formato compatível</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg text-foreground">24/7</p>
+                    <p className="font-mono text-xl font-medium text-primary">24/7</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">fallback automático</p>
                   </div>
                   <div>
-                    <p className="whitespace-nowrap font-mono text-lg text-foreground">Baixa latência</p>
+                    <p className="whitespace-nowrap font-mono text-xl font-medium text-primary">Baixa latência</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">roteamento otimizado</p>
                   </div>
                 </div>
@@ -129,7 +129,7 @@ export function GatewayFlow() {
                 <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#7f9b76]" aria-hidden="true" />
                 pronto para produção
               </p>
-              <code className="font-mono text-[11px] text-foreground/70">POST /v1/chat/completions</code>
+              <code className="font-mono text-xs font-medium text-primary">POST /v1/chat/completions</code>
             </div>
             </div>
           </div>
