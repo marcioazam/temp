@@ -37,43 +37,45 @@ export function Features() {
   return (
     <section id="recursos">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <div>
-          <h2 className="font-mono text-xs text-muted-foreground">
-            <span aria-hidden="true" className="text-primary">
-              {"// "}
-            </span>
-            recursos
-          </h2>
-          <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
-            Um gateway. Todas as rotas resolvidas.
-          </p>
-          <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-            Cada provedor tem seu SDK, seu limite e sua janela de contexto. O Nylla absorve essa diferença e entrega
-            uma superfície única para o seu código e para os seus agentes.
-          </p>
-        </div>
-
-        <Reveal delay={80} className="mt-10 md:mt-12">
-          <div
-            className="photo-grain bg-cover bg-center p-3 sm:p-5 lg:p-7"
-            style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
-          >
-            <ul className="relative z-[2] grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {features.map((f) => (
-                <li
-                  key={f.key}
-                  className="flex flex-col border border-border/70 bg-background/85 p-5 backdrop-blur-md md:p-6"
-                >
-                  <div className="flex items-start gap-2.5">
-                    <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary" />
-                    <h3 className="font-mono text-sm font-medium leading-snug text-foreground">{f.title}</h3>
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-                </li>
-              ))}
-            </ul>
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)] lg:gap-12">
+          <div className="lg:sticky lg:top-24">
+            <h2 className="font-mono text-xs text-muted-foreground">
+              <span aria-hidden="true" className="text-primary">
+                {"// "}
+              </span>
+              recursos
+            </h2>
+            <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+              Um gateway. Todas as rotas resolvidas.
+            </p>
+            <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+              Cada provedor tem seu SDK, seu limite e sua janela de contexto. O Nylla absorve essa diferença e entrega
+              uma superfície única para o seu código e para os seus agentes.
+            </p>
           </div>
-        </Reveal>
+
+          <Reveal delay={80}>
+            <div
+              className="photo-grain bg-cover bg-center p-3 sm:p-5 lg:p-6"
+              style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
+            >
+              <ul className="relative z-[2] grid gap-3 sm:grid-cols-2">
+                {features.map((f) => (
+                  <li
+                    key={f.key}
+                    className="flex flex-col border border-border/70 bg-background/85 p-5 backdrop-blur-md md:p-6"
+                  >
+                    <div className="flex items-start gap-2.5">
+                      <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary" />
+                      <h3 className="font-mono text-sm font-medium leading-snug text-foreground">{f.title}</h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   )
