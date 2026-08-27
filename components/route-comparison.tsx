@@ -36,7 +36,7 @@ const rows = [
 
 export function RouteComparison() {
   return (
-    <section id="comparativo" className="relative isolate overflow-hidden bg-background px-4 md:px-9">
+    <section id="comparativo" className="relative isolate overflow-hidden px-4 md:px-9">
       <div className="photo-grain mx-auto w-full max-w-screen-2xl bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center px-4 py-16 md:px-9 md:py-24">
         <Reveal>
           <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
