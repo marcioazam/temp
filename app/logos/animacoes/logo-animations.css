@@ -1,0 +1,327 @@
+/* ---- Nylla sun mark — animation lab -------------------------------
+   Every variant animates the same SVG geometry (6 rotor arms + core).
+   Effects stay on transform / opacity / stroke-dash so each frame is
+   compositor or paint-only work, never layout. */
+
+/* 01 — spin: continuous rotation */
+@keyframes lg-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.lg-spin {
+  animation: lg-spin 6s linear infinite;
+}
+
+/* 02 — step: quantized six-position rotation */
+.lg-step {
+  animation: lg-spin 3.6s steps(6, jump-end) infinite;
+}
+
+/* 03 — reverse: slow counter-rotation */
+.lg-reverse {
+  animation: lg-spin 7.5s linear infinite reverse;
+}
+
+/* 04 — core: the center pulses, arms hold still */
+@keyframes lg-core {
+  0%,
+  100% {
+    transform: scale(0.68);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
+.lg-core {
+  animation: lg-core 1.6s ease-in-out infinite;
+}
+
+/* 05 — breathe: whole mark expands while drifting */
+@keyframes lg-breathe {
+  0%,
+  100% {
+    transform: scale(0.88) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(14deg);
+  }
+}
+.lg-breathe {
+  animation: lg-breathe 3.6s ease-in-out infinite;
+}
+
+/* 06 — bloom: arms grow outward from the core, staggered */
+@keyframes lg-bloom {
+  0% {
+    transform: translateY(13px) scale(0.45);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  60%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+.lg-bloom {
+  animation: lg-bloom 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* 07 — converge: arms fly in from outside and settle */
+@keyframes lg-converge {
+  0% {
+    transform: translateY(-18px);
+    opacity: 0;
+  }
+  28% {
+    opacity: 1;
+  }
+  52%,
+  84% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+.lg-converge {
+  animation: lg-converge 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* 08 — draw: each arm strokes itself into existence */
+@keyframes lg-draw {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  45%,
+  92% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 100;
+  }
+}
+.lg-draw {
+  stroke-dasharray: 100;
+  animation: lg-draw 3.2s ease-in-out infinite;
+}
+
+/* 09 — dash: marching dashes along every arm */
+@keyframes lg-dash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+.lg-dash {
+  stroke-dasharray: 9 11;
+  animation: lg-dash 1.4s linear infinite;
+}
+
+/* 10 — sequence: one arm lit at a time */
+@keyframes lg-sequence {
+  0%,
+  11% {
+    opacity: 1;
+  }
+  26%,
+  100% {
+    opacity: 0.14;
+  }
+}
+.lg-sequence {
+  opacity: 0.14;
+  animation: lg-sequence 1.8s steps(1, jump-none) infinite;
+}
+
+/* 11 — trail: a comet head with fading tail */
+@keyframes lg-trail {
+  0% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    opacity: 0.12;
+  }
+}
+.lg-trail {
+  animation: lg-trail 1.6s linear infinite;
+}
+
+/* 12 — wobble: pendulum swing */
+@keyframes lg-wobble {
+  0%,
+  100% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+.lg-wobble {
+  animation: lg-wobble 2.4s ease-in-out infinite;
+}
+
+/* 13 — tumble: 3D rotation on the vertical axis */
+@keyframes lg-tumble {
+  0% {
+    transform: perspective(240px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(240px) rotateY(360deg);
+  }
+}
+.lg-tumble {
+  animation: lg-tumble 4.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* 14 — flip: 3D rotation on the horizontal axis, with a hold */
+@keyframes lg-flip {
+  0%,
+  18% {
+    transform: perspective(240px) rotateX(0deg);
+  }
+  62%,
+  100% {
+    transform: perspective(240px) rotateX(360deg);
+  }
+}
+.lg-flip {
+  animation: lg-flip 3.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* 15 — orbit: a satellite packet circles the mark */
+.lg-orbit {
+  animation: lg-spin 2.6s linear infinite;
+}
+.lg-orbit-body {
+  animation: lg-spin 14s linear infinite;
+}
+
+/* 16 — glitch: quantized loss of register */
+@keyframes lg-glitch {
+  0%,
+  70%,
+  100% {
+    transform: translate(0, 0);
+  }
+  74% {
+    transform: translate(-3px, 2px);
+  }
+  79% {
+    transform: translate(3px, -2px);
+  }
+  84% {
+    transform: translate(-2px, -1px);
+  }
+  89% {
+    transform: translate(1px, 1px);
+  }
+}
+.lg-glitch {
+  animation: lg-glitch 3.4s steps(1, jump-none) infinite;
+}
+
+/* 17 — flicker: arms blink on their own clocks */
+@keyframes lg-flicker {
+  0%,
+  100% {
+    opacity: 0.18;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.lg-flicker {
+  animation: lg-flicker var(--lg-dur, 1.2s) steps(2, jump-none) infinite;
+}
+
+/* 18 — shimmer: brightness wave riding a slow spin */
+@keyframes lg-shimmer {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.lg-shimmer {
+  animation: lg-shimmer 2.2s ease-in-out infinite;
+}
+
+/* 19 — unfold: each arm hinges around its own base */
+@keyframes lg-unfold {
+  0%,
+  100% {
+    transform: rotate(-42deg);
+  }
+  50% {
+    transform: rotate(42deg);
+  }
+}
+.lg-unfold {
+  animation: lg-unfold 3s ease-in-out infinite;
+}
+
+/* 20 — lock: fast spin that snaps into alignment and rests */
+@keyframes lg-lock {
+  0% {
+    transform: rotate(0deg);
+  }
+  52% {
+    transform: rotate(306deg);
+  }
+  66%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.lg-lock {
+  animation: lg-lock 2.6s cubic-bezier(0.2, 0.9, 0.1, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lg-spin,
+  .lg-step,
+  .lg-reverse,
+  .lg-core,
+  .lg-breathe,
+  .lg-bloom,
+  .lg-converge,
+  .lg-draw,
+  .lg-dash,
+  .lg-sequence,
+  .lg-trail,
+  .lg-wobble,
+  .lg-tumble,
+  .lg-flip,
+  .lg-orbit,
+  .lg-orbit-body,
+  .lg-glitch,
+  .lg-flicker,
+  .lg-shimmer,
+  .lg-unfold,
+  .lg-lock {
+    animation: none;
+  }
+  .lg-sequence,
+  .lg-trail,
+  .lg-flicker,
+  .lg-shimmer {
+    opacity: 1;
+  }
+  .lg-draw,
+  .lg-dash {
+    stroke-dasharray: none;
+  }
+}

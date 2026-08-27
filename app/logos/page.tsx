@@ -212,6 +212,12 @@ export default function LogosPage() {
             >
               {"sistema de marca ->"}
             </Link>
+            <Link
+              href="/logos/animacoes"
+              className="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {"animações do sol ->"}
+            </Link>
           </div>
           <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
             Estudo tipográfico
