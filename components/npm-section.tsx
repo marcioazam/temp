@@ -93,7 +93,7 @@ export function NpmSection() {
                 <div className="flex items-center gap-1.5" aria-hidden="true">
                   <span className="size-2.5 rounded-full bg-[#ff5f57]" />
                   <span className="size-2.5 rounded-full bg-[#febc2e]" />
-                  <span className="size-2.5 rounded-full bg-primary" />
+                  <span className="size-2.5 rounded-full bg-[#28c840]" />
                 </div>
                 <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
                   bash — nylla@linux
