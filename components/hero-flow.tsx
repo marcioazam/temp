@@ -36,7 +36,7 @@ export function HeroFlow() {
     >
       <div className="flex h-full flex-col justify-center p-5 sm:p-8 lg:p-10">
         {/* Node: user + tool */}
-        <div className="flex min-h-[50px] flex-wrap items-center gap-x-2 gap-y-2 border border-border bg-background/90 px-3 py-3 text-[10px] text-muted-foreground">
+        <div className="flex min-h-[50px] flex-wrap items-center gap-x-3 gap-y-2 border border-border bg-background/90 px-3 py-3 text-[10px] text-muted-foreground">
           <span>Você:</span>
           {TOOLS.map((tool) => (
             <span key={tool.name} className="flex items-center gap-1 whitespace-nowrap">
