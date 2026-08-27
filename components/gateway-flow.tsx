@@ -21,8 +21,7 @@ const CODE_LINES = [
 
 function AnimatedCode() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [characterCount, setCharacterCount] = useState(0)
-  const totalCharacters = CODE_LINES.reduce((total, line) => total + line.content.length + 1, 0)
+  const [visibleLines, setVisibleLines] = useState(0)
 
   useEffect(() => {
     const node = containerRef.current
@@ -32,30 +31,29 @@ function AnimatedCode() {
 
     const play = () => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        setCharacterCount(totalCharacters)
+        setVisibleLines(CODE_LINES.length)
         return
       }
 
-      const source = CODE_LINES.map((line) => `${line.content}\n`).join("")
-      let count = 0
+      let line = 0
 
-      const typeNext = () => {
-        count += 1
-        setCharacterCount(count)
+      const revealNextLine = () => {
+        line += 1
+        setVisibleLines(line)
 
-        if (count < totalCharacters) {
-          timer = window.setTimeout(typeNext, source[count - 1] === "\n" ? 180 : 24)
+        if (line < CODE_LINES.length) {
+          timer = window.setTimeout(revealNextLine, 260)
           return
         }
 
         timer = window.setTimeout(() => {
-          count = 0
-          setCharacterCount(0)
-          timer = window.setTimeout(typeNext, 500)
+          line = 0
+          setVisibleLines(0)
+          timer = window.setTimeout(revealNextLine, 500)
         }, 2400)
       }
 
-      typeNext()
+      revealNextLine()
     }
 
     const observer = new IntersectionObserver(
@@ -74,22 +72,19 @@ function AnimatedCode() {
       observer.disconnect()
       if (timer) window.clearTimeout(timer)
     }
-  }, [totalCharacters])
-
-  let remaining = characterCount
+  }, [])
 
   return (
     <div ref={containerRef} className="w-full font-mono text-[11px] leading-6 sm:text-xs" aria-label={CODE_LINES.map((line) => line.content).join("\n")}>
-      {CODE_LINES.map((line) => {
-        const visibleLength = Math.max(0, Math.min(line.content.length, remaining))
-        remaining -= line.content.length + 1
-        const isActive = visibleLength > 0 && visibleLength < line.content.length
+      {CODE_LINES.map((line, index) => {
+        const isVisible = index < visibleLines
+        const isActive = index === visibleLines - 1
 
         return (
           <div key={line.number} className="flex min-w-0 px-4" aria-hidden="true">
             <span className="w-8 shrink-0 select-none text-muted-foreground/40">{line.number}</span>
-            <code className={`whitespace-pre ${line.number === "02" ? "text-primary" : "text-foreground/80"}`}>
-              {line.content.slice(0, visibleLength)}
+            <code className={`whitespace-pre transition-opacity duration-150 ${line.number === "02" ? "text-primary" : "text-foreground/80"} ${isVisible ? "opacity-100" : "opacity-0"}`}>
+              {line.content}
               {isActive ? <span className="ml-px inline-block h-[1.05em] w-px translate-y-[2px] animate-pulse bg-primary" /> : null}
             </code>
           </div>
