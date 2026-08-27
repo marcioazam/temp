@@ -73,7 +73,7 @@ export function Pricing() {
             {plans.map((plan) => (
               <article
                 key={plan.name}
-                className={`flex flex-col bg-background/[0.92] ${
+                className={`flex flex-col bg-background/[0.86] backdrop-blur-[1px] ${
                   plan.highlighted ? "ring-1 ring-inset ring-ultra/35" : ""
                 }`}
               >
