@@ -26,7 +26,7 @@ export function Harnesses() {
           </div>
 
           <Reveal delay={80} className="lg:order-1">
-            <div className="photo-grain overflow-hidden bg-[url('/images/vscode-landscape.png')] bg-cover bg-center p-5 sm:p-7 lg:p-8">
+            <div className="overflow-hidden bg-[url('/images/vscode-landscape.png')] bg-cover bg-center p-5 sm:p-7 lg:p-8">
               <HarnessCarousel />
             </div>
           </Reveal>

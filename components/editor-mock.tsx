@@ -456,7 +456,7 @@ export function EditorMock() {
       role="img"
       aria-label="Claude Code conectado ao Nylla Gateway alternando entre KIMI K3, DeepSeek V4 e GPT 5.6 SOL"
     >
-      <span className="photo-grain absolute inset-0 block" aria-hidden="true">
+      <span className="absolute inset-0 block" aria-hidden="true">
         <img src="/images/desktop-wallpaper.png" alt="" className="absolute inset-0 h-full w-full select-none object-cover" />
       </span>
       <WindowsTaskbar />

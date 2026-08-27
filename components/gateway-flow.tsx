@@ -136,7 +136,7 @@ export function GatewayFlow() {
 
           <Reveal delay={120} className="lg:order-1">
           <div
-            className="photo-grain flex min-h-[30rem] items-center overflow-hidden bg-cover bg-center p-5 sm:p-8 lg:p-10"
+            className="flex min-h-[30rem] items-center overflow-hidden bg-cover bg-center p-5 sm:p-8 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
             <div className="win mx-auto w-full max-w-[42rem]">

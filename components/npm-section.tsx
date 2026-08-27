@@ -120,7 +120,7 @@ export function NpmSection() {
         </Reveal>
 
         <Reveal delay={120} className="md:order-2">
-          <div className="photo-grain flex min-h-[27rem] items-center overflow-hidden bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
+          <div className="flex min-h-[27rem] items-center overflow-hidden bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
             <div className="win mx-auto w-full max-w-xl">
               <div className="win-bar">
                 <div className="win-dots" aria-hidden="true">
