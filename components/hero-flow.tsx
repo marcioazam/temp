@@ -1,6 +1,15 @@
 import { NyllaLogo } from "@/components/logo"
 
-const MODELS = ["GPT", "Claude", "Gemini", "Deepseek", "Nylla LLM"]
+const icon = (slug: string, variant = "default") =>
+  `https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${slug}/${variant}.svg`
+
+const MODELS = [
+  { name: "GPT", src: icon("openai") },
+  { name: "Claude", src: icon("claude") },
+  { name: "Gemini", src: icon("gemini") },
+  { name: "Deepseek", src: icon("deepseek") },
+  { name: "Nylla LLM", src: null },
+]
 const STEPS = ["Valida", "Roteia", "Entrega"]
 
 /**
@@ -57,15 +66,25 @@ export function HeroFlow() {
         </div>
 
         {/* Node: LLMs */}
-        <div className="flex flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
-          <span className="text-muted-foreground">LLMs:</span>
+        <div className="flex flex-wrap items-center gap-1.5 border border-border bg-background/90 px-4 py-3 text-xs">
+          <span className="mr-0.5 text-muted-foreground">LLMs:</span>
           {MODELS.map((model, i) => (
             <span
-              key={model}
-              className="hf-model border border-border px-2 py-1 text-foreground"
+              key={model.name}
+              className="hf-model flex items-center gap-1 whitespace-nowrap border border-border px-1.5 py-1 text-foreground"
               style={{ "--model": i } as React.CSSProperties}
             >
-              {model}
+              {model.src ? (
+                <img
+                  src={model.src || "/placeholder.svg"}
+                  alt=""
+                  className="h-2.5 w-2.5 shrink-0 object-contain grayscale brightness-0 invert"
+                  loading="lazy"
+                />
+              ) : (
+                <NyllaLogo aria-hidden="true" className="h-2.5 w-2.5 shrink-0 text-foreground" />
+              )}
+              {model.name}
             </span>
           ))}
         </div>
