@@ -64,7 +64,7 @@ export function NpmSection() {
   return (
     <section>
       <div className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-10 px-4 py-16 md:grid-cols-2 md:items-start md:px-9 md:py-24">
-        <Reveal className="md:order-2 md:pl-6">
+        <Reveal className="md:order-1 md:pr-6">
           <h2 className="font-mono text-xs text-muted-foreground">
             <span aria-hidden="true" className="text-primary">{"// "}</span>plug and play
           </h2>
@@ -82,7 +82,7 @@ export function NpmSection() {
           </ul>
         </Reveal>
 
-        <Reveal delay={120} className="md:order-1">
+        <Reveal delay={120} className="md:order-2">
           <div className="flex min-h-[31rem] items-center bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
             <div className="elev-window w-full overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
               <div className="relative flex h-7 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
