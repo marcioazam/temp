@@ -4,7 +4,7 @@ export function FinalCta() {
   return (
     <section className="pb-8 pt-6 md:pb-10 md:pt-8" aria-labelledby="final-cta-title">
       <div
-        className="mx-auto flex min-h-[520px] w-[calc(100%-2rem)] max-w-screen-2xl flex-col items-center justify-center gap-7 overflow-hidden rounded-xl bg-cover bg-center px-6 py-24 text-center text-[#171612] md:h-[calc(100svh-8.5rem)] md:min-h-[560px] md:max-h-[720px] md:w-[calc(100%-4.5rem)]"
+        className="mx-auto flex min-h-[520px] w-[calc(100%-2rem)] max-w-[1464px] flex-col items-center justify-center gap-7 overflow-hidden rounded-xl bg-cover bg-center px-6 py-24 text-center text-[#171612] md:h-[calc(100svh-8.5rem)] md:min-h-[560px] md:max-h-[720px] md:w-[calc(100%-4.5rem)]"
         style={{ backgroundImage: "url('/images/nylla-cta-landscape.png')" }}
       >
         <h1
