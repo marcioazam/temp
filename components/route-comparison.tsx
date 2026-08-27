@@ -41,16 +41,18 @@ export function RouteComparison() {
     >
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
-          <h2 className="font-mono text-xs text-muted-foreground">
-            <span aria-hidden="true" className="text-primary">{"// "}</span>comparativo
-          </h2>
-          <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
-            Compare a rota, não o hype.
-          </p>
-          <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
-            A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
-            entre o seu prompt e a resposta.
-          </p>
+          <div className="w-fit max-w-3xl border border-border/80 bg-background/85 p-5 shadow-lg backdrop-blur-md md:p-6">
+            <h2 className="font-mono text-xs text-muted-foreground">
+              <span aria-hidden="true" className="text-primary">{"// "}</span>comparativo
+            </h2>
+            <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+              Compare a rota, não o hype.
+            </p>
+            <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
+              A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
+              entre o seu prompt e a resposta.
+            </p>
+          </div>
         </Reveal>
 
         <Reveal delay={120} className="mt-12">
