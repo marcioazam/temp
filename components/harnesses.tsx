@@ -14,7 +14,7 @@ export function Harnesses() {
             aria-hidden="true"
             className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,8,6,0.94)_0%,rgba(8,8,6,0.82)_44%,rgba(8,8,6,0.28)_72%,rgba(8,8,6,0.08)_100%)]"
           />
-          <div className="max-w-xl">
+          <div className="max-w-xl overflow-hidden rounded-[10px] border border-[#292929] bg-[#111111]/95 p-5 shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4),inset_0_1px_rgba(255,255,255,0.035)] backdrop-blur-sm sm:p-6">
             <p className="text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
               Conecta em qualquer ferramenta que você já usa.
             </p>
