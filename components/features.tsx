@@ -57,13 +57,19 @@ export function Features() {
                 aria-hidden="true"
                 className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100"
               />
-              <div className="flex items-center gap-2">
-                <span aria-hidden="true" className="size-1.5 bg-primary" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
-                  {f.key}
-                </span>
-              </div>
-              <h3 className="mt-4 font-mono text-base font-medium leading-snug text-foreground">{f.title}</h3>
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
+                {f.key}
+              </span>
+              <h3
+                className="mt-4 bg-clip-text bg-cover font-mono text-base font-medium leading-snug text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)), url('/images/mist-lake.png')",
+                  backgroundPosition: `${(i % 2) * 40 + 20}% ${Math.floor(i / 2) * 30 + 20}%`,
+                }}
+              >
+                {f.title}
+              </h3>
               <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">{f.body}</p>
             </Reveal>
           ))}
