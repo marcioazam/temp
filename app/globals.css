@@ -39,6 +39,8 @@
   --color-term-dim: var(--term-dim);
   --color-term-faint: var(--term-faint);
   --color-term-success: var(--term-success);
+  --color-term-rule: var(--term-rule);
+  --color-term-track: var(--term-track);
   --color-chrome-fg: var(--chrome-fg);
   --color-canvas-ink: var(--canvas-ink);
   --color-canvas-paper: var(--canvas-paper);
@@ -94,6 +96,10 @@
   --term-dim: #8b877a;
   --term-faint: #6a6759;
   --term-success: #7cd68c;
+  /* Glifas decorativas: separadores e trilhos de barra de progresso.
+     Não carregam texto, por isso ficam abaixo do contraste de leitura. */
+  --term-rule: #4a4636;
+  --term-track: #3a382c;
 
   /* Superfícies claras (arte pintada do hero/CTA) */
   --canvas-ink: #171612;

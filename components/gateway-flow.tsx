@@ -140,7 +140,7 @@ export function GatewayFlow() {
                   <span className="size-2.5 rounded-full bg-[#febc2e]" />
                   <span className="size-2.5 rounded-full bg-[#28c840]" />
                 </div>
-                <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
+                <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg md:text-[10px]">
                   api.nylla.ai
                 </span>
                 <svg
@@ -161,30 +161,30 @@ export function GatewayFlow() {
               </div>
 
               <aside className="border-t border-border bg-background/50 p-5 lg:border-l lg:border-t-0">
-                <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">uma integração</p>
-                <div className="mt-5 flex flex-col gap-5">
+                <p className="type-eyebrow text-subtle-foreground">uma integração</p>
+                <div className="mt-6 flex flex-col gap-5">
                   <div>
-                    <p className="font-mono text-sm font-medium text-primary">1 endpoint</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">para todos os modelos</p>
+                    <p className="type-subheading text-primary">1 endpoint</p>
+                    <p className="type-caption mt-1 text-muted-foreground">para todos os modelos</p>
                   </div>
                   <div>
-                    <p className="font-mono text-sm font-medium text-primary">OpenAI</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">formato compatível</p>
+                    <p className="type-subheading text-primary">OpenAI</p>
+                    <p className="type-caption mt-1 text-muted-foreground">formato compatível</p>
                   </div>
                   <div>
-                    <p className="font-mono text-sm font-medium text-primary">Atualizado</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">catálogo de modelos</p>
+                    <p className="type-subheading text-primary">Atualizado</p>
+                    <p className="type-caption mt-1 text-muted-foreground">catálogo de modelos</p>
                   </div>
                   <div>
-                    <p className="whitespace-nowrap font-mono text-sm font-medium text-primary">Baixa latência</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">roteamento otimizado</p>
+                    <p className="type-subheading whitespace-nowrap text-primary">Baixa latência</p>
+                    <p className="type-caption mt-1 text-muted-foreground">roteamento otimizado</p>
                   </div>
                 </div>
               </aside>
             </div>
 
             <div className="flex flex-col gap-3 border-t border-border px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="font-mono text-[10px] text-muted-foreground">
+              <p className="type-micro text-subtle-foreground">
                 <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#28c840]" aria-hidden="true" />
                 pronto para integração
               </p>

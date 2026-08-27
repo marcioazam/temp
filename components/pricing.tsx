@@ -62,16 +62,16 @@ export function Pricing() {
     <section id="planos" aria-labelledby="planos-title">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
-          <h2 id="planos-title" className="font-mono text-xs text-muted-foreground">
-            <span aria-hidden="true" className="text-primary">
-              {"// "}
+          <h2 id="planos-title" className="type-eyebrow text-muted-foreground">
+            <span aria-hidden="true" className="mr-1 text-primary">
+              {"//"}
             </span>
             planos
           </h2>
-          <p className="mt-4 max-w-2xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+          <p className="type-heading mt-6 max-w-2xl text-balance text-foreground">
             LLMs ilimitados. Créditos para os modelos frontier.
           </p>
-          <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
+          <p className="type-lead mt-5 max-w-xl text-muted-foreground">
             Todos os planos incluem acesso ilimitado aos LLMs padrão do gateway, mais créditos mensais de usage para os
             modelos frontier mais recentes.
           </p>
@@ -103,11 +103,11 @@ export function Pricing() {
 
                 <div className="flex items-baseline justify-between border-b border-border/70 px-5 py-3">
                   <h3
-                    className={`font-mono text-sm tracking-wide ${plan.highlighted ? "text-ultra" : "text-foreground"}`}
+                    className={`type-micro ${plan.highlighted ? "text-ultra" : "text-foreground"}`}
                   >
                     {plan.name}
                   </h3>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                  <span className="type-eyebrow text-subtle-foreground">
                     {plan.highlighted ? (
                       <span className="text-ultra">recomendado</span>
                     ) : (
@@ -117,18 +117,22 @@ export function Pricing() {
                 </div>
 
                 <div className="px-5 pb-1 pt-5">
-                  <p className="font-mono font-medium tracking-tight text-foreground">
-                    <span className={plan.highlighted ? "text-3xl" : "text-2xl"}>{plan.price}</span>
-                    <span className="ml-1 text-xs text-muted-foreground">{plan.period}</span>
+                  <p className="flex items-baseline gap-1.5 font-sans text-foreground">
+                    <span
+                      className={`font-medium tracking-[-0.04em] tabular-nums ${plan.highlighted ? "text-4xl" : "text-[2rem]"}`}
+                    >
+                      {plan.price}
+                    </span>
+                    <span className="type-label text-subtle-foreground">{plan.period}</span>
                   </p>
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{plan.description}</p>
+                  <p className="type-caption mt-3 text-muted-foreground">{plan.description}</p>
                 </div>
 
                 <ul className="flex-1 space-y-0 px-5 py-3.5">
                   {plan.features.map((f) => (
                     <li
                       key={f}
-                      className="flex gap-2.5 border-b border-border/50 py-2 font-mono text-[11px] leading-relaxed text-muted-foreground last:border-b-0"
+                      className="type-caption flex gap-2.5 border-b border-border/50 py-2.5 text-muted-foreground last:border-b-0"
                     >
                       <span
                         aria-hidden="true"
@@ -142,7 +146,7 @@ export function Pricing() {
                 <div className="mt-auto px-5 pb-5">
                   <Link
                     href="/docs"
-                    className={`inline-flex h-10 w-full items-center justify-between px-4 font-mono text-xs transition-all active:scale-[0.99] ${
+                    className={`type-micro inline-flex h-11 w-full items-center justify-between px-4 transition-all active:scale-[0.99] ${
                       plan.highlighted
                         ? "border border-transparent bg-ultra text-primary-foreground hover:border-foreground"
                         : "border border-border text-foreground hover:border-foreground/40 hover:bg-muted"
@@ -162,7 +166,7 @@ export function Pricing() {
           </div>
         </div>
 
-        <p className="mt-6 font-mono text-[11px] leading-relaxed text-muted-foreground">
+        <p className="type-caption mt-6 text-subtle-foreground">
           <span aria-hidden="true" className="text-ultra">
             *{" "}
           </span>

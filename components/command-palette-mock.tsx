@@ -130,7 +130,7 @@ export function CommandPaletteMock() {
           <TaskGroup title="This Month" tasks={thisMonth} />
         </aside>
 
-        <div className="flex min-w-0 flex-col gap-2 overflow-hidden bg-[#111111] p-3 text-[10px] leading-[1.35] text-[#e8e8e8] sm:p-4 sm:text-[11px]">
+        <div className="flex min-w-0 flex-col gap-2 overflow-hidden bg-[#111111] p-3 text-[10px] leading-[1.35] text-code-fg sm:p-4 sm:text-[11px]">
           <h3 className="font-medium">Nylla Gateway no VS Code</h3>
           <div className="rounded-md border border-[#303030] bg-[#171717] px-2.5 py-2 text-white">
             Configure o VS Code para rotear Claude Code, Codex e Gemini CLI pelo Nylla Gateway

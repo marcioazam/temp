@@ -33,7 +33,7 @@ function MeteredMeter() {
       <div className="mt-3 h-2 w-full bg-muted">
         <span className="meter-fill block h-2 origin-left bg-ultra" />
       </div>
-      <div className="mt-2 flex justify-between font-mono text-[9px] text-muted-foreground/70">
+      <div className="mt-2 flex justify-between font-mono text-[9px] tracking-[0.06em] text-subtle-foreground">
         {["0", "1k", "10k", "100k"].map((tick) => (
           <span key={tick}>{tick}</span>
         ))}
@@ -59,15 +59,15 @@ function FlatMeter() {
       className="relative h-32 overflow-hidden border border-border/70 bg-background/60 p-4"
       style={{ backgroundImage: dots, backgroundSize: "12px 12px" }}
     >
-      <span className="absolute right-3 top-3 font-mono text-[10px] text-foreground/70">flat</span>
+      <span className="type-micro absolute right-3 top-3 text-foreground/70">flat</span>
       <div className="mt-3 h-2 w-full bg-foreground/85" />
-      <div className="mt-2 flex justify-between font-mono text-[9px] text-muted-foreground/70">
+      <div className="mt-2 flex justify-between font-mono text-[9px] tracking-[0.06em] text-subtle-foreground">
         <span>0</span>
         <span>∞</span>
       </div>
       <div className="mt-4 flex items-center gap-2">
         <span className="h-px flex-1 bg-border" />
-        <span className="font-mono text-[10px] text-muted-foreground">sem medidor</span>
+        <span className="type-micro text-subtle-foreground">sem medidor</span>
         <span className="h-px flex-1 bg-border" />
       </div>
     </div>
@@ -79,17 +79,17 @@ export function CatalogSection() {
     <section id="catalogo">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
-          <h2 className="font-mono text-xs text-muted-foreground">
-            <span aria-hidden="true" className="text-primary">{"// "}</span>o catálogo
+          <h2 className="type-eyebrow text-muted-foreground">
+            <span aria-hidden="true" className="mr-1 text-primary">{"//"}</span>o catálogo
           </h2>
-          <p className="mt-4 max-w-3xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+          <p className="type-heading mt-6 max-w-3xl text-balance text-foreground">
             Todos os modelos. Sem prisão.
           </p>
-          <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
+          <p className="type-lead mt-5 max-w-xl text-muted-foreground">
             Um núcleo open-source fixo, sempre ativo, mais uma seleção nova que entra toda semana. Todo plano inclui o
             catálogo completo.
           </p>
-          <p className="mt-6 font-mono text-xs leading-relaxed text-ultra">
+          <p className="type-label mt-6 text-ultra">
             Curada semanalmente por capacidade e custo em todo o catálogo.
           </p>
         </Reveal>
@@ -100,12 +100,12 @@ export function CatalogSection() {
             delay={90}
             className="card-lift flex flex-col border border-border bg-card p-6 md:p-8"
           >
-            <span className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground/70">o problema</span>
+            <span className="type-eyebrow text-subtle-foreground">o problema</span>
             <div className="mt-5">
               <MeteredMeter />
             </div>
-            <h3 className="mt-6 font-mono text-base font-medium text-foreground">Ansiedade por token</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <h3 className="type-subheading mt-6 text-foreground">Ansiedade por token</h3>
+            <p className="type-body mt-3 text-muted-foreground">
               A cobrança medida transforma cada prompt em uma decisão de custo. Você hesita antes de perguntar, e o
               medidor sempre vence.
             </p>
@@ -116,12 +116,12 @@ export function CatalogSection() {
             delay={180}
             className="card-lift elev-window flex flex-col border border-foreground/25 bg-muted p-6 md:p-8"
           >
-            <span className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground/70">na nylla</span>
+            <span className="type-eyebrow text-subtle-foreground">na nylla</span>
             <div className="mt-5">
               <FlatMeter />
             </div>
-            <h3 className="mt-6 font-mono text-base font-medium text-foreground">Preço fixo, catálogo inteiro</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <h3 className="type-subheading mt-6 text-foreground">Preço fixo, catálogo inteiro</h3>
+            <p className="type-body mt-3 text-muted-foreground">
               Uma assinatura, acesso ilimitado aos LLMs padrão e créditos separados para os modelos frontier. Pergunte
               quantas vezes precisar — a fatura não muda.
             </p>
@@ -140,9 +140,9 @@ export function CatalogSection() {
                 aria-hidden="true"
                 className="absolute left-0 top-0 h-px w-full origin-left scale-x-0 bg-ultra/70 transition-transform duration-500 ease-out group-hover:scale-x-100"
               />
-              <span className="font-mono text-[10px] uppercase tracking-wide text-ultra/80">{item.id}</span>
-              <h3 className="mt-3 font-mono text-sm font-medium text-foreground">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              <span className="type-eyebrow text-ultra">{item.id}</span>
+              <h3 className="type-subheading mt-4 text-foreground">{item.title}</h3>
+              <p className="type-body mt-3 text-muted-foreground">{item.body}</p>
             </Reveal>
           ))}
         </ul>

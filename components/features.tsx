@@ -44,16 +44,16 @@ export function Features() {
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)] lg:gap-12">
           <div className="lg:sticky lg:top-24">
-            <h2 className="font-mono text-xs text-muted-foreground">
-              <span aria-hidden="true" className="text-primary">
-                {"// "}
+            <h2 className="type-eyebrow text-muted-foreground">
+              <span aria-hidden="true" className="mr-1 text-primary">
+                {"//"}
               </span>
               recursos
             </h2>
-            <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+            <p className="type-heading mt-6 max-w-xl text-balance text-foreground">
               Um gateway. Todas as rotas resolvidas.
             </p>
-            <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+            <p className="type-lead mt-6 max-w-xl text-pretty text-muted-foreground">
               Cada provedor tem seu SDK, seu limite e sua janela de contexto. O Nylla absorve essa diferença e entrega
               uma superfície única para o seu código e para os seus agentes.
             </p>
@@ -83,11 +83,11 @@ export function Features() {
                         aria-hidden="true"
                         className={`mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out ${isActive ? "scale-110" : ""}`}
                       />
-                      <h3 className={`font-mono text-sm font-medium leading-snug transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}>
+                      <h3 className={`type-subheading transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}>
                         {f.title}
                       </h3>
                     </div>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+                    <p className="type-body mt-3 text-muted-foreground">{f.body}</p>
                     </li>
                   )
                 })}
