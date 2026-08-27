@@ -871,11 +871,12 @@ kbd {
   animation: hf-dot-a-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Nylla's internal steps light up in order, synced to the packet.
-   Inbound (packet inside Nylla, 16–46%): Valida → arrow → Roteia.
-   On return, the final arrow lights exactly when the packet touches Nylla at 80%,
-   then Entrega lights while the packet is inside Nylla, before it exits at 88%.
-   Everything resets to white at 97%, exactly when the packet reaches "Você + Ferramenta". */
+/* Nylla's internal steps use the packet contact points as their clock.
+   Inbound: the packet touches Nylla at 14%, immediately lighting Valida;
+   the first arrow and Roteia follow while the packet remains in Nylla.
+   Return: the packet touches Nylla at 80%, immediately lighting the final arrow;
+   Entrega follows before the packet exits at 88%. Colors only reset at 97%,
+   exactly when the packet reaches "Você + Ferramenta". */
 .hf-step {
   color: var(--foreground);
   animation-duration: 3.2s;
@@ -884,15 +885,15 @@ kbd {
 }
 
 @keyframes hf-step-1 {
-  0%, 17.9% { color: var(--foreground); }
-  18%, 96.9% { color: var(--primary); }
+  0%, 13.9% { color: var(--foreground); }
+  14%, 96.9% { color: var(--primary); }
   97%, 100% { color: var(--foreground); }
 }
 .hf-step-1 { animation-name: hf-step-1; }
 
 @keyframes hf-step-2 {
-  0%, 25.9% { color: var(--foreground); }
-  26%, 96.9% { color: var(--primary); }
+  0%, 23.9% { color: var(--foreground); }
+  24%, 96.9% { color: var(--primary); }
   97%, 100% { color: var(--foreground); }
 }
 .hf-step-2 { animation-name: hf-step-2; }
