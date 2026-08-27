@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import { Reveal } from "@/components/reveal"
 
 const features = [
@@ -24,6 +27,18 @@ const features = [
 ]
 
 export function Features() {
+  const [activeFeature, setActiveFeature] = useState(0)
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    const interval = window.setInterval(() => {
+      setActiveFeature((current) => (current + 1) % features.length)
+    }, 3000)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
   return (
     <section id="recursos">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
@@ -50,27 +65,32 @@ export function Features() {
               style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
             >
               <ul className="relative z-[2] grid gap-3 sm:grid-cols-2">
-                {features.map((f) => (
-                  <li
+                {features.map((f, index) => {
+                  const isActive = index === activeFeature
+
+                  return (
+                    <li
                     key={f.key}
-                    className="group relative flex flex-col border border-border/70 bg-background/85 p-5 backdrop-blur-md transition-transform duration-300 ease-out motion-safe:hover:-translate-y-0.5 md:p-6"
+                    className={`group relative flex flex-col border border-border/70 bg-background/85 p-5 backdrop-blur-md transition-transform duration-300 ease-out motion-safe:hover:-translate-y-0.5 md:p-6 ${isActive ? "motion-safe:-translate-y-0.5" : ""}`}
                   >
                     <span
+                      key={isActive ? `progress-${activeFeature}` : undefined}
                       aria-hidden="true"
-                      className="absolute left-0 top-0 h-px w-full origin-left scale-x-0 bg-primary/70 transition-transform duration-500 ease-out group-hover:scale-x-100"
+                      className={`absolute left-0 top-0 h-px w-full origin-left bg-primary/70 group-hover:scale-x-100 ${isActive ? "animate-feature-progress" : "scale-x-0 transition-transform duration-500 ease-out"}`}
                     />
                     <div className="flex items-start gap-2.5">
                       <span
                         aria-hidden="true"
-                        className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out group-hover:rotate-45 group-hover:scale-110"
+                        className={`mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out group-hover:rotate-45 group-hover:scale-110 ${isActive ? "rotate-45 scale-110" : ""}`}
                       />
-                      <h3 className="font-mono text-sm font-medium leading-snug text-foreground transition-colors duration-300 group-hover:text-primary">
+                      <h3 className={`font-mono text-sm font-medium leading-snug transition-colors duration-300 group-hover:text-primary ${isActive ? "text-primary" : "text-foreground"}`}>
                         {f.title}
                       </h3>
                     </div>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-                  </li>
-                ))}
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           </Reveal>

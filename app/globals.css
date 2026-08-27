@@ -189,6 +189,26 @@
   animation: flow-pulse 2.2s ease-out infinite;
 }
 
+@keyframes feature-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-feature-progress {
+  animation: feature-progress 3s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-feature-progress {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
 /* Anchored sections clear the sticky header */
 section[id] {
   scroll-margin-top: 5rem;
