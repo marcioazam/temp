@@ -27,9 +27,7 @@ export function Hero() {
           </div>
 
           <Reveal delay={180} className="w-full">
-            <div className="border border-border bg-card p-5 sm:p-8 lg:p-10">
-              <HeroFlow />
-            </div>
+            <HeroFlow />
           </Reveal>
         </div>
 
