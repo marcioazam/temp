@@ -270,8 +270,8 @@ className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border bor
   <div className="relative flex h-7 shrink-0 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
   <div className="flex items-center gap-1.5" aria-hidden="true">
   <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-  <span className="size-2.5 rounded-full bg-[#e8e8e8]" />
-  <span className="size-2.5 rounded-full bg-[#e8e8e8]" />
+  <span className="size-2.5 rounded-full bg-[#febc2e]" />
+  <span className="size-2.5 rounded-full bg-[#28c840]" />
   </div>
   <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">Claude Code : taskflow</span>
       </div>
