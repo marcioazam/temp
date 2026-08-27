@@ -76,7 +76,7 @@ export function FaqSection() {
               href="https://wa.me/"
               target="_blank"
               rel="noreferrer"
-              className="type-micro mt-7 inline-flex w-fit items-center gap-2 whitespace-nowrap border border-canvas-paper bg-canvas-paper px-3.5 py-2 text-background transition-opacity hover:opacity-90"
+              className="type-micro mt-7 inline-flex w-fit items-center gap-2 whitespace-nowrap border border-canvas-paper bg-canvas-paper px-3.5 py-2 text-background transition-opacity hover:opacity-90 lg:mt-auto"
             >
               <svg
                 aria-hidden="true"
@@ -89,7 +89,7 @@ export function FaqSection() {
               Whatsapp
             </a>
 
-            <p className="type-small mt-7 text-subtle-foreground lg:mt-auto lg:pt-10">
+            <p className="type-small mt-5 text-subtle-foreground">
               E-mail:{" "}
               <a
                 href="mailto:contato@nylla.com"
