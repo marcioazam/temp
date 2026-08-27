@@ -57,11 +57,8 @@ export function Features() {
                 aria-hidden="true"
                 className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100"
               />
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
-                {f.key}
-              </span>
               <h3
-                className="mt-4 w-fit bg-cover px-3 py-2 font-mono text-base font-medium leading-snug text-foreground"
+                className="w-fit bg-cover px-3 py-2 font-mono text-base font-medium leading-snug text-foreground"
                 style={{
                   backgroundImage:
                     "linear-gradient(rgba(8,8,8,0.62), rgba(8,8,8,0.62)), url('/images/mist-lake.png')",
