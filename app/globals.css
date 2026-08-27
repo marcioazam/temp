@@ -923,14 +923,22 @@ kbd {
    three 3.2s cycles; each model's active window aligns with 58–72% of its
    own cycle (19.3–24% of the full period), rotating the highlight. */
 @keyframes hf-model {
-  0%, 18.6%, 24.6%, 100% { opacity: 0.35; }
-  19.6%, 23.6% { opacity: 1; }
+  0%, 18.6%, 24.6%, 100% {
+    border-color: var(--border);
+    color: var(--foreground);
+    opacity: 0.35;
+  }
+  19.6%, 23.6% {
+    border-color: var(--foreground);
+    color: var(--foreground);
+    opacity: 1;
+  }
 }
 .hf-model {
   opacity: 0.35;
   animation: hf-model 9.6s ease-in-out infinite;
   animation-delay: calc(var(--model, 0) * 3.2s);
-  will-change: opacity;
+  will-change: border-color, color, opacity;
 }
 
 @media (prefers-reduced-motion: reduce) {
