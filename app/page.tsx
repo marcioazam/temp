@@ -16,6 +16,7 @@ export default function Page() {
     <LanguageProvider>
       <SiteHeader />
       <main>
+        <FinalCta />
         <Hero />
         <Harnesses />
         <NpmSection />
@@ -24,7 +25,6 @@ export default function Page() {
         <Features />
         <Pricing />
         <FaqSection />
-        <FinalCta />
       </main>
       <SiteFooter />
     </LanguageProvider>

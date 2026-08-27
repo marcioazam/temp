@@ -12,13 +12,13 @@ export function Hero() {
         <div className="flex flex-col gap-14 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
           <div className="max-w-3xl shrink-0">
             <Reveal>
-              <h1 className="font-sans text-[2.75rem] font-medium leading-[1.02] tracking-[-0.04em] text-foreground sm:text-[3.5rem] md:text-6xl">
+              <h2 className="font-sans text-[2.75rem] font-medium leading-[1.02] tracking-[-0.04em] text-foreground sm:text-[3.5rem] md:text-6xl">
                 Um gateway.
                 <br />
                 Todos os LLMs.
                 <br />
                 <span className="text-muted-foreground">Qualquer harness.</span>
-              </h1>
+              </h2>
             </Reveal>
 
             <Reveal delay={160}>
