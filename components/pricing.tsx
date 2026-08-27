@@ -83,14 +83,16 @@ export function Pricing() {
           <CrossMark className="-bottom-[5px] -left-[5px]" />
           <CrossMark className="-bottom-[5px] -right-[5px]" />
 
-          <div className="grid grid-cols-1 border border-border lg:grid-cols-3">
+          <div className="photo-grain grid grid-cols-1 gap-2 bg-[url('/images/pricing-landscape.png')] bg-cover bg-center p-2 max-lg:gap-3 max-lg:p-3 lg:grid-cols-3">
             {plans.map((plan, i) => (
               <Reveal
                 as="article"
                 key={plan.name}
                 delay={i * 110}
-                className={`group relative flex flex-col border-border max-lg:not-first:border-t lg:not-first:border-l ${
-                  plan.highlighted ? "bg-ultra/[0.04]" : "bg-transparent"
+                className={`group relative flex flex-col border backdrop-blur-sm ${
+                  plan.highlighted
+                    ? "border-ultra/40 bg-background/[0.93]"
+                    : "border-border/60 bg-background/[0.88]"
                 }`}
               >
                 {plan.highlighted && (
@@ -99,7 +101,7 @@ export function Pricing() {
                   </span>
                 )}
 
-                <div className="flex items-baseline justify-between border-b border-border px-6 py-4 md:px-8">
+                <div className="flex items-baseline justify-between border-b border-border/70 px-6 py-4 md:px-8">
                   <h3
                     className={`font-mono text-sm tracking-wide ${plan.highlighted ? "text-ultra" : "text-foreground"}`}
                   >
