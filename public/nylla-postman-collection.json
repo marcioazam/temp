@@ -1,0 +1,67 @@
+{
+  "info": {
+    "_postman_id": "d8260170-1d69-4c87-aab3-nylla-gateway",
+    "name": "Nylla Gateway API",
+    "description": "Coleção oficial para testar o endpoint compatível com OpenAI do Nylla Gateway.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{nylla_api_key}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://api.nylla.ai",
+      "type": "string"
+    },
+    {
+      "key": "nylla_api_key",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Chat Completions",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"auto\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Olá! Explique o Nylla em uma frase.\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/chat/completions",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "chat",
+            "completions"
+          ]
+        },
+        "description": "Envia uma conversa ao Nylla Gateway usando roteamento automático de modelo."
+      },
+      "response": []
+    }
+  ]
+}
