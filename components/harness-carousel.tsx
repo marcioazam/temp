@@ -5,7 +5,7 @@ import { CommandPaletteMock } from "@/components/command-palette-mock"
 import { ClaudeCodeWindow } from "@/components/editor-mock"
 import { HermesTerminalMock } from "@/components/hermes-terminal-mock"
 
-const FADE_MS = 520
+const FADE_MS = 380
 
 // Cada slide fica visível pelo tempo do próprio loop de animação interno.
 const SLIDES = [
