@@ -22,9 +22,6 @@ const TOOLSETS: Array<[string, string]> = [
   ["browser:", "browser_back, browser_click, ..."],
   ["code_execution:", "execute_code"],
   ["cronjob:", "cronjob"],
-  ["delegation:", "delegate_task"],
-  ["file:", "patch, read_file, write_file"],
-  ["gateway:", "route_model, list_models, ..."],
 ]
 
 const SKILLSETS: Array<[string, string]> = [
