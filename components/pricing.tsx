@@ -43,7 +43,7 @@ export function Pricing() {
         </p>
 
         <div className="relative mt-14">
-          <p className="type-caption mb-4 flex items-center justify-end gap-2 text-subtle-foreground">
+          <p className="type-caption mb-4 flex items-center justify-start gap-2 text-subtle-foreground">
             <span aria-hidden="true" className="size-1 rounded-full bg-ultra" />
             Créditos renovados mensalmente. Cancele quando quiser.
           </p>
