@@ -36,13 +36,13 @@ function InstallCommand() {
   }
 
   return (
-    <div className="flex min-h-12 max-w-sm items-stretch border border-background bg-card/50 pl-4">
+    <div className="flex min-h-12 max-w-sm items-stretch border border-border bg-card/50 pl-4">
       <span className="self-center font-mono text-sm text-primary" aria-hidden="true">$</span>
       <code className="ml-3 min-w-0 flex-1 self-center truncate font-mono text-sm text-foreground">{command}</code>
       <button
         type="button"
         onClick={copy}
-        className="flex w-12 shrink-0 items-center justify-center self-stretch border-l border-background bg-background text-foreground transition-colors hover:bg-muted hover:text-primary"
+        className="flex w-12 shrink-0 items-center justify-center self-stretch bg-secondary text-foreground transition-colors hover:bg-muted hover:text-primary"
         aria-label={copied ? "Comando copiado" : `Copiar ${command}`}
         title={copied ? "Copiado" : "Copiar comando"}
       >
