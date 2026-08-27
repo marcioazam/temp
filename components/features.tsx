@@ -19,7 +19,7 @@ const features = [
   {
     key: "frontier",
     title: "Frontier por créditos ou ilimitado",
-    body: "Use modelos frontier com créditos sob demanda ou escolha acesso ilimitado — tudo em um único gateway, sem configurar chaves por provedor.",
+    body: "Use modelos frontier com créditos sob demanda ou escolha acesso ilimitado, tudo em um único gateway, sem configurar chaves por provedor.",
   },
 ]
 
