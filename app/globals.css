@@ -1054,8 +1054,8 @@ kbd {
 /* Hero flow diagram — one 3.2s cycle shared by every element.
    Request packet travels down connector A (2–16%), Nylla steps light up in
    sequence (~18–46%), and the packet crosses connector B (46–58%). The
-   selected model stays white until 76%, creating a short, readable dwell
-   before the response climbs back through B (76–86%) and A (90–99%).
+   selected model stays white until 84%, creating a longer, readable dwell
+   before the response climbs back through B (84–92%) and A (94–99%).
    Compositor-only: opacity + translate. */
 .hf-dot {
   position: absolute;
@@ -1088,19 +1088,19 @@ kbd {
 }
 
 @keyframes hf-dot-b-up {
-  0%, 76% { opacity: 0; transform: translateY(40px); }
-  78% { opacity: 1; }
-  84% { opacity: 1; transform: translateY(0); }
-  86%, 100% { opacity: 0; transform: translateY(0); }
+  0%, 84% { opacity: 0; transform: translateY(40px); }
+  85% { opacity: 1; }
+  91% { opacity: 1; transform: translateY(0); }
+  92%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-b-up {
   animation: hf-dot-b-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes hf-dot-a-up {
-  0%, 90% { opacity: 0; transform: translateY(40px); }
-  91% { opacity: 1; }
-  99% { opacity: 1; transform: translateY(0); }
+  0%, 94% { opacity: 0; transform: translateY(40px); }
+  95% { opacity: 1; }
+  99.4% { opacity: 1; transform: translateY(0); }
   99.8%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-a-up {
@@ -1110,9 +1110,9 @@ kbd {
 /* Nylla's internal steps use the packet contact points as their clock.
    Inbound: the packet touches Nylla at 14%, immediately lighting Valida;
    the first arrow and Roteia follow while the packet remains in Nylla.
-   Return: after the model dwell, the packet touches Nylla at 84%, lighting
-   the final arrow; Entrega follows before it exits at 90%. Colors reset at
-   99%, exactly when the packet reaches "Você + Ferramenta". */
+   Return: after the longer model dwell, the packet touches Nylla at 91%,
+   lighting the final arrow; Entrega follows before it exits at 94%. Colors
+   reset at 99%, when the packet reaches "Você + Ferramenta". */
 .hf-step {
   color: var(--foreground);
   animation-duration: 3.2s;
@@ -1142,28 +1142,28 @@ kbd {
 .hf-step-3 { animation-name: hf-step-3; }
 
 @keyframes hf-step-4 {
-  0%, 83.9% { color: var(--foreground); }
-  84%, 98.9% { color: var(--primary); }
+  0%, 90.9% { color: var(--foreground); }
+  91%, 98.9% { color: var(--primary); }
   99%, 100% { color: var(--foreground); }
 }
 .hf-step-4 { animation-name: hf-step-4; }
 
 @keyframes hf-step-5 {
-  0%, 87.9% { color: var(--foreground); }
-  88%, 98.9% { color: var(--primary); }
+  0%, 93.9% { color: var(--foreground); }
+  94%, 98.9% { color: var(--primary); }
   99%, 100% { color: var(--foreground); }
 }
 .hf-step-5 { animation-name: hf-step-5; }
 
 /* One model stays white while the packet is inside it. The 16s period is
    five 3.2s cycles (one for each model); its active window aligns with
-   58–76% of that model's cycle, including the dwell before return. */
+   58–84% of that model's cycle, including the longer dwell before return. */
 @keyframes hf-model {
-  0%, 11.1%, 15.7%, 100% {
+  0%, 11.1%, 17.3%, 100% {
     color: var(--foreground);
     opacity: 0.35;
   }
-  12.1%, 15.2% {
+  12.1%, 16.8% {
     color: var(--foreground);
     opacity: 1;
   }
