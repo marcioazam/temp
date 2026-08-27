@@ -6,7 +6,7 @@ const plans = [
     price: "Em breve",
     period: "",
     tagline: "individual",
-    features: ["LLMs padrão ilimitados", "US$5 em créditos frontier", "1 harness", "Suporte da comunidade"],
+    features: ["Detalhes em breve"],
     highlighted: false,
   },
   {
@@ -14,13 +14,7 @@ const plans = [
     price: "Em breve",
     period: "",
     tagline: "recomendado",
-    features: [
-      "LLMs padrão ilimitados",
-      "US$25 em créditos frontier",
-      "Harnesses ilimitados",
-      "Roteamento avançado",
-      "Suporte prioritário",
-    ],
+    features: ["Detalhes em breve"],
     highlighted: true,
   },
   {
@@ -28,13 +22,7 @@ const plans = [
     price: "Em breve",
     period: "",
     tagline: "times",
-    features: [
-      "Tudo do pro",
-      "Créditos compartilhados",
-      "Chaves centralizadas",
-      "Consumo por membro",
-      "SSO e permissões",
-    ],
+    features: ["Detalhes em breve"],
     highlighted: false,
   },
 ]
@@ -107,7 +95,7 @@ export function Pricing() {
                         : "border border-border text-foreground"
                     }`}
                   >
-                    assinar {plan.name}
+                    em breve
                   </Link>
                 </div>
               </article>
