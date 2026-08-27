@@ -8,7 +8,7 @@ const MODELS = [
   { name: "Claude", src: icon("claude") },
   { name: "Gemini", src: icon("gemini") },
   { name: "Deepseek", src: icon("deepseek") },
-  { name: "Nylla LLM", src: null },
+  { name: "Kimi", src: icon("kimi") },
 ]
 const STEPS = ["Valida", "Roteia", "Entrega"]
 
@@ -71,19 +71,15 @@ export function HeroFlow() {
           {MODELS.map((model, i) => (
             <span
               key={model.name}
-              className="hf-model flex items-center gap-1 whitespace-nowrap border border-border px-1.5 py-1 text-foreground"
+              className="hf-model flex items-center gap-1 whitespace-nowrap px-1.5 py-1 text-foreground"
               style={{ "--model": i } as React.CSSProperties}
             >
-              {model.src ? (
-                <img
-                  src={model.src || "/placeholder.svg"}
-                  alt=""
-                  className="h-2.5 w-2.5 shrink-0 object-contain grayscale brightness-0 invert"
-                  loading="lazy"
-                />
-              ) : (
-                <NyllaLogo aria-hidden="true" className="h-2.5 w-2.5 shrink-0 text-foreground" />
-              )}
+              <img
+                src={model.src}
+                alt=""
+                className="h-2.5 w-2.5 shrink-0 object-contain grayscale brightness-0 invert"
+                loading="lazy"
+              />
               {model.name}
             </span>
           ))}
