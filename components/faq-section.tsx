@@ -88,6 +88,16 @@ export function FaqSection() {
               </svg>
               Whatsapp
             </a>
+
+            <p className="type-small mt-7 text-subtle-foreground">
+              E-mail:{" "}
+              <a
+                href="mailto:contato@nylla.com"
+                className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
+              >
+                contato@nylla.com
+              </a>
+            </p>
           </Reveal>
         </div>
 
