@@ -3,13 +3,15 @@
 import { useEffect, useState } from "react"
 import { CommandPaletteMock } from "@/components/command-palette-mock"
 import { ClaudeCodeWindow } from "@/components/editor-mock"
+import { HermesTerminalMock } from "@/components/hermes-terminal-mock"
 
 const SLIDE_MS = 720
 
 // Cada slide fica visível pelo tempo do próprio loop de animação interno.
 const SLIDES = [
-  { id: "vscode", label: "VS Code", duration: 11_600 },
+  { id: "vscode", label: "VS Code", duration: 5_800 },
   { id: "claude", label: "Claude Code", duration: 16_000 },
+  { id: "hermes", label: "Hermes Agent", duration: 22_000 },
 ] as const
 
 export function HarnessCarousel() {
@@ -81,7 +83,15 @@ export function HarnessCarousel() {
               aria-roledescription="slide"
               aria-label={slide.label}
             >
-              {slide.id === "vscode" ? <CommandPaletteMock /> : <ClaudeCodeWindow />}
+              {slide.id === "vscode" ? (
+                <CommandPaletteMock />
+              ) : slide.id === "claude" ? (
+                <ClaudeCodeWindow />
+              ) : (
+                <div className="pointer-events-none h-full w-full select-none">
+                  <HermesTerminalMock />
+                </div>
+              )}
             </div>
           )
         })}

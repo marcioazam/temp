@@ -313,22 +313,32 @@ className="@container flex h-full w-full flex-col overflow-hidden rounded-[10px]
         <div className="flex min-w-0 items-center justify-between gap-3 px-1 pt-1.5 text-[7px] leading-none text-[#77736c] sm:text-[8px] md:text-[9px]">
           <div className="flex min-w-0 items-center gap-1.5 overflow-hidden whitespace-nowrap">
             <span className="shrink-0">? for shortcuts</span>
-            <span className="hidden text-[#4f4c47] @xl:inline" aria-hidden="true">·</span>
-            <span className="hidden text-[#8d8981] @xl:inline">/users/nylla/taskflow</span>
-            <span className="hidden text-[#4f4c47] @2xl:inline" aria-hidden="true">·</span>
-            <span className="hidden text-[#aaa69f] @2xl:inline">main</span>
+            <span className="hidden items-center gap-1.5 @xl:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-[#8d8981]">/users/nylla/taskflow</span>
+            </span>
+            <span className="hidden items-center gap-1.5 @2xl:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-[#aaa69f]">main</span>
+            </span>
           </div>
           <div className="flex shrink-0 items-center justify-end gap-1.5 whitespace-nowrap">
 <span className="inline-flex items-center gap-1 text-[#e8e8e8]">
   <span className="relative top-px block size-1 shrink-0 rounded-full bg-[#e8e8e8]" aria-hidden="true" />
   <span className="leading-none">Thinking on</span>
             </span>
-            <span className="hidden text-[#4f4c47] @sm:inline" aria-hidden="true">·</span>
-            <span className="hidden text-primary @lg:inline">Nylla Gateway</span>
-            <span className="hidden text-[#4f4c47] @sm:inline" aria-hidden="true">·</span>
-            <span className="hidden text-primary @sm:inline">{currentModel}</span>
-            <span className="hidden text-[#4f4c47] @2xl:inline" aria-hidden="true">·</span>
-            <span className="hidden text-[#e8e8e8] @2xl:inline">Connected · 16ms</span>
+            <span className="hidden items-center gap-1.5 @lg:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-primary">Nylla Gateway</span>
+            </span>
+            <span className="hidden items-center gap-1.5 @sm:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-primary">{currentModel}</span>
+            </span>
+            <span className="hidden items-center gap-1.5 @2xl:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-[#e8e8e8]">Connected · 16ms</span>
+            </span>
           </div>
         </div>
       </div>
