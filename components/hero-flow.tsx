@@ -28,7 +28,7 @@ export function HeroFlow() {
     >
       <div className="flex h-full flex-col justify-center p-5 sm:p-8 lg:p-10">
         {/* Node: user + tool */}
-        <div className="flex flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
+        <div className="flex min-h-[50px] flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
           <span className="text-muted-foreground">Você:</span>
           <span className="text-foreground">Claude Code, Codex, Cursor, Gemini CLI, etc...</span>
         </div>
