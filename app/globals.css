@@ -823,10 +823,10 @@ kbd {
    and A (84–96%). Compositor-only: opacity + translate. */
 .hf-dot {
   position: absolute;
-  left: -1.5px;
+  left: -1px;
   top: 0;
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
   opacity: 0;
   will-change: transform, opacity;
 }
