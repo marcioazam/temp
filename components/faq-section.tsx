@@ -1,3 +1,5 @@
+import { MessageCircle } from "lucide-react"
+
 import { Reveal } from "@/components/reveal"
 
 const questions = [
@@ -71,6 +73,16 @@ export function FaqSection() {
               </a>
               <span className="text-foreground">.</span>
             </p>
+
+            <a
+              href="https://wa.me/"
+              target="_blank"
+              rel="noreferrer"
+              className="type-micro mt-7 inline-flex w-fit items-center gap-2 whitespace-nowrap border border-canvas-paper bg-canvas-paper px-3.5 py-2 text-background transition-opacity hover:opacity-90"
+            >
+              <MessageCircle aria-hidden="true" className="size-3.5" strokeWidth={1.75} />
+              Whatsapp
+            </a>
           </Reveal>
         </div>
 
