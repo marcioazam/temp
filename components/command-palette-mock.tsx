@@ -95,7 +95,7 @@ function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) 
             className={`flex items-center gap-2.5 rounded-md px-2.5 py-2 text-[11px] text-[#d4d4d4] ${task.active ? "bg-[#252525]" : ""}`}
           >
             <span className="flex size-3.5 shrink-0 items-center justify-center"><TaskIcon type={task.type} active={task.active} /></span>
-            <span className="truncate">{task.label}</span>
+            <span className={`truncate ${task.active ? "text-primary" : ""}`}>{task.label}</span>
           </li>
         ))}
       </ul>
