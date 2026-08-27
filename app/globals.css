@@ -1053,9 +1053,10 @@ kbd {
 
 /* Hero flow diagram — one 3.2s cycle shared by every element.
    Request packet travels down connector A (2–16%), Nylla steps light up in
-   sequence (~18–46%), the packet crosses connector B (46–58%), a model
-   activates (58–72%), then the response packet climbs back up B (72–82%)
-   and A (84–96%). Compositor-only: opacity + translate. */
+   sequence (~18–46%), and the packet crosses connector B (46–58%). The
+   selected model stays white until 76%, creating a short, readable dwell
+   before the response climbs back through B (76–86%) and A (90–99%).
+   Compositor-only: opacity + translate. */
 .hf-dot {
   position: absolute;
   left: -1px;
@@ -1087,20 +1088,20 @@ kbd {
 }
 
 @keyframes hf-dot-b-up {
-  0%, 72% { opacity: 0; transform: translateY(40px); }
-  74% { opacity: 1; }
-  80% { opacity: 1; transform: translateY(0); }
-  82%, 100% { opacity: 0; transform: translateY(0); }
+  0%, 76% { opacity: 0; transform: translateY(40px); }
+  78% { opacity: 1; }
+  84% { opacity: 1; transform: translateY(0); }
+  86%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-b-up {
   animation: hf-dot-b-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes hf-dot-a-up {
-  0%, 88% { opacity: 0; transform: translateY(40px); }
-  89% { opacity: 1; }
-  97% { opacity: 1; transform: translateY(0); }
-  98%, 100% { opacity: 0; transform: translateY(0); }
+  0%, 90% { opacity: 0; transform: translateY(40px); }
+  91% { opacity: 1; }
+  99% { opacity: 1; transform: translateY(0); }
+  99.8%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-a-up {
   animation: hf-dot-a-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
@@ -1109,9 +1110,9 @@ kbd {
 /* Nylla's internal steps use the packet contact points as their clock.
    Inbound: the packet touches Nylla at 14%, immediately lighting Valida;
    the first arrow and Roteia follow while the packet remains in Nylla.
-   Return: the packet touches Nylla at 80%, immediately lighting the final arrow;
-   Entrega follows before the packet exits at 88%. Colors only reset at 97%,
-   exactly when the packet reaches "Você + Ferramenta". */
+   Return: after the model dwell, the packet touches Nylla at 84%, lighting
+   the final arrow; Entrega follows before it exits at 90%. Colors reset at
+   99%, exactly when the packet reaches "Você + Ferramenta". */
 .hf-step {
   color: var(--foreground);
   animation-duration: 3.2s;
@@ -1121,57 +1122,55 @@ kbd {
 
 @keyframes hf-step-1 {
   0%, 13.9% { color: var(--foreground); }
-  14%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  14%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-1 { animation-name: hf-step-1; }
 
 @keyframes hf-step-2 {
   0%, 23.9% { color: var(--foreground); }
-  24%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  24%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-2 { animation-name: hf-step-2; }
 
 @keyframes hf-step-3 {
   0%, 33.9% { color: var(--foreground); }
-  34%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  34%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-3 { animation-name: hf-step-3; }
 
 @keyframes hf-step-4 {
-  0%, 79.9% { color: var(--foreground); }
-  80%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  0%, 83.9% { color: var(--foreground); }
+  84%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-4 { animation-name: hf-step-4; }
 
 @keyframes hf-step-5 {
-  0%, 83.9% { color: var(--foreground); }
-  84%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  0%, 87.9% { color: var(--foreground); }
+  88%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-5 { animation-name: hf-step-5; }
 
-/* One model highlighted while the request lands on it. The 9.6s period is
-   three 3.2s cycles; each model's active window aligns with 58–72% of its
-   own cycle (19.3–24% of the full period), rotating the highlight. */
+/* One model stays white while the packet is inside it. The 16s period is
+   five 3.2s cycles (one for each model); its active window aligns with
+   58–76% of that model's cycle, including the dwell before return. */
 @keyframes hf-model {
-  0%, 18.6%, 24.6%, 100% {
-    border-color: var(--border);
+  0%, 11.1%, 15.7%, 100% {
     color: var(--foreground);
     opacity: 0.35;
   }
-  19.6%, 23.6% {
-    border-color: var(--foreground);
+  12.1%, 15.2% {
     color: var(--foreground);
     opacity: 1;
   }
 }
 .hf-model {
   opacity: 0.35;
-  animation: hf-model 9.6s ease-in-out infinite;
+  animation: hf-model 16s ease-in-out infinite;
   animation-delay: calc(var(--model, 0) * 3.2s);
   will-change: border-color, color, opacity;
 }
