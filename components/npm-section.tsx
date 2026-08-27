@@ -101,7 +101,7 @@ export function NpmSection() {
 
         <div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
           <Reveal className="md:order-1 md:pr-6">
-          <p className="type-heading max-w-lg text-balance text-foreground">
+          <p className="type-title max-w-xl text-balance text-foreground">
             Um pacote para conectar qualquer harness.
           </p>
           <p className="type-lead mt-5 max-w-md text-pretty text-muted-foreground">
