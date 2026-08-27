@@ -221,7 +221,7 @@ export default function PrivacyPage() {
 
           <Link
             href="/"
-            className="type-caption mt-14 inline-flex text-muted-foreground transition-colors hover:text-foreground"
+            className="type-micro mt-14 inline-flex items-center whitespace-nowrap border border-foreground/45 bg-background px-3.5 py-2 text-foreground transition-colors hover:border-foreground hover:bg-background"
           >
             Voltar ao início
           </Link>
