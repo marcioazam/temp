@@ -71,19 +71,19 @@ export function Features() {
                   return (
                     <li
                     key={f.key}
-                    className={`group relative flex flex-col border border-border/70 bg-background/85 p-5 backdrop-blur-md transition-transform duration-300 ease-out motion-safe:hover:-translate-y-0.5 md:p-6 ${isActive ? "motion-safe:-translate-y-0.5" : ""}`}
+                    className={`relative flex flex-col border border-border/70 bg-background/85 p-5 backdrop-blur-md transition-transform duration-300 ease-out md:p-6 ${isActive ? "motion-safe:-translate-y-0.5" : ""}`}
                   >
                     <span
                       key={isActive ? `progress-${activeFeature}` : undefined}
                       aria-hidden="true"
-                      className={`absolute left-0 top-0 h-px w-full origin-left bg-primary/70 group-hover:scale-x-100 ${isActive ? "animate-feature-progress" : "scale-x-0 transition-transform duration-500 ease-out"}`}
+                      className={`absolute left-0 top-0 h-px w-full origin-left bg-primary/70 ${isActive ? "animate-feature-progress" : "scale-x-0"}`}
                     />
                     <div className="flex items-start gap-2.5">
                       <span
                         aria-hidden="true"
-                        className={`mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-110 ${isActive ? "scale-110" : ""}`}
+                        className={`mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out ${isActive ? "scale-110" : ""}`}
                       />
-                      <h3 className={`font-mono text-sm font-medium leading-snug transition-colors duration-300 group-hover:text-primary ${isActive ? "text-primary" : "text-foreground"}`}>
+                      <h3 className={`font-mono text-sm font-medium leading-snug transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}>
                         {f.title}
                       </h3>
                     </div>
