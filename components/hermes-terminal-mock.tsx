@@ -181,13 +181,9 @@ export function HermesTerminalMock({ isRunning = true }: { isRunning?: boolean }
 
   useEffect(() => {
     if (!isRunning) return
-    if (!nextLine) {
-      const restart = window.setTimeout(() => {
-        setVisibleCount(0)
-        setDraft("")
-      }, 5200)
-      return () => window.clearTimeout(restart)
-    }
+    // O carrossel remonta o Hermes na próxima exibição; mantenha o último
+    // quadro estável para não reiniciar o loop antes do fade-out.
+    if (!nextLine) return
 
     if (isTyping) {
       if (draft.length < nextLine.text.length) {

@@ -11,7 +11,7 @@ const FADE_MS = 380
 const SLIDES = [
   { id: "vscode", label: "VS Code", duration: 7_500 },
   { id: "claude", label: "Claude Code", duration: 16_000 },
-  { id: "hermes", label: "Hermes Agent", duration: 22_000 },
+  { id: "hermes", label: "Hermes Agent", duration: 15_000 },
 ] as const
 
 export function HarnessCarousel() {
