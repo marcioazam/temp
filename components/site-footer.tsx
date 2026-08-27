@@ -19,7 +19,7 @@ export function SiteFooter() {
         </div>
         <nav
           aria-label="Rodapé"
-          className="type-label grid grid-flow-col grid-rows-5 gap-x-12 gap-y-3 self-center text-muted-foreground md:ml-auto"
+          className="type-label grid grid-flow-col grid-rows-4 gap-x-12 gap-y-3 self-center text-muted-foreground md:ml-auto"
         >
           <Link href="/#sobre" className="transition-colors hover:text-foreground">
             Sobre
@@ -44,9 +44,6 @@ export function SiteFooter() {
           </Link>
           <Link href="/#faq" className="transition-colors hover:text-foreground">
             FAQ
-          </Link>
-          <Link href="/#contato" className="transition-colors hover:text-foreground">
-            Contato
           </Link>
         </nav>
       </div>

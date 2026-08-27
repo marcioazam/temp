@@ -7,7 +7,6 @@ import { Harnesses } from "@/components/harnesses"
 import { NpmSection } from "@/components/npm-section"
 import { Pricing } from "@/components/pricing"
 import { FaqSection } from "@/components/faq-section"
-import { ContactSection } from "@/components/contact-section"
 import { FinalCta } from "@/components/final-cta"
 import { SiteFooter } from "@/components/site-footer"
 import { LanguageProvider } from "@/components/language-provider"
@@ -26,7 +25,6 @@ export default function Page() {
         <RouteComparison />
         <Pricing />
         <FaqSection />
-        <ContactSection />
       </main>
       <SiteFooter />
     </LanguageProvider>
