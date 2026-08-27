@@ -62,11 +62,9 @@ export function Pricing() {
     <section id="planos" aria-labelledby="planos-title">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
-          <h2 id="planos-title" className="type-eyebrow text-muted-foreground">
-            <span aria-hidden="true" className="mr-1 text-primary">
-              {"//"}
-            </span>
-            planos
+          <h2 id="planos-title" className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+            <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+            <span>planos</span>
           </h2>
           <p className="type-heading mt-6 max-w-2xl text-balance text-foreground">
             LLMs ilimitados. Créditos para os modelos frontier.

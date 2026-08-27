@@ -58,11 +58,9 @@ export function FaqSection() {
       <div className="grid w-full lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)]">
         <div className="bg-background px-4 py-16 md:px-9 md:py-24 lg:pr-12">
           <Reveal className="lg:sticky lg:top-24">
-            <h2 id="faq-title" className="type-eyebrow text-muted-foreground">
-              <span aria-hidden="true" className="mr-1 text-primary">
-                {"//"}
-              </span>
-              faq
+            <h2 id="faq-title" className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+              <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>faq</span>
             </h2>
             <p className="type-heading mt-6 max-w-xl text-balance text-foreground">
               Perguntas frequentes.

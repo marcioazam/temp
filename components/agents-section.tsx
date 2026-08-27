@@ -6,8 +6,9 @@ export function AgentsSection() {
     <section id="agents" className="border-b border-border">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
-          <h2 className="type-eyebrow text-muted-foreground">
-            <span aria-hidden="true" className="mr-1 text-primary">{"//"}</span>agents
+          <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+            <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+            <span>agents</span>
           </h2>
           <p className="type-heading mt-6 max-w-2xl text-balance text-foreground">
             Um command center para todos os seus agents.

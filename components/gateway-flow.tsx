@@ -104,8 +104,9 @@ export function GatewayFlow() {
   return (
     <section id="endpoint">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <h2 className="type-eyebrow text-muted-foreground">
-          <span aria-hidden="true" className="mr-1 text-primary">{"//"}</span>endpoint
+        <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+          <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+          <span>endpoint</span>
         </h2>
 
         <div className="mt-6 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">

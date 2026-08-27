@@ -97,8 +97,9 @@ export function NpmSection() {
     <section id="instalar">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
-          <h2 className="type-eyebrow text-muted-foreground">
-            <span aria-hidden="true" className="mr-1 text-primary">{"//"}</span>plug and play
+          <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+            <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+            <span>plug and play</span>
           </h2>
         </Reveal>
 

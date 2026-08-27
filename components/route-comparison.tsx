@@ -57,8 +57,9 @@ export function RouteComparison() {
           <Reveal>
           <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
             <div className="p-5 md:p-6">
-              <h2 className="type-eyebrow text-muted-foreground">
-                <span aria-hidden="true" className="mr-1 text-primary">{"//"}</span>comparativo
+              <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+                <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+                <span>comparativo</span>
               </h2>
               <p className="type-heading mt-6 max-w-xl text-balance text-foreground">
                 Compare a rota, não o hype.
