@@ -133,16 +133,14 @@ export function GatewayFlow() {
             className="photo-grain flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
-            <div className="mx-auto w-full max-w-[42rem] overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
-              <div className="relative flex h-7 items-center justify-between border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
-                <div className="flex items-center gap-1.5" aria-hidden="true">
-                  <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-                  <span className="size-2.5 rounded-full bg-[#febc2e]" />
-                  <span className="size-2.5 rounded-full bg-[#28c840]" />
+            <div className="mac-window mx-auto w-full max-w-[42rem]">
+              <div className="mac-titlebar justify-between">
+                <div className="mac-dots" aria-hidden="true">
+                  <span className="mac-dot mac-dot-close" />
+                  <span className="mac-dot mac-dot-min" />
+                  <span className="mac-dot mac-dot-max" />
                 </div>
-                <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
-                  api.nylla.ai
-                </span>
+                <span className="mac-titlebar-title">api.nylla.ai</span>
                 <svg
                   aria-hidden="true"
                   className="h-3.5 w-3.5 text-muted-foreground"

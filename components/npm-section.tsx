@@ -124,16 +124,14 @@ export function NpmSection() {
 
         <Reveal delay={120} className="md:order-2">
           <div className="photo-grain flex min-h-[27rem] items-center bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
-            <div className="elev-window mx-auto w-full max-w-xl overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
-              <div className="relative flex h-7 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
-                <div className="flex items-center gap-1.5" aria-hidden="true">
-                  <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-                  <span className="size-2.5 rounded-full bg-[#febc2e]" />
-                  <span className="size-2.5 rounded-full bg-[#28c840]" />
+            <div className="mac-window mx-auto w-full max-w-xl">
+              <div className="mac-titlebar">
+                <div className="mac-dots" aria-hidden="true">
+                  <span className="mac-dot mac-dot-close" />
+                  <span className="mac-dot mac-dot-min" />
+                  <span className="mac-dot mac-dot-max" />
                 </div>
-                <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
-                  bash — nylla@linux
-                </span>
+                <span className="mac-titlebar-title">bash — nylla@linux</span>
               </div>
 
               <div

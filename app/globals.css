@@ -339,16 +339,115 @@ section[id] {
     0 40px 80px -16px rgba(0, 0, 0, 0.24);
 }
 
-/* Traffic-light controls (monochrome, brand-consistent) */
+/* ---- Unified window chrome (modern macOS) ----------------------
+   Single source of truth for every app mock on the page: radius,
+   border, elevation, titlebar and traffic lights. Change it here and
+   all mocks stay identical. */
+:root {
+  --win-radius: 10px;
+  --win-bg: #0a0a09;
+  --win-border: rgba(255, 255, 255, 0.1);
+  --win-chrome-border: rgba(255, 255, 255, 0.075);
+  --win-chrome-top: #202020;
+  --win-chrome-bottom: #171717;
+  --win-title: #a3a3a3;
+}
+
+.mac-window {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--win-radius);
+  border: 1px solid var(--win-border);
+  background: var(--win-bg);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.55),
+    0 1px 1px rgba(0, 0, 0, 0.16),
+    0 2px 4px rgba(0, 0, 0, 0.14),
+    0 8px 16px rgba(0, 0, 0, 0.18),
+    0 18px 36px -8px rgba(0, 0, 0, 0.34),
+    0 40px 72px -18px rgba(0, 0, 0, 0.55);
+}
+
+/* Titlebar: subtle vertical sheen + hairline separator, like Sonoma */
+.mac-titlebar {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 1.75rem;
+  padding-inline: 0.625rem;
+  border-bottom: 1px solid var(--win-chrome-border);
+  background: linear-gradient(180deg, var(--win-chrome-top), var(--win-chrome-bottom));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+@media (min-width: 768px) {
+  .mac-titlebar {
+    height: 2.25rem;
+    padding-inline: 0.75rem;
+  }
+}
+
+.mac-titlebar-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--win-title);
+}
+@media (min-width: 768px) {
+  .mac-titlebar-title {
+    font-size: 10px;
+  }
+}
+
+.mac-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/* Traffic lights: flat fill + inner ring and top gloss */
+.mac-dot,
 .traffic {
   height: 0.625rem;
   width: 0.625rem;
+  flex: none;
   border-radius: 9999px;
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26);
+}
+.mac-dot-close {
+  background: #ff5f57;
+}
+.mac-dot-min {
+  background: #febc2e;
+}
+.mac-dot-max {
+  background: #28c840;
+}
+/* Legacy monochrome dots inherit the same geometry */
+.traffic {
   background: color-mix(in oklab, var(--muted-foreground) 38%, transparent);
   transition: background 0.25s ease;
 }
 .group\/win:hover .traffic {
   background: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+}
+
+/* Inner dividers inside a window (status bars, sidebars, footers) */
+.mac-divide-t {
+  border-top: 1px solid var(--win-chrome-border);
+}
+.mac-divide-b {
+  border-bottom: 1px solid var(--win-chrome-border);
+}
+.mac-divide-r {
+  border-right: 1px solid var(--win-chrome-border);
 }
 
 /* Physical keycaps */

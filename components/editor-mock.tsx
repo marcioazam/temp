@@ -265,15 +265,15 @@ function ClaudeCodeSession() {
   return (
     <div
       data-current-model={currentModel}
-className="@container flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[9px] md:text-[10px]"
-  >
-  <div className="relative flex h-7 shrink-0 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
-  <div className="flex items-center gap-1.5" aria-hidden="true">
-  <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-  <span className="size-2.5 rounded-full bg-[#febc2e]" />
-  <span className="size-2.5 rounded-full bg-[#28c840]" />
-  </div>
-  <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">Claude Code · taskflow</span>
+      className="mac-window @container flex h-full w-full flex-col font-mono text-[8px] leading-[1.6] text-[#dcd8d2] sm:text-[9px] md:text-[10px]"
+    >
+      <div className="mac-titlebar">
+        <div className="mac-dots" aria-hidden="true">
+          <span className="mac-dot mac-dot-close" />
+          <span className="mac-dot mac-dot-min" />
+          <span className="mac-dot mac-dot-max" />
+        </div>
+        <span className="mac-titlebar-title">Claude Code · taskflow</span>
       </div>
       <div ref={scrollerRef} className="min-h-0 flex-1 overflow-y-auto px-4 py-3 [scrollbar-color:#55524c_transparent] [scrollbar-width:thin] sm:px-6 sm:py-5 md:px-8 md:py-6">
         <div className="flex items-start gap-3">

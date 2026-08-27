@@ -258,16 +258,14 @@ export function HermesTerminalMock() {
   }, [draft])
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[7px] leading-[1.55] text-[#d6d3c4] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[8px] md:text-[9px]">
-      <div className="relative flex h-7 shrink-0 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
-        <div className="flex items-center gap-1.5" aria-hidden="true">
-          <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-          <span className="size-2.5 rounded-full bg-[#febc2e]" />
-          <span className="size-2.5 rounded-full bg-[#28c840]" />
+    <div className="mac-window flex h-full w-full flex-col font-mono text-[7px] leading-[1.55] text-[#d6d3c4] sm:text-[8px] md:text-[9px]">
+      <div className="mac-titlebar">
+        <div className="mac-dots" aria-hidden="true">
+          <span className="mac-dot mac-dot-close" />
+          <span className="mac-dot mac-dot-min" />
+          <span className="mac-dot mac-dot-max" />
         </div>
-        <span className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
-          Hermes Agent · /opt/hermes
-        </span>
+        <span className="mac-titlebar-title">Hermes Agent · /opt/hermes</span>
       </div>
 
       <div
@@ -353,7 +351,7 @@ export function HermesTerminalMock() {
         </div>
       </div>
 
-      <div className="shrink-0 border-t border-[#5b5852]/65 px-2.5 py-1 sm:px-3 md:px-4">
+        <div className="mac-divide-t shrink-0 px-2.5 py-1 sm:px-3 md:px-4">
         <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap text-[#8a8672]">
           <span className="font-semibold text-primary">Nylla Gateway</span>
           <span className="text-[#4a4636]" aria-hidden="true">
@@ -375,7 +373,7 @@ export function HermesTerminalMock() {
         </div>
       </div>
 
-      <div className="flex min-h-6 shrink-0 items-center gap-2 border-t border-[#5b5852]/65 bg-[#080806] px-2.5 py-1.5 sm:px-3 md:min-h-8 md:px-4">
+      <div className="mac-divide-t flex min-h-6 shrink-0 items-center gap-2 px-2.5 py-1.5 sm:px-3 md:min-h-8 md:px-4">
         <span className="shrink-0 text-[#e8e8e8]">›</span>
         <div
           ref={draftScrollerRef}

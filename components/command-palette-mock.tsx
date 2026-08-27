@@ -28,7 +28,7 @@ function ModelSelector() {
   return (
     <span className="relative inline-flex min-w-[74px] items-center text-[#8f8f8f]" aria-label={`Modelo selecionado: ${models[activeModel]}`}>
       <span
-        className="absolute bottom-full left-0 z-20 mb-1 w-32 overflow-hidden rounded-md border border-[#333333] bg-[#171717] p-1 shadow-[0_12px_28px_rgba(0,0,0,0.55)]"
+        className="elev-float absolute bottom-full left-0 z-20 mb-1 w-32 overflow-hidden rounded-md border border-white/10 bg-[#171717] p-1"
         role="listbox"
         aria-label="Modelos disponíveis"
       >
@@ -105,14 +105,14 @@ function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) 
 
 export function CommandPaletteMock() {
   return (
-    <div className="overflow-hidden rounded-[10px] border border-[#292929] bg-[#111111] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
-      <div className="grid h-10 grid-cols-[74px_1fr_74px] items-center border-b border-[#292929] bg-[#171717] px-3 shadow-[inset_0_1px_rgba(255,255,255,0.035)]">
-        <div className="flex items-center gap-1.5" aria-label="Controles da janela do macOS">
-          <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-          <span className="size-2.5 rounded-full bg-[#febc2e]" />
-          <span className="size-2.5 rounded-full bg-[#28c840]" />
+    <div className="mac-window bg-[#111111]">
+      <div className="mac-titlebar grid h-9 grid-cols-[74px_1fr_74px] md:h-9">
+        <div className="mac-dots" aria-label="Controles da janela do macOS">
+          <span className="mac-dot mac-dot-close" />
+          <span className="mac-dot mac-dot-min" />
+          <span className="mac-dot mac-dot-max" />
         </div>
-        <div className="mx-auto flex h-6 w-full max-w-64 items-center justify-center gap-1.5 border border-[#333333] bg-[#202020] px-2.5 text-[9px] text-[#a0a0a0] shadow-[inset_0_1px_rgba(255,255,255,0.025)]">
+        <div className="mx-auto flex h-6 w-full max-w-64 items-center justify-center gap-1.5 rounded-[5px] border border-white/[0.075] bg-white/[0.045] px-2.5 text-[9px] text-[#a3a3a3] shadow-[inset_0_1px_rgba(255,255,255,0.04)]">
           <Search className="size-3" aria-hidden="true" />
           <span>Search</span>
         </div>
@@ -124,7 +124,7 @@ export function CommandPaletteMock() {
       </div>
 
       <div className="grid h-[350px] grid-cols-[205px_1fr] bg-[#111111] sm:h-[380px] sm:grid-cols-[230px_1fr]">
-        <aside className="flex min-w-0 flex-col gap-5 border-r border-[#292929] bg-[#121212] p-4">
+        <aside className="mac-divide-r flex min-w-0 flex-col gap-5 bg-[#121212] p-4">
           <VSCodeBrand />
           <TaskGroup title="This Week" tasks={thisWeek} />
           <TaskGroup title="This Month" tasks={thisMonth} />
