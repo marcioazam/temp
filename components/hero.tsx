@@ -14,7 +14,7 @@ export function Hero() {
                 <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
                 <span>o que é o Nylla</span>
               </p>
-              <h2 id="about-title" className="type-title mt-6 max-w-xl text-balance text-foreground">
+              <h2 id="about-title" className="type-display mt-6 max-w-4xl text-balance text-foreground">
                 A camada entre você e qualquer LLM.
               </h2>
             </Reveal>
