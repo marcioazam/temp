@@ -1059,12 +1059,13 @@ kbd {
    Compositor-only: opacity + translate. */
 .hf-dot {
   position: absolute;
-  left: -2px;
+  left: calc(50% - 5px);
   top: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  clip-path: circle(50%);
+  width: 10px;
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  clip-path: circle(5px at 50% 50%);
+  box-shadow: 0 0 0 2px var(--background);
   opacity: 0;
   will-change: transform, opacity;
 }
