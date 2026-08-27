@@ -220,17 +220,6 @@ section[id] {
   transform: none;
 }
 
-@keyframes carousel-progress {
-  from {
-    transform: scale(0.65);
-    opacity: 0.25;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
 /* Infinite marquee */
 @keyframes marquee {
   from {

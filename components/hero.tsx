@@ -1,6 +1,6 @@
 "use client"
 
-import { MockCarousel } from "@/components/mock-carousel"
+import { EditorMock } from "@/components/editor-mock"
 import { Reveal } from "@/components/reveal"
 import { HeroFlow } from "@/components/hero-flow"
 
@@ -13,7 +13,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={240} className="mt-14 md:mt-16">
-          <MockCarousel />
+          <EditorMock />
         </Reveal>
       </div>
     </section>
