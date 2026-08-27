@@ -828,7 +828,7 @@ kbd {
   16%, 100% { opacity: 0; transform: translateY(40px); }
 }
 .hf-dot-a-down {
-  animation: hf-dot-a-down 6.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: hf-dot-a-down 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes hf-dot-b-down {
@@ -838,7 +838,7 @@ kbd {
   58%, 100% { opacity: 0; transform: translateY(40px); }
 }
 .hf-dot-b-down {
-  animation: hf-dot-b-down 6.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: hf-dot-b-down 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes hf-dot-b-up {
@@ -848,7 +848,7 @@ kbd {
   82%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-b-up {
-  animation: hf-dot-b-up 6.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: hf-dot-b-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes hf-dot-a-up {
@@ -858,7 +858,7 @@ kbd {
   96%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-a-up {
-  animation: hf-dot-a-up 6.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: hf-dot-a-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* One model highlighted while the request lands on it. The 19.2s period is
