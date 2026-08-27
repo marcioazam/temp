@@ -53,11 +53,20 @@ export function Features() {
                 {features.map((f) => (
                   <li
                     key={f.key}
-                    className="flex flex-col border border-border/70 bg-background/85 p-5 backdrop-blur-md md:p-6"
+                    className="group relative flex flex-col border border-border/70 bg-background/85 p-5 backdrop-blur-md transition-transform duration-300 ease-out motion-safe:hover:-translate-y-0.5 md:p-6"
                   >
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-0 top-0 h-px w-full origin-left scale-x-0 bg-primary/70 transition-transform duration-500 ease-out group-hover:scale-x-100"
+                    />
                     <div className="flex items-start gap-2.5">
-                      <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary" />
-                      <h3 className="font-mono text-sm font-medium leading-snug text-foreground">{f.title}</h3>
+                      <span
+                        aria-hidden="true"
+                        className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out group-hover:rotate-45 group-hover:scale-110"
+                      />
+                      <h3 className="font-mono text-sm font-medium leading-snug text-foreground transition-colors duration-300 group-hover:text-primary">
+                        {f.title}
+                      </h3>
                     </div>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
                   </li>
