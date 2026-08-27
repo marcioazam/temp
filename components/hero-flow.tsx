@@ -60,7 +60,7 @@ export function HeroFlow() {
         </div>
 
         {/* Node: Nylla */}
-        <div className="relative flex min-h-20 items-center justify-between gap-6 border-0 bg-muted px-5 py-5 text-foreground outline-none ring-0">
+        <div className="relative flex min-h-18 items-center justify-between gap-6 border border-primary/50 bg-muted px-5 py-4 text-foreground shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--primary)_12%,transparent)]">
           <NyllaLogo aria-hidden="true" className="hero-logo-unfold h-7 w-auto shrink-0 text-foreground" />
           <div className="flex items-center gap-2 text-xs text-foreground">
             {STEPS.map((step, i) => (
