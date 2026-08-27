@@ -39,7 +39,7 @@
 
 :root {
   color-scheme: dark;
-  --background: #171612;
+  --background: #161616;
   --foreground: #ededed;
   --card: #101010;
   --card-foreground: #ededed;
@@ -70,8 +70,8 @@
     @apply bg-background text-foreground;
     min-height: 100%;
     font-family: var(--font-sans);
-    background-image: url("data:image/svg+xml,%3Csvg width='220' height='220' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.68' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.1'/%3E%3C/svg%3E");
-    background-size: 220px 220px;
+    background-image: url("data:image/svg+xml,%3Csvg width='210' height='210' viewBox='0 0 210 210' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.085'/%3E%3C/svg%3E");
+    background-size: 210px 210px;
     background-attachment: fixed;
     background-blend-mode: soft-light;
     animation: page-grain-drift 2.4s steps(4, end) infinite;
