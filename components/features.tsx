@@ -48,7 +48,7 @@ export function Features() {
               <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
               <span>recursos</span>
             </h2>
-            <p className="type-heading mt-6 max-w-xl text-balance text-foreground">
+            <p className="type-title mt-6 max-w-xl text-balance text-foreground">
               Um gateway. Todas as rotas resolvidas.
             </p>
             <p className="type-lead mt-6 max-w-xl text-pretty text-muted-foreground">
