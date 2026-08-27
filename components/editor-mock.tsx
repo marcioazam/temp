@@ -323,10 +323,7 @@ className="@container flex h-full w-full flex-col overflow-hidden rounded-[10px]
             </span>
           </div>
           <div className="flex shrink-0 items-center justify-end gap-1.5 whitespace-nowrap">
-<span className="inline-flex items-center gap-1 text-[#e8e8e8]">
-  <span className="relative top-px block size-1 shrink-0 rounded-full bg-[#e8e8e8]" aria-hidden="true" />
-  <span className="leading-none">Thinking on</span>
-            </span>
+            <span className="leading-none text-[#e8e8e8]">Thinking on</span>
             <span className="hidden items-center gap-1.5 @lg:inline-flex">
               <span className="text-[#4f4c47]" aria-hidden="true">·</span>
               <span className="text-primary">Nylla Gateway</span>
