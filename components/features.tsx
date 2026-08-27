@@ -81,7 +81,7 @@ export function Features() {
                     <div className="flex items-start gap-2.5">
                       <span
                         aria-hidden="true"
-                        className={`mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out group-hover:rotate-45 group-hover:scale-110 ${isActive ? "rotate-45 scale-110" : ""}`}
+                        className={`mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-110 ${isActive ? "scale-110" : ""}`}
                       />
                       <h3 className={`font-mono text-sm font-medium leading-snug transition-colors duration-300 group-hover:text-primary ${isActive ? "text-primary" : "text-foreground"}`}>
                         {f.title}
