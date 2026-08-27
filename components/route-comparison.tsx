@@ -58,7 +58,7 @@ export function RouteComparison() {
             <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
             <span>comparativo</span>
           </h2>
-          <p className="type-heading mt-6 max-w-xl text-balance text-foreground">Compare a rota, não o hype.</p>
+          <p className="type-title mt-6 max-w-xl text-balance text-foreground">Compare a rota, não o hype.</p>
           <p className="type-lead mt-5 max-w-2xl text-pretty text-muted-foreground">
             A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
             entre o seu prompt e a resposta.
