@@ -67,7 +67,7 @@ export function RouteComparison() {
                     Critério
                   </th>
                   <th scope="col" className="w-[28%] bg-primary/[0.05] p-4 md:p-5">
-                    <span className="flex items-center gap-2 font-mono text-xs font-medium text-foreground">
+                    <span className="flex items-center gap-2 font-mono text-xs font-medium text-primary">
                       <RotorMark aria-hidden="true" className="size-4 shrink-0 text-primary" />
                       <span>Nylla Gateway</span>
                     </span>
