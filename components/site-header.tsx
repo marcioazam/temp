@@ -113,8 +113,8 @@ export function SiteHeader() {
                 className="group relative inline-flex items-center gap-1.5 overflow-hidden border border-[#F4F3F1] bg-[#F4F3F1] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
               >
                 Começar
-                <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
-                  →
+                <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                  ↗
                 </span>
               </Link>
             </div>
