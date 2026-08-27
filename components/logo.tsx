@@ -7,12 +7,12 @@ export function NyllaLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 166 40"
+      viewBox="0 0 122 40"
       role="img"
       aria-label="Nylla"
       {...props}
     >
-      <g className="nylla-logo-sun" transform="translate(0 -12)">
+      <g className="nylla-logo-sun" transform="translate(19 20) scale(0.55) translate(-32 -32)">
         <g stroke="var(--primary)" strokeWidth="5" strokeLinecap="round" fill="none">
           {arms.map((angle) => (
             <g key={angle} transform={`rotate(${angle} 32 32)`}>
@@ -27,7 +27,7 @@ export function NyllaLogo(props: SVGProps<SVGSVGElement>) {
         <circle cx="32" cy="32" r="5" fill="var(--primary)" />
       </g>
       <text
-        x="65"
+        x="46"
         y="29"
         fill="currentColor"
         fontFamily="var(--font-fira-code)"
