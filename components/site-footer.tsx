@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { RotorMark } from "@/components/logo"
+import { CookiePreferencesButton } from "@/components/cookie-preferences-button"
 
 export function SiteFooter() {
   return (
@@ -13,9 +14,16 @@ export function SiteFooter() {
           <p className="type-caption mt-5 max-w-xs text-muted-foreground">
             Gateway de LLM para geração de código e agents. Um endpoint, todos os modelos.
           </p>
-          <p className="type-micro mt-8 text-subtle-foreground md:mt-auto">
-            © {new Date().getFullYear()} Nylla
-          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 md:mt-auto">
+            <p className="type-micro text-subtle-foreground">© {new Date().getFullYear()} Nylla</p>
+            <Link
+              href="/privacidade"
+              className="type-micro text-subtle-foreground transition-colors hover:text-foreground"
+            >
+              Privacidade
+            </Link>
+            <CookiePreferencesButton className="type-micro text-subtle-foreground transition-colors hover:text-foreground" />
+          </div>
         </div>
         <nav
           aria-label="Rodapé"
