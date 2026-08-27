@@ -14,8 +14,20 @@ export function Hero() {
                 <span aria-hidden="true" className="text-primary">{"// "}</span>
                 o que é o Nylla
               </p>
-              <h2 id="about-title" className="mt-5 max-w-xl text-balance font-sans text-4xl font-medium leading-tight tracking-[-0.04em] text-foreground md:text-6xl">
-                A camada entre você e qualquer LLM.
+              <h2
+                id="about-title"
+                aria-label="A camada entre você e qualquer LLM."
+                className="mt-5 max-w-xl font-sans text-4xl font-medium leading-tight tracking-[-0.04em] md:text-6xl"
+              >
+                <span aria-hidden="true" className="block text-foreground">
+                  A camada
+                </span>
+                <span aria-hidden="true" className="block text-foreground/70">
+                  entre você e
+                </span>
+                <span aria-hidden="true" className="block text-muted-foreground">
+                  qualquer LLM.
+                </span>
               </h2>
             </Reveal>
 
