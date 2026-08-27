@@ -8,7 +8,6 @@ import {
   CONSENT_VERSION,
   DEFAULT_CHOICES,
   createRecord,
-  hasGlobalPrivacyControl,
   readConsent,
   writeConsent,
   type ConsentCategory,
@@ -87,13 +86,6 @@ export function CookieConsent() {
       return
     }
 
-    // Sinal de opt-out do navegador: registra recusa e não interrompe a leitura.
-    if (hasGlobalPrivacyControl()) {
-      decided.current = true
-      writeConsent(createRecord('gpc', DEFAULT_CHOICES))
-      return
-    }
-
     let released = false
     const reveal = () => {
       if (released || decided.current) return
@@ -101,12 +93,12 @@ export function CookieConsent() {
       window.removeEventListener('scroll', onScroll)
       open(false, false)
     }
-    const onScroll = () => {
-      if (window.scrollY > SCROLL_THRESHOLD) reveal()
-    }
+    // Qualquer primeiro gesto de rolagem revela o aviso, mesmo quando a página
+    // começa abaixo do topo ou o usuário rola menos de 48 px.
+    const onScroll = () => reveal()
 
     window.addEventListener('scroll', onScroll, { passive: true })
-    if (window.scrollY > SCROLL_THRESHOLD) reveal()
+    if (window.scrollY > 0) reveal()
 
     // Página sem rolagem (ou navegação por teclado): o aviso ainda precisa
     // ficar disponível, senão a escolha nunca é oferecida.
