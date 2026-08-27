@@ -1,48 +1,39 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { RotorMark } from "@/components/logo"
 import { useLanguage } from "@/components/language-provider"
 
 
 const nav = [
+  { label: "Sobre", href: "/#sobre" },
+  { label: "Harness", href: "/#harnesses" },
+  { label: "Instalar", href: "/#instalar" },
+  { label: "Integração", href: "/#endpoint" },
   { label: "Recursos", href: "/#recursos" },
-  { label: "Harnesses", href: "/#harnesses" },
   { label: "Comparativo", href: "/#comparativo" },
   { label: "Planos", href: "/#planos" },
   { label: "FAQ", href: "/#faq" },
 ]
 
 export function SiteHeader() {
-  const sentinelRef = useRef<HTMLDivElement | null>(null)
-  const [scrolled, setScrolled] = useState(false)
   const { locale, setLocale, enabled: languageEnabled } = useLanguage()
+  const [scrolled, setScrolled] = useState(false)
 
-  // Keep a small dead zone at the top so subpixel scrolling and trackpad
-  // bounce cannot repeatedly toggle the header treatment.
   useEffect(() => {
-    const node = sentinelRef.current
-    if (!node || typeof IntersectionObserver === "undefined") return
-
-    const observer = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting), {
-      rootMargin: "-8px 0px 0px",
-      threshold: 0,
-    })
-    observer.observe(node)
-    return () => observer.disconnect()
+    const updateHeader = () => setScrolled(window.scrollY > 0)
+    updateHeader()
+    window.addEventListener("scroll", updateHeader, { passive: true })
+    return () => window.removeEventListener("scroll", updateHeader)
   }, [])
 
   return (
-    <>
-      <div ref={sentinelRef} aria-hidden="true" className="absolute top-0 h-3 w-px" />
-      <header
-        className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-          scrolled
-            ? "border-foreground/15 bg-background [background-image:none] after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-5 after:bg-gradient-to-b after:from-background/80 after:to-transparent"
-            : "border-transparent bg-transparent"
-        }`}
-      >
+    <header
+      className={`site-background sticky top-0 z-50 border-b transition-colors duration-200 ${
+        scrolled ? "border-border/35" : "border-transparent"
+      }`}
+    >
         <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center px-4 md:px-9">
           <Link
             href="/"
@@ -103,7 +94,7 @@ export function SiteHeader() {
             <div className="flex items-center gap-2">
               <Link
                 href="/docs"
-                className="inline-flex items-center border border-foreground/45 bg-transparent px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-foreground hover:bg-foreground/5"
+                className="inline-flex items-center border border-foreground/45 bg-background px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-foreground hover:bg-background"
               >
                 Ler Docs
               </Link>
@@ -119,7 +110,6 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-      </header>
-    </>
+    </header>
   )
 }

@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import { RotorMark } from "@/components/logo"
 import { Reveal } from "@/components/reveal"
 
@@ -35,9 +38,21 @@ const rows = [
 ]
 
 export function RouteComparison() {
+  const [activeRow, setActiveRow] = useState(0)
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    const interval = window.setInterval(() => {
+      setActiveRow((current) => (current + 1) % rows.length)
+    }, 2600)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
   return (
-    <section id="comparativo" className="relative isolate overflow-hidden bg-background px-4 md:px-9">
-      <div className="mx-auto w-full max-w-screen-2xl bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center px-4 py-16 md:px-9 md:py-24">
+    <section id="comparativo" className="relative isolate overflow-hidden px-4 md:px-9">
+      <div className="photo-grain mx-auto w-full max-w-screen-2xl bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center px-4 py-16 md:px-9 md:py-24">
         <Reveal>
           <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
             <div className="p-5 md:p-6">
@@ -81,18 +96,32 @@ export function RouteComparison() {
                 </tr>
               </thead>
               <tbody>
-                {rows.map((row) => (
-                  <tr key={row.criterion} className="border-b border-border last:border-b-0">
-                    <th scope="row" className="p-4 font-mono text-xs font-medium text-muted-foreground md:p-5">
-                      {row.criterion}
-                    </th>
-                    <td className="bg-primary/[0.05] p-4 text-sm leading-relaxed text-foreground md:p-5">
-                      {row.nylla}
-                    </td>
-                    <td className="p-4 text-sm leading-relaxed text-muted-foreground md:p-5">{row.router}</td>
-                    <td className="p-4 text-sm leading-relaxed text-muted-foreground md:p-5">{row.direct}</td>
-                  </tr>
-                ))}
+                {rows.map((row, index) => {
+                  const isActive = index === activeRow
+
+                  return (
+                    <tr key={row.criterion} className="border-b border-border last:border-b-0">
+                      <th
+                        scope="row"
+                        className={`relative p-4 font-mono text-xs font-medium transition-colors duration-500 md:p-5 ${isActive ? "text-primary" : "text-muted-foreground"}`}
+                      >
+                        <span
+                          key={isActive ? `scan-${activeRow}` : undefined}
+                          aria-hidden="true"
+                          className={`absolute left-0 top-0 h-full w-px origin-top bg-primary/80 ${isActive ? "animate-row-scan" : "scale-y-0"}`}
+                        />
+                        {row.criterion}
+                      </th>
+                      <td
+                        className={`p-4 text-sm leading-relaxed text-foreground transition-colors duration-500 md:p-5 ${isActive ? "bg-primary/[0.11]" : "bg-primary/[0.05]"}`}
+                      >
+                        {row.nylla}
+                      </td>
+                      <td className="p-4 text-sm leading-relaxed text-muted-foreground md:p-5">{row.router}</td>
+                      <td className="p-4 text-sm leading-relaxed text-muted-foreground md:p-5">{row.direct}</td>
+                    </tr>
+                  )
+                })}
               </tbody>
               </table>
             </div>

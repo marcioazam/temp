@@ -1,11 +1,6 @@
-const USE_CASES = [
-  "SaaS com IA",
-  "Copilotos internos",
-  "APIs e automações",
-  "Agentes autônomos",
-  "Busca e RAG",
-  "Atendimento inteligente",
-]
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 
 const CODE_LINES = [
   { number: "01", content: "const response = await fetch(" },
@@ -23,6 +18,87 @@ const CODE_LINES = [
   { number: "13", content: "  }," },
   { number: "14", content: ")" },
 ]
+
+function AnimatedCode() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [characterCount, setCharacterCount] = useState(0)
+  const source = CODE_LINES.map((line) => `${line.content}\n`).join("")
+
+  useEffect(() => {
+    const node = containerRef.current
+    if (!node) return
+    let timer: number | undefined
+    let started = false
+
+    const play = () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        setCharacterCount(source.length)
+        return
+      }
+
+      let count = 0
+
+      const typeNextCharacter = () => {
+        count += 1
+        setCharacterCount(count)
+
+        if (count < source.length) {
+          const delay = source[count - 1] === "\n" ? 180 : 28
+          timer = window.setTimeout(typeNextCharacter, delay)
+          return
+        }
+
+        timer = window.setTimeout(() => {
+          count = 0
+          setCharacterCount(0)
+          timer = window.setTimeout(typeNextCharacter, 700)
+        }, 2400)
+      }
+
+      typeNextCharacter()
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          started = true
+          play()
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.35 },
+    )
+
+    observer.observe(node)
+    return () => {
+      observer.disconnect()
+      if (timer) window.clearTimeout(timer)
+    }
+  }, [source])
+
+  let remainingCharacters = characterCount
+
+  return (
+    <div ref={containerRef} className="w-full font-mono text-[11px] leading-6 sm:text-xs" aria-label={CODE_LINES.map((line) => line.content).join("\n")}>
+      {CODE_LINES.map((line) => {
+        const visibleLength = Math.max(0, Math.min(line.content.length, remainingCharacters))
+        const lineStarted = remainingCharacters > 0
+        remainingCharacters -= line.content.length + 1
+        const isActive = lineStarted && remainingCharacters < 0
+
+        return (
+          <div key={line.number} className={`flex min-w-0 px-4 ${lineStarted ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
+            <span className="w-8 shrink-0 select-none text-muted-foreground/40">{line.number}</span>
+            <code className={`whitespace-pre ${line.number === "02" ? "text-primary" : "text-foreground/80"}`}>
+              {line.content.slice(0, visibleLength)}
+              {isActive ? <span className="ml-px inline-block h-[1.05em] w-px translate-y-[2px] animate-pulse bg-primary" /> : null}
+            </code>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 export function GatewayFlow() {
   return (
@@ -51,26 +127,10 @@ export function GatewayFlow() {
               <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-y-0.5">↓</span>
             </a>
 
-            <div className="mt-9 max-w-xl">
-              <p className="text-center font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                Feito para diferentes produtos:
-              </p>
-              <ul className="mt-3 grid grid-cols-2 gap-x-6" aria-label="Aplicações do endpoint Nylla">
-                {USE_CASES.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-2 border-t border-border py-3 font-mono text-xs text-foreground/80"
-                  >
-                    <span className="h-1 w-1 shrink-0 rounded-full bg-primary" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           <div
-            className="flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
+            className="photo-grain flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
             <div className="mx-auto w-full max-w-[42rem] overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
@@ -97,49 +157,37 @@ export function GatewayFlow() {
 
             <div className="grid lg:grid-cols-[1fr_12rem]">
               <div className="overflow-hidden py-5">
-                <div className="w-full font-mono text-[11px] leading-6 sm:text-xs">
-                  {CODE_LINES.map((line) => (
-                    <div key={line.number} className="flex min-w-0 px-4">
-                      <span className="w-8 shrink-0 select-none text-muted-foreground/40">{line.number}</span>
-                      <code
-                        className={`whitespace-pre ${line.number === "02" ? "text-primary" : "text-foreground/80"}`}
-                      >
-                        {line.content}
-                      </code>
-                    </div>
-                  ))}
-                </div>
+                <AnimatedCode />
               </div>
 
               <aside className="border-t border-border bg-background/50 p-5 lg:border-l lg:border-t-0">
                 <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">uma integração</p>
                 <div className="mt-5 flex flex-col gap-5">
                   <div>
-                    <p className="font-mono text-lg font-medium text-primary">1 endpoint</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">para todos os modelos</p>
+                    <p className="font-mono text-sm font-medium text-primary">1 endpoint</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">para todos os modelos</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg font-medium text-primary">OpenAI</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">formato compatível</p>
+                    <p className="font-mono text-sm font-medium text-primary">OpenAI</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">formato compatível</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg font-medium text-primary">Atualizado</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">catálogo de modelos</p>
+                    <p className="font-mono text-sm font-medium text-primary">Atualizado</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">catálogo de modelos</p>
                   </div>
                   <div>
-                    <p className="whitespace-nowrap font-mono text-lg font-medium text-primary">Baixa latência</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">roteamento otimizado</p>
+                    <p className="whitespace-nowrap font-mono text-sm font-medium text-primary">Baixa latência</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">roteamento otimizado</p>
                   </div>
                 </div>
               </aside>
             </div>
 
             <div className="flex flex-col gap-3 border-t border-border px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="font-mono text-xs text-muted-foreground">
+              <p className="font-mono text-[10px] text-muted-foreground">
                 <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#28c840]" aria-hidden="true" />
-                pronto para produção
+                pronto para integração
               </p>
-              <code className="font-mono text-[11px] font-medium text-foreground">POST /v1/chat/completions</code>
             </div>
             </div>
           </div>

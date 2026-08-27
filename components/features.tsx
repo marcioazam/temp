@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import { Reveal } from "@/components/reveal"
 
 const features = [
@@ -7,19 +10,9 @@ const features = [
     body: "Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek e modelos open-source. Um único endpoint, roteamento transparente, sem lock-in de provedor.",
   },
   {
-    key: "agents",
-    title: "Feito para código e agents",
-    body: "Otimizado para geração de código, tool calling e workflows de agents. Streaming de baixa latência e contexto longo onde importa.",
-  },
-  {
     key: "npm",
     title: "Plug and play via npm",
     body: "O pacote npm detecta seu harness e configura o gateway automaticamente. Um comando e sua ferramenta está conectada.",
-  },
-  {
-    key: "open-source",
-    title: "Núcleo open-source",
-    body: "Modelos open-source sempre disponíveis para manter seus agentes rodando sem depender de uma única rota.",
   },
   {
     key: "catálogo",
@@ -28,41 +21,79 @@ const features = [
   },
   {
     key: "frontier",
-    title: "Frontier por créditos",
-    body: "Acesse modelos frontier sob demanda com créditos, sem configurar chaves separadas em cada provedor.",
+    title: "Frontier por créditos ou ilimitado",
+    body: "Use modelos frontier com créditos sob demanda ou escolha acesso ilimitado, tudo em um único gateway, sem configurar chaves por provedor.",
   },
 ]
 
 export function Features() {
+  const [activeFeature, setActiveFeature] = useState(0)
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    const interval = window.setInterval(() => {
+      setActiveFeature((current) => (current + 1) % features.length)
+    }, 3000)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
   return (
     <section id="recursos">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <h2 className="font-mono text-xs text-muted-foreground">
-          <span aria-hidden="true" className="text-primary">{"// "}</span>recursos
-        </h2>
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)] lg:gap-12">
+          <div className="lg:sticky lg:top-24">
+            <h2 className="font-mono text-xs text-muted-foreground">
+              <span aria-hidden="true" className="text-primary">
+                {"// "}
+              </span>
+              recursos
+            </h2>
+            <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+              Um gateway. Todas as rotas resolvidas.
+            </p>
+            <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+              Cada provedor tem seu SDK, seu limite e sua janela de contexto. O Nylla absorve essa diferença e entrega
+              uma superfície única para o seu código e para os seus agentes.
+            </p>
+          </div>
 
-        <div className="mt-4 grid grid-cols-1 gap-x-12 md:grid-cols-2 lg:gap-x-20">
-          {features.map((f, i) => (
-            <Reveal
-              as="article"
-              key={f.key}
-              delay={i * 70}
-              className={`group relative border-b border-border py-8 md:py-10 ${
-                i === 0 ? "bg-feature-landscape p-6 md:p-8" : ""
-              } ${i === 1 ? "md:pt-0" : ""} ${i === features.length - 1 ? "border-b-0" : ""} ${
-                i === features.length - 2 ? "md:border-b-0" : ""
-              }`}
+          <Reveal delay={80}>
+            <div
+              className="photo-grain bg-cover bg-center p-3 sm:p-5 lg:p-6"
+              style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
             >
-              <span
-                aria-hidden="true"
-                className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100"
-              />
-              <h3 className="w-fit font-mono text-base font-medium leading-snug text-foreground">
-                {f.title}
-              </h3>
-              <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-            </Reveal>
-          ))}
+              <ul className="relative z-[2] grid gap-3 sm:grid-cols-2">
+                {features.map((f, index) => {
+                  const isActive = index === activeFeature
+
+                  return (
+                    <li
+                    key={f.key}
+                    className={`relative flex flex-col border border-border/70 bg-background/85 p-5 backdrop-blur-md transition-transform duration-300 ease-out md:p-6 ${isActive ? "motion-safe:-translate-y-0.5" : ""}`}
+                  >
+                    <span
+                      key={isActive ? `progress-${activeFeature}` : undefined}
+                      aria-hidden="true"
+                      className={`absolute left-0 top-0 h-px w-full origin-left bg-primary/70 ${isActive ? "animate-feature-progress" : "scale-x-0"}`}
+                    />
+                    <div className="flex items-start gap-2.5">
+                      <span
+                        aria-hidden="true"
+                        className={`mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out ${isActive ? "scale-110" : ""}`}
+                      />
+                      <h3 className={`font-mono text-sm font-medium leading-snug transition-colors duration-300 ${isActive ? "text-primary" : "text-foreground"}`}>
+                        {f.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

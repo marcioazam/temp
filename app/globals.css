@@ -72,6 +72,11 @@
     @apply bg-background text-foreground;
     min-height: 100%;
     font-family: var(--font-sans);
+  }
+
+  body,
+  .site-background {
+    background-color: var(--background);
     background-image: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.055'/%3E%3C/svg%3E");
     background-size: 240px 240px;
     background-attachment: fixed;
@@ -182,6 +187,44 @@
 }
 .flow-pulse {
   animation: flow-pulse 2.2s ease-out infinite;
+}
+
+@keyframes feature-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-feature-progress {
+  animation: feature-progress 3s linear forwards;
+}
+
+@keyframes row-scan {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.animate-row-scan {
+  animation: row-scan 2.6s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-feature-progress {
+    animation: none;
+    transform: scaleX(1);
+  }
+
+  .animate-row-scan {
+    animation: none;
+    transform: scaleY(1);
+  }
 }
 
 /* Anchored sections clear the sticky header */
@@ -954,12 +997,20 @@ kbd {
   will-change: border-color, color, opacity;
 }
 
-.bg-feature-landscape {
-  background-image:
-    linear-gradient(color-mix(in oklab, var(--background) 72%, transparent), color-mix(in oklab, var(--background) 72%, transparent)),
-    url('/images/mist-lake.png');
-  background-position: 20% 45%;
-  background-size: cover;
+/* Grain padrão para fotos de fundo — mesmo noise do body (fractalNoise .72, tile 240px) */
+.photo-grain {
+  position: relative;
+}
+.photo-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.5'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  mix-blend-mode: overlay;
+  opacity: 0.4;
 }
 
 @media (prefers-reduced-motion: reduce) {

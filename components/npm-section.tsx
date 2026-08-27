@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { Check, Copy } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 type TerminalStep = {
@@ -19,6 +20,37 @@ const terminalSteps: TerminalStep[] = [
   { type: "success", text: "✓ Claude Code conectado ao Nylla Gateway" },
   { type: "success", text: "✓ Configuração concluída. Pronto para usar." },
 ]
+
+function InstallCommand() {
+  const command = "npm i -g nylla"
+  const [copied, setCopied] = useState(false)
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(command)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1600)
+    } catch {
+      // clipboard unavailable
+    }
+  }
+
+  return (
+    <div className="flex min-h-12 max-w-sm items-stretch border border-border bg-card/50 pl-4">
+      <span className="self-center font-mono text-sm text-primary" aria-hidden="true">$</span>
+      <code className="ml-3 min-w-0 flex-1 self-center truncate font-mono text-sm text-foreground">{command}</code>
+      <button
+        type="button"
+        onClick={copy}
+        className="flex w-12 shrink-0 items-center justify-center self-stretch bg-secondary text-foreground transition-colors hover:bg-muted hover:text-primary"
+        aria-label={copied ? "Comando copiado" : `Copiar ${command}`}
+        title={copied ? "Copiado" : "Copiar comando"}
+      >
+        {copied ? <Check className="size-4" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
+      </button>
+    </div>
+  )
+}
 
 export function NpmSection() {
   const [visibleSteps, setVisibleSteps] = useState<TerminalStep[]>([])
@@ -62,7 +94,7 @@ export function NpmSection() {
   const currentStep = terminalSteps[stepIndex]
 
   return (
-    <section>
+    <section id="instalar">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
           <h2 className="font-mono text-xs text-muted-foreground">
@@ -84,16 +116,20 @@ export function NpmSection() {
             <li><span className="text-primary" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
             <li><span className="text-primary" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
           </ul>
+
+          <div className="mt-8">
+            <InstallCommand />
+          </div>
         </Reveal>
 
         <Reveal delay={120} className="md:order-2">
-          <div className="flex min-h-[31rem] items-center bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
+          <div className="photo-grain flex min-h-[31rem] items-center bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
             <div className="elev-window w-full overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
               <div className="relative flex h-7 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
                 <div className="flex items-center gap-1.5" aria-hidden="true">
                   <span className="size-2.5 rounded-full bg-[#ff5f57]" />
                   <span className="size-2.5 rounded-full bg-[#febc2e]" />
-                  <span className="size-2.5 rounded-full bg-primary" />
+                  <span className="size-2.5 rounded-full bg-[#28c840]" />
                 </div>
                 <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
                   bash — nylla@linux
