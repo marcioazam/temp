@@ -23,36 +23,27 @@ export function ModelMarquee() {
   return (
     <ul
       aria-label="Ferramentas compatíveis com a Nylla"
-      className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
+      className="grid grid-cols-1 gap-px border border-border/60 bg-border/60 sm:grid-cols-2 lg:grid-cols-3"
     >
-      {brands.map((brand) => (
-        <li
-          key={brand.name}
-          className="group flex min-h-[76px] flex-col items-center justify-center gap-2 border border-border/70 bg-tool-card px-3 py-3 transition-all hover:border-primary/60 hover:bg-tool-card"
-        >
-          <div className="flex h-7 w-10 items-center justify-center text-foreground transition-transform group-hover:scale-110">
-            {brand.src && (
-              <img
-                src={brand.src}
-                alt={`${brand.name} logo`}
-                className="h-6 w-6 object-contain grayscale brightness-0 invert"
-                loading="lazy"
-              />
-            )}
-            {brand.mark && (
-              <span
-                aria-hidden="true"
-                className={`flex h-6 min-w-6 items-center justify-center font-mono font-bold ${
-                  brand.mark === "aider" ? "text-[8px] tracking-tight" : "text-sm"
-                }`}
-              >
-                {brand.mark}
-              </span>
-            )}
+      {brands.map((brand, index) => (
+        <li key={brand.name} className="group relative bg-background">
+          <div className="flex items-center gap-3 px-4 py-4 transition-colors group-hover:bg-primary/5">
+            <span
+              aria-hidden="true"
+              className="hidden shrink-0 select-none font-mono text-[9px] tabular-nums text-muted-foreground/50 md:block"
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <img
+              src={brand.src || "/placeholder.svg"}
+              alt=""
+              className="h-5 w-5 shrink-0 object-contain grayscale brightness-0 invert transition-transform group-hover:scale-110"
+              loading="lazy"
+            />
+            <span className="min-w-0 truncate font-mono text-[11px] font-medium tracking-tight text-foreground/85 transition-colors group-hover:text-foreground">
+              {brand.name}
+            </span>
           </div>
-          <span className="max-w-full truncate text-center font-sans text-[11px] font-medium leading-4 tracking-tight text-foreground">
-            {brand.name}
-          </span>
         </li>
       ))}
     </ul>
