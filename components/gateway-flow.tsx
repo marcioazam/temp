@@ -153,31 +153,31 @@ export function GatewayFlow() {
                 <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">uma integração</p>
                 <div className="mt-5 flex flex-col gap-5">
                   <div>
-                    <p className="font-mono text-lg font-medium text-primary">1 endpoint</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">para todos os modelos</p>
+                    <p className="font-mono text-sm font-medium text-primary">1 endpoint</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">para todos os modelos</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg font-medium text-primary">OpenAI</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">formato compatível</p>
+                    <p className="font-mono text-sm font-medium text-primary">OpenAI</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">formato compatível</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg font-medium text-primary">Atualizado</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">catálogo de modelos</p>
+                    <p className="font-mono text-sm font-medium text-primary">Atualizado</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">catálogo de modelos</p>
                   </div>
                   <div>
-                    <p className="whitespace-nowrap font-mono text-lg font-medium text-primary">Baixa latência</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">roteamento otimizado</p>
+                    <p className="whitespace-nowrap font-mono text-sm font-medium text-primary">Baixa latência</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">roteamento otimizado</p>
                   </div>
                 </div>
               </aside>
             </div>
 
             <div className="flex flex-col gap-3 border-t border-border px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="font-mono text-xs text-muted-foreground">
+              <p className="font-mono text-[10px] text-muted-foreground">
                 <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#28c840]" aria-hidden="true" />
-                pronto para produção
+                pronto para integração
               </p>
-              <code className="font-mono text-[11px] font-medium text-foreground">POST /v1/chat/completions</code>
+              <code className="font-mono text-[10px] font-medium text-foreground">POST /v1/chat/completions</code>
             </div>
             </div>
           </div>
