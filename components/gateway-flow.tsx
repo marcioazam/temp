@@ -52,8 +52,8 @@ export function GatewayFlow() {
             </a>
 
             <div className="mt-9 max-w-xl">
-              <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                Feito para diferentes produtos
+              <p className="text-center font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                Feito para diferentes produtos:
               </p>
               <ul className="mt-3 grid grid-cols-2 gap-x-6" aria-label="Aplicações do endpoint Nylla">
                 {USE_CASES.map((item) => (
