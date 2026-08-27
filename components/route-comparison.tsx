@@ -65,7 +65,7 @@ export function RouteComparison() {
           </p>
         </Reveal>
 
-        <div className="photo-grain mt-6 w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-20">
+        <div className="photo-grain mt-6 w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-20 md:py-24">
           <div className="mx-auto w-full max-w-5xl px-4 md:px-8">
             <Reveal>
               <div className="overflow-hidden border border-border bg-background/90 backdrop-blur-md">
