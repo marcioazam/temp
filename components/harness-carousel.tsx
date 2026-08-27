@@ -83,15 +83,19 @@ export function HarnessCarousel() {
               aria-roledescription="slide"
               aria-label={slide.label}
             >
-              {slide.id === "vscode" ? (
-                <CommandPaletteMock />
-              ) : slide.id === "claude" ? (
-                <ClaudeCodeWindow />
-              ) : (
-                <div className="pointer-events-none h-full w-full select-none">
-                  <HermesTerminalMock />
+              {(index === active || index === exiting) ? (
+                <div className={index === exiting ? "h-full [animation-play-state:paused!important] [&_*]:[animation-play-state:paused!important]" : "h-full"}>
+                  {slide.id === "vscode" ? (
+                    <CommandPaletteMock />
+                  ) : slide.id === "claude" ? (
+                    <ClaudeCodeWindow />
+                  ) : (
+                    <div className="pointer-events-none h-full w-full select-none">
+                      <HermesTerminalMock />
+                    </div>
+                  )}
                 </div>
-              )}
+              ) : null}
             </div>
           )
         })}

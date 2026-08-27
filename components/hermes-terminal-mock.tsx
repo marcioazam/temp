@@ -115,8 +115,9 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
     const [gatewayLabel, routeDetails] = line.text.split(" → ")
 
     return (
-      <div className="claude-line mt-1.5 pl-3 text-[#e8e8e8]">
-        :: <span className="text-primary">{gatewayLabel}</span>
+      <div className="claude-line mt-1.5 flex items-center gap-1.5 pl-3 text-[#e8e8e8]">
+        <span className="text-[#8a8672]" aria-hidden="true">›</span>
+        <span className="text-primary">{gatewayLabel}</span>
         {routeDetails ? <> → <HermesText text={routeDetails} model={line.model} /></> : null}
       </div>
     )
