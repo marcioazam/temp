@@ -57,7 +57,7 @@ export function HeroFlow() {
         </div>
 
         {/* Node: LLMs */}
-        <div className="flex flex-wrap items-center gap-2 border border-border px-4 py-3 text-xs">
+        <div className="flex flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
           <span className="text-muted-foreground">LLMs:</span>
           {MODELS.map((model, i) => (
             <span
