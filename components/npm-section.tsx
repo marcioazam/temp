@@ -121,8 +121,8 @@ export function NpmSection() {
 
         <Reveal delay={120} className="md:order-2">
           <div className="flex min-h-[27rem] items-center overflow-hidden bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
-            <div className="win mx-auto w-full max-w-xl">
-              <div className="win-bar">
+            <div className="win mx-auto w-full max-w-xl bg-card [background-image:none]">
+              <div className="win-bar [background-image:none]">
                 <div className="win-dots" aria-hidden="true">
                   <span className="win-dot win-dot--close" />
                   <span className="win-dot win-dot--min" />
@@ -132,7 +132,7 @@ export function NpmSection() {
               </div>
 
               <div
-                className="term-pane h-80 overflow-hidden p-5 font-mono text-[8px] leading-[1.65] tracking-[-0.005em] text-term-mid sm:text-[9px] md:p-6 md:text-[10px]"
+                className="term-pane h-80 overflow-hidden bg-card p-5 font-mono text-[8px] leading-[1.65] tracking-[-0.005em] text-term-mid [background-image:none] sm:text-[9px] md:p-6 md:text-[10px]"
                 aria-live="polite"
                 aria-label="Terminal Linux configurando o Nylla Gateway"
               >
