@@ -9,7 +9,11 @@ export function Harnesses() {
         <h2 className="font-mono text-xs text-muted-foreground">
           <span aria-hidden="true" className="text-primary">{"// "}</span>harnesses
         </h2>
-        <div className="mt-4 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="relative isolate mt-4 grid items-start gap-10 overflow-hidden bg-[url('/images/vscode-landscape.png')] bg-cover bg-center p-5 sm:p-7 lg:grid-cols-2 lg:gap-16 lg:p-8">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,8,6,0.94)_0%,rgba(8,8,6,0.82)_44%,rgba(8,8,6,0.28)_72%,rgba(8,8,6,0.08)_100%)]"
+          />
           <div className="max-w-xl">
             <p className="text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
               Conecta em qualquer ferramenta que você já usa.
@@ -26,9 +30,7 @@ export function Harnesses() {
           </div>
 
           <Reveal delay={80}>
-            <div className="bg-[url('/images/vscode-landscape.png')] bg-cover bg-center p-5 sm:p-7 lg:p-8">
-              <CommandPaletteMock />
-            </div>
+            <CommandPaletteMock />
           </Reveal>
         </div>
       </div>
