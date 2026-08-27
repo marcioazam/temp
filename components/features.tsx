@@ -48,8 +48,8 @@ export function Features() {
               key={f.key}
               delay={i * 70}
               className={`group relative border-b border-border py-8 md:py-10 ${
-                i === 0 ? "photo-grain bg-feature-landscape p-6 md:p-8" : ""
-              } ${i === 1 ? "md:pt-0" : ""} ${i === features.length - 1 ? "border-b-0" : ""} ${
+                i === 1 ? "md:pt-0" : ""
+              } ${i === features.length - 1 ? "border-b-0" : ""} ${
                 i === features.length - 2 ? "md:border-b-0" : ""
               }`}
             >
@@ -57,20 +57,29 @@ export function Features() {
                 aria-hidden="true"
                 className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100"
               />
-              <h3
-                className={`w-fit font-mono text-base font-medium leading-snug ${
-                  i === 0 ? "text-[#171612]" : "text-foreground"
-                }`}
-              >
+              <h3 className="w-fit font-mono text-base font-medium leading-snug text-foreground">
                 {f.title}
               </h3>
-              <p
-                className={`mt-3 max-w-prose text-sm leading-relaxed ${
-                  i === 0 ? "text-[#171612]/85" : "text-muted-foreground"
-                }`}
-              >
-                {f.body}
-              </p>
+              <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+
+              {i === 0 ? (
+                <>
+                  <a
+                    href="#catalogo"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm text-primary transition-colors hover:text-primary/80"
+                  >
+                    Ver catálogo completo
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                  <span className="photo-grain mt-6 block overflow-hidden rounded-lg">
+                    <img
+                      src="/images/mist-lake.png"
+                      alt="Paisagem de lago com névoa entre montanhas"
+                      className="block aspect-[4/3] w-full select-none object-cover"
+                    />
+                  </span>
+                </>
+              ) : null}
             </Reveal>
           ))}
         </div>
