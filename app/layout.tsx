@@ -1,6 +1,7 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { ConsentedAnalytics } from '@/components/consented-analytics'
+import { CookieConsent } from '@/components/cookie-consent'
 import './globals.css'
 
 // Fontes variáveis: o eixo completo de peso fica disponível (400–600),
@@ -32,7 +33,8 @@ export default function RootLayout({
     >
       <body className="antialiased">
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <CookieConsent />
+        {process.env.NODE_ENV === 'production' && <ConsentedAnalytics />}
       </body>
     </html>
   )
