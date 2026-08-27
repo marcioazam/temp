@@ -2,32 +2,32 @@ import { Reveal } from "@/components/reveal"
 
 const features = [
   {
-    id: "01",
+    key: "llms",
     title: "Compatível com todos os LLMs",
     body: "Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek e modelos open-source. Um único endpoint, roteamento transparente, sem lock-in de provedor.",
   },
   {
-    id: "02",
+    key: "agents",
     title: "Feito para código e agents",
     body: "Otimizado para geração de código, tool calling e workflows de agents. Streaming de baixa latência e contexto longo onde importa.",
   },
   {
-    id: "03",
+    key: "npm",
     title: "Plug and play via npm",
     body: "O pacote npm detecta seu harness e configura o gateway automaticamente. Um comando e sua ferramenta está conectada.",
   },
   {
-    id: "04",
+    key: "open-source",
     title: "Núcleo open-source",
     body: "Modelos open-source sempre disponíveis para manter seus agentes rodando sem depender de uma única rota.",
   },
   {
-    id: "05",
+    key: "catálogo",
     title: "Seleção semanal",
     body: "O catálogo é revisado toda semana para acompanhar novos modelos, melhorias e mudanças dos provedores.",
   },
   {
-    id: "06",
+    key: "frontier",
     title: "Frontier por créditos",
     body: "Acesse modelos frontier sob demanda com créditos, sem configurar chaves separadas em cada provedor.",
   },
@@ -40,21 +40,27 @@ export function Features() {
         <h2 className="font-mono text-xs text-muted-foreground">
           <span aria-hidden="true" className="text-primary">{"// "}</span>recursos
         </h2>
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+
+        <div className="mt-10 grid grid-cols-1 gap-x-12 border-t border-border md:grid-cols-2 lg:gap-x-20">
           {features.map((f, i) => (
             <Reveal
               as="article"
-              key={f.id}
-              delay={i * 90}
-              className="card-lift group relative overflow-hidden rounded-xl border border-border bg-card p-6 md:p-8"
+              key={f.key}
+              delay={i * 70}
+              className="group relative border-b border-border py-8 md:py-10"
             >
               <span
                 aria-hidden="true"
-                className="absolute left-0 top-0 h-px w-full origin-left scale-x-0 bg-ultra/70 transition-transform duration-500 ease-out group-hover:scale-x-100"
+                className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100"
               />
-              <span className="font-mono text-[10px] tracking-wide text-muted-foreground/70">{f.id}</span>
-              <h3 className="mt-3 font-mono text-base font-medium text-foreground">{f.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+              <div className="flex items-center gap-2">
+                <span aria-hidden="true" className="size-1.5 bg-primary" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
+                  {f.key}
+                </span>
+              </div>
+              <h3 className="mt-4 font-mono text-base font-medium leading-snug text-foreground">{f.title}</h3>
+              <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">{f.body}</p>
             </Reveal>
           ))}
         </div>
