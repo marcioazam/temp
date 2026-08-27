@@ -161,7 +161,7 @@ export function Pricing() {
           <span aria-hidden="true" className="text-ultra">
             *{" "}
           </span>
-          Créditos frontier renovam mensalmente. Sem fidelidade — upgrade, downgrade ou cancelamento a qualquer
+          Créditos frontier renovam mensalmente. Sem fidelidade. Faça upgrade, downgrade ou cancele a qualquer
           momento.
         </p>
       </div>
