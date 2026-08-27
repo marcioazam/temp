@@ -28,12 +28,13 @@ export function GatewayFlow() {
   return (
     <section id="endpoint">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <div className="grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
+        <h2 className="font-mono text-xs text-muted-foreground">
+          <span aria-hidden="true" className="text-primary">{"// "}</span>endpoint
+        </h2>
+
+        <div className="mt-5 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:order-2">
-            <h2 className="font-mono text-xs text-muted-foreground">
-              <span aria-hidden="true" className="text-primary">{"// "}</span>endpoint
-            </h2>
-            <p className="mt-4 max-w-xl text-balance font-mono text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+            <p className="max-w-xl text-balance font-mono text-3xl font-medium tracking-tight text-foreground md:text-4xl">
               A inteligência do Nylla dentro do seu produto.
             </p>
             <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
