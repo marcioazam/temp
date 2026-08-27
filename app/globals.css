@@ -823,10 +823,12 @@ kbd {
    and A (84–96%). Compositor-only: opacity + translate. */
 .hf-dot {
   position: absolute;
-  left: -1.5px;
+  left: -2.5px;
   top: 0;
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primary) 80%, transparent);
   opacity: 0;
   will-change: transform, opacity;
 }
