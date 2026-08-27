@@ -44,17 +44,19 @@ export function Features() {
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)] lg:gap-12">
           <div className="lg:sticky lg:top-24">
-            <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
-              <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
-              <span>recursos</span>
-            </h2>
-            <p className="type-title mt-6 max-w-xl text-balance text-foreground">
-              Um gateway. Todas as rotas resolvidas.
-            </p>
-            <p className="type-lead mt-6 max-w-xl text-pretty text-muted-foreground">
-              Cada provedor tem seu SDK, seu limite e sua janela de contexto. O Nylla absorve essa diferença e entrega
-              uma superfície única para o seu código e para os seus agentes.
-            </p>
+            <Reveal>
+              <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+                <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+                <span>recursos</span>
+              </h2>
+              <p className="type-title mt-6 max-w-xl text-balance text-foreground">
+                Um gateway. Todas as rotas resolvidas.
+              </p>
+              <p className="type-lead mt-6 max-w-md text-pretty text-muted-foreground">
+                Cada provedor tem seu SDK e seu limite. O Nylla absorve essa diferença e entrega uma superfície única
+                para o seu código.
+              </p>
+            </Reveal>
           </div>
 
           <Reveal delay={80}>
