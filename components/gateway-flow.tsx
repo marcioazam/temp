@@ -49,7 +49,7 @@ function AnimatedCode() {
         timer = window.setTimeout(() => {
           line = 0
           setVisibleLines(0)
-          timer = window.setTimeout(revealNextLine, 500)
+          timer = window.setTimeout(revealNextLine, 700)
         }, 2400)
       }
 
@@ -81,9 +81,13 @@ function AnimatedCode() {
         const isActive = index === visibleLines - 1
 
         return (
-          <div key={line.number} className="flex min-w-0 px-4" aria-hidden="true">
+          <div
+            key={line.number}
+            className={`flex min-w-0 px-4 transition-opacity duration-150 ${isVisible ? "opacity-100" : "opacity-0"}`}
+            aria-hidden="true"
+          >
             <span className="w-8 shrink-0 select-none text-muted-foreground/40">{line.number}</span>
-            <code className={`whitespace-pre transition-opacity duration-150 ${line.number === "02" ? "text-primary" : "text-foreground/80"} ${isVisible ? "opacity-100" : "opacity-0"}`}>
+            <code className={`whitespace-pre ${line.number === "02" ? "text-primary" : "text-foreground/80"}`}>
               {line.content}
               {isActive ? <span className="ml-px inline-block h-[1.05em] w-px translate-y-[2px] animate-pulse bg-primary" /> : null}
             </code>
