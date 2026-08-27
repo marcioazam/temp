@@ -96,7 +96,8 @@ export function RouteComparison() {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 font-mono text-xs text-muted-foreground/70">
+          <p className="mt-3 inline-block border border-border bg-background px-3 py-2 font-mono text-xs text-foreground shadow-sm">
+            <span aria-hidden="true" className="mr-2 text-primary">{"//"}</span>
             Comparação estrutural. Disponibilidade de modelos e limites podem mudar conforme o provedor.
           </p>
         </Reveal>
