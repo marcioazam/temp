@@ -39,15 +39,6 @@ const plans = [
   },
 ]
 
-function CrossMark({ className }: { className?: string }) {
-  return (
-    <span aria-hidden="true" className={`pointer-events-none absolute z-10 block size-2.5 ${className ?? ""}`}>
-      <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-foreground/30" />
-      <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-foreground/30" />
-    </span>
-  )
-}
-
 export function Pricing() {
   return (
     <section id="planos" aria-labelledby="planos-title">
@@ -64,11 +55,6 @@ export function Pricing() {
         </p>
 
         <div className="relative mt-14">
-          <CrossMark className="-left-[5px] -top-[5px]" />
-          <CrossMark className="-right-[5px] -top-[5px]" />
-          <CrossMark className="-bottom-[5px] -left-[5px]" />
-          <CrossMark className="-bottom-[5px] -right-[5px]" />
-
           <div className="photo-grain grid grid-cols-1 gap-px bg-[url('/images/pricing-landscape.png')] bg-cover bg-center p-6 md:p-12 lg:grid-cols-3 lg:gap-px lg:p-16">
             {plans.map((plan) => (
               <article
