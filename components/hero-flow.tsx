@@ -25,11 +25,9 @@ export function HeroFlow() {
 
         {/* Connector A */}
         <div className="relative flex h-11 justify-center" aria-hidden="true">
-          <div className="relative h-full w-px bg-primary/40">
-            <span className="absolute -left-1 top-0 size-2 rounded-full bg-background/80" />
-            <span className="absolute -bottom-1 -left-1 size-2 rounded-full bg-background/80" />
-            <span className="hf-dot hf-dot-a-down bg-primary" />
-            <span className="hf-dot hf-dot-a-up bg-primary" />
+          <div className="relative h-full w-px bg-border">
+            <span className="hf-dot hf-dot-a-down bg-foreground" />
+            <span className="hf-dot hf-dot-a-up bg-foreground" />
           </div>
         </div>
 
@@ -52,11 +50,9 @@ export function HeroFlow() {
 
         {/* Connector B */}
         <div className="relative flex h-11 justify-center" aria-hidden="true">
-          <div className="relative h-full w-px bg-primary/40">
-            <span className="absolute -left-1 top-0 size-2 rounded-full bg-background/80" />
-            <span className="absolute -bottom-1 -left-1 size-2 rounded-full bg-background/80" />
-            <span className="hf-dot hf-dot-b-down bg-primary" />
-            <span className="hf-dot hf-dot-b-up bg-primary" />
+          <div className="relative h-full w-px bg-border">
+            <span className="hf-dot hf-dot-b-down bg-foreground" />
+            <span className="hf-dot hf-dot-b-up bg-foreground" />
           </div>
         </div>
 
