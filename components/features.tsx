@@ -43,6 +43,11 @@ export function Features() {
                 Cada provedor tem seu SDK e seu limite. O Nylla absorve essa diferença e entrega uma superfície única
                 para o seu código.
               </p>
+              <div
+                aria-hidden="true"
+                className="photo-grain mt-8 hidden aspect-[4/3] w-full max-w-md overflow-hidden bg-cover bg-center lg:block"
+                style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
+              />
             </Reveal>
           </div>
 
