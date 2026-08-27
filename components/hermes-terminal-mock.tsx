@@ -187,8 +187,8 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
   return null
 }
 
-export function HermesTerminalMock() {
-  const [visibleCount, setVisibleCount] = useState(0)
+export function HermesTerminalMock({ isRunning = true }: { isRunning?: boolean }) {
+ const [visibleCount, setVisibleCount] = useState(0)
   const [draft, setDraft] = useState("")
   const scrollerRef = useRef<HTMLDivElement>(null)
   const draftScrollerRef = useRef<HTMLDivElement>(null)
@@ -199,6 +199,7 @@ export function HermesTerminalMock() {
   const currentModel = SESSION[Math.max(0, visibleCount - 1)]?.model ?? PHASES[0].model
 
   useEffect(() => {
+    if (!isRunning) return
     if (!nextLine) {
       const restart = window.setTimeout(() => {
         setVisibleCount(0)
@@ -234,7 +235,7 @@ export function HermesTerminalMock() {
     }
     const reveal = window.setTimeout(() => setVisibleCount((count) => count + 1), delayByKind[nextLine.kind])
     return () => window.clearTimeout(reveal)
-  }, [draft, isTyping, nextLine])
+  }, [draft, isRunning, isTyping, nextLine])
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
