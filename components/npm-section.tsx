@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { Check, Copy } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
@@ -56,7 +56,6 @@ export function NpmSection() {
   const [visibleSteps, setVisibleSteps] = useState<TerminalStep[]>([])
   const [draft, setDraft] = useState("")
   const [stepIndex, setStepIndex] = useState(0)
-  const terminalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const step = terminalSteps[stepIndex]
@@ -87,9 +86,6 @@ export function NpmSection() {
     return () => window.clearTimeout(advance)
   }, [draft, stepIndex])
 
-  useEffect(() => {
-    terminalRef.current?.scrollTo({ top: terminalRef.current.scrollHeight, behavior: "smooth" })
-  }, [draft, visibleSteps])
 
   const currentStep = terminalSteps[stepIndex]
 
@@ -136,8 +132,7 @@ export function NpmSection() {
               </div>
 
               <div
-                ref={terminalRef}
-                className="term-pane h-80 overflow-y-auto p-5 font-mono text-[11px] leading-6 tracking-[-0.005em] text-term-mid md:p-6 md:text-xs"
+                className="term-pane h-80 overflow-hidden p-5 font-mono text-[8px] leading-[1.65] tracking-[-0.005em] text-term-mid sm:text-[9px] md:p-6 md:text-[10px]"
                 aria-live="polite"
                 aria-label="Terminal Linux configurando o Nylla Gateway"
               >
