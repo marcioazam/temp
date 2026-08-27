@@ -91,7 +91,7 @@ export function SiteHeader() {
             <div className="flex items-center gap-2">
               <Link
                 href="/docs"
-                className="inline-flex items-center border border-foreground/45 bg-transparent px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-foreground hover:bg-foreground/5"
+                className="inline-flex items-center border border-foreground/45 bg-background px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-foreground hover:bg-background"
               >
                 Ler Docs
               </Link>
