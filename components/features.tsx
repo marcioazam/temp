@@ -48,7 +48,7 @@ export function Features() {
               key={f.key}
               delay={i * 70}
               className={`group relative border-b border-border py-8 md:py-10 ${
-                i === 0 ? "pt-0 md:pt-0" : ""
+                i === 0 ? "bg-feature-landscape p-6 md:p-8" : ""
               } ${i === 1 ? "md:pt-0" : ""} ${i === features.length - 1 ? "border-b-0" : ""} ${
                 i === features.length - 2 ? "md:border-b-0" : ""
               }`}
@@ -57,20 +57,7 @@ export function Features() {
                 aria-hidden="true"
                 className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100"
               />
-              <h3
-                className={`w-fit font-mono text-base font-medium leading-snug text-foreground ${
-                  i === 0 ? "bg-cover px-3 py-2" : ""
-                }`}
-                style={
-                  i === 0
-                    ? {
-                        backgroundImage:
-                          "linear-gradient(rgba(8,8,8,0.62), rgba(8,8,8,0.62)), url('/images/mist-lake.png')",
-                        backgroundPosition: "20% 20%",
-                      }
-                    : undefined
-                }
-              >
+              <h3 className="w-fit font-mono text-base font-medium leading-snug text-foreground">
                 {f.title}
               </h3>
               <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">{f.body}</p>

@@ -941,6 +941,14 @@ kbd {
   will-change: border-color, color, opacity;
 }
 
+.bg-feature-landscape {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--background) 72%, transparent), color-mix(in oklab, var(--background) 72%, transparent)),
+    url('/images/mist-lake.png');
+  background-position: 20% 45%;
+  background-size: cover;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cursor-blink,
   .mark-breathe,
