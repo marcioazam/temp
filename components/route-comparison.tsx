@@ -41,23 +41,22 @@ export function RouteComparison() {
     >
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
-          <div className="w-fit max-w-3xl border border-border/80 bg-background/85 p-5 shadow-lg backdrop-blur-md md:p-6">
-            <h2 className="font-mono text-xs text-muted-foreground">
-              <span aria-hidden="true" className="text-primary">{"// "}</span>comparativo
-            </h2>
-            <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
-              Compare a rota, não o hype.
-            </p>
-            <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
-              A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
-              entre o seu prompt e a resposta.
-            </p>
-          </div>
-        </Reveal>
+          <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
+            <div className="p-5 md:p-6">
+              <h2 className="font-mono text-xs text-muted-foreground">
+                <span aria-hidden="true" className="text-primary">{"// "}</span>comparativo
+              </h2>
+              <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+                Compare a rota, não o hype.
+              </p>
+              <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
+                A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
+                entre o seu prompt e a resposta.
+              </p>
+            </div>
 
-        <Reveal delay={120} className="mt-12">
-          <div className="overflow-x-auto border border-border bg-background/90 backdrop-blur-sm">
-            <table className="w-full min-w-[850px] border-collapse text-left">
+            <div className="overflow-x-auto border-t border-border">
+              <table className="w-full min-w-[850px] border-collapse text-left">
               <caption className="sr-only">
                 Comparação entre Nylla, agregadores de modelos e APIs diretas de provedores
               </caption>
@@ -96,7 +95,8 @@ export function RouteComparison() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+              </table>
+            </div>
           </div>
           <p className="mt-3 inline-block border border-border bg-background px-3 py-2 font-mono text-xs text-foreground shadow-sm">
             <span aria-hidden="true" className="mr-2 text-primary">{"//"}</span>
