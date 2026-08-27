@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
 import { RotorMark } from "@/components/logo"
 import { useLanguage } from "@/components/language-provider"
 
@@ -15,34 +14,10 @@ const nav = [
 ]
 
 export function SiteHeader() {
-  const sentinelRef = useRef<HTMLDivElement | null>(null)
-  const [scrolled, setScrolled] = useState(false)
   const { locale, setLocale, enabled: languageEnabled } = useLanguage()
 
-  // Keep a small dead zone at the top so subpixel scrolling and trackpad
-  // bounce cannot repeatedly toggle the header treatment.
-  useEffect(() => {
-    const node = sentinelRef.current
-    if (!node || typeof IntersectionObserver === "undefined") return
-
-    const observer = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting), {
-      rootMargin: "-8px 0px 0px",
-      threshold: 0,
-    })
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <>
-      <div ref={sentinelRef} aria-hidden="true" className="absolute top-0 h-3 w-px" />
-      <header
-        className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-          scrolled
-            ? "border-foreground/15 bg-background [background-image:none] after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-5 after:bg-gradient-to-b after:from-background/80 after:to-transparent"
-            : "border-transparent bg-transparent"
-        }`}
-      >
+    <header className="sticky top-0 z-50 bg-transparent">
         <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center px-4 md:px-9">
           <Link
             href="/"
@@ -119,7 +94,6 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-      </header>
-    </>
+    </header>
   )
 }
