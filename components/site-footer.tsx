@@ -17,14 +17,20 @@ export function SiteFooter() {
           </p>
         </div>
         <nav aria-label="Rodapé" className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs text-muted-foreground">
-          <Link href="/#recursos" className="transition-colors hover:text-foreground">
-            Recursos
-          </Link>
           <Link href="/#harnesses" className="transition-colors hover:text-foreground">
             Harnesses
           </Link>
+          <Link href="/#recursos" className="transition-colors hover:text-foreground">
+            Recursos
+          </Link>
+          <Link href="/#comparativo" className="transition-colors hover:text-foreground">
+            Comparativo
+          </Link>
           <Link href="/#planos" className="transition-colors hover:text-foreground">
             Planos
+          </Link>
+          <Link href="/#faq" className="transition-colors hover:text-foreground">
+            FAQ
           </Link>
           <Link href="/docs" className="transition-colors hover:text-foreground">
             Docs
