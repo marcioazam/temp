@@ -123,8 +123,8 @@ export function NpmSection() {
         </Reveal>
 
         <Reveal delay={120} className="md:order-2">
-          <div className="photo-grain flex min-h-[31rem] items-center bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
-            <div className="elev-window w-full overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
+          <div className="photo-grain flex min-h-[27rem] items-center bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
+            <div className="elev-window mx-auto w-full max-w-xl overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
               <div className="relative flex h-7 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
                 <div className="flex items-center gap-1.5" aria-hidden="true">
                   <span className="size-2.5 rounded-full bg-[#ff5f57]" />
@@ -138,7 +138,7 @@ export function NpmSection() {
 
               <div
                 ref={terminalRef}
-                className="term-pane h-[24rem] overflow-y-auto p-5 font-mono text-[11px] leading-6 text-[#a0a0a0] md:p-6 md:text-xs"
+                className="term-pane h-80 overflow-y-auto p-5 font-mono text-[11px] leading-6 text-[#a0a0a0] md:p-6 md:text-xs"
                 aria-live="polite"
                 aria-label="Terminal Linux configurando o Nylla Gateway"
               >
