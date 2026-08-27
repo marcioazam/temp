@@ -1,4 +1,4 @@
-import { RotorMark } from "@/components/logo"
+import { NyllaLogo } from "@/components/logo"
 
 const MODELS = ["GPT", "Claude", "Gemini", "Deepseek", "Nylla LLM"]
 const STEPS = ["Valida", "Roteia", "Entrega"]
@@ -8,7 +8,7 @@ const STEPS = ["Valida", "Roteia", "Entrega"]
  * middle, LLMs below. A request packet travels down the spine, Nylla's
  * internal steps light up in sequence, a model activates, and a response
  * packet (accent color) travels back up. Every animation is compositor-only
- * (opacity/transform) on a shared 6.4s cycle.
+ * (opacity/transform) on a shared 3.2s cycle.
  */
 export function HeroFlow() {
   return (
@@ -29,12 +29,9 @@ export function HeroFlow() {
         </div>
 
         {/* Node: Nylla */}
-        <div className="relative border border-primary/45 bg-muted px-4 py-3 text-foreground">
-          <div className="flex items-center gap-2">
-            <RotorMark aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-primary" />
-            <span className="text-[10px] uppercase tracking-[0.2em] text-primary">Nylla</span>
-          </div>
-          <div className="mt-1.5 flex items-center gap-2 text-xs text-primary">
+        <div className="relative flex min-h-16 items-center justify-between gap-6 border border-primary/45 bg-muted px-5 py-4 text-foreground">
+          <NyllaLogo aria-hidden="true" className="hero-logo-unfold h-7 w-auto shrink-0 text-primary" />
+          <div className="flex items-center gap-2 text-xs text-foreground">
             {STEPS.map((step, i) => (
               <span key={step} className="flex items-center gap-2">
                 {i > 0 && (
