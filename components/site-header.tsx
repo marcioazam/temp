@@ -27,7 +27,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b bg-navbar transition-colors duration-200 ${
+      className={`site-background sticky top-0 z-50 border-b transition-colors duration-200 ${
         scrolled ? "border-border/35" : "border-transparent"
       }`}
     >
