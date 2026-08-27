@@ -11,7 +11,7 @@ export function Hero() {
           <div>
             <Reveal>
               <p className="font-mono text-xs text-muted-foreground">
-                <span aria-hidden="true" className="text-primary">{"// "}</span>
+                <span aria-hidden="true" className="mr-2 text-sm text-primary">{"☼︎"}</span>
                 o que é o Nylla
               </p>
               <h2 id="about-title" className="mt-5 max-w-xl text-balance font-sans text-4xl font-medium leading-tight tracking-[-0.04em] text-foreground md:text-6xl">
