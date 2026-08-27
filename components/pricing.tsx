@@ -47,7 +47,7 @@ export function Pricing() {
             <span aria-hidden="true" className="size-1 rounded-full bg-ultra" />
             Créditos renovados mensalmente. Cancele quando quiser.
           </p>
-          <div className="photo-grain grid grid-cols-1 gap-px bg-[url('/images/pricing-landscape.png')] bg-cover bg-center p-6 md:p-12 lg:grid-cols-3 lg:gap-px lg:p-16">
+          <div className="photo-grain grid grid-cols-1 gap-px bg-[url('/images/pricing-landscape.png')] bg-cover bg-center px-6 py-10 md:px-12 md:py-16 lg:grid-cols-3 lg:gap-px lg:px-16 lg:py-24">
             {plans.map((plan) => (
               <article
                 key={plan.name}
