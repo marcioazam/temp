@@ -76,9 +76,9 @@ function VSCodeBrand() {
 }
 
 function TaskIcon({ type }: { type: string }) {
-  if (type === "loading") return <LoaderCircle className="size-3.5 text-[#666666]" />
-  if (type === "branch") return <GitBranch className="size-3.5 text-[#555555]" />
-  return <span className="size-1.5 rounded-full bg-[#555555]" />
+  if (type === "loading") return <LoaderCircle className="size-3.5 text-primary" />
+  if (type === "branch") return <GitBranch className="size-3.5 text-primary" />
+  return <span className="size-1.5 rounded-full bg-primary" />
 }
 
 function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) {
