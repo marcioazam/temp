@@ -11,7 +11,7 @@ function ClaudeMascot() {
       src="/images/claude-code-logo.svg"
       alt=""
       aria-hidden="true"
-      className="h-9 w-9 shrink-0 md:h-12 md:w-12"
+      className="h-9 w-9 shrink-0 brightness-0 invert md:h-12 md:w-12"
       draggable={false}
     />
   )
