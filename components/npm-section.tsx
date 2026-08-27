@@ -20,12 +20,13 @@ const terminalSteps: TerminalStep[] = [
   { type: "success", text: "✓ Configuração concluída. Pronto para usar." },
 ]
 
-function CopyRow({ label, value }: { label: string; value: string }) {
+function InstallCommand() {
+  const command = "npm i -g nylla"
   const [copied, setCopied] = useState(false)
 
   async function copy() {
     try {
-      await navigator.clipboard.writeText(value)
+      await navigator.clipboard.writeText(command)
       setCopied(true)
       window.setTimeout(() => setCopied(false), 1600)
     } catch {
@@ -34,14 +35,14 @@ function CopyRow({ label, value }: { label: string; value: string }) {
   }
 
   return (
-    <div className="flex items-center gap-3 border-b border-border/60 py-2.5">
-      <span className="w-16 shrink-0 font-mono text-[11px] text-muted-foreground/70">{label}</span>
-      <code className="min-w-0 flex-1 truncate font-mono text-sm text-foreground">{value}</code>
+    <div className="flex max-w-sm items-center gap-3 border border-border bg-card/50 p-2.5 pl-4">
+      <span className="font-mono text-sm text-primary" aria-hidden="true">$</span>
+      <code className="min-w-0 flex-1 truncate font-mono text-sm text-foreground">{command}</code>
       <button
         type="button"
         onClick={copy}
-        className="shrink-0 font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground"
-        aria-label={`Copiar ${value}`}
+        className="shrink-0 border border-border px-4 py-1.5 font-mono text-[11px] text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+        aria-label={`Copiar ${command}`}
       >
         {copied ? "copiado" : "copiar"}
       </button>
@@ -114,9 +115,8 @@ export function NpmSection() {
             <li><span className="text-primary" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
           </ul>
 
-          <div className="mt-8 max-w-md border-t border-border/60">
-            <CopyRow label="npm" value="nylla" />
-            <CopyRow label="comando" value="npx nylla connect" />
+          <div className="mt-8">
+            <InstallCommand />
           </div>
         </Reveal>
 
