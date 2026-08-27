@@ -70,7 +70,7 @@ export function FaqSection() {
             <p className="type-lead mt-5 max-w-xl text-pretty text-muted-foreground">
               Tudo o que você precisa saber antes de conectar seu primeiro harness à Nylla.
             </p>
-            <p className="type-label mt-6 text-ultra">
+            <p className="type-small mt-7 max-w-xs text-pretty text-subtle-foreground">
               Não encontrou sua resposta?{" "}
               <a
                 href="/docs"
