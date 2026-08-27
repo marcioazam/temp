@@ -30,8 +30,10 @@ const questions = [
 
 export function FaqSection() {
   return (
-    <section id="faq" aria-labelledby="faq-title" className="border-t border-border">
-      <div className="mx-auto grid w-full max-w-screen-2xl items-start gap-10 px-4 py-16 md:px-9 md:py-24 lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)] lg:gap-12">
+    <section id="faq" aria-labelledby="faq-title" className="relative isolate overflow-hidden px-4 md:px-9">
+      <div className="photo-grain relative mx-auto w-full max-w-screen-2xl overflow-hidden bg-[url('/images/faq-landscape.png')] bg-cover bg-center px-4 py-16 md:px-9 md:py-24">
+        <div aria-hidden="true" className="absolute inset-0 z-0 bg-background/76 backdrop-blur-[1px]" />
+        <div className="relative z-10 grid items-start gap-10 lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)] lg:gap-12">
         <Reveal className="lg:sticky lg:top-24">
           <h2 id="faq-title" className="font-mono text-xs text-muted-foreground">
             <span aria-hidden="true" className="text-primary">
@@ -87,6 +89,7 @@ export function FaqSection() {
               </details>
             </Reveal>
           ))}
+        </div>
         </div>
       </div>
     </section>
