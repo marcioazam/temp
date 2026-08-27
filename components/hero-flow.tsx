@@ -1,3 +1,5 @@
+import { RotorMark } from "@/components/logo"
+
 const MODELS = ["GPT", "Claude", "Gemini", "Deepseek", "Nylla LLM"]
 const STEPS = ["Valida", "Roteia", "Entrega"]
 
@@ -29,7 +31,7 @@ export function HeroFlow() {
         {/* Node: Nylla */}
         <div className="relative border border-primary/45 bg-muted px-4 py-3 text-foreground">
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 shrink-0 bg-primary" aria-hidden="true" />
+            <RotorMark aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-primary" />
             <span className="text-[10px] uppercase tracking-[0.2em] text-primary">Nylla</span>
           </div>
           <div className="mt-1.5 flex items-center gap-2 text-xs text-primary">
