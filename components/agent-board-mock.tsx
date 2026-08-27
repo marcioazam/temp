@@ -15,7 +15,7 @@ const initialSessions: Session[] = [
   { title: "Refatorar camada de streaming", meta: "trabalhando...", status: "running" },
   { title: "Adicionar retry com backoff", meta: "PR pronto", status: "review" },
   { title: "Tipar respostas do SDK", meta: "aguardando CI", status: "review" },
-  { title: "Configurar failover por região", meta: "há 42m", status: "done" },
+  { title: "Configurar modelos por região", meta: "há 42m", status: "done" },
   { title: "Instrumentar métricas de latência", meta: "há 1h", status: "done" },
 ]
 

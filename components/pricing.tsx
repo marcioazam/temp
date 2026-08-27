@@ -24,7 +24,7 @@ const plans = [
       "Acesso ilimitado a LLMs padrão",
       "US$25 em créditos frontier/mês",
       "Harnesses ilimitados",
-      "Roteamento e failover avançados",
+      "Políticas de roteamento avançadas",
       "Suporte prioritário",
     ],
     highlighted: true,

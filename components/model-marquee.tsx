@@ -28,7 +28,7 @@ export function ModelMarquee() {
       {brands.map((brand) => (
         <li
           key={brand.name}
-          className="group flex min-h-[76px] flex-col items-center justify-center gap-2 border border-border/70 bg-card px-3 py-3 transition-all hover:border-primary/60 hover:bg-muted"
+          className="group flex min-h-[76px] flex-col items-center justify-center gap-2 border border-border/70 bg-tool-card px-3 py-3 transition-all hover:border-primary/60 hover:bg-tool-card"
         >
           <div className="flex h-7 w-10 items-center justify-center text-foreground transition-transform group-hover:scale-110">
             {brand.src && (

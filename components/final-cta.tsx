@@ -2,17 +2,21 @@ import Link from "next/link"
 
 export function FinalCta() {
   return (
-    <section className="px-4 pb-8 pt-16 md:px-9 md:pb-10 md:pt-24" aria-labelledby="final-cta-title">
+    <section className="pb-8 pt-6 md:pb-10 md:pt-8" aria-labelledby="final-cta-title">
       <div
-        className="mx-auto flex min-h-[420px] w-full max-w-screen-2xl flex-col items-center justify-center gap-7 overflow-hidden rounded-xl bg-cover bg-center px-6 py-20 text-center text-[#171612] md:min-h-[520px]"
+        className="mx-auto flex min-h-[520px] w-[calc(100%-2rem)] max-w-[1464px] flex-col items-center justify-center gap-7 overflow-hidden rounded-xl bg-cover bg-center px-6 py-24 text-center text-[#171612] md:h-[calc(100svh-8.5rem)] md:min-h-[560px] md:max-h-[720px] md:w-[calc(100%-4.5rem)]"
         style={{ backgroundImage: "url('/images/nylla-cta-landscape.png')" }}
       >
-        <h2
+        <h1
           id="final-cta-title"
           className="max-w-4xl text-balance font-sans text-5xl font-normal leading-none tracking-[-0.04em] md:text-7xl"
         >
-          Um endpoint, todos os modelos.
-        </h2>
+          Um gateway.
+          <br />
+          Todos os LLMs.
+          <br />
+          Qualquer harness.
+        </h1>
         <Link
           href="/#planos"
           className="inline-flex items-center justify-center rounded-none bg-[#171612] px-8 py-4 font-sans text-base font-medium text-[#F4F3F1] transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#171612]"

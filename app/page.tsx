@@ -16,15 +16,15 @@ export default function Page() {
     <LanguageProvider>
       <SiteHeader />
       <main>
+        <FinalCta />
         <Hero />
         <Harnesses />
         <NpmSection />
         <GatewayFlow />
-        <RouteComparison />
         <Features />
+        <RouteComparison />
         <Pricing />
         <FaqSection />
-        <FinalCta />
       </main>
       <SiteFooter />
     </LanguageProvider>

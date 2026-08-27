@@ -28,12 +28,13 @@ export function GatewayFlow() {
   return (
     <section id="endpoint">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <div className="grid items-start gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28">
-            <h2 className="font-mono text-xs text-muted-foreground">
-              <span aria-hidden="true" className="text-primary">{"// "}</span>endpoint
-            </h2>
-            <p className="mt-4 max-w-xl text-balance font-mono text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+        <h2 className="font-mono text-xs text-muted-foreground">
+          <span aria-hidden="true" className="text-primary">{"// "}</span>endpoint
+        </h2>
+
+        <div className="mt-5 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:order-2">
+            <p className="max-w-xl text-balance font-mono text-3xl font-medium tracking-tight text-foreground md:text-4xl">
               A inteligência do Nylla dentro do seu produto.
             </p>
             <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
@@ -51,8 +52,8 @@ export function GatewayFlow() {
             </a>
 
             <div className="mt-9 max-w-xl">
-              <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                Feito para diferentes produtos
+              <p className="text-center font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                Feito para diferentes produtos:
               </p>
               <ul className="mt-3 grid grid-cols-2 gap-x-6" aria-label="Aplicações do endpoint Nylla">
                 {USE_CASES.map((item) => (
@@ -69,7 +70,7 @@ export function GatewayFlow() {
           </div>
 
           <div
-            className="flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-2 lg:p-10"
+            className="flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
             <div className="mx-auto w-full max-w-[42rem] overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
@@ -122,8 +123,8 @@ export function GatewayFlow() {
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">formato compatível</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg font-medium text-primary">24/7</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">fallback automático</p>
+                    <p className="font-mono text-lg font-medium text-primary">Atualizado</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">catálogo de modelos</p>
                   </div>
                   <div>
                     <p className="whitespace-nowrap font-mono text-lg font-medium text-primary">Baixa latência</p>

@@ -20,7 +20,7 @@ function ModelSelector() {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveModel((current) => (current + 1) % models.length)
-    }, 1400)
+    }, 350)
 
     return () => window.clearInterval(interval)
   }, [])
@@ -57,7 +57,7 @@ const thisWeek = [
 ]
 
 const thisMonth = [
-  { label: "Fallback entre modelos", type: "branch" },
+  { label: "Catálogo de modelos", type: "branch" },
   { label: "Métricas de uso e custo", type: "dot" },
   { label: "Políticas por workspace", type: "branch" },
 ]
@@ -136,7 +136,7 @@ export function CommandPaletteMock() {
             Configure o VS Code para rotear Claude Code, Codex e Gemini CLI pelo Nylla Gateway
           </div>
           <p className="text-[#777777]">Explorou 18 arquivos, 6 configurações</p>
-          <p>Vou conectar os harnesses ao endpoint compatível com OpenAI, configurar fallback entre modelos e validar o streaming dentro do workspace.</p>
+          <p>Vou conectar os harnesses ao endpoint compatível com OpenAI, configurar os modelos e validar o streaming dentro do workspace.</p>
           <p className="text-[#8a8a8a]">Trabalhou por <span className="text-[#7f9b76]">40s</span></p>
           <p className="text-[#777777]">Validou credenciais e roteamento</p>
           <p>Pronto. O workspace agora alterna modelos pelo Nylla sem alterar o fluxo do agente.</p>

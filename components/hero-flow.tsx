@@ -12,24 +12,27 @@ const STEPS = ["Valida", "Roteia", "Entrega"]
  */
 export function HeroFlow() {
   return (
-    <figure aria-label="Papel da Nylla no fluxo entre sua ferramenta e os LLMs" className="font-mono">
-      <div className="flex flex-col">
+    <figure
+      aria-label="Papel da Nylla no fluxo entre sua ferramenta e os LLMs"
+      className="h-full font-mono"
+    >
+      <div className="flex h-full flex-col justify-center p-5 sm:p-8 lg:p-10">
         {/* Node: user + tool */}
-        <div className="flex flex-wrap items-center gap-2 border border-border px-4 py-3 text-xs">
+        <div className="flex flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
           <span className="text-muted-foreground">Você:</span>
           <span className="text-foreground">Claude Code, Codex, Cursor, Gemini CLI, etc...</span>
         </div>
 
         {/* Connector A */}
         <div className="relative flex h-11 justify-center" aria-hidden="true">
-          <div className="relative h-full w-px bg-border">
-            <span className="hf-dot hf-dot-a-down bg-foreground" />
-            <span className="hf-dot hf-dot-a-up bg-foreground" />
+          <div className="relative h-full w-1 bg-border">
+            <span className="hf-dot hf-dot-a-down bg-primary" />
+            <span className="hf-dot hf-dot-a-up bg-primary" />
           </div>
         </div>
 
         {/* Node: Nylla */}
-        <div className="relative flex min-h-16 items-center justify-between gap-6 border border-primary/45 bg-muted px-5 py-4 text-foreground">
+        <div className="relative flex min-h-16 items-center justify-between gap-6 border-0 bg-muted px-5 py-4 text-foreground outline-none ring-0">
           <NyllaLogo aria-hidden="true" className="hero-logo-unfold h-7 w-auto shrink-0 text-foreground" />
           <div className="flex items-center gap-2 text-xs text-foreground">
             {STEPS.map((step, i) => (
@@ -47,14 +50,14 @@ export function HeroFlow() {
 
         {/* Connector B */}
         <div className="relative flex h-11 justify-center" aria-hidden="true">
-          <div className="relative h-full w-px bg-border">
-            <span className="hf-dot hf-dot-b-down bg-foreground" />
-            <span className="hf-dot hf-dot-b-up bg-foreground" />
+          <div className="relative h-full w-1 bg-border">
+            <span className="hf-dot hf-dot-b-down bg-primary" />
+            <span className="hf-dot hf-dot-b-up bg-primary" />
           </div>
         </div>
 
         {/* Node: LLMs */}
-        <div className="flex flex-wrap items-center gap-2 border border-border px-4 py-3 text-xs">
+        <div className="flex flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
           <span className="text-muted-foreground">LLMs:</span>
           {MODELS.map((model, i) => (
             <span

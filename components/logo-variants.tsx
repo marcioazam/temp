@@ -495,26 +495,6 @@ export function CacheStatic({ className }: { className?: string }) {
   )
 }
 
-/* 4. Fallback — primary lane broken mid-flight; traffic rerouted      */
-export function FallbackStatic({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 72 28" className={`pixel-crisp ${className ?? ""}`} role="img" aria-label="fallback pixel">
-      <g fill="currentColor">
-        {/* broken primary lane */}
-        <rect x={0} y={4} width={26} height={3} opacity={0.35} />
-        <rect x={30} y={4} width={4} height={3} opacity={0.15} />
-        <rect x={38} y={4} width={3} height={3} opacity={0.1} />
-        {/* reroute step down */}
-        <rect x={24} y={4} width={3} height={14} opacity={0.5} />
-        {/* fallback lane, solid to the end */}
-        <rect x={24} y={18} width={48} height={3} />
-        {/* packet safely on fallback */}
-        <rect x={58} y={15} width={6} height={6} opacity={0.9} />
-      </g>
-    </svg>
-  )
-}
-
 /* 5. Multiplex — many inputs merging into a single output lane.       */
 export function MultiplexStatic({ className }: { className?: string }) {
   return (

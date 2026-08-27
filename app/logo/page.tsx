@@ -16,7 +16,6 @@ import {
   RouteStatic,
   LatencyStatic,
   CacheStatic,
-  FallbackStatic,
   MultiplexStatic,
   CreditsStatic,
   HandshakeStatic,
@@ -360,10 +359,6 @@ export default function LogoPage() {
 
           <VariantCard name="cache" note="camada quente no topo">
             <CacheStatic className="h-16 w-auto text-foreground" />
-          </VariantCard>
-
-          <VariantCard name="fallback" note="reroteado sem perda">
-            <FallbackStatic className="h-12 w-auto text-foreground" />
           </VariantCard>
 
           <VariantCard name="multiplex" note="n entradas, 1 saída">

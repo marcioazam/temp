@@ -265,7 +265,7 @@ function ClaudeCodeSession() {
   return (
     <div
       data-current-model={currentModel}
-className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[9px] md:text-[10px]"
+className="@container flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[9px] md:text-[10px]"
   >
   <div className="relative flex h-7 shrink-0 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
   <div className="flex items-center gap-1.5" aria-hidden="true">
@@ -273,7 +273,7 @@ className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border bor
   <span className="size-2.5 rounded-full bg-[#febc2e]" />
   <span className="size-2.5 rounded-full bg-[#28c840]" />
   </div>
-  <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">Claude Code : taskflow</span>
+  <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">Claude Code · taskflow</span>
       </div>
       <div ref={scrollerRef} className="min-h-0 flex-1 overflow-y-auto px-4 py-3 [scrollbar-color:#55524c_transparent] [scrollbar-width:thin] sm:px-6 sm:py-5 md:px-8 md:py-6">
         <div className="flex items-start gap-3">
@@ -311,27 +311,47 @@ className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border bor
           </div>
         </div>
         <div className="flex min-w-0 items-center justify-between gap-3 px-1 pt-1.5 text-[7px] leading-none text-[#77736c] sm:text-[8px] md:text-[9px]">
-          <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap">
+          <div className="flex min-w-0 items-center gap-1.5 overflow-hidden whitespace-nowrap">
             <span className="shrink-0">? for shortcuts</span>
-            <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-            <span className="hidden max-w-32 truncate text-[#8d8981] sm:inline md:max-w-none">/users/nylla/taskflow</span>
-            <span className="hidden text-[#4f4c47] sm:inline" aria-hidden="true">·</span>
-            <span className="hidden text-[#aaa69f] sm:inline">main</span>
-          </div>
-          <div className="flex min-w-0 items-center justify-end gap-1.5 whitespace-nowrap">
-<span className="inline-flex items-center gap-1 text-[#e8e8e8]">
-  <span className="relative top-px block size-1 shrink-0 rounded-full bg-[#e8e8e8]" aria-hidden="true" />
-  <span className="leading-none">Thinking on</span>
+            <span className="hidden items-center gap-1.5 @xl:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-[#8d8981]">/users/nylla/taskflow</span>
             </span>
-            <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-            <span className="hidden text-primary sm:inline">Nylla Gateway</span>
-            <span className="hidden text-[#4f4c47] sm:inline" aria-hidden="true">·</span>
-            <span className="max-w-24 truncate text-primary sm:max-w-none">{currentModel}</span>
-            <span className="hidden text-[#4f4c47] md:inline" aria-hidden="true">·</span>
-            <span className="hidden text-[#e8e8e8] md:inline">Connected · 16ms</span>
+            <span className="hidden items-center gap-1.5 @2xl:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-[#aaa69f]">main</span>
+            </span>
+          </div>
+          <div className="flex shrink-0 items-center justify-end gap-1.5 whitespace-nowrap">
+            <span className="leading-none text-[#e8e8e8]">Thinking on</span>
+            <span className="hidden items-center gap-1.5 @lg:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-primary">Nylla Gateway</span>
+            </span>
+            <span className="hidden items-center gap-1.5 @sm:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-primary">{currentModel}</span>
+            </span>
+            <span className="hidden items-center gap-1.5 @2xl:inline-flex">
+              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-[#e8e8e8]">Connected · 16ms</span>
+            </span>
           </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+export function ClaudeCodeWindow() {
+  return (
+    <div
+      className="pointer-events-none h-full w-full select-none"
+      style={{ pointerEvents: "none", userSelect: "none" }}
+      role="img"
+      aria-label="Claude Code conectado ao Nylla Gateway alternando entre KIMI K3, DeepSeek V4 e GPT 5.6 SOL"
+    >
+      <ClaudeCodeSession />
     </div>
   )
 }
