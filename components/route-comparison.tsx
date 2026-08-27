@@ -92,7 +92,7 @@ export function RouteComparison() {
                   </th>
                   <th scope="col" className="w-[28%] p-4 align-top md:p-5">
                     <div className="flex items-center gap-3">
-                      <RouteMark>↗</RouteMark>
+                      <RouteMark>→</RouteMark>
                       <div>
                         <span className="block font-mono text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Agregador</span>
                         <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground/60">multi-provider</span>
