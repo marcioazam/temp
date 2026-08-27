@@ -73,10 +73,10 @@ export function RouteComparison() {
                     </span>
                   </th>
                   <th scope="col" className="w-[28%] p-4 md:p-5">
-                    <span className="font-mono text-xs font-medium text-muted-foreground">agregador</span>
+                    <span className="font-mono text-xs font-medium text-muted-foreground">Open Router</span>
                   </th>
                   <th scope="col" className="w-[28%] p-4 md:p-5">
-                    <span className="font-mono text-xs font-medium text-muted-foreground">api direta</span>
+                    <span className="font-mono text-xs font-medium text-muted-foreground">API Direta no LLM</span>
                   </th>
                 </tr>
               </thead>
