@@ -265,7 +265,7 @@ function ClaudeCodeSession() {
   return (
     <div
       data-current-model={currentModel}
-className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[9px] md:text-[10px]"
+className="@container flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[9px] md:text-[10px]"
   >
   <div className="relative flex h-7 shrink-0 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
   <div className="flex items-center gap-1.5" aria-hidden="true">
@@ -311,27 +311,40 @@ className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border bor
           </div>
         </div>
         <div className="flex min-w-0 items-center justify-between gap-3 px-1 pt-1.5 text-[7px] leading-none text-[#77736c] sm:text-[8px] md:text-[9px]">
-          <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap">
+          <div className="flex min-w-0 items-center gap-1.5 overflow-hidden whitespace-nowrap">
             <span className="shrink-0">? for shortcuts</span>
-            <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-            <span className="hidden max-w-32 truncate text-[#8d8981] sm:inline md:max-w-none">/users/nylla/taskflow</span>
-            <span className="hidden text-[#4f4c47] sm:inline" aria-hidden="true">·</span>
-            <span className="hidden text-[#aaa69f] sm:inline">main</span>
+            <span className="hidden text-[#4f4c47] @xl:inline" aria-hidden="true">·</span>
+            <span className="hidden text-[#8d8981] @xl:inline">/users/nylla/taskflow</span>
+            <span className="hidden text-[#4f4c47] @2xl:inline" aria-hidden="true">·</span>
+            <span className="hidden text-[#aaa69f] @2xl:inline">main</span>
           </div>
-          <div className="flex min-w-0 items-center justify-end gap-1.5 whitespace-nowrap">
+          <div className="flex shrink-0 items-center justify-end gap-1.5 whitespace-nowrap">
 <span className="inline-flex items-center gap-1 text-[#e8e8e8]">
   <span className="relative top-px block size-1 shrink-0 rounded-full bg-[#e8e8e8]" aria-hidden="true" />
   <span className="leading-none">Thinking on</span>
             </span>
-            <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-            <span className="hidden text-primary sm:inline">Nylla Gateway</span>
-            <span className="hidden text-[#4f4c47] sm:inline" aria-hidden="true">·</span>
-            <span className="max-w-24 truncate text-primary sm:max-w-none">{currentModel}</span>
-            <span className="hidden text-[#4f4c47] md:inline" aria-hidden="true">·</span>
-            <span className="hidden text-[#e8e8e8] md:inline">Connected · 16ms</span>
+            <span className="hidden text-[#4f4c47] @sm:inline" aria-hidden="true">·</span>
+            <span className="hidden text-primary @lg:inline">Nylla Gateway</span>
+            <span className="hidden text-[#4f4c47] @sm:inline" aria-hidden="true">·</span>
+            <span className="hidden text-primary @sm:inline">{currentModel}</span>
+            <span className="hidden text-[#4f4c47] @2xl:inline" aria-hidden="true">·</span>
+            <span className="hidden text-[#e8e8e8] @2xl:inline">Connected · 16ms</span>
           </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+export function ClaudeCodeWindow() {
+  return (
+    <div
+      className="pointer-events-none h-full w-full select-none"
+      style={{ pointerEvents: "none", userSelect: "none" }}
+      role="img"
+      aria-label="Claude Code conectado ao Nylla Gateway alternando entre KIMI K3, DeepSeek V4 e GPT 5.6 SOL"
+    >
+      <ClaudeCodeSession />
     </div>
   )
 }

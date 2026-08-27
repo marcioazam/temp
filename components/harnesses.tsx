@@ -1,4 +1,4 @@
-import { CommandPaletteMock } from "@/components/command-palette-mock"
+import { HarnessCarousel } from "@/components/harness-carousel"
 import { ModelMarquee } from "@/components/model-marquee"
 import { Reveal } from "@/components/reveal"
 
@@ -26,7 +26,7 @@ export function Harnesses() {
 
           <Reveal delay={80}>
             <div className="bg-[url('/images/vscode-landscape.png')] bg-cover bg-center p-5 sm:p-7 lg:p-8">
-              <CommandPaletteMock />
+              <HarnessCarousel />
             </div>
           </Reveal>
         </div>
