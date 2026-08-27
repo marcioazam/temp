@@ -84,7 +84,13 @@ export function HarnessCarousel() {
               aria-label={slide.label}
             >
               {(index === active || index === exiting) ? (
-                <div className={index === exiting ? "h-full [animation-play-state:paused!important] [&_*]:[animation-play-state:paused!important]" : "h-full"}>
+                <div
+                  className={`mx-auto h-full w-full max-w-lg ${
+                    index === exiting
+                      ? "[animation-play-state:paused!important] [&_*]:[animation-play-state:paused!important]"
+                      : ""
+                  }`}
+                >
                   {slide.id === "vscode" ? (
                     <CommandPaletteMock />
                   ) : slide.id === "claude" ? (
