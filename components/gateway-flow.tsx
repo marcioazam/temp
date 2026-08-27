@@ -134,16 +134,14 @@ export function GatewayFlow() {
             className="photo-grain flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
-            <div className="mx-auto w-full max-w-[42rem] overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
-              <div className="relative flex h-7 items-center justify-between border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
-                <div className="flex items-center gap-1.5" aria-hidden="true">
-                  <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-                  <span className="size-2.5 rounded-full bg-[#febc2e]" />
-                  <span className="size-2.5 rounded-full bg-[#28c840]" />
+            <div className="win mx-auto w-full max-w-[42rem]">
+              <div className="win-bar justify-between">
+                <div className="win-dots" aria-hidden="true">
+                  <span className="win-dot win-dot--close" />
+                  <span className="win-dot win-dot--min" />
+                  <span className="win-dot win-dot--max" />
                 </div>
-                <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg md:text-[10px]">
-                  api.nylla.ai
-                </span>
+                <span className="win-title">api.nylla.ai</span>
                 <svg
                   aria-hidden="true"
                   className="h-3.5 w-3.5 text-muted-foreground"
@@ -186,7 +184,10 @@ export function GatewayFlow() {
 
             <div className="flex flex-col gap-3 border-t border-border px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="type-micro text-subtle-foreground">
-                <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#28c840]" aria-hidden="true" />
+                <span
+                  className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[var(--win-dot-max)]"
+                  aria-hidden="true"
+                />
                 pronto para integração
               </p>
             </div>

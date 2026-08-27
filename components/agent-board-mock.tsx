@@ -55,18 +55,18 @@ export function AgentBoardMock() {
   }, [tick])
 
   return (
-    <div ref={ref} className="group/win term-pane overflow-hidden rounded-[10px] border border-[#34322f] bg-[#080806] elev-window">
+    <div ref={ref} className="win term-pane">
       {/* macOS titlebar */}
-      <div className="relative flex items-center border-b border-border px-4 py-2.5">
-        <div className="flex items-center gap-2" aria-hidden="true">
-          <span className="traffic" />
-          <span className="traffic" />
-          <span className="traffic" />
+      <div className="win-bar">
+        <div className="win-dots" aria-hidden="true">
+          <span className="win-dot win-dot--close" />
+          <span className="win-dot win-dot--min" />
+          <span className="win-dot win-dot--max" />
         </div>
-        <span className="pointer-events-none absolute inset-x-0 text-center font-mono text-[11px] text-muted-foreground">
-          Nylla · sessões de agents
+        <span className="win-title">Nylla · sessões de agents</span>
+        <span className="ml-auto font-sans text-[9px] font-medium tracking-[-0.005em] text-muted-foreground md:text-[10px]">
+          6 agents
         </span>
-        <span className="ml-auto font-mono text-[10px] text-muted-foreground/60">6 agents</span>
       </div>
 
       {/* Board */}

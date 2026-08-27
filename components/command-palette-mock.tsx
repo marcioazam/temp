@@ -105,18 +105,18 @@ function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) 
 
 export function CommandPaletteMock() {
   return (
-    <div className="overflow-hidden rounded-[10px] border border-[#292929] bg-[#111111] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
-      <div className="grid h-10 grid-cols-[74px_1fr_74px] items-center border-b border-[#292929] bg-[#171717] px-3 shadow-[inset_0_1px_rgba(255,255,255,0.035)]">
-        <div className="flex items-center gap-1.5" aria-label="Controles da janela do macOS">
-          <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-          <span className="size-2.5 rounded-full bg-[#febc2e]" />
-          <span className="size-2.5 rounded-full bg-[#28c840]" />
+    <div className="win bg-[#111111]">
+      <div className="win-bar">
+        <div className="win-dots" aria-label="Controles da janela do macOS">
+          <span className="win-dot win-dot--close" />
+          <span className="win-dot win-dot--min" />
+          <span className="win-dot win-dot--max" />
         </div>
-        <div className="mx-auto flex h-6 w-full max-w-64 items-center justify-center gap-1.5 border border-[#333333] bg-[#202020] px-2.5 font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg shadow-[inset_0_1px_rgba(255,255,255,0.025)]">
+        <div className="absolute left-1/2 flex h-6 w-full max-w-64 -translate-x-1/2 items-center justify-center gap-1.5 rounded-md border border-[#333333] bg-[#202020] px-2.5 font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg shadow-[inset_0_1px_rgba(255,255,255,0.025)]">
           <Search className="size-3" aria-hidden="true" />
           <span>Search</span>
         </div>
-        <div className="flex items-center justify-end gap-2 text-code-dim" aria-hidden="true">
+        <div className="ml-auto flex items-center justify-end gap-2 text-code-dim" aria-hidden="true">
           <PanelLeft className="size-3" />
           <PanelsTopLeft className="size-3" />
           <PanelRight className="size-3" />
@@ -124,7 +124,7 @@ export function CommandPaletteMock() {
       </div>
 
       <div className="grid h-[350px] grid-cols-[205px_1fr] bg-[#111111] sm:h-[380px] sm:grid-cols-[230px_1fr]">
-        <aside className="flex min-w-0 flex-col gap-5 border-r border-[#292929] bg-[#121212] p-4">
+        <aside className="flex min-w-0 flex-col gap-5 border-r border-[var(--win-border)] bg-[#121212] p-4">
           <VSCodeBrand />
           <TaskGroup title="This Week" tasks={thisWeek} />
           <TaskGroup title="This Month" tasks={thisMonth} />

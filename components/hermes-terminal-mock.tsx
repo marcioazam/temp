@@ -258,14 +258,14 @@ export function HermesTerminalMock() {
   }, [draft])
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[7px] leading-[1.6] tracking-[-0.005em] text-term-mid shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[8px] md:text-[9px]">
-      <div className="relative flex h-7 shrink-0 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
-        <div className="flex items-center gap-1.5" aria-hidden="true">
-          <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-          <span className="size-2.5 rounded-full bg-[#febc2e]" />
-          <span className="size-2.5 rounded-full bg-[#28c840]" />
+    <div className="win flex h-full w-full flex-col font-mono text-[7px] leading-[1.6] tracking-[-0.005em] text-term-mid sm:text-[8px] md:text-[9px]">
+      <div className="win-bar">
+        <div className="win-dots" aria-hidden="true">
+          <span className="win-dot win-dot--close" />
+          <span className="win-dot win-dot--min" />
+          <span className="win-dot win-dot--max" />
         </div>
-        <span className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg md:text-[10px]">
+        <span className="win-title whitespace-nowrap">
           Hermes Agent · /opt/hermes
         </span>
       </div>
