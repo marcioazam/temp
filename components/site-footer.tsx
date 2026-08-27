@@ -8,20 +8,18 @@ export function SiteFooter() {
         <div className="flex flex-col">
           <div className="flex items-center gap-2.5 text-foreground">
             <RotorMark aria-hidden="true" className="h-8 w-8" />
-            <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-[0.02em]">
-              Nylla
-            </span>
+            <span className="type-wordmark text-[1.375rem]">Nylla</span>
           </div>
-          <p className="mt-4 max-w-xs font-mono text-xs leading-relaxed text-muted-foreground">
+          <p className="type-caption mt-5 max-w-xs text-muted-foreground">
             Gateway de LLM para geração de código e agents. Um endpoint, todos os modelos.
           </p>
-          <p className="mt-8 font-mono text-[11px] text-muted-foreground md:mt-auto">
+          <p className="type-micro mt-8 text-subtle-foreground md:mt-auto">
             © {new Date().getFullYear()} Nylla
           </p>
         </div>
         <nav
           aria-label="Rodapé"
-          className="grid grid-flow-col grid-rows-4 gap-x-12 gap-y-3 self-center font-mono text-xs text-muted-foreground md:ml-auto"
+          className="type-label grid grid-flow-col grid-rows-4 gap-x-12 gap-y-3 self-center text-muted-foreground md:ml-auto"
         >
           <Link href="/#sobre" className="transition-colors hover:text-foreground">
             Sobre

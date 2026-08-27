@@ -41,14 +41,12 @@ export function SiteHeader() {
             className="flex items-center gap-2.5 text-foreground"
           >
             <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0 text-logo" />
-            <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-[0.02em]">
-              Nylla
-            </span>
+            <span className="type-wordmark text-[1.375rem]">Nylla</span>
           </Link>
 
           <nav
             aria-label="Navegação principal"
-            className="hidden items-center gap-7 font-mono text-xs text-muted-foreground md:ml-10 md:flex"
+            className="type-label hidden items-center gap-7 text-muted-foreground md:ml-10 md:flex"
           >
             {nav.map((item) => (
               <Link
@@ -68,7 +66,7 @@ export function SiteHeader() {
           <div className="ml-auto flex items-center">
             {languageEnabled && (
               <div
-                className="mr-6 flex h-[30px] items-center border border-foreground/25 bg-transparent p-0.5 font-mono text-[10px]"
+                className="type-micro mr-6 flex h-[30px] items-center border border-foreground/25 bg-transparent p-0.5 text-[10px] tracking-[0.1em]"
                 role="group"
                 aria-label={locale === "pt" ? "Selecionar idioma" : "Select language"}
                 data-no-translate
@@ -94,13 +92,13 @@ export function SiteHeader() {
             <div className="flex items-center gap-2">
               <Link
                 href="/docs"
-                className="inline-flex items-center border border-foreground/45 bg-background px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-foreground hover:bg-background"
+                className="type-micro inline-flex items-center border border-foreground/45 bg-background px-3.5 py-2 text-foreground transition-colors hover:border-foreground hover:bg-background"
               >
                 Ler Docs
               </Link>
               <Link
                 href="/#planos"
-                className="group relative inline-flex items-center gap-1.5 overflow-hidden border border-[#F4F3F1] bg-[#F4F3F1] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
+                className="type-micro group relative inline-flex items-center gap-1.5 overflow-hidden border border-canvas-paper bg-canvas-paper px-3.5 py-2 text-background transition-opacity hover:opacity-90"
               >
                 Começar
                 <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5">

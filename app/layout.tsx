@@ -1,12 +1,12 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Fira_Code, Geist, Geist_Mono, Inter } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const firaCode = Fira_Code({ subsets: ['latin'], variable: '--font-fira-code' })
+// Fontes variáveis: o eixo completo de peso fica disponível (400–600),
+// o que permite os pesos ópticos 450/480 usados nos títulos.
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist', display: 'swap' })
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono', display: 'swap' })
 
 export const metadata: Metadata = {
   title: 'Nylla | LLM Gateway for Code Generation & Agents',
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`bg-background ${geist.variable} ${geistMono.variable} ${inter.variable} ${firaCode.variable}`}
+      className={`bg-background ${geist.variable} ${geistMono.variable}`}
     >
       <body className="antialiased">
         {children}

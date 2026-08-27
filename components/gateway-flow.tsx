@@ -79,7 +79,7 @@ function AnimatedCode() {
   let remainingCharacters = characterCount
 
   return (
-    <div ref={containerRef} className="w-full font-mono text-[11px] leading-6 sm:text-xs" aria-label={CODE_LINES.map((line) => line.content).join("\n")}>
+    <div ref={containerRef} className="w-full font-mono text-[11px] leading-6 tracking-[-0.005em] sm:text-xs" aria-label={CODE_LINES.map((line) => line.content).join("\n")}>
       {CODE_LINES.map((line) => {
         const visibleLength = Math.max(0, Math.min(line.content.length, remainingCharacters))
         const lineStarted = remainingCharacters > 0
@@ -104,16 +104,16 @@ export function GatewayFlow() {
   return (
     <section id="endpoint">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <h2 className="font-mono text-xs text-muted-foreground">
-          <span aria-hidden="true" className="text-primary">{"// "}</span>endpoint
+        <h2 className="type-eyebrow text-muted-foreground">
+          <span aria-hidden="true" className="mr-1 text-primary">{"//"}</span>endpoint
         </h2>
 
-        <div className="mt-5 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
+        <div className="mt-6 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:order-2">
-            <p className="max-w-xl text-balance font-mono text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+            <p className="type-title max-w-xl text-balance text-foreground">
               A inteligência do Nylla dentro do seu produto.
             </p>
-            <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
+            <p className="type-lead mt-6 max-w-xl text-pretty text-muted-foreground">
               Conecte seu SaaS, software ou aplicativo a um único endpoint compatível com OpenAI. Você desenvolve a
               experiência. O Nylla cuida dos modelos, da disponibilidade e do roteamento de cada requisição.
             </p>
@@ -121,7 +121,7 @@ export function GatewayFlow() {
             <a
               href="/nylla-postman-collection.json"
               download="nylla-postman-collection.json"
-              className="group mt-7 inline-flex items-center gap-3 bg-foreground px-4 py-2.5 font-mono text-xs font-medium text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="type-micro group mt-8 inline-flex items-center gap-3 bg-foreground px-4 py-3 text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Baixar coleção Postman
               <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-y-0.5">↓</span>
