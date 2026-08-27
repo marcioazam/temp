@@ -21,8 +21,8 @@ export default function Page() {
         <Harnesses />
         <NpmSection />
         <GatewayFlow />
-        <RouteComparison />
         <Features />
+        <RouteComparison />
         <Pricing />
         <FaqSection />
       </main>
