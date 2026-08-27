@@ -12,7 +12,7 @@ const brands = [
   { name: "Cline", src: icon("cline") },
   { name: "OpenCode", src: icon("opencode") },
   { name: "Qwen Code", src: icon("qwen") },
-  { name: "Kimi Code", src: icon("kimi") },
+  { name: "Kimi Code", src: "/images/kimi-cli.svg" },
   { name: "Hermes Agent", src: icon("nousresearch-hermes", "mono") },
   { name: "OpenClaw", src: icon("openclaw-moltbot-clawdbot", "mono") },
   { name: "Kilo Code", src: icon("kilo-code", "light") },
