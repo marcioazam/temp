@@ -1,3 +1,5 @@
+import { MessageCircle } from "lucide-react"
+
 import { Reveal } from "@/components/reveal"
 
 const questions = [
@@ -52,7 +54,7 @@ export function FaqSection() {
             animation: "none",
           }}
         >
-          <Reveal className="lg:sticky lg:top-24">
+          <Reveal className="flex min-h-[32rem] flex-col lg:sticky lg:top-24 lg:min-h-[calc(100vh-12rem)]">
             <h2 id="faq-title" className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
               <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
               <span>faq</span>
@@ -71,6 +73,17 @@ export function FaqSection() {
               </a>
               <span className="text-foreground">.</span>
             </p>
+
+            <a
+              href="https://wa.me/"
+              target="_blank"
+              rel="noreferrer"
+              className="type-micro mt-auto inline-flex w-fit items-center gap-2 border border-canvas-paper bg-canvas-paper px-4 py-3 text-background transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canvas-paper"
+              aria-label="Abrir conversa no WhatsApp"
+            >
+              <MessageCircle aria-hidden="true" className="size-4" strokeWidth={1.75} />
+              WhatsApp
+            </a>
           </Reveal>
         </div>
 
