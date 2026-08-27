@@ -57,10 +57,20 @@ export function Features() {
                 aria-hidden="true"
                 className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100"
               />
-              <h3 className="w-fit font-mono text-base font-medium leading-snug text-foreground">
+              <h3
+                className={`w-fit font-mono text-base font-medium leading-snug ${
+                  i === 0 ? "text-[#171612]" : "text-foreground"
+                }`}
+              >
                 {f.title}
               </h3>
-              <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+              <p
+                className={`mt-3 max-w-prose text-sm leading-relaxed ${
+                  i === 0 ? "text-[#171612]/85" : "text-muted-foreground"
+                }`}
+              >
+                {f.body}
+              </p>
             </Reveal>
           ))}
         </div>

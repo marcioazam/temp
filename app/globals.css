@@ -955,9 +955,7 @@ kbd {
 }
 
 .bg-feature-landscape {
-  background-image:
-    linear-gradient(color-mix(in oklab, var(--background) 72%, transparent), color-mix(in oklab, var(--background) 72%, transparent)),
-    url('/images/mist-lake.png');
+  background-image: url('/images/mist-lake.png');
   background-position: 20% 45%;
   background-size: cover;
 }
