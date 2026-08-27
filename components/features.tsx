@@ -17,7 +17,7 @@ const features = [
     body: "Compatível com OpenAI e com seu harness. O pacote npm detecta, configura e roteia tudo em um comando.",
     link: "Instalar via npm",
     href: "#instalar",
-    image: "/images/connect-landscape.png",
+    image: "/images/connect-lake.png",
   },
   {
     key: "frontier",
