@@ -21,7 +21,7 @@ export function Hero() {
 
             <Reveal delay={100}>
               <p className="mt-7 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-                Nylla é um gateway universal para inteligência artificial. Ele conecta seus agents, ferramentas e produtos aos principais modelos por uma única interface, sem prender sua operação a um provedor. Você mantém o fluxo que já usa enquanto o Nylla cuida da compatibilidade, disponibilidade e escolha do modelo para entregar respostas consistentes com menos complexidade operacional.
+                Nylla é um gateway universal de IA. Conecte seus agents, ferramentas e produtos aos principais modelos por uma única interface, sem depender de um único provedor. Você mantém seu fluxo atual. A Nylla cuida da compatibilidade, disponibilidade e roteamento.
               </p>
             </Reveal>
           </div>
