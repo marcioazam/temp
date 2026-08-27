@@ -7,7 +7,8 @@ const TOOLS = [
   { name: "Claude Code", src: icon("claude-code", "mono") },
   { name: "Codex", src: icon("codex", "light") },
   { name: "Cursor", src: icon("cursor", "mono") },
-  { name: "Gemini CLI", src: icon("gemini") },
+  { name: "Antigravity", src: icon("antigravity-google", "mono") },
+  { name: "OpenCode", src: icon("opencode", "mono") },
 ]
 
 const MODELS = [
@@ -35,14 +36,14 @@ export function HeroFlow() {
     >
       <div className="flex h-full flex-col justify-center p-5 sm:p-8 lg:p-10">
         {/* Node: user + tool */}
-        <div className="flex min-h-[50px] flex-wrap items-center gap-x-4 gap-y-2 border border-border bg-background/90 px-4 py-3 text-xs">
-          <span className="text-muted-foreground">Você:</span>
+        <div className="flex min-h-[50px] flex-wrap items-center gap-x-2 gap-y-2 border border-border bg-background/90 px-3 py-3 text-[10px] text-muted-foreground">
+          <span>Você:</span>
           {TOOLS.map((tool) => (
-            <span key={tool.name} className="flex items-center gap-1.5 whitespace-nowrap text-foreground">
+            <span key={tool.name} className="flex items-center gap-1 whitespace-nowrap">
               <img
                 src={tool.src}
                 alt=""
-                className="size-3 shrink-0 object-contain grayscale brightness-0 invert"
+                className="size-3 shrink-0 object-contain grayscale brightness-0 invert opacity-60"
                 loading="lazy"
               />
               {tool.name}
