@@ -36,9 +36,9 @@ export function Features() {
           </h2>
         </Reveal>
 
-        <div className="mt-6 grid items-stretch gap-10 lg:grid-cols-[minmax(20rem,0.8fr)_minmax(0,1.2fr)] lg:gap-12">
+        <div className="mt-6 grid items-stretch gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(20rem,0.8fr)] lg:gap-12">
           <div
-            className="photo-grain h-full overflow-hidden bg-cover bg-center p-6 sm:p-8"
+            className="photo-grain h-full overflow-hidden bg-cover bg-center p-6 sm:p-8 lg:order-2"
             style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
           >
             <Reveal className="relative z-[2] bg-background/85 p-5 backdrop-blur-md sm:p-6">
@@ -52,7 +52,7 @@ export function Features() {
             </Reveal>
           </div>
 
-          <Reveal delay={80} className="h-full">
+          <Reveal delay={80} className="h-full lg:order-1">
             <ul className="grid h-full border-t border-border sm:grid-cols-2 sm:grid-rows-2">
               {features.map((f) => (
                 <li
