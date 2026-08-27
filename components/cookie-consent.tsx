@@ -164,7 +164,43 @@ export function CookieConsent() {
         data-entered={entered}
         className="pointer-events-auto w-full border-t border-border bg-popover/95 backdrop-blur-xl opacity-0 transition-[opacity,transform] duration-300 ease-out outline-none translate-y-3 data-[entered=true]:translate-y-0 data-[entered=true]:opacity-100 motion-reduce:transition-none"
       >
-        <div className="mx-auto w-full max-w-screen-2xl px-4 py-4 md:px-9 md:py-5">
+        <div className="mx-auto flex w-full max-w-screen-2xl flex-col px-4 py-4 md:px-9 md:py-5">
+          {showDetails && (
+            <div
+              ref={detailsRef}
+              tabIndex={-1}
+              className="mb-4 grid gap-x-10 gap-y-4 border-b border-border pb-4 outline-none md:grid-cols-3"
+            >
+              {CONSENT_CATEGORIES.map((category) => {
+                const describedBy = `${titleId}-${category.id}`
+                return (
+                  <div key={category.id} className="flex items-start gap-3">
+                    <Switch
+                      checked={category.required ? true : choices[category.id]}
+                      disabled={category.required}
+                      label={category.label}
+                      describedBy={describedBy}
+                      onChange={(next) => toggle(category.id, next)}
+                    />
+                    <div className="min-w-0">
+                      <p className="type-label text-foreground">
+                        {category.label}
+                        {category.required && (
+                          <span className="type-micro ml-2 text-subtle-foreground">
+                            sempre ativo
+                          </span>
+                        )}
+                      </p>
+                      <p id={describedBy} className="type-caption mt-0.5 text-muted-foreground">
+                        {category.description}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-10">
             <div className="min-w-0 md:max-w-2xl">
               <p className="type-micro text-primary">
@@ -233,41 +269,6 @@ export function CookieConsent() {
             </button>
           </div>
 
-          {showDetails && (
-            <div
-              ref={detailsRef}
-              tabIndex={-1}
-              className="mt-4 grid gap-x-10 gap-y-4 border-t border-border pt-4 outline-none md:grid-cols-3"
-            >
-              {CONSENT_CATEGORIES.map((category) => {
-                const describedBy = `${titleId}-${category.id}`
-                return (
-                  <div key={category.id} className="flex items-start gap-3">
-                    <Switch
-                      checked={category.required ? true : choices[category.id]}
-                      disabled={category.required}
-                      label={category.label}
-                      describedBy={describedBy}
-                      onChange={(next) => toggle(category.id, next)}
-                    />
-                    <div className="min-w-0">
-                      <p className="type-label text-foreground">
-                        {category.label}
-                        {category.required && (
-                          <span className="type-micro ml-2 text-subtle-foreground">
-                            sempre ativo
-                          </span>
-                        )}
-                      </p>
-                      <p id={describedBy} className="type-caption mt-0.5 text-muted-foreground">
-                        {category.description}
-                      </p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          )}
         </div>
       </div>
     </div>
