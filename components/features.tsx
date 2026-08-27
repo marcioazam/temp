@@ -56,7 +56,7 @@ export function Features() {
         <Reveal delay={80} className="mt-10 md:mt-12">
           <div
             className="photo-grain bg-cover bg-center p-3 sm:p-5 lg:p-7"
-            style={{ backgroundImage: "url('/images/recursos-landscape.png')" }}
+            style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
           >
             <ul className="relative z-[2] grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {features.map((f) => (
