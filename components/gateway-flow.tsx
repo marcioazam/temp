@@ -1,3 +1,7 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+
 const CODE_LINES = [
   { number: "01", content: "const response = await fetch(" },
   { number: "02", content: '  "https://api.nylla.ai/v1/chat/completions",' },
@@ -14,6 +18,76 @@ const CODE_LINES = [
   { number: "13", content: "  }," },
   { number: "14", content: ")" },
 ]
+
+function AnimatedCode() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [characterCount, setCharacterCount] = useState(0)
+  const totalCharacters = CODE_LINES.reduce((total, line) => total + line.content.length + 1, 0)
+
+  useEffect(() => {
+    const node = containerRef.current
+    if (!node) return
+    let timer: number | undefined
+    let started = false
+
+    const play = () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        setCharacterCount(totalCharacters)
+        return
+      }
+
+      let count = 0
+      const typeNext = () => {
+        count += 1
+        setCharacterCount(count)
+        if (count < totalCharacters) {
+          const currentCharacter = CODE_LINES.map((line) => `${line.content}\n`).join("")[count - 1]
+          timer = window.setTimeout(typeNext, currentCharacter === "\n" ? 180 : 24)
+        }
+      }
+      typeNext()
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          started = true
+          play()
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.35 },
+    )
+
+    observer.observe(node)
+    return () => {
+      observer.disconnect()
+      if (timer) window.clearTimeout(timer)
+    }
+  }, [totalCharacters])
+
+  let remaining = characterCount
+
+  return (
+    <div ref={containerRef} className="w-full font-mono text-[11px] leading-6 sm:text-xs" aria-label={CODE_LINES.map((line) => line.content).join("\n")}>
+      {CODE_LINES.map((line) => {
+        const visibleLength = Math.max(0, Math.min(line.content.length, remaining))
+        remaining -= line.content.length + 1
+        const isActive = visibleLength > 0 && visibleLength < line.content.length
+
+        return (
+          <div key={line.number} className="flex min-w-0 px-4" aria-hidden="true">
+            <span className="w-8 shrink-0 select-none text-muted-foreground/40">{line.number}</span>
+            <code className={`whitespace-pre ${line.number === "02" ? "text-primary" : "text-foreground/80"}`}>
+              {line.content.slice(0, visibleLength)}
+              {isActive ? <span className="ml-px inline-block h-[1.05em] w-px translate-y-[2px] animate-pulse bg-primary" /> : null}
+            </code>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 export function GatewayFlow() {
   return (
@@ -72,18 +146,7 @@ export function GatewayFlow() {
 
             <div className="grid lg:grid-cols-[1fr_12rem]">
               <div className="overflow-hidden py-5">
-                <div className="w-full font-mono text-[11px] leading-6 sm:text-xs">
-                  {CODE_LINES.map((line) => (
-                    <div key={line.number} className="flex min-w-0 px-4">
-                      <span className="w-8 shrink-0 select-none text-muted-foreground/40">{line.number}</span>
-                      <code
-                        className={`whitespace-pre ${line.number === "02" ? "text-primary" : "text-foreground/80"}`}
-                      >
-                        {line.content}
-                      </code>
-                    </div>
-                  ))}
-                </div>
+                <AnimatedCode />
               </div>
 
               <aside className="border-t border-border bg-background/50 p-5 lg:border-l lg:border-t-0">
