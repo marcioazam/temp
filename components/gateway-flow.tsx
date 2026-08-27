@@ -44,10 +44,10 @@ export function GatewayFlow() {
             <a
               href="/nylla-postman-collection.json"
               download="nylla-postman-collection.json"
-              className="mt-7 inline-flex items-center gap-3 bg-foreground px-4 py-2.5 font-mono text-xs font-medium text-background transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="group mt-7 inline-flex items-center gap-3 bg-foreground px-4 py-2.5 font-mono text-xs font-medium text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Baixar coleção Postman
-              <span aria-hidden="true">↓</span>
+              <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-y-0.5">↓</span>
             </a>
 
             <div className="mt-9 max-w-xl">
