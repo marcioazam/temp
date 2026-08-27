@@ -34,7 +34,7 @@ export function HeroFlow() {
             <RotorMark aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-primary" />
             <span className="text-[10px] uppercase tracking-[0.2em] text-primary">Nylla</span>
           </div>
-          <div className="mt-1.5 flex items-center gap-2 text-xs text-primary">
+          <div className="mt-1.5 flex items-center gap-2 text-xs text-foreground">
             {STEPS.map((step, i) => (
               <span key={step} className="flex items-center gap-2">
                 {i > 0 && (
