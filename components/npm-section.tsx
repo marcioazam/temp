@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { Check, Copy } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 type TerminalStep = {
@@ -35,16 +36,17 @@ function InstallCommand() {
   }
 
   return (
-    <div className="flex max-w-sm items-center gap-3 border border-border bg-card/50 p-2.5 pl-4">
+    <div className="flex max-w-sm items-center border border-border bg-card/50 p-1.5 pl-4">
       <span className="font-mono text-sm text-primary" aria-hidden="true">$</span>
-      <code className="min-w-0 flex-1 truncate font-mono text-sm text-foreground">{command}</code>
+      <code className="ml-3 min-w-0 flex-1 truncate font-mono text-sm text-foreground">{command}</code>
       <button
         type="button"
         onClick={copy}
-        className="shrink-0 border border-border px-4 py-1.5 font-mono text-[11px] text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
-        aria-label={`Copiar ${command}`}
+        className="flex size-9 shrink-0 items-center justify-center bg-foreground text-background transition-opacity hover:opacity-85"
+        aria-label={copied ? "Comando copiado" : `Copiar ${command}`}
+        title={copied ? "Copiado" : "Copiar comando"}
       >
-        {copied ? "copiado" : "copiar"}
+        {copied ? <Check className="size-4" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
       </button>
     </div>
   )
