@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import { RotorMark } from "@/components/logo"
 import { useLanguage } from "@/components/language-provider"
 
@@ -15,9 +16,17 @@ const nav = [
 
 export function SiteHeader() {
   const { locale, setLocale, enabled: languageEnabled } = useLanguage()
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const updateHeader = () => setScrolled(window.scrollY > 0)
+    updateHeader()
+    window.addEventListener("scroll", updateHeader, { passive: true })
+    return () => window.removeEventListener("scroll", updateHeader)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50 bg-transparent">
+    <header className={`sticky top-0 z-50 transition-colors duration-200 ${scrolled ? "bg-background" : "bg-transparent"}`}>
         <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center px-4 md:px-9">
           <Link
             href="/"
