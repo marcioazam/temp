@@ -25,15 +25,9 @@ export function ModelMarquee() {
       aria-label="Ferramentas compatíveis com a Nylla"
       className="grid grid-cols-1 gap-px border border-border/60 bg-border/60 sm:grid-cols-2 lg:grid-cols-3"
     >
-      {brands.map((brand, index) => (
+      {brands.map((brand) => (
         <li key={brand.name} className="group relative bg-background">
           <div className="flex items-center gap-3 px-4 py-4 transition-colors group-hover:bg-primary/5">
-            <span
-              aria-hidden="true"
-              className="hidden shrink-0 select-none font-mono text-[9px] tabular-nums text-muted-foreground/50 md:block"
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
             <img
               src={brand.src || "/placeholder.svg"}
               alt=""
