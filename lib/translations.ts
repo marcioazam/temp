@@ -166,7 +166,7 @@ export const ptToEn: Record<string, string> = {
   "Posso trocar de modelo durante um projeto?": "Can I switch models during a project?",
   "Sim. O endpoint continua o mesmo: você escolhe outro modelo sem trocar chaves, SDKs ou a configuração do harness.": "Yes. The endpoint stays the same: choose another model without changing keys, SDKs, or harness configuration.",
   "Meus prompts são usados para treinar modelos?": "Are my prompts used to train models?",
-  "Não. A Nylla encaminha suas requisições aos provedores e não usa prompts ou respostas para treinar modelos próprios.": "No. Nylla forwards your requests to providers and does not use prompts or responses to train its own models.",
+  "Não. A Nylla encaminha suas requisições aos provedores e não usa prompts ou respostas para treinar modelos próprios, exceto se o usuário permitir.": "No. Nylla forwards your requests to providers and does not use prompts or responses to train its own models unless the user allows it.",
   "Um endpoint, todos os modelos.": "One endpoint, every model.",
   "Experimente Nylla": "Try Nylla",
   "Conecte": "Connect",

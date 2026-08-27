@@ -24,7 +24,7 @@ const questions = [
   {
     question: "Meus prompts são usados para treinar modelos?",
     answer:
-      "Não. A Nylla encaminha suas requisições aos provedores e não usa prompts ou respostas para treinar modelos próprios.",
+      "Não. A Nylla encaminha suas requisições aos provedores e não usa prompts ou respostas para treinar modelos próprios, exceto se o usuário permitir.",
   },
 ]
 
