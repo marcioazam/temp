@@ -37,10 +37,10 @@ export function SiteHeader() {
     <>
       <div ref={sentinelRef} aria-hidden="true" className="absolute top-0 h-3 w-px" />
       <header
-        className={`sticky top-0 z-50 border-b bg-background transition-colors duration-300 ${
+        className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
           scrolled
-            ? "border-foreground/15 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-5 after:bg-gradient-to-b after:from-background/80 after:to-transparent"
-            : "border-transparent"
+            ? "border-foreground/15 bg-background [background-image:none] after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-5 after:bg-gradient-to-b after:from-background/80 after:to-transparent"
+            : "border-transparent bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center px-4 md:px-9">
