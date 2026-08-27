@@ -11,7 +11,11 @@ export function FinalCta() {
           id="final-cta-title"
           className="max-w-4xl text-balance font-sans text-5xl font-normal leading-none tracking-[-0.04em] md:text-7xl"
         >
-          Um endpoint, todos os modelos.
+          Um gateway.
+          <br />
+          Todos os LLMs.
+          <br />
+          Qualquer harness.
         </h1>
         <Link
           href="/#planos"
