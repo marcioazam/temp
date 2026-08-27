@@ -10,7 +10,7 @@
  * - Global Privacy Control: sinal de opt-out do navegador é respeitado sem exibir aviso.
  */
 
-export const CONSENT_VERSION = '2026.1'
+export const CONSENT_VERSION = '2026.2'
 export const CONSENT_STORAGE_KEY = 'nylla-consent'
 export const CONSENT_COOKIE_NAME = 'nylla_consent'
 export const CONSENT_MAX_AGE_DAYS = 180

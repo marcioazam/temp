@@ -8,7 +8,6 @@ import {
   CONSENT_VERSION,
   DEFAULT_CHOICES,
   createRecord,
-  hasGlobalPrivacyControl,
   readConsent,
   writeConsent,
   type ConsentCategory,
@@ -87,13 +86,6 @@ export function CookieConsent() {
       return
     }
 
-    // Sinal de opt-out do navegador: registra recusa e não interrompe a leitura.
-    if (hasGlobalPrivacyControl()) {
-      decided.current = true
-      writeConsent(createRecord('gpc', DEFAULT_CHOICES))
-      return
-    }
-
     let released = false
     const reveal = () => {
       if (released || decided.current) return
@@ -101,12 +93,12 @@ export function CookieConsent() {
       window.removeEventListener('scroll', onScroll)
       open(false, false)
     }
-    const onScroll = () => {
-      if (window.scrollY > SCROLL_THRESHOLD) reveal()
-    }
+    // Qualquer primeiro gesto de rolagem revela o aviso, mesmo quando a página
+    // começa abaixo do topo ou o usuário rola menos de 48 px.
+    const onScroll = () => reveal()
 
     window.addEventListener('scroll', onScroll, { passive: true })
-    if (window.scrollY > SCROLL_THRESHOLD) reveal()
+    if (window.scrollY > 0) reveal()
 
     // Página sem rolagem (ou navegação por teclado): o aviso ainda precisa
     // ficar disponível, senão a escolha nunca é oferecida.
@@ -152,7 +144,7 @@ export function CookieConsent() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-start p-3 sm:p-5"
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex"
       data-no-translate
     >
       <div
@@ -171,7 +163,7 @@ export function CookieConsent() {
           }
         }}
         data-entered={entered}
-        className="elev-float pointer-events-auto w-full max-w-[26.5rem] border border-border bg-popover/95 p-4 backdrop-blur-xl opacity-0 transition-[opacity,transform] duration-300 ease-out outline-none translate-y-3 data-[entered=true]:translate-y-0 data-[entered=true]:opacity-100 motion-reduce:transition-none sm:p-5"
+        className="elev-float pointer-events-auto w-full border border-border bg-popover/95 p-4 backdrop-blur-xl opacity-0 transition-[opacity,transform] duration-300 ease-out outline-none translate-y-3 data-[entered=true]:translate-y-0 data-[entered=true]:opacity-100 motion-reduce:transition-none sm:p-5"
       >
         <p className="type-micro flex items-center gap-2 text-subtle-foreground">
           <span aria-hidden="true" className="h-1 w-1 bg-primary" />
