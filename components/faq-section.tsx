@@ -59,8 +59,7 @@ export function FaqSection() {
           </Reveal>
         </div>
 
-        <div className="photo-grain relative isolate overflow-hidden bg-[url('/images/faq-landscape.png')] bg-cover bg-center px-4 py-16 md:px-9 md:py-24">
-          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-background/76 backdrop-blur-[1px]" />
+        <div className="bg-[url('/images/faq-landscape.png')] bg-cover bg-center px-4 py-16 md:px-9 md:py-24">
           <div className="grid gap-3">
             {questions.map((item, index) => (
               <Reveal key={item.question} delay={index * 70}>
