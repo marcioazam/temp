@@ -53,14 +53,16 @@ export function Features() {
           </div>
 
           <Reveal delay={80} className="h-full lg:order-1">
-            <ul className="grid h-full border-t border-border sm:grid-cols-2 sm:grid-rows-2">
-              {features.map((f) => (
+            <ul className="grid h-full border-y border-border/70 sm:grid-cols-2 sm:grid-rows-2">
+              {features.map((f, index) => (
                 <li
                   key={f.key}
-                  className="flex flex-col justify-start border-b border-border py-6 sm:py-7 sm:[&:nth-child(even)]:border-l sm:[&:nth-child(even)]:pl-7 sm:[&:nth-child(odd)]:pr-7"
+                  className={`flex flex-col justify-start px-1 py-7 sm:px-7 sm:py-8 ${
+                    index < 2 ? "border-b border-border/70" : ""
+                  } ${index % 2 === 1 ? "sm:border-l sm:border-border/70" : ""}`}
                 >
-                  <h3 className="type-subheading text-pretty text-foreground">{f.title}</h3>
-                  <p className="type-body mt-3 max-w-sm text-pretty text-muted-foreground">{f.body}</p>
+                  <h3 className="type-subheading max-w-xs text-pretty text-foreground">{f.title}</h3>
+                  <p className="type-body mt-3 max-w-xs text-pretty text-muted-foreground">{f.body}</p>
                 </li>
               ))}
             </ul>
