@@ -5,7 +5,6 @@ import { RouteComparison } from "@/components/route-comparison"
 import { Features } from "@/components/features"
 import { Harnesses } from "@/components/harnesses"
 import { NpmSection } from "@/components/npm-section"
-import { CatalogSection } from "@/components/catalog-section"
 import { Pricing } from "@/components/pricing"
 import { FaqSection } from "@/components/faq-section"
 import { FinalCta } from "@/components/final-cta"
@@ -23,7 +22,6 @@ export default function Page() {
         <GatewayFlow />
         <RouteComparison />
         <Features />
-        <CatalogSection />
         <Pricing />
         <FaqSection />
         <FinalCta />
