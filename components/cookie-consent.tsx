@@ -167,8 +167,7 @@ export function CookieConsent() {
         <div className="mx-auto w-full max-w-screen-2xl px-4 py-4 md:px-9 md:py-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-10">
             <div className="min-w-0 md:max-w-2xl">
-              <p className="type-micro flex items-center gap-2 text-subtle-foreground">
-                <span aria-hidden="true" className="h-1 w-1 bg-primary" />
+              <p className="type-micro text-primary">
                 Cookies
               </p>
               <h2 id={titleId} className="type-label mt-2 text-foreground">
