@@ -1,8 +1,8 @@
 /**
  * Caduceu do Hermes Agent — bitmap traçado à mão a partir da arte ASCII
  * de referência. Cada caractere é uma célula da matriz de pontos:
- *   '#' → ponto brilhante  (#e8c547)
- *   '.' → ponto escurecido (#8a7420)
+ *   '#' → ponto branco
+ *   '.' → ponto branco
  *   ' ' → vazio
  */
 const GRID = [
@@ -68,14 +68,14 @@ export function HermesCaduceus({ className }: { className?: string }) {
       aria-label="Caduceu do Hermes Agent em arte de pontos"
       shapeRendering="crispEdges"
     >
-      {DOTS.map(({ col, row, dim }) => (
+      {DOTS.map(({ col, row }) => (
         <rect
           key={`${col}-${row}`}
           x={col + 0.15}
           y={row + 0.15}
           width={0.7}
           height={0.7}
-          fill={dim ? "#8a7420" : "#e8c547"}
+          fill="#e8e8e8"
         />
       ))}
     </svg>

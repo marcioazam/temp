@@ -11,7 +11,7 @@ function ClaudeMascot() {
       src="/images/claude-code-logo.svg"
       alt=""
       aria-hidden="true"
-      className="h-9 w-9 shrink-0 md:h-12 md:w-12"
+      className="h-9 w-9 shrink-0 brightness-0 invert md:h-12 md:w-12"
       draggable={false}
     />
   )
@@ -111,7 +111,19 @@ function TreeRow({ row }: { row: string }) {
   )
 }
 
-function TranscriptLine({ line, delay }: { line: Line; delay: number }) {
+function ClaudeText({ text, model }: { text: string; model?: string }) {
+  const highlights = ["Nylla Gateway", model].filter(Boolean) as string[]
+  if (highlights.length === 0) return text
+
+  const pattern = new RegExp(`(${highlights.map((value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "gi")
+  return text.split(pattern).map((part, index) =>
+    highlights.some((value) => value.toLowerCase() === part.toLowerCase()) ? (
+      <span key={`${part}-${index}`} className="text-primary">{part}</span>
+    ) : part,
+  )
+}
+
+function TranscriptLine({ line, delay }: { line: Line & { model?: string }; delay: number }) {
   const style = { "--delay": `${delay}ms` } as React.CSSProperties
 
   if (line.kind === "prompt" || line.kind === "slash") {
@@ -125,7 +137,7 @@ function TranscriptLine({ line, delay }: { line: Line; delay: number }) {
         style={style}
       >
         <span className={isUserMessage ? "text-[#aaa69f]" : "text-[#7c7871]"}>&gt;</span>
-        <span className={isUserMessage ? "text-[#e7e4de]" : "text-[#d97757]"}>{line.text}</span>
+        <span className="text-[#e7e4de]"><ClaudeText text={line.text} model={line.model} /></span>
       </div>
     )
   }
@@ -134,7 +146,7 @@ function TranscriptLine({ line, delay }: { line: Line; delay: number }) {
     return (
       <div className="claude-line mt-3 flex items-center gap-2" style={style}>
         <span className="block size-1 shrink-0 rounded-full bg-[#8d8981]" aria-hidden="true" />
-        <span className="leading-5 text-[#dcd8d2]">{line.text}</span>
+        <span className="leading-5 text-[#dcd8d2]"><ClaudeText text={line.text} model={line.model} /></span>
       </div>
     )
   }
@@ -151,7 +163,7 @@ function TranscriptLine({ line, delay }: { line: Line; delay: number }) {
     return (
       <div className="claude-line claude-line-tool mt-3" style={style}>
         <div className="flex gap-2">
-          <span className="text-[#7faa73]">*</span>
+          <span className="text-[#dcd8d2]">*</span>
           <span className="text-[#dcd8d2]">{line.text}</span>
         </div>
         <div className="mt-1 flex gap-2 pl-4 text-[#8d8981]">
@@ -165,8 +177,8 @@ function TranscriptLine({ line, delay }: { line: Line; delay: number }) {
   if (line.kind === "spinner") {
     return (
       <div className="claude-line mt-3 flex items-baseline gap-2" style={style}>
-        <span className="claude-activity-mark inline-block w-[1ch] text-center text-[#d97757]" aria-hidden="true">*</span>
-        <span className="text-[#d97757]">
+        <span className="claude-activity-mark inline-block w-[1ch] text-center text-[#dcd8d2]" aria-hidden="true">*</span>
+        <span className="text-[#dcd8d2]">
           Clauding<span aria-hidden="true">.</span><span className="claude-dot-two" aria-hidden="true">.</span><span className="claude-dot-three" aria-hidden="true">.</span>
         </span>
         <span className="text-[#6f6b65]">(esc to interrupt)</span>
@@ -269,7 +281,7 @@ className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border bor
           <div>
             <p className="font-semibold text-[#f2efe9]">Claude Code</p>
             <p className="text-[#a5a19a]">
-              {currentModel} (1M Context) · Nylla Gateway
+              <span className="text-primary">{currentModel}</span> (1M Context) · <span className="text-primary">Nylla Gateway</span>
             </p>
             <p className="text-[#6f6b65]">/users/nylla/taskflow</p>
           </div>
@@ -290,7 +302,7 @@ className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border bor
             <span className="text-[#dcd8d2]">&gt;</span>
             <span
               ref={composerTextRef}
-              className={`min-w-0 overflow-x-auto whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${nextLine?.kind === "slash" ? "text-[#d97757]" : "text-[#dcd8d2]"}`}
+              className="min-w-0 overflow-x-auto whitespace-nowrap text-[#dcd8d2] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {draft}
             </span>
@@ -307,16 +319,16 @@ className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border bor
             <span className="hidden text-[#aaa69f] sm:inline">main</span>
           </div>
           <div className="flex min-w-0 items-center justify-end gap-1.5 whitespace-nowrap">
-<span className="inline-flex items-center gap-1 text-[#aaa69f]">
-  <span className="relative top-px block size-1 shrink-0 rounded-full bg-[#7faa73] shadow-[0_0_5px_rgba(127,170,115,0.35)]" aria-hidden="true" />
+<span className="inline-flex items-center gap-1 text-[#e8e8e8]">
+  <span className="relative top-px block size-1 shrink-0 rounded-full bg-[#e8e8e8]" aria-hidden="true" />
   <span className="leading-none">Thinking on</span>
             </span>
             <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-            <span className="hidden text-[#d97757] sm:inline">Nylla Gateway</span>
+            <span className="hidden text-primary sm:inline">Nylla Gateway</span>
             <span className="hidden text-[#4f4c47] sm:inline" aria-hidden="true">·</span>
-            <span className="max-w-24 truncate text-[#d97757] sm:max-w-none">{currentModel}</span>
+            <span className="max-w-24 truncate text-primary sm:max-w-none">{currentModel}</span>
             <span className="hidden text-[#4f4c47] md:inline" aria-hidden="true">·</span>
-            <span className="hidden text-[#7faa73] md:inline">Connected · 16ms</span>
+            <span className="hidden text-[#e8e8e8] md:inline">Connected · 16ms</span>
           </div>
         </div>
       </div>

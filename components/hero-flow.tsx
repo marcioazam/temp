@@ -15,9 +15,9 @@ export function HeroFlow() {
     <figure aria-label="Papel da Nylla no fluxo entre sua ferramenta e os LLMs" className="font-mono">
       <div className="flex flex-col">
         {/* Node: user + tool */}
-        <div className="border border-border px-4 py-3">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Você + ferramenta</span>
-          <p className="mt-1 text-xs text-foreground">Claude Code, Codex, Cursor, Gemini CLI, etc...</p>
+        <div className="flex flex-wrap items-center gap-2 border border-border px-4 py-3 text-xs">
+          <span className="text-muted-foreground">Você:</span>
+          <span className="text-foreground">Claude Code, Codex, Cursor, Gemini CLI, etc...</span>
         </div>
 
         {/* Connector A */}
@@ -30,16 +30,16 @@ export function HeroFlow() {
 
         {/* Node: Nylla */}
         <div className="relative flex min-h-16 items-center justify-between gap-6 border border-primary/45 bg-muted px-5 py-4 text-foreground">
-          <NyllaLogo aria-hidden="true" className="hero-logo-unfold h-7 w-auto shrink-0 text-primary" />
+          <NyllaLogo aria-hidden="true" className="hero-logo-unfold h-7 w-auto shrink-0 text-foreground" />
           <div className="flex items-center gap-2 text-xs text-foreground">
             {STEPS.map((step, i) => (
               <span key={step} className="flex items-center gap-2">
                 {i > 0 && (
-                  <span aria-hidden="true" className="text-primary/55">
+                  <span aria-hidden="true" className={`hf-step hf-step-${i * 2}`}>
                     →
                   </span>
                 )}
-                <span>{step}</span>
+                <span className={`hf-step hf-step-${i * 2 + 1}`}>{step}</span>
               </span>
             ))}
           </div>
@@ -54,19 +54,17 @@ export function HeroFlow() {
         </div>
 
         {/* Node: LLMs */}
-        <div className="border border-border px-4 py-3">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">LLMs</span>
-          <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
-            {MODELS.map((model, i) => (
-              <span
-                key={model}
-                className="hf-model border border-border px-2 py-1 text-foreground"
-                style={{ "--model": i } as React.CSSProperties}
-              >
-                {model}
-              </span>
-            ))}
-          </div>
+        <div className="flex flex-wrap items-center gap-2 border border-border px-4 py-3 text-xs">
+          <span className="text-muted-foreground">LLMs:</span>
+          {MODELS.map((model, i) => (
+            <span
+              key={model}
+              className="hf-model border border-border px-2 py-1 text-foreground"
+              style={{ "--model": i } as React.CSSProperties}
+            >
+              {model}
+            </span>
+          ))}
         </div>
       </div>
       <figcaption className="sr-only">

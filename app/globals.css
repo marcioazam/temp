@@ -862,14 +862,62 @@ kbd {
 }
 
 @keyframes hf-dot-a-up {
-  0%, 84% { opacity: 0; transform: translateY(40px); }
-  86% { opacity: 1; }
-  94% { opacity: 1; transform: translateY(0); }
-  96%, 100% { opacity: 0; transform: translateY(0); }
+  0%, 88% { opacity: 0; transform: translateY(40px); }
+  89% { opacity: 1; }
+  97% { opacity: 1; transform: translateY(0); }
+  98%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-a-up {
   animation: hf-dot-a-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
+/* Nylla's internal steps use the packet contact points as their clock.
+   Inbound: the packet touches Nylla at 14%, immediately lighting Valida;
+   the first arrow and Roteia follow while the packet remains in Nylla.
+   Return: the packet touches Nylla at 80%, immediately lighting the final arrow;
+   Entrega follows before the packet exits at 88%. Colors only reset at 97%,
+   exactly when the packet reaches "Você + Ferramenta". */
+.hf-step {
+  color: var(--foreground);
+  animation-duration: 3.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes hf-step-1 {
+  0%, 13.9% { color: var(--foreground); }
+  14%, 96.9% { color: var(--primary); }
+  97%, 100% { color: var(--foreground); }
+}
+.hf-step-1 { animation-name: hf-step-1; }
+
+@keyframes hf-step-2 {
+  0%, 23.9% { color: var(--foreground); }
+  24%, 96.9% { color: var(--primary); }
+  97%, 100% { color: var(--foreground); }
+}
+.hf-step-2 { animation-name: hf-step-2; }
+
+@keyframes hf-step-3 {
+  0%, 33.9% { color: var(--foreground); }
+  34%, 96.9% { color: var(--primary); }
+  97%, 100% { color: var(--foreground); }
+}
+.hf-step-3 { animation-name: hf-step-3; }
+
+@keyframes hf-step-4 {
+  0%, 79.9% { color: var(--foreground); }
+  80%, 96.9% { color: var(--primary); }
+  97%, 100% { color: var(--foreground); }
+}
+.hf-step-4 { animation-name: hf-step-4; }
+
+@keyframes hf-step-5 {
+  0%, 83.9% { color: var(--foreground); }
+  84%, 96.9% { color: var(--primary); }
+  97%, 100% { color: var(--foreground); }
+}
+.hf-step-5 { animation-name: hf-step-5; }
 
 /* One model highlighted while the request lands on it. The 9.6s period is
    three 3.2s cycles; each model's active window aligns with 58–72% of its
@@ -919,6 +967,7 @@ kbd {
   .hf-dot-a-up,
   .hf-dot-b-down,
   .hf-dot-b-up,
+  .hf-step,
   .hf-model {
       animation: none;
     }
