@@ -50,8 +50,12 @@ const questions = [
 
 export function FaqSection() {
   return (
-    <section id="faq" aria-labelledby="faq-title" className="px-4 md:px-9">
-      <div className="mx-auto grid w-full max-w-screen-2xl lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)]">
+    <section
+      id="faq"
+      aria-labelledby="faq-title"
+      className="mx-auto w-full max-w-screen-2xl px-4 md:px-9"
+    >
+      <div className="grid w-full lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)]">
         <div className="bg-background px-4 py-16 md:px-9 md:py-24 lg:pr-12">
           <Reveal className="lg:sticky lg:top-24">
             <h2 id="faq-title" className="font-mono text-xs text-muted-foreground">
