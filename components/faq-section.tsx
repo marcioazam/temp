@@ -53,7 +53,7 @@ export function FaqSection() {
             >
               Consulte a documentação
             </a>
-            .
+            <span className="text-foreground">.</span>
           </p>
         </Reveal>
 
