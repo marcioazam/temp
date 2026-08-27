@@ -54,12 +54,15 @@ export function Features() {
               <li key={feature.key} className="flex min-h-[32rem] flex-col border border-border bg-card p-4 sm:p-5">
                 <div>
                   <h3 className="type-subheading text-pretty text-foreground">{feature.title}</h3>
-                  <p className="type-body mt-1 max-w-sm text-pretty text-muted-foreground">{feature.body}</p>
+                  <p className="type-body mt-1 h-18 max-w-sm line-clamp-3 text-pretty text-muted-foreground">
+                    {feature.body}
+                  </p>
                   <a
                     href={feature.href}
-                    className="mt-4 inline-flex min-h-11 items-center font-mono text-sm text-primary transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="mt-4 inline-flex min-h-11 items-center gap-2 font-mono text-sm text-primary transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
-                    {feature.link} <span aria-hidden="true">→</span>
+                    <span>{feature.link}</span>
+                    <span aria-hidden="true">→</span>
                   </a>
                 </div>
                 <div
