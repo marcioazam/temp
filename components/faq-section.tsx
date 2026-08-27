@@ -44,8 +44,13 @@ export function FaqSection() {
     <section id="faq" aria-labelledby="faq-title" className="mx-auto w-full max-w-screen-2xl px-4 md:px-9">
       <div className="grid w-full lg:grid-cols-[minmax(15rem,0.6fr)_minmax(0,1.4fr)]">
         <div
-          className="bg-background px-4 py-16 md:px-9 md:py-24 lg:pr-12"
-          style={{ background: "var(--background)" }}
+          className="relative z-[1] px-4 py-16 md:px-9 md:py-24 lg:pr-12"
+          style={{
+            backgroundColor: "var(--background)",
+            backgroundImage: "none",
+            backgroundBlendMode: "normal",
+            animation: "none",
+          }}
         >
           <Reveal className="lg:sticky lg:top-24">
             <h2 id="faq-title" className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
