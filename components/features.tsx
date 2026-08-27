@@ -64,7 +64,7 @@ export function Features() {
                 </div>
                 <div
                   aria-hidden="true"
-                  className="photo-grain mt-4 min-h-64 flex-1 overflow-hidden bg-cover bg-center"
+                  className="photo-grain mt-auto aspect-[4/3] w-full shrink-0 overflow-hidden bg-cover bg-center"
                   style={{ backgroundImage: `url('${feature.image}')` }}
                 />
               </li>
