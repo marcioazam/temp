@@ -3,16 +3,16 @@ import Link from "next/link"
 const plans = [
   {
     name: "dev",
-    price: "R$49",
-    period: "/mês",
+    price: "Em breve",
+    period: "",
     tagline: "individual",
     features: ["LLMs padrão ilimitados", "US$5 em créditos frontier", "1 harness", "Suporte da comunidade"],
     highlighted: false,
   },
   {
     name: "pro",
-    price: "R$149",
-    period: "/mês",
+    price: "Em breve",
+    period: "",
     tagline: "recomendado",
     features: [
       "LLMs padrão ilimitados",
@@ -25,8 +25,8 @@ const plans = [
   },
   {
     name: "team",
-    price: "R$129",
-    period: "/usuário/mês",
+    price: "Em breve",
+    period: "",
     tagline: "times",
     features: [
       "Tudo do pro",
