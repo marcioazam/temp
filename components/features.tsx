@@ -30,7 +30,13 @@ export function Features() {
     <section id="recursos">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)] lg:gap-12">
-          <div className="lg:sticky lg:top-24">
+          <div
+            className="photo-grain overflow-hidden bg-cover bg-center p-6 sm:p-8 lg:sticky lg:top-24"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom, color-mix(in oklab, var(--background) 82%, transparent), color-mix(in oklab, var(--background) 94%, transparent)), url('/images/recursos-polar.png')",
+            }}
+          >
             <Reveal>
               <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
                 <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
@@ -43,11 +49,6 @@ export function Features() {
                 Cada provedor tem seu SDK e seu limite. O Nylla absorve essa diferença e entrega uma superfície única
                 para o seu código.
               </p>
-              <div
-                aria-hidden="true"
-                className="photo-grain mt-8 hidden aspect-[4/3] w-full max-w-md overflow-hidden bg-cover bg-center lg:block"
-                style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
-              />
             </Reveal>
           </div>
 
