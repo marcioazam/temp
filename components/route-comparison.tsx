@@ -65,12 +65,12 @@ export function RouteComparison() {
           </p>
         </Reveal>
 
-        <div className="photo-grain mt-6 w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-24">
-          <div className="mx-auto w-full max-w-6xl px-4 md:px-9">
+        <div className="photo-grain mt-6 w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-12 md:py-16">
+          <div className="mx-auto w-full max-w-5xl px-4 md:px-8">
             <Reveal>
-              <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
+              <div className="overflow-hidden border border-border bg-background/90 backdrop-blur-md">
                 <div className="overflow-x-auto">
-              <table className="w-full min-w-[850px] border-collapse text-left">
+              <table className="w-full min-w-[760px] border-collapse text-left">
               <caption className="sr-only">
                 Comparação entre Nylla, agregadores de modelos e APIs diretas de provedores
               </caption>
@@ -78,20 +78,20 @@ export function RouteComparison() {
                 <tr className="border-b border-border">
                   <th
                     scope="col"
-                    className="type-eyebrow w-[16%] p-4 text-left text-subtle-foreground md:p-5"
+                    className="type-eyebrow w-[16%] p-3 text-left text-subtle-foreground md:p-4"
                   >
                     Critério
                   </th>
-                  <th scope="col" className="w-[28%] bg-primary/[0.05] p-4 md:p-5">
+                  <th scope="col" className="w-[28%] bg-primary/[0.05] p-3 md:p-4">
                     <span className="type-eyebrow flex items-center gap-2 text-primary">
                       <RotorMark aria-hidden="true" className="size-4 shrink-0 text-primary" />
                       <span>Nylla Gateway</span>
                     </span>
                   </th>
-                  <th scope="col" className="w-[28%] p-4 md:p-5">
+                  <th scope="col" className="w-[28%] p-3 md:p-4">
                     <span className="type-eyebrow text-subtle-foreground">Open Router</span>
                   </th>
-                  <th scope="col" className="w-[28%] p-4 md:p-5">
+                  <th scope="col" className="w-[28%] p-3 md:p-4">
                     <span className="type-eyebrow text-subtle-foreground">API Direta no LLM</span>
                   </th>
                 </tr>
@@ -104,7 +104,7 @@ export function RouteComparison() {
                     <tr key={row.criterion} className="border-b border-border last:border-b-0">
                       <th
                         scope="row"
-                        className={`type-label relative p-4 text-left transition-colors duration-500 md:p-5 ${isActive ? "text-primary" : "text-muted-foreground"}`}
+                        className={`type-label relative p-3 text-left text-xs transition-colors duration-500 md:p-4 ${isActive ? "text-primary" : "text-muted-foreground"}`}
                       >
                         <span
                           key={isActive ? `scan-${activeRow}` : undefined}
@@ -114,12 +114,12 @@ export function RouteComparison() {
                         {row.criterion}
                       </th>
                       <td
-                        className={`type-body p-4 text-foreground transition-colors duration-500 md:p-5 ${isActive ? "bg-primary/[0.11]" : "bg-primary/[0.05]"}`}
+                        className={`type-body p-3 text-sm text-foreground transition-colors duration-500 md:p-4 ${isActive ? "bg-primary/[0.09]" : "bg-primary/[0.04]"}`}
                       >
                         {row.nylla}
                       </td>
-                      <td className="type-body p-4 text-muted-foreground md:p-5">{row.router}</td>
-                      <td className="type-body p-4 text-muted-foreground md:p-5">{row.direct}</td>
+                      <td className="type-body p-3 text-sm text-muted-foreground md:p-4">{row.router}</td>
+                      <td className="type-body p-3 text-sm text-muted-foreground md:p-4">{row.direct}</td>
                     </tr>
                   )
                 })}
