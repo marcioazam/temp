@@ -39,7 +39,6 @@ export function RouteComparison() {
       id="comparativo"
       className="relative isolate overflow-hidden bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center"
     >
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-background/75" />
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
           <h2 className="font-mono text-xs text-muted-foreground">
