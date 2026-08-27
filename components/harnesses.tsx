@@ -13,11 +13,11 @@ export function Harnesses() {
         <div className="mt-6 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-xl lg:order-2">
             <p className="type-heading text-balance text-foreground">
-              Conecta em qualquer ferramenta que você já usa.
+              Conecte a Nylla às ferramentas que você já usa.
             </p>
             <p className="type-lead mt-6 text-pretty text-muted-foreground">
-              Conecte o Nylla às ferramentas que já fazem parte do seu fluxo. Um único gateway reúne os melhores
-              modelos e mantém cada agente trabalhando no editor, no terminal ou via SDK.
+              Um único gateway reúne os melhores modelos e mantém cada agente trabalhando no editor, no terminal ou via
+              SDK.
             </p>
             <div className="mt-8 flex flex-col gap-4">
               <p className="type-micro text-subtle-foreground">Exemplos de conectividade</p>

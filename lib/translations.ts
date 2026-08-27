@@ -16,10 +16,10 @@ export const ptToEn: Record<string, string> = {
   "Conecte Claude Code, Codex, Cursor, VS Code ou seu próprio agent a qualquer modelo com uma linha de comando. Sem lock-in, sem reescrever integração. Feito para código e agents em produção.":
     "Connect Claude Code, Codex, Cursor, VS Code, or your own agent to any model with one command. No lock-in, no integration rewrites. Built for production code and agents.",
   "ler docs": "read docs",
-  "Conecta em qualquer ferramenta que você já usa.": "Connects to any tool you already use.",
-  "Conecte o Nylla às ferramentas que já fazem parte do seu fluxo. Um único gateway reúne os melhores modelos e mantém cada agente trabalhando no editor, no terminal ou via SDK.":
-    "Connect Nylla to the tools already in your workflow. One gateway brings together the best models and keeps every agent working in the editor, terminal, or via SDK.",
-  "Exemplos de conectividade:": "Connectivity examples:",
+  "Conecte a Nylla às ferramentas que você já usa.": "Connect Nylla to the tools you already use.",
+  "Um único gateway reúne os melhores modelos e mantém cada agente trabalhando no editor, no terminal ou via SDK.":
+    "One gateway brings together the best models and keeps every agent working in the editor, terminal, or via SDK.",
+  "Exemplos de conectividade": "Connectivity examples",
   "A inteligência do Nylla dentro do seu produto.": "Nylla intelligence inside your product.",
   "Conecte seu SaaS, software ou aplicativo a um único endpoint compatível com OpenAI. Você desenvolve a experiência. O Nylla cuida dos modelos, da disponibilidade e do roteamento de cada requisição.":
     "Connect your SaaS, software, or app to a single OpenAI-compatible endpoint. You build the experience. Nylla handles models, availability, and routing for every request.",

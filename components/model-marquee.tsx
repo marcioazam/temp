@@ -8,7 +8,7 @@ const brands = [
   { name: "GitHub Copilot", src: icon("github-copilot") },
   { name: "VS Code", src: icon("visual-studio-code") },
   { name: "Windsurf", src: icon("windsurf") },
-  { name: "Antigravity AI", src: icon("antigravity-google", "mono") },
+  { name: "Antigravity", src: icon("antigravity-google", "mono") },
   { name: "Cline", src: icon("cline") },
   { name: "OpenCode", src: icon("opencode") },
   { name: "Qwen Code", src: icon("qwen") },
