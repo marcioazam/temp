@@ -43,8 +43,11 @@ export function Features() {
     <section id="recursos">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)] lg:gap-12">
-          <div className="lg:sticky lg:top-24">
-            <Reveal>
+          <div
+            className="photo-grain overflow-hidden bg-cover bg-center p-6 sm:p-8 lg:sticky lg:top-24"
+            style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
+          >
+            <Reveal className="relative z-[2] bg-background/85 p-5 backdrop-blur-md sm:p-6">
               <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
                 <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
                 <span>recursos</span>
@@ -60,11 +63,8 @@ export function Features() {
           </div>
 
           <Reveal delay={80}>
-            <div
-              className="photo-grain bg-cover bg-center p-3 sm:p-5 lg:p-6"
-              style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
-            >
-              <ul className="relative z-[2] grid gap-3 sm:grid-cols-2">
+            <div>
+              <ul className="grid gap-3 sm:grid-cols-2">
                 {features.map((f, index) => {
                   const isActive = index === activeFeature
 
