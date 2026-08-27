@@ -15,9 +15,9 @@ export function HeroFlow() {
     <figure aria-label="Papel da Nylla no fluxo entre sua ferramenta e os LLMs" className="font-mono">
       <div className="flex flex-col">
         {/* Node: user + tool */}
-        <div className="border border-border px-4 py-3">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Você + ferramenta</span>
-          <p className="mt-1 text-xs text-foreground">Claude Code, Codex, Cursor, Gemini CLI, etc...</p>
+        <div className="flex flex-wrap items-center gap-2 border border-border px-4 py-3 text-xs">
+          <span className="text-muted-foreground">Você:</span>
+          <span className="text-foreground">Claude Code, Codex, Cursor, Gemini CLI, etc...</span>
         </div>
 
         {/* Connector A */}
