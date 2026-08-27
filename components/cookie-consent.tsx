@@ -144,7 +144,7 @@ export function CookieConsent() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-start p-3 sm:p-5"
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex"
       data-no-translate
     >
       <div
@@ -163,7 +163,7 @@ export function CookieConsent() {
           }
         }}
         data-entered={entered}
-        className="elev-float pointer-events-auto w-full max-w-[26.5rem] border border-border bg-popover/95 p-4 backdrop-blur-xl opacity-0 transition-[opacity,transform] duration-300 ease-out outline-none translate-y-3 data-[entered=true]:translate-y-0 data-[entered=true]:opacity-100 motion-reduce:transition-none sm:p-5"
+        className="elev-float pointer-events-auto w-full border border-border bg-popover/95 p-4 backdrop-blur-xl opacity-0 transition-[opacity,transform] duration-300 ease-out outline-none translate-y-3 data-[entered=true]:translate-y-0 data-[entered=true]:opacity-100 motion-reduce:transition-none sm:p-5"
       >
         <p className="type-micro flex items-center gap-2 text-subtle-foreground">
           <span aria-hidden="true" className="h-1 w-1 bg-primary" />
