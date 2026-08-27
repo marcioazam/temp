@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section id="sobre" className="relative overflow-hidden bg-background" aria-labelledby="about-title">
       <div className="relative mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
-        <div className="grid items-center gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+        <div className="grid items-stretch gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div>
             <Reveal>
               <p className="font-mono text-xs text-muted-foreground">
