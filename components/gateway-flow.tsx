@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 
+import { Reveal } from "@/components/reveal"
+
 const CODE_LINES = [
   { number: "01", content: "const response = await fetch(" },
   { number: "02", content: '  "https://api.nylla.ai/v1/chat/completions",' },
@@ -104,19 +106,21 @@ export function GatewayFlow() {
   return (
     <section id="endpoint">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
-          <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
-          <span>endpoint</span>
-        </h2>
+        <Reveal>
+          <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+            <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+            <span>endpoint</span>
+          </h2>
+        </Reveal>
 
         <div className="mt-6 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:order-2">
             <p className="type-title max-w-xl text-balance text-foreground">
               A inteligência do Nylla dentro do seu produto.
             </p>
-            <p className="type-lead mt-6 max-w-xl text-pretty text-muted-foreground">
-              Conecte seu SaaS, software ou aplicativo a um único endpoint compatível com OpenAI. Você desenvolve a
-              experiência. O Nylla cuida dos modelos, da disponibilidade e do roteamento de cada requisição.
+            <p className="type-lead mt-6 max-w-md text-pretty text-muted-foreground">
+              Um endpoint compatível com OpenAI para o seu produto. Você desenvolve a experiência, o Nylla cuida dos
+              modelos e do roteamento.
             </p>
 
             <a
@@ -130,8 +134,9 @@ export function GatewayFlow() {
 
           </div>
 
+          <Reveal delay={120} className="lg:order-1">
           <div
-            className="photo-grain flex min-h-[30rem] items-center overflow-hidden bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
+            className="photo-grain flex min-h-[30rem] items-center overflow-hidden bg-cover bg-center p-5 sm:p-8 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
             <div className="win mx-auto w-full max-w-[42rem]">
@@ -193,6 +198,7 @@ export function GatewayFlow() {
             </div>
             </div>
           </div>
+          </Reveal>
         </div>
       </div>
     </section>
