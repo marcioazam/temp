@@ -61,10 +61,10 @@ export function Features() {
                 {f.key}
               </span>
               <h3
-                className="mt-4 bg-clip-text bg-cover font-mono text-base font-medium leading-snug text-transparent"
+                className="mt-4 w-fit bg-cover px-3 py-2 font-mono text-base font-medium leading-snug text-foreground"
                 style={{
                   backgroundImage:
-                    "linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)), url('/images/mist-lake.png')",
+                    "linear-gradient(rgba(8,8,8,0.62), rgba(8,8,8,0.62)), url('/images/mist-lake.png')",
                   backgroundPosition: `${(i % 2) * 40 + 20}% ${Math.floor(i / 2) * 30 + 20}%`,
                 }}
               >
