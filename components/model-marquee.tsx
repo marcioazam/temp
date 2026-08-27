@@ -27,14 +27,14 @@ export function ModelMarquee() {
     >
       {brands.map((brand) => (
         <li key={brand.name} className="group relative bg-background">
-          <div className="flex items-center gap-3 px-4 py-4 transition-colors group-hover:bg-primary/5">
+          <div className="flex items-center gap-3 px-4 py-4">
             <img
               src={brand.src || "/placeholder.svg"}
               alt=""
-              className="h-5 w-5 shrink-0 object-contain grayscale brightness-0 invert transition-transform group-hover:scale-110"
+              className="h-5 w-5 shrink-0 object-contain grayscale brightness-0 invert transition-[filter] duration-200 group-hover:[filter:brightness(0)_saturate(100%)_invert(72%)_sepia(98%)_saturate(1675%)_hue-rotate(359deg)_brightness(103%)_contrast(104%)]"
               loading="lazy"
             />
-            <span className="min-w-0 truncate font-mono text-[11px] font-medium tracking-tight text-foreground/85 transition-colors group-hover:text-foreground">
+            <span className="min-w-0 truncate font-mono text-[11px] font-medium tracking-tight text-foreground/85 transition-colors duration-200 group-hover:text-primary">
               {brand.name}
             </span>
           </div>
