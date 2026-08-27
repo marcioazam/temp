@@ -7,7 +7,7 @@ export function Harnesses() {
     <section id="harnesses">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <h2 className="font-mono text-xs text-muted-foreground">
-          <span aria-hidden="true">{"// "}</span>harnesses
+          <span aria-hidden="true" className="text-primary">{"// "}</span>harnesses
         </h2>
         <div className="mt-4 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-xl">

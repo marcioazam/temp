@@ -28,10 +28,10 @@ export function GatewayFlow() {
   return (
     <section id="endpoint">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <div className="grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
-          <div className="lg:order-2 lg:sticky lg:top-28">
+        <div className="grid items-start gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28">
             <h2 className="font-mono text-xs text-muted-foreground">
-              <span aria-hidden="true">{"// "}</span>endpoint
+              <span aria-hidden="true" className="text-primary">{"// "}</span>endpoint
             </h2>
             <p className="mt-4 max-w-xl text-balance font-mono text-3xl font-medium tracking-tight text-foreground md:text-4xl">
               A inteligência do Nylla dentro do seu produto.
@@ -40,6 +40,15 @@ export function GatewayFlow() {
               Conecte seu SaaS, software ou aplicativo a um único endpoint compatível com OpenAI. Você desenvolve a
               experiência. O Nylla cuida dos modelos, da disponibilidade e do roteamento de cada requisição.
             </p>
+
+            <a
+              href="/nylla-postman-collection.json"
+              download="nylla-postman-collection.json"
+              className="group mt-7 inline-flex items-center gap-3 bg-foreground px-4 py-2.5 font-mono text-xs font-medium text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Baixar coleção Postman
+              <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-y-0.5">↓</span>
+            </a>
 
             <div className="mt-9 max-w-xl">
               <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
@@ -60,7 +69,7 @@ export function GatewayFlow() {
           </div>
 
           <div
-            className="flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:p-10"
+            className="flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-2 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
             <div className="mx-auto w-full max-w-[42rem] overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
@@ -105,19 +114,19 @@ export function GatewayFlow() {
                 <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">uma integração</p>
                 <div className="mt-5 flex flex-col gap-5">
                   <div>
-                    <p className="font-mono text-lg text-foreground">1 endpoint</p>
+                    <p className="font-mono text-lg font-medium text-primary">1 endpoint</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">para todos os modelos</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg text-foreground">OpenAI</p>
+                    <p className="font-mono text-lg font-medium text-primary">OpenAI</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">formato compatível</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg text-foreground">24/7</p>
+                    <p className="font-mono text-lg font-medium text-primary">24/7</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">fallback automático</p>
                   </div>
                   <div>
-                    <p className="whitespace-nowrap font-mono text-lg text-foreground">Baixa latência</p>
+                    <p className="whitespace-nowrap font-mono text-lg font-medium text-primary">Baixa latência</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">roteamento otimizado</p>
                   </div>
                 </div>
@@ -126,10 +135,10 @@ export function GatewayFlow() {
 
             <div className="flex flex-col gap-3 border-t border-border px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="font-mono text-xs text-muted-foreground">
-                <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#7f9b76]" aria-hidden="true" />
+                <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#28c840]" aria-hidden="true" />
                 pronto para produção
               </p>
-              <code className="font-mono text-[11px] text-foreground/70">POST /v1/chat/completions</code>
+              <code className="font-mono text-[11px] font-medium text-foreground">POST /v1/chat/completions</code>
             </div>
             </div>
           </div>

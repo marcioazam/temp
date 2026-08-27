@@ -9,7 +9,7 @@ import { useLanguage } from "@/components/language-provider"
 const nav = [
   { label: "Recursos", href: "/#recursos" },
   { label: "Harnesses", href: "/#harnesses" },
-  { label: "Rotas", href: "/#rotas" },
+  { label: "Comparativo", href: "/#comparativo" },
   { label: "Catálogo", href: "/#catalogo" },
   { label: "Planos", href: "/#planos" },
   { label: "FAQ", href: "/#faq" },
@@ -50,7 +50,7 @@ export function SiteHeader() {
             aria-label="Nylla, início"
             className="flex items-center gap-2.5 text-foreground"
           >
-            <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0" />
+            <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0 text-logo" />
             <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-[0.02em]">
               Nylla
             </span>
@@ -113,8 +113,8 @@ export function SiteHeader() {
                 className="group relative inline-flex items-center gap-1.5 overflow-hidden border border-[#F4F3F1] bg-[#F4F3F1] px-3.5 py-1.5 font-mono text-xs text-[#090909] transition-opacity hover:opacity-90"
               >
                 Começar
-                <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
-                  →
+                <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                  ↗
                 </span>
               </Link>
             </div>

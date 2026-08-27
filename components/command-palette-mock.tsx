@@ -37,8 +37,8 @@ function ModelSelector() {
             key={model}
             role="option"
             aria-selected={index === activeModel}
-            className={`flex rounded px-2 py-1.5 transition-colors duration-300 ${
-              index === activeModel ? "bg-[#303030] text-[#f4f3f1]" : "text-[#8f8c85]"
+            className={`flex rounded px-2 py-1.5 transition-colors duration-300 hover:text-primary ${
+              index === activeModel ? "bg-[#303030] text-primary" : "text-[#8f8c85]"
             }`}
           >
             {model}
@@ -75,10 +75,13 @@ function VSCodeBrand() {
   )
 }
 
-function TaskIcon({ type }: { type: string }) {
-  if (type === "loading") return <LoaderCircle className="size-3.5 text-[#666666]" />
-  if (type === "branch") return <GitBranch className="size-3.5 text-[#555555]" />
-  return <span className="size-1.5 rounded-full bg-[#555555]" />
+function TaskIcon({ type, active }: { type: string; active?: boolean }) {
+  const iconColor = active ? "text-primary" : type === "loading" ? "text-[#666666]" : "text-[#555555]"
+  const dotColor = active ? "bg-primary" : "bg-[#555555]"
+
+  if (type === "loading") return <LoaderCircle className={`size-3.5 ${iconColor}`} />
+  if (type === "branch") return <GitBranch className={`size-3.5 ${iconColor}`} />
+  return <span className={`size-1.5 rounded-full ${dotColor}`} />
 }
 
 function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) {
@@ -91,8 +94,8 @@ function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) 
             key={task.label}
             className={`flex items-center gap-2.5 rounded-md px-2.5 py-2 text-[11px] text-[#d4d4d4] ${task.active ? "bg-[#252525]" : ""}`}
           >
-            <span className="flex size-3.5 shrink-0 items-center justify-center"><TaskIcon type={task.type} /></span>
-            <span className="truncate">{task.label}</span>
+            <span className="flex size-3.5 shrink-0 items-center justify-center"><TaskIcon type={task.type} active={task.active} /></span>
+            <span className={`truncate ${task.active ? "text-primary" : ""}`}>{task.label}</span>
           </li>
         ))}
       </ul>

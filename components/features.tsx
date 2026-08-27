@@ -28,7 +28,7 @@ export function Features() {
     <section id="recursos">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <h2 className="font-mono text-xs text-muted-foreground">
-          <span aria-hidden="true">{"// "}</span>recursos
+          <span aria-hidden="true" className="text-primary">{"// "}</span>recursos
         </h2>
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
           {features.map((f, i) => (

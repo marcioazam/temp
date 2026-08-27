@@ -8,15 +8,15 @@ const brands = [
   { name: "GitHub Copilot", src: icon("github-copilot") },
   { name: "VS Code", src: icon("visual-studio-code") },
   { name: "Windsurf", src: icon("windsurf") },
-  { name: "Antigravity AI", src: "/images/antigravity-ai.png" },
+  { name: "Antigravity AI", src: icon("antigravity-google", "mono") },
   { name: "Cline", src: icon("cline") },
   { name: "OpenCode", src: icon("opencode") },
   { name: "Qwen Code", src: icon("qwen") },
   { name: "Kimi Code", src: "/images/kimi-cli.svg" },
-  { name: "Hermes Agent", mark: "H" },
-  { name: "OpenClaw", src: "/images/openclaw.svg" },
-  { name: "Kilo Code", src: "/images/kilo-code.svg" },
-  { name: "Goose", src: icon("goose") },
+  { name: "Hermes Agent", src: icon("nousresearch-hermes", "mono") },
+  { name: "OpenClaw", src: icon("openclaw-moltbot-clawdbot", "mono") },
+  { name: "Kilo Code", src: icon("kilo-code", "light") },
+  { name: "Goose", src: icon("goose-codename", "mono") },
 ]
 
 export function ModelMarquee() {

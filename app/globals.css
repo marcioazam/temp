@@ -27,6 +27,7 @@
   --color-foreground: var(--foreground);
   --color-background: var(--background);
   --color-ultra: var(--ultra);
+  --color-logo: var(--logo);
   --radius-sm: 0rem;
   --radius-md: 0rem;
   --radius-lg: 0rem;
@@ -44,8 +45,8 @@
   --card-foreground: #ededed;
   --popover: #101010;
   --popover-foreground: #ededed;
-  --primary: #5391fe;
-  --primary-foreground: #0a0a0a;
+  --primary: #f5a524;
+  --primary-foreground: #090909;
   --secondary: #1a1a1a;
   --secondary-foreground: #ededed;
   --muted: #161616;
@@ -55,8 +56,9 @@
   --destructive: #ff5c5c;
   --border: #232323;
   --input: #232323;
-  --ring: #5391fe;
-  --ultra: #5391fe;
+  --ring: #f5a524;
+  --ultra: #f5a524;
+  --logo: #f5a524;
   --radius: 0rem;
 }
 
@@ -83,7 +85,7 @@
 
 ::selection {
   background: var(--ultra);
-  color: #ffffff;
+  color: var(--primary-foreground);
 }
 
 /* Pixel-crisp rendering for logo SVGs */

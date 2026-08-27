@@ -64,9 +64,9 @@ export function NpmSection() {
   return (
     <section>
       <div className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-10 px-4 py-16 md:grid-cols-2 md:items-start md:px-9 md:py-24">
-        <Reveal>
+        <Reveal className="md:order-2 md:pl-6">
           <h2 className="font-mono text-xs text-muted-foreground">
-            <span aria-hidden="true">{"// "}</span>plug and play
+            <span aria-hidden="true" className="text-primary">{"// "}</span>plug and play
           </h2>
           <p className="mt-4 max-w-lg text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
             Um pacote para conectar qualquer harness.
@@ -76,20 +76,20 @@ export function NpmSection() {
             CLI detecta, autentica e configura seu ambiente automaticamente.
           </p>
           <ul className="mt-6 space-y-2 font-mono text-sm text-muted-foreground">
-            <li><span className="text-emerald-500" aria-hidden="true">+ </span>detecção automática do ambiente</li>
-            <li><span className="text-emerald-500" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
-            <li><span className="text-emerald-500" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
+            <li><span className="text-primary" aria-hidden="true">+ </span>detecção automática do ambiente</li>
+            <li><span className="text-primary" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
+            <li><span className="text-primary" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
           </ul>
         </Reveal>
 
-        <Reveal delay={120}>
+        <Reveal delay={120} className="md:order-1">
           <div className="flex min-h-[31rem] items-center bg-[url('/images/connect-landscape.png')] bg-cover bg-center p-5 md:p-8">
             <div className="elev-window w-full overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
               <div className="relative flex h-7 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
                 <div className="flex items-center gap-1.5" aria-hidden="true">
                   <span className="size-2.5 rounded-full bg-[#ff5f57]" />
                   <span className="size-2.5 rounded-full bg-[#febc2e]" />
-                  <span className="size-2.5 rounded-full bg-[#28c840]" />
+                  <span className="size-2.5 rounded-full bg-primary" />
                 </div>
                 <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
                   bash — nylla@linux
@@ -105,13 +105,13 @@ export function NpmSection() {
                 <div className="mb-5 text-[#666]">Ubuntu 24.04.1 LTS · bash 5.2.21</div>
                 {visibleSteps.map((step, index) => (
                   <div key={`${step.text}-${index}`} className={step.type === "success" ? "text-[#67c978]" : "text-[#a0a0a0]"}>
-                    {step.type === "command" && <span className="mr-2 text-[#67c978]">nylla@linux:~$</span>}
+                    {step.type === "command" && <span className="mr-2 text-primary">nylla@linux:~$</span>}
                     <span className={step.type === "command" ? "text-[#ededed]" : undefined}>{step.text}</span>
                   </div>
                 ))}
                 {currentStep?.type === "command" && (
                   <div className="flex items-center">
-                    <span className="mr-2 shrink-0 text-[#67c978]">nylla@linux:~$</span>
+                    <span className="mr-2 shrink-0 text-primary">nylla@linux:~$</span>
                     <span className="text-[#ededed]">{draft}</span>
                     <span className="cursor-blink ml-0.5 inline-block h-3.5 w-1.5 bg-[#ededed]" aria-hidden="true" />
                   </div>
@@ -124,7 +124,7 @@ export function NpmSection() {
                 )}
                 {!currentStep && (
                   <div className="mt-3 flex items-center">
-                    <span className="mr-2 text-[#67c978]">nylla@linux:~$</span>
+                    <span className="mr-2 text-primary">nylla@linux:~$</span>
                     <span className="cursor-blink inline-block h-3.5 w-1.5 bg-[#ededed]" aria-hidden="true" />
                   </div>
                 )}
