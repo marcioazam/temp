@@ -41,7 +41,7 @@ export function Features() {
           <span aria-hidden="true" className="text-primary">{"// "}</span>recursos
         </h2>
 
-        <div className="mt-10 grid grid-cols-1 gap-x-12 border-t border-border md:grid-cols-2 lg:gap-x-20">
+        <div className="mt-10 grid grid-cols-1 gap-x-12 md:grid-cols-2 lg:gap-x-20">
           {features.map((f, i) => (
             <Reveal
               as="article"
