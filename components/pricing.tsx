@@ -83,7 +83,7 @@ export function Pricing() {
           <CrossMark className="-bottom-[5px] -left-[5px]" />
           <CrossMark className="-bottom-[5px] -right-[5px]" />
 
-          <div className="photo-grain grid grid-cols-1 gap-2 bg-[url('/images/pricing-landscape.png')] bg-cover bg-center p-2 max-lg:gap-3 max-lg:p-3 lg:grid-cols-3">
+          <div className="photo-grain grid grid-cols-1 gap-6 bg-[url('/images/pricing-landscape.png')] bg-cover bg-center p-6 md:gap-10 md:p-12 lg:grid-cols-3 lg:p-16">
             {plans.map((plan, i) => (
               <Reveal
                 as="article"
@@ -101,7 +101,7 @@ export function Pricing() {
                   </span>
                 )}
 
-                <div className="flex items-baseline justify-between border-b border-border/70 px-6 py-4 md:px-8">
+                <div className="flex items-baseline justify-between border-b border-border/70 px-5 py-3">
                   <h3
                     className={`font-mono text-sm tracking-wide ${plan.highlighted ? "text-ultra" : "text-foreground"}`}
                   >
@@ -116,19 +116,19 @@ export function Pricing() {
                   </span>
                 </div>
 
-                <div className="px-6 pb-2 pt-7 md:px-8">
+                <div className="px-5 pb-1 pt-5">
                   <p className="font-mono font-medium tracking-tight text-foreground">
-                    <span className={plan.highlighted ? "text-5xl" : "text-4xl"}>{plan.price}</span>
-                    <span className="ml-1 text-sm text-muted-foreground">{plan.period}</span>
+                    <span className={plan.highlighted ? "text-3xl" : "text-2xl"}>{plan.price}</span>
+                    <span className="ml-1 text-xs text-muted-foreground">{plan.period}</span>
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{plan.description}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{plan.description}</p>
                 </div>
 
-                <ul className="flex-1 space-y-0 px-6 py-5 md:px-8">
+                <ul className="flex-1 space-y-0 px-5 py-3.5">
                   {plan.features.map((f) => (
                     <li
                       key={f}
-                      className="flex gap-2.5 border-b border-border/50 py-2.5 font-mono text-xs leading-relaxed text-muted-foreground last:border-b-0"
+                      className="flex gap-2.5 border-b border-border/50 py-2 font-mono text-[11px] leading-relaxed text-muted-foreground last:border-b-0"
                     >
                       <span
                         aria-hidden="true"
@@ -139,10 +139,10 @@ export function Pricing() {
                   ))}
                 </ul>
 
-                <div className="mt-auto px-6 pb-7 md:px-8">
+                <div className="mt-auto px-5 pb-5">
                   <Link
                     href="/docs"
-                    className={`inline-flex h-11 w-full items-center justify-between px-4 font-mono text-xs transition-all active:scale-[0.99] ${
+                    className={`inline-flex h-10 w-full items-center justify-between px-4 font-mono text-xs transition-all active:scale-[0.99] ${
                       plan.highlighted
                         ? "border border-transparent bg-ultra text-primary-foreground hover:border-foreground"
                         : "border border-border text-foreground hover:border-foreground/40 hover:bg-muted"
