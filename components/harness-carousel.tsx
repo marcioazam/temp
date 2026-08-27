@@ -65,22 +65,25 @@ export function HarnessCarousel() {
 
   return (
     <div role="group" aria-roledescription="carrossel" aria-label="Harnesses conectados ao Nylla Gateway">
-      {/* O padding dá folga para a sombra da janela renderizar dentro da área recortada */}
-      <div className="relative h-[430px] overflow-hidden px-4 pb-9 pt-3 sm:h-[460px]">
+      {/* Sem overflow-hidden: qualquer recorte cortaria a sombra da janela.
+          A troca de slides usa fade + deslize curto, então nada precisa ser mascarado. */}
+      <div className="relative h-[390px] sm:h-[420px]">
         {SLIDES.map((slide, index) => {
           const position =
             index === active
-              ? "translate-x-0"
+              ? "translate-x-0 opacity-100"
               : index === exiting
-                ? "-translate-x-[150%]"
-                : "translate-x-[150%]"
+                ? "-translate-x-6 opacity-0"
+                : "translate-x-6 opacity-0"
 
           return (
             <div
               key={slide.id}
-              className={`motion-reduce:transition-none! absolute inset-0 ${position}`}
+              className={`motion-reduce:transition-none! absolute inset-0 ${position} ${
+                index === active ? "" : "pointer-events-none"
+              }`}
               style={{
-                transitionProperty: snap ? "none" : "transform",
+                transitionProperty: snap ? "none" : "transform, opacity",
                 transitionDuration: `${SLIDE_MS}ms`,
                 transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
               }}
