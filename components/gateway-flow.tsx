@@ -114,7 +114,7 @@ export function GatewayFlow() {
         </Reveal>
 
         <div className="mt-6 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28 lg:order-2">
+          <div className="lg:order-2">
             <p className="type-title max-w-xl text-balance text-foreground">
               A inteligência do Nylla dentro do seu produto.
             </p>
@@ -136,11 +136,11 @@ export function GatewayFlow() {
 
           <Reveal delay={120} className="lg:order-1">
           <div
-            className="photo-grain flex min-h-[30rem] items-center overflow-hidden bg-cover bg-center p-5 sm:p-8 lg:p-10"
+            className="flex min-h-[30rem] items-center overflow-hidden bg-cover bg-center p-5 sm:p-8 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
-            <div className="win mx-auto w-full max-w-[42rem]">
-              <div className="win-bar justify-between">
+            <div className="win mx-auto w-full max-w-[42rem] [background-image:none]">
+              <div className="win-bar justify-between [background-image:none]">
                 <div className="win-dots" aria-hidden="true">
                   <span className="win-dot win-dot--close" />
                   <span className="win-dot win-dot--min" />
@@ -159,12 +159,12 @@ export function GatewayFlow() {
                 </svg>
               </div>
 
-            <div className="grid lg:grid-cols-[1fr_12rem]">
-              <div className="overflow-hidden py-5">
+            <div className="grid [background-image:none] lg:grid-cols-[1fr_12rem]">
+              <div className="overflow-hidden py-5 [background-image:none]">
                 <AnimatedCode />
               </div>
 
-              <aside className="border-t border-border bg-background/50 p-5 lg:border-l lg:border-t-0">
+              <aside className="border-t border-border bg-background/50 p-5 [background-image:none] lg:border-l lg:border-t-0">
                 <p className="type-eyebrow text-subtle-foreground">uma integração</p>
                 <div className="mt-6 flex flex-col gap-5">
                   <div>

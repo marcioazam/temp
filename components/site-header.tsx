@@ -40,7 +40,7 @@ export function SiteHeader() {
             aria-label="Nylla, início"
             className="flex shrink-0 items-center gap-2 text-foreground sm:gap-2.5"
           >
-            <RotorMark aria-hidden="true" className="h-6 w-6 shrink-0 text-logo sm:h-7 sm:w-7" />
+            <RotorMark aria-hidden="true" className="h-6 w-6 shrink-0 text-primary sm:h-7 sm:w-7" />
             <span className="type-wordmark text-[1.1875rem] sm:text-[1.375rem]">Nylla</span>
           </Link>
 
@@ -66,7 +66,7 @@ export function SiteHeader() {
           <div className="ml-auto flex items-center">
             {languageEnabled && (
               <div
-                className="type-micro mr-3 hidden h-[30px] items-center border border-foreground/25 bg-transparent p-0.5 text-[10px] tracking-[0.1em] sm:flex md:mr-6"
+                className="type-micro mr-3 hidden h-[30px] items-center border border-foreground/25 bg-background p-0.5 text-[10px] tracking-[0.1em] [background-image:none] sm:flex md:mr-6"
                 role="group"
                 aria-label={locale === "pt" ? "Selecionar idioma" : "Select language"}
                 data-no-translate
@@ -78,7 +78,7 @@ export function SiteHeader() {
                     onClick={() => setLocale(option)}
                     aria-pressed={locale === option}
                     aria-label={option === "pt" ? "Português" : "English"}
-                    className={`grid h-6 min-w-7 place-items-center px-1 transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-foreground ${
+                    className={`grid h-6 min-w-7 place-items-center bg-background px-1 [background-image:none] transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-foreground ${
                       locale === option
                         ? "bg-foreground text-background"
                         : "text-muted-foreground hover:text-foreground"

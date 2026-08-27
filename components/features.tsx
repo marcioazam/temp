@@ -5,23 +5,27 @@ import { Reveal } from "@/components/reveal"
 const features = [
   {
     key: "llms",
-    title: "Todos os LLMs",
-    body: "Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek e open-source. Um endpoint, sem lock-in.",
+    title: "Um endpoint. Todos os modelos.",
+    body: "OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek e open-source. Catálogo atualizado toda semana, sem lock-in.",
+    link: "Explorar modelos",
+    href: "#catalogo",
+    image: "/images/recursos-tundra.png",
   },
   {
     key: "npm",
-    title: "Plug and play via npm",
-    body: "O pacote detecta seu harness e configura o gateway. Um comando e está conectado.",
-  },
-  {
-    key: "catálogo",
-    title: "Seleção semanal",
-    body: "O catálogo é revisado toda semana, acompanhando novos modelos e mudanças dos provedores.",
+    title: "Conecte e comece",
+    body: "Compatível com OpenAI e com seu harness. O pacote npm detecta, configura e roteia tudo em um comando.",
+    link: "Instalar via npm",
+    href: "#instalar",
+    image: "/images/connect-lake.png",
   },
   {
     key: "frontier",
-    title: "Frontier por créditos ou ilimitado",
-    body: "Créditos sob demanda ou acesso ilimitado, sem configurar chaves por provedor.",
+    title: "Use sem contar tokens",
+    body: "LLMs padrão ilimitados e créditos para modelos frontier. Sem chaves por provedor, cobrança surpresa ou complexidade.",
+    link: "Conhecer os planos",
+    href: "#planos",
+    image: "/images/frontier-moorland.png",
   },
 ]
 
@@ -36,38 +40,40 @@ export function Features() {
           </h2>
         </Reveal>
 
-        <div className="mt-6 grid items-stretch gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(20rem,0.8fr)] lg:gap-12">
-          <div
-            className="photo-grain h-full overflow-hidden bg-cover bg-center p-6 sm:p-8 lg:order-2"
-            style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
-          >
-            <Reveal className="relative z-[2] bg-background/85 p-5 backdrop-blur-md sm:p-6">
-              <p className="type-title max-w-xl text-balance text-foreground">
-                Um gateway. Todas as rotas resolvidas.
-              </p>
-              <p className="type-lead mt-6 max-w-md text-pretty text-muted-foreground">
-                Cada provedor tem seu SDK e seu limite. O Nylla absorve essa diferença e entrega uma superfície única
-                para o seu código.
-              </p>
-            </Reveal>
-          </div>
+        <Reveal className="mt-6">
+          <p className="type-title text-balance text-foreground">Um gateway. Todas as rotas resolvidas.</p>
+          <p className="type-lead mt-6 max-w-3xl text-pretty text-muted-foreground">
+            Cada provedor tem seu SDK e seu limite. O Nylla absorve essa diferença e entrega uma superfície única para
+            o seu código.
+          </p>
+        </Reveal>
 
-          <Reveal delay={80} className="h-full lg:order-1">
-            <ul className="grid h-full border-y border-border/70 sm:grid-cols-2 sm:grid-rows-2">
-              {features.map((f, index) => (
-                <li
-                  key={f.key}
-                  className={`flex flex-col justify-start px-1 py-7 sm:px-7 sm:py-8 ${
-                    index < 2 ? "border-b border-border/70" : ""
-                  } ${index % 2 === 1 ? "sm:border-l sm:border-border/70" : ""}`}
-                >
-                  <h3 className="type-subheading max-w-xs text-pretty text-foreground">{f.title}</h3>
-                  <p className="type-body mt-3 max-w-xs text-pretty text-muted-foreground">{f.body}</p>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
+        <Reveal delay={80} className="mt-10">
+          <ul className="grid gap-3 md:grid-cols-3">
+            {features.map((feature) => (
+              <li key={feature.key} className="flex min-h-[32rem] flex-col border border-border/60 bg-secondary p-4 sm:p-5">
+                <div>
+                  <h3 className="type-subheading text-pretty text-foreground">{feature.title}</h3>
+                  <p className="type-body mt-1 h-18 max-w-sm line-clamp-3 text-pretty text-muted-foreground">
+                    {feature.body}
+                  </p>
+                  <a
+                    href={feature.href}
+                    className="mt-4 inline-flex min-h-11 items-center gap-2 font-mono text-sm text-primary transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  >
+                    <span>{feature.link}</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+                <div
+                  aria-hidden="true"
+                  className="photo-grain mt-auto aspect-[4/3] w-full shrink-0 overflow-hidden bg-cover bg-center"
+                  style={{ backgroundImage: `url('${feature.image}')` }}
+                />
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   )
