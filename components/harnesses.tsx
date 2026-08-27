@@ -16,8 +16,7 @@ export function Harnesses() {
             </p>
             <p className="mt-6 text-pretty leading-relaxed text-muted-foreground">
               Conecte o Nylla às ferramentas que já fazem parte do seu fluxo. Um único gateway reúne os melhores
-              modelos, aplica fallback automático e mantém cada agente trabalhando sem interrupções no editor, no
-              terminal ou via SDK.
+              modelos e mantém cada agente trabalhando no editor, no terminal ou via SDK.
             </p>
             <div className="mt-8 flex flex-col gap-4">
               <p className="font-mono text-sm text-foreground">Exemplos de conectividade:</p>

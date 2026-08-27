@@ -142,7 +142,7 @@ nylla usage`}</code>
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
               O arquivo <code className="bg-muted px-1 py-0.5 font-mono text-xs text-foreground">nylla.json</code>{" "}
-              controla roteamento, failover e prioridades:
+              controla o modelo padrão, roteamento e orçamento frontier:
             </p>
             <div className="mt-4 border border-border bg-card">
               <div className="border-b border-border px-4 py-2 font-mono text-xs text-muted-foreground">
@@ -152,8 +152,7 @@ nylla usage`}</code>
                 <code>{`{
   "defaultModel": "anthropic/claude-sonnet",
   "routing": {
-    "strategy": "latency",
-    "fallbacks": ["openai/gpt-5", "google/gemini-pro"]
+    "strategy": "latency"
   },
   "frontier": {
     "enabled": true,

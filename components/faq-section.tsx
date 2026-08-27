@@ -22,11 +22,6 @@ const questions = [
       "Sim. O endpoint continua o mesmo: você escolhe outro modelo sem trocar chaves, SDKs ou a configuração do harness.",
   },
   {
-    question: "O que acontece quando um provedor fica indisponível?",
-    answer:
-      "A Nylla aplica roteamento e fallback automático para manter seu fluxo ativo. Nos planos com roteamento avançado, a seleção também considera latência e disponibilidade.",
-  },
-  {
     question: "Meus prompts são usados para treinar modelos?",
     answer:
       "Não. A Nylla encaminha suas requisições aos provedores e não usa prompts ou respostas para treinar modelos próprios.",

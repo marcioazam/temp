@@ -122,8 +122,8 @@ export function GatewayFlow() {
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">formato compatível</p>
                   </div>
                   <div>
-                    <p className="font-mono text-lg font-medium text-primary">24/7</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">fallback automático</p>
+                    <p className="font-mono text-lg font-medium text-primary">Atualizado</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">catálogo de modelos</p>
                   </div>
                   <div>
                     <p className="whitespace-nowrap font-mono text-lg font-medium text-primary">Baixa latência</p>

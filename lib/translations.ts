@@ -17,8 +17,8 @@ export const ptToEn: Record<string, string> = {
     "Connect Claude Code, Codex, Cursor, VS Code, or your own agent to any model with one command. No lock-in, no integration rewrites. Built for production code and agents.",
   "ler docs": "read docs",
   "Conecta em qualquer ferramenta que você já usa.": "Connects to any tool you already use.",
-  "Conecte o Nylla às ferramentas que já fazem parte do seu fluxo. Um único gateway reúne os melhores modelos, aplica fallback automático e mantém cada agente trabalhando sem interrupções no editor, no terminal ou via SDK.":
-    "Connect Nylla to the tools already in your workflow. One gateway brings together the best models, applies automatic fallback, and keeps every agent working without interruption in the editor, terminal, or via SDK.",
+  "Conecte o Nylla às ferramentas que já fazem parte do seu fluxo. Um único gateway reúne os melhores modelos e mantém cada agente trabalhando no editor, no terminal ou via SDK.":
+    "Connect Nylla to the tools already in your workflow. One gateway brings together the best models and keeps every agent working in the editor, terminal, or via SDK.",
   "Exemplos de conectividade:": "Connectivity examples:",
   "A inteligência do Nylla dentro do seu produto.": "Nylla intelligence inside your product.",
   "Conecte seu SaaS, software ou aplicativo a um único endpoint compatível com OpenAI. Você desenvolve a experiência. O Nylla cuida dos modelos, da disponibilidade e do roteamento de cada requisição.":
@@ -33,7 +33,8 @@ export const ptToEn: Record<string, string> = {
   "uma integração": "one integration",
   "para todos os modelos": "for every model",
   "formato compatível": "compatible format",
-  "fallback automático": "automatic fallback",
+  "Atualizado": "Updated",
+  "catálogo de modelos": "model catalog",
   "Baixa latência": "Low latency",
   "roteamento otimizado": "optimized routing",
   "pronto para produção": "production ready",
@@ -67,8 +68,6 @@ export const ptToEn: Record<string, string> = {
     "Structural comparison. Model availability and limits may change by provider.",
   "por dentro da rota": "inside the route",
   "Uma requisição, do início ao fim.": "One request, end to end.",
-  "Você pede um resultado. A Nylla valida, entende a intenção, escolhe a rota e assume o fallback se algo falhar — sem expor essa complexidade para o seu agente.":
-    "You ask for an outcome. Nylla validates, understands intent, picks the route, and handles fallback if something fails—without exposing that complexity to your agent.",
   "Requisição": "Request",
   "Seu agente envia o objetivo, sem precisar escolher um modelo.": "Your agent sends the goal without choosing a model.",
   "Autenticação": "Authentication",
@@ -85,11 +84,8 @@ export const ptToEn: Record<string, string> = {
   "A resposta retorna no formato OpenAI que sua aplicação já entende.": "The response returns in the OpenAI format your app already understands.",
   "rota principal": "primary route",
   "modelo disponível → resposta em streaming": "available model → streamed response",
-  "falhou → próxima rota compatível": "failed → next compatible route",
   "Sua aplicação recebe a resposta no mesmo contrato. A troca acontece no meio, onde a Nylla opera.":
     "Your app receives the same response contract. The switch happens in the middle, where Nylla operates.",
-  "O caminho direto é o caso comum. O desvio de fallback existe para que seu cliente nunca precise conhecê-lo.":
-    "The straight path is the common case. The fallback branch exists so your client never needs to know about it.",
   "Um pacote para conectar qualquer harness.": "One package to connect any harness.",
   "O NPM do Nylla configura o harness que você já usa e aponta tudo para o Nylla Gateway. Execute um comando e o CLI detecta, autentica e configura seu ambiente automaticamente.":
     "Nylla's npm package configures the harness you already use and points everything to Nylla Gateway. Run one command and the CLI detects, authenticates, and configures your environment automatically.",
@@ -106,9 +102,6 @@ export const ptToEn: Record<string, string> = {
   "Plug and play via npm": "Plug and play via npm",
   "O pacote npm detecta seu harness e configura o gateway automaticamente. Um comando e sua ferramenta está conectada.":
     "The npm package detects your harness and configures the gateway automatically. One command and your tool is connected.",
-  "Failover e roteamento": "Failover and routing",
-  "Se um provedor cai, o gateway redireciona a requisição. Defina prioridades por modelo, custo ou latência. O Nylla cuida do resto.":
-    "If a provider goes down, the gateway reroutes the request. Set priorities by model, cost, or latency. Nylla handles the rest.",
   "o catálogo": "the catalog",
   "Todos os modelos. Sem prisão.": "Every model. No lock-in.",
   "Um núcleo open-source fixo, sempre ativo, mais uma seleção nova que entra toda semana. Todo plano inclui o catálogo completo.":
@@ -149,7 +142,7 @@ export const ptToEn: Record<string, string> = {
   "1 harness conectado": "1 connected harness",
   "Suporte via comunidade": "Community support",
   "Harnesses ilimitados": "Unlimited harnesses",
-  "Roteamento e failover avançados": "Advanced routing and failover",
+  "Políticas de roteamento avançadas": "Advanced routing policies",
   "Suporte prioritário": "Priority support",
   "Tudo do pro": "Everything in pro",
   "Créditos frontier compartilhados": "Shared frontier credits",
@@ -172,8 +165,6 @@ export const ptToEn: Record<string, string> = {
   "Os modelos padrão do catálogo têm uso ilimitado dentro da política de uso justo. Modelos frontier usam os créditos mensais incluídos no seu plano.": "Standard catalog models have unlimited use under the fair-use policy. Frontier models use the monthly credits included in your plan.",
   "Posso trocar de modelo durante um projeto?": "Can I switch models during a project?",
   "Sim. O endpoint continua o mesmo: você escolhe outro modelo sem trocar chaves, SDKs ou a configuração do harness.": "Yes. The endpoint stays the same: choose another model without changing keys, SDKs, or harness configuration.",
-  "O que acontece quando um provedor fica indisponível?": "What happens when a provider is unavailable?",
-  "A Nylla aplica roteamento e fallback automático para manter seu fluxo ativo. Nos planos com roteamento avançado, a seleção também considera latência e disponibilidade.": "Nylla applies automatic routing and fallback to keep your workflow active. On advanced-routing plans, selection also considers latency and availability.",
   "Meus prompts são usados para treinar modelos?": "Are my prompts used to train models?",
   "Não. A Nylla encaminha suas requisições aos provedores e não usa prompts ou respostas para treinar modelos próprios.": "No. Nylla forwards your requests to providers and does not use prompts or responses to train its own models.",
   "Um endpoint, todos os modelos.": "One endpoint, every model.",
@@ -202,12 +193,12 @@ export const ptToEn: Record<string, string> = {
   "Nylla Gateway no VS Code": "Nylla Gateway in VS Code",
   "Roteamento Claude Code": "Claude Code routing",
   "Terminal Hermes Agent": "Hermes Agent terminal",
-  "Fallback entre modelos": "Model fallback",
+  "Catálogo de modelos": "Model catalog",
   "Métricas de uso e custo": "Usage and cost metrics",
   "Políticas por workspace": "Workspace policies",
   "Configure o VS Code para rotear Claude Code, Codex e Gemini CLI pelo Nylla Gateway": "Configure VS Code to route Claude Code, Codex, and Gemini CLI through Nylla Gateway",
   "Explorou 18 arquivos, 6 configurações": "Explored 18 files, 6 settings",
-  "Vou conectar os harnesses ao endpoint compatível com OpenAI, configurar fallback entre modelos e validar o streaming dentro do workspace.": "I'll connect the harnesses to the OpenAI-compatible endpoint, configure model fallback, and validate streaming inside the workspace.",
+  "Vou conectar os harnesses ao endpoint compatível com OpenAI, configurar os modelos e validar o streaming dentro do workspace.": "I'll connect the harnesses to the OpenAI-compatible endpoint, configure the models, and validate streaming inside the workspace.",
   "Trabalhou por": "Worked for",
   "Validou credenciais e roteamento": "Validated credentials and routing",
   "Pronto. O workspace agora alterna modelos pelo Nylla sem alterar o fluxo do agente.": "Done. The workspace now switches models through Nylla without changing the agent workflow.",

@@ -18,21 +18,16 @@ const features = [
   },
   {
     id: "04",
-    title: "Failover e roteamento",
-    body: "Se um provedor cai, o gateway redireciona a requisição. Defina prioridades por modelo, custo ou latência. O Nylla cuida do resto.",
-  },
-  {
-    id: "05",
     title: "Núcleo open-source",
     body: "Modelos open-source sempre disponíveis para manter seus agentes rodando sem depender de uma única rota.",
   },
   {
-    id: "06",
+    id: "05",
     title: "Seleção semanal",
     body: "O catálogo é revisado toda semana para acompanhar novos modelos, melhorias e mudanças dos provedores.",
   },
   {
-    id: "07",
+    id: "06",
     title: "Frontier por créditos",
     body: "Acesse modelos frontier sob demanda com créditos, sem configurar chaves separadas em cada provedor.",
   },
