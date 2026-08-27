@@ -28,7 +28,7 @@ const rows = [
   },
   {
     criterion: "Limites",
-    nylla: "Cotas previsíveis por plano",
+    nylla: "LLMs ilimitadas + cobrança por uso",
     router: "Limites definidos pela plataforma",
     direct: "Limites por conta e por tier",
   },
