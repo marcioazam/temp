@@ -53,28 +53,28 @@ export function RouteComparison() {
   return (
     <section id="comparativo">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <div className="photo-grain w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-24">
+        <Reveal>
+          <p className="type-heading max-w-xl text-balance text-foreground">Compare a rota, não o hype.</p>
+          <p className="type-lead mt-5 max-w-2xl text-pretty text-muted-foreground">
+            A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
+            entre o seu prompt e a resposta.
+          </p>
+        </Reveal>
+
+        <Reveal delay={80}>
+          <div className="mt-10 border-y border-border py-4">
+            <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+              <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>comparativo</span>
+            </h2>
+          </div>
+        </Reveal>
+
+        <div className="photo-grain mt-6 w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-24">
           <div className="mx-auto w-full max-w-6xl px-4 md:px-9">
             <Reveal>
-            <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
-              <div className="p-5 md:p-6">
-              <p className="type-heading max-w-xl text-balance text-foreground">
-                Compare a rota, não o hype.
-              </p>
-              <p className="type-lead mt-5 max-w-2xl text-pretty text-muted-foreground">
-                A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
-                entre o seu prompt e a resposta.
-              </p>
-            </div>
-
-            <div className="border-t border-border px-5 py-4 md:px-6">
-              <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
-                <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
-                <span>comparativo</span>
-              </h2>
-            </div>
-
-            <div className="overflow-x-auto border-t border-border">
+              <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
+                <div className="overflow-x-auto">
               <table className="w-full min-w-[850px] border-collapse text-left">
               <caption className="sr-only">
                 Comparação entre Nylla, agregadores de modelos e APIs diretas de provedores
@@ -128,14 +128,14 @@ export function RouteComparison() {
                     </tr>
                   )
                 })}
-              </tbody>
-              </table>
-            </div>
-            <p className="type-caption border-t border-border px-4 py-3.5 text-subtle-foreground md:px-5">
-              <span aria-hidden="true" className="mr-2 text-primary">*</span>
-              Comparação estrutural. Disponibilidade de modelos e limites podem mudar conforme o provedor.
-            </p>
-          </div>
+                  </tbody>
+                  </table>
+                </div>
+                <p className="type-caption border-t border-border px-4 py-3.5 text-subtle-foreground md:px-5">
+                  <span aria-hidden="true" className="mr-2 text-primary">*</span>
+                  Comparação estrutural. Disponibilidade de modelos e limites podem mudar conforme o provedor.
+                </p>
+              </div>
             </Reveal>
           </div>
         </div>
