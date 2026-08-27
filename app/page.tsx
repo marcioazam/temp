@@ -1,5 +1,4 @@
 import { SiteHeader } from "@/components/site-header"
-import { Hero } from "@/components/hero"
 import { GatewayFlow } from "@/components/gateway-flow"
 import { RouteComparison } from "@/components/route-comparison"
 import { Features } from "@/components/features"
@@ -17,7 +16,6 @@ export default function Page() {
       <SiteHeader />
       <main>
         <FinalCta />
-        <Hero />
         <Harnesses />
         <NpmSection />
         <GatewayFlow />
