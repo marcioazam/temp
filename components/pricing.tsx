@@ -142,7 +142,7 @@ export function Pricing() {
                     href="/docs"
                     className={`inline-flex h-11 w-full items-center justify-between px-4 font-mono text-xs transition-all active:scale-[0.99] ${
                       plan.highlighted
-                        ? "bg-ultra text-primary-foreground hover:opacity-90"
+                        ? "border border-transparent bg-ultra text-primary-foreground hover:border-foreground"
                         : "border border-border text-foreground hover:border-foreground/40 hover:bg-muted"
                     }`}
                   >
