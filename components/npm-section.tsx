@@ -76,9 +76,9 @@ export function NpmSection() {
             CLI detecta, autentica e configura seu ambiente automaticamente.
           </p>
           <ul className="mt-6 space-y-2 font-mono text-sm text-muted-foreground">
-            <li><span className="text-emerald-500" aria-hidden="true">+ </span>detecção automática do ambiente</li>
-            <li><span className="text-emerald-500" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
-            <li><span className="text-emerald-500" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
+            <li><span className="text-primary" aria-hidden="true">+ </span>detecção automática do ambiente</li>
+            <li><span className="text-primary" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
+            <li><span className="text-primary" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
           </ul>
         </Reveal>
 
@@ -89,7 +89,7 @@ export function NpmSection() {
                 <div className="flex items-center gap-1.5" aria-hidden="true">
                   <span className="size-2.5 rounded-full bg-[#ff5f57]" />
                   <span className="size-2.5 rounded-full bg-[#febc2e]" />
-                  <span className="size-2.5 rounded-full bg-[#28c840]" />
+                  <span className="size-2.5 rounded-full bg-primary" />
                 </div>
                 <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
                   bash — nylla@linux
@@ -105,13 +105,13 @@ export function NpmSection() {
                 <div className="mb-5 text-[#666]">Ubuntu 24.04.1 LTS · bash 5.2.21</div>
                 {visibleSteps.map((step, index) => (
                   <div key={`${step.text}-${index}`} className={step.type === "success" ? "text-[#67c978]" : "text-[#a0a0a0]"}>
-                    {step.type === "command" && <span className="mr-2 text-[#67c978]">nylla@linux:~$</span>}
+                    {step.type === "command" && <span className="mr-2 text-primary">nylla@linux:~$</span>}
                     <span className={step.type === "command" ? "text-[#ededed]" : undefined}>{step.text}</span>
                   </div>
                 ))}
                 {currentStep?.type === "command" && (
                   <div className="flex items-center">
-                    <span className="mr-2 shrink-0 text-[#67c978]">nylla@linux:~$</span>
+                    <span className="mr-2 shrink-0 text-primary">nylla@linux:~$</span>
                     <span className="text-[#ededed]">{draft}</span>
                     <span className="cursor-blink ml-0.5 inline-block h-3.5 w-1.5 bg-[#ededed]" aria-hidden="true" />
                   </div>
@@ -124,7 +124,7 @@ export function NpmSection() {
                 )}
                 {!currentStep && (
                   <div className="mt-3 flex items-center">
-                    <span className="mr-2 text-[#67c978]">nylla@linux:~$</span>
+                    <span className="mr-2 text-primary">nylla@linux:~$</span>
                     <span className="cursor-blink inline-block h-3.5 w-1.5 bg-[#ededed]" aria-hidden="true" />
                   </div>
                 )}
