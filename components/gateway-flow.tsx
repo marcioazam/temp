@@ -131,7 +131,7 @@ export function GatewayFlow() {
           </div>
 
           <div
-            className="photo-grain flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
+            className="photo-grain flex min-h-[30rem] items-center overflow-hidden bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
             <div className="win mx-auto w-full max-w-[42rem]">
