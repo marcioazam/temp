@@ -28,8 +28,8 @@ export function GatewayFlow() {
   return (
     <section id="endpoint">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <div className="grid items-start gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:order-2">
             <h2 className="font-mono text-xs text-muted-foreground">
               <span aria-hidden="true" className="text-primary">{"// "}</span>endpoint
             </h2>
@@ -69,7 +69,7 @@ export function GatewayFlow() {
           </div>
 
           <div
-            className="flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-2 lg:p-10"
+            className="flex min-h-[30rem] items-center bg-cover bg-center p-5 sm:p-8 lg:order-1 lg:p-10"
             style={{ backgroundImage: "url('/images/endpoint-landscape.png')" }}
           >
             <div className="mx-auto w-full max-w-[42rem] overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)]">
