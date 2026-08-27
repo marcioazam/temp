@@ -37,7 +37,7 @@ function ModelSelector() {
             key={model}
             role="option"
             aria-selected={index === activeModel}
-            className={`flex rounded px-2 py-1.5 transition-colors duration-300 ${
+            className={`flex rounded px-2 py-1.5 transition-colors duration-300 hover:text-primary ${
               index === activeModel ? "bg-[#303030] text-[#f4f3f1]" : "text-[#8f8c85]"
             }`}
           >
