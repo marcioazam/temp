@@ -47,7 +47,9 @@ export function Features() {
               as="article"
               key={f.key}
               delay={i * 70}
-              className="group relative border-b border-border py-8 md:py-10"
+              className={`group relative border-b border-border py-8 md:py-10 ${
+                i === features.length - 1 ? "border-b-0" : ""
+              } ${i === features.length - 2 ? "md:border-b-0" : ""}`}
             >
               <span
                 aria-hidden="true"
