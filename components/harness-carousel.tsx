@@ -65,10 +65,15 @@ export function HarnessCarousel() {
 
   return (
     <div role="group" aria-roledescription="carrossel" aria-label="Harnesses conectados ao Nylla Gateway">
-      <div className="relative h-[390px] overflow-hidden sm:h-[420px]">
+      {/* O padding dá folga para a sombra da janela renderizar dentro da área recortada */}
+      <div className="relative h-[430px] overflow-hidden px-4 pb-9 pt-3 sm:h-[460px]">
         {SLIDES.map((slide, index) => {
           const position =
-            index === active ? "translate-x-0" : index === exiting ? "-translate-x-full" : "translate-x-full"
+            index === active
+              ? "translate-x-0"
+              : index === exiting
+                ? "-translate-x-[150%]"
+                : "translate-x-[150%]"
 
           return (
             <div
