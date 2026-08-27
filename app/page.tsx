@@ -19,9 +19,9 @@ export default function Page() {
       <main>
         <Hero />
         <Harnesses />
+        <NpmSection />
         <GatewayFlow />
         <RouteComparison />
-        <NpmSection />
         <Features />
         <CatalogSection />
         <Pricing />
