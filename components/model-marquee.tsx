@@ -23,7 +23,7 @@ export function ModelMarquee() {
       className="grid grid-cols-1 gap-px border border-border/60 bg-border/60 sm:grid-cols-2 lg:grid-cols-3"
     >
       {brands.map((brand) => (
-        <li key={brand.name} className="group relative bg-background">
+        <li key={brand.name} className="group relative bg-background [background-image:none]">
           <div className="flex items-center gap-3 px-4 py-4">
             <img
               src={brand.src || "/placeholder.svg"}
