@@ -63,12 +63,16 @@ export function NpmSection() {
 
   return (
     <section>
-      <div className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-10 px-4 py-16 md:grid-cols-2 md:items-start md:px-9 md:py-24">
-        <Reveal className="md:order-1 md:pr-6">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
+        <Reveal>
           <h2 className="font-mono text-xs text-muted-foreground">
             <span aria-hidden="true" className="text-primary">{"// "}</span>plug and play
           </h2>
-          <p className="mt-4 max-w-lg text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+        </Reveal>
+
+        <div className="mt-5 grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
+          <Reveal className="md:order-1 md:pr-6">
+          <p className="max-w-lg text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
             Um pacote para conectar qualquer harness.
           </p>
           <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
@@ -131,7 +135,8 @@ export function NpmSection() {
               </div>
             </div>
           </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   )
