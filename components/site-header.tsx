@@ -7,8 +7,8 @@ import { useLanguage } from "@/components/language-provider"
 
 
 const nav = [
-  { label: "Recursos", href: "/#recursos" },
   { label: "Harnesses", href: "/#harnesses" },
+  { label: "Recursos", href: "/#recursos" },
   { label: "Comparativo", href: "/#comparativo" },
   { label: "Planos", href: "/#planos" },
   { label: "FAQ", href: "/#faq" },
