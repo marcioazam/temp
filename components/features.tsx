@@ -51,7 +51,7 @@ export function Features() {
         <Reveal delay={80} className="mt-10">
           <ul className="grid gap-3 md:grid-cols-3">
             {features.map((feature) => (
-              <li key={feature.key} className="flex min-h-[32rem] flex-col border border-border/60 bg-background p-4 sm:p-5">
+              <li key={feature.key} className="flex min-h-[32rem] flex-col border border-border/60 bg-muted/70 p-4 sm:p-5">
                 <div>
                   <h3 className="type-subheading text-pretty text-foreground">{feature.title}</h3>
                   <p className="type-body mt-1 h-18 max-w-sm line-clamp-3 text-pretty text-muted-foreground">
