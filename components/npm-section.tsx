@@ -20,6 +20,35 @@ const terminalSteps: TerminalStep[] = [
   { type: "success", text: "✓ Configuração concluída. Pronto para usar." },
 ]
 
+function CopyRow({ label, value }: { label: string; value: string }) {
+  const [copied, setCopied] = useState(false)
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(value)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1600)
+    } catch {
+      // clipboard unavailable
+    }
+  }
+
+  return (
+    <div className="flex items-center gap-3 border-b border-border/60 py-2.5">
+      <span className="w-16 shrink-0 font-mono text-[11px] text-muted-foreground/70">{label}</span>
+      <code className="min-w-0 flex-1 truncate font-mono text-sm text-foreground">{value}</code>
+      <button
+        type="button"
+        onClick={copy}
+        className="shrink-0 font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+        aria-label={`Copiar ${value}`}
+      >
+        {copied ? "copiado" : "copiar"}
+      </button>
+    </div>
+  )
+}
+
 export function NpmSection() {
   const [visibleSteps, setVisibleSteps] = useState<TerminalStep[]>([])
   const [draft, setDraft] = useState("")
@@ -84,6 +113,11 @@ export function NpmSection() {
             <li><span className="text-primary" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
             <li><span className="text-primary" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
           </ul>
+
+          <div className="mt-8 max-w-md border-t border-border/60">
+            <CopyRow label="npm" value="nylla" />
+            <CopyRow label="comando" value="npx nylla connect" />
+          </div>
         </Reveal>
 
         <Reveal delay={120} className="md:order-2">
