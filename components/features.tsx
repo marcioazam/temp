@@ -41,15 +41,17 @@ export function Features() {
           <span aria-hidden="true" className="text-primary">{"// "}</span>recursos
         </h2>
 
-        <div className="mt-10 grid grid-cols-1 gap-x-12 md:grid-cols-2 lg:gap-x-20">
+        <div className="mt-4 grid grid-cols-1 gap-x-12 md:grid-cols-2 lg:gap-x-20">
           {features.map((f, i) => (
             <Reveal
               as="article"
               key={f.key}
               delay={i * 70}
               className={`group relative border-b border-border py-8 md:py-10 ${
-                i === features.length - 1 ? "border-b-0" : ""
-              } ${i === features.length - 2 ? "md:border-b-0" : ""}`}
+                i === 0 ? "pt-0 md:pt-0" : ""
+              } ${i === 1 ? "md:pt-0" : ""} ${i === features.length - 1 ? "border-b-0" : ""} ${
+                i === features.length - 2 ? "md:border-b-0" : ""
+              }`}
             >
               <span
                 aria-hidden="true"
