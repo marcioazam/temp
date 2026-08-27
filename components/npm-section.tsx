@@ -108,9 +108,9 @@ export function NpmSection() {
           <p className="type-heading max-w-lg text-balance text-foreground">
             Um pacote para conectar qualquer harness.
           </p>
-          <p className="type-lead mt-5 max-w-md text-muted-foreground">
-            O NPM do Nylla configura o harness que você já usa e aponta tudo para o Nylla Gateway. Execute um comando e o
-            CLI detecta, autentica e configura seu ambiente automaticamente.
+          <p className="type-lead mt-5 max-w-md text-pretty text-muted-foreground">
+            O NPM do Nylla configura o harness que você já usa e aponta tudo para o Nylla Gateway. Um comando, nada de
+            ajuste manual.
           </p>
           <ul className="type-label mt-7 space-y-2 text-muted-foreground">
             <li><span className="text-primary" aria-hidden="true">+ </span>detecção automática do ambiente</li>
