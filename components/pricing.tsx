@@ -147,8 +147,11 @@ export function Pricing() {
                     }`}
                   >
                     <span>assinar {plan.name}</span>
-                    <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">
-                      {"->"}
+                    <span
+                      aria-hidden="true"
+                      className="text-base leading-none transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    >
+                      {"↗"}
                     </span>
                   </Link>
                 </div>
