@@ -96,11 +96,11 @@ export function RouteComparison() {
               </tbody>
               </table>
             </div>
+            <p className="border-t border-border px-4 py-3 font-mono text-xs text-foreground md:px-5">
+              <span aria-hidden="true" className="mr-2 text-primary">{"//"}</span>
+              Comparação estrutural. Disponibilidade de modelos e limites podem mudar conforme o provedor.
+            </p>
           </div>
-          <p className="mt-3 inline-block border border-border bg-background px-3 py-2 font-mono text-xs text-foreground shadow-sm">
-            <span aria-hidden="true" className="mr-2 text-primary">{"//"}</span>
-            Comparação estrutural. Disponibilidade de modelos e limites podem mudar conforme o provedor.
-          </p>
         </Reveal>
       </div>
     </section>
