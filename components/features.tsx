@@ -5,8 +5,8 @@ import { Reveal } from "@/components/reveal"
 const features = [
   {
     key: "llms",
-    title: "O melhor modelo para cada tarefa",
-    body: "Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek e open-source, com seleção revisada toda semana.",
+    title: "Todos os LLMs, sempre atualizados",
+    body: "Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek e open-source em um único endpoint, sem lock-in. A seleção é revisada toda semana para acompanhar novos modelos e mudanças dos provedores.",
     link: "Explorar modelos",
     href: "#catalogo",
     image: "/images/recursos-polar.png",
