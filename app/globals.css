@@ -202,10 +202,28 @@
   animation: feature-progress 3s linear forwards;
 }
 
+@keyframes row-scan {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.animate-row-scan {
+  animation: row-scan 2.6s linear forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-feature-progress {
     animation: none;
     transform: scaleX(1);
+  }
+
+  .animate-row-scan {
+    animation: none;
+    transform: scaleY(1);
   }
 }
 
