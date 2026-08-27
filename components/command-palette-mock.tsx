@@ -21,7 +21,7 @@ function ModelSelector({ isRunning }: { isRunning: boolean }) {
     if (!isRunning) return
     const interval = window.setInterval(() => {
       setActiveModel((current) => (current + 1) % models.length)
-    }, 500)
+    }, 850)
 
     return () => window.clearInterval(interval)
   }, [isRunning])
@@ -29,7 +29,7 @@ function ModelSelector({ isRunning }: { isRunning: boolean }) {
   return (
     <span className="relative inline-flex min-w-[74px] items-center text-code-dim" aria-label={`Modelo selecionado: ${models[activeModel]}`}>
       <span
-        className="absolute bottom-full left-0 z-20 mb-1 w-32 overflow-hidden rounded-md border border-[#333333] bg-[#171717] p-1 shadow-[0_12px_28px_rgba(0,0,0,0.55)]"
+        className="absolute bottom-full left-0 z-20 mb-2.5 w-32 overflow-hidden rounded-md border border-[#333333] bg-[#171717] p-1 shadow-[0_12px_28px_rgba(0,0,0,0.55)]"
         role="listbox"
         aria-label="Modelos disponíveis"
       >
@@ -46,7 +46,10 @@ function ModelSelector({ isRunning }: { isRunning: boolean }) {
           </span>
         ))}
       </span>
-      <span>{models[activeModel]}⌃</span>
+      <span className="inline-flex items-center gap-1.5">
+        <span>{models[activeModel]}</span>
+        <span className="text-code-faint" aria-hidden="true">⌃</span>
+      </span>
     </span>
   )
 }

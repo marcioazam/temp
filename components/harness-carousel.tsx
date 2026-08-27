@@ -9,7 +9,7 @@ const FADE_MS = 520
 
 // Cada slide fica visível pelo tempo do próprio loop de animação interno.
 const SLIDES = [
-  { id: "vscode", label: "VS Code", duration: 4_500 },
+  { id: "vscode", label: "VS Code", duration: 7_500 },
   { id: "claude", label: "Claude Code", duration: 16_000 },
   { id: "hermes", label: "Hermes Agent", duration: 22_000 },
 ] as const
