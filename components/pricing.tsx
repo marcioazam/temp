@@ -67,11 +67,10 @@ export function Pricing() {
             <span>planos</span>
           </h2>
           <p className="type-title mt-6 max-w-2xl text-balance text-foreground">
-            LLMs ilimitados. Créditos para os modelos frontier.
+            LLMs ilimitados. Frontier por créditos.
           </p>
-          <p className="type-lead mt-5 max-w-xl text-muted-foreground">
-            Todos os planos incluem acesso ilimitado aos LLMs padrão do gateway, mais créditos mensais de usage para os
-            modelos frontier mais recentes.
+          <p className="type-lead mt-5 max-w-xl text-pretty text-muted-foreground">
+            Todos os planos incluem modelos padrão ilimitados e créditos mensais para os modelos mais avançados.
           </p>
         </Reveal>
 
