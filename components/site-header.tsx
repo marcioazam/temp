@@ -48,10 +48,21 @@ export function SiteHeader() {
           <Link
             href="/"
             aria-label="Nylla, início"
-            className="flex items-center gap-2.5 text-foreground"
+            className="group relative isolate flex items-center gap-2.5 text-foreground"
           >
-            <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0 text-logo" />
-            <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-[0.02em]">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-7 -top-6 -z-10 h-16 w-24 bg-[radial-gradient(ellipse_at_top_left,rgba(245,165,36,0.32)_0%,rgba(245,165,36,0.12)_35%,transparent_72%)] blur-md transition-opacity duration-500 group-hover:opacity-80"
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-4 -top-4 -z-10 h-px w-16 origin-left -rotate-[28deg] bg-gradient-to-r from-primary/50 to-transparent"
+            />
+            <RotorMark
+              aria-hidden="true"
+              className="h-7 w-7 shrink-0 text-logo drop-shadow-[0_0_8px_rgba(245,165,36,0.5)]"
+            />
+            <span className="font-[family-name:var(--font-fira-code)] text-2xl font-semibold leading-none tracking-[0.02em] drop-shadow-[0_0_10px_rgba(245,165,36,0.1)]">
               Nylla
             </span>
           </Link>
