@@ -807,13 +807,11 @@ kbd {
 }
 
 @keyframes hero-logo-unfold {
-  0%, 100% { transform: translate(0, -12px) rotate(-42deg); }
-  50% { transform: translate(0, -12px) rotate(42deg); }
+  0%, 100% { transform: rotate(-42deg); }
+  50% { transform: rotate(42deg); }
 }
 
-.hero-logo-unfold .nylla-logo-sun {
-  transform-box: view-box;
-  transform-origin: 32px 32px;
+.hero-logo-unfold .nylla-logo-arm {
   animation: hero-logo-unfold 3s ease-in-out infinite;
   will-change: transform;
 }
@@ -916,7 +914,7 @@ kbd {
   .term-line,
   .claude-line,
   .claude-model-enter,
-  .hero-logo-unfold .nylla-logo-sun,
+  .hero-logo-unfold .nylla-logo-arm,
   .hf-dot-a-down,
   .hf-dot-a-up,
   .hf-dot-b-down,

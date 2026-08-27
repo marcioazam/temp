@@ -15,7 +15,13 @@ export function NyllaLogo(props: SVGProps<SVGSVGElement>) {
       <g className="nylla-logo-sun" transform="translate(0 -12)">
         <g stroke="var(--primary)" strokeWidth="5" strokeLinecap="round" fill="none">
           {arms.map((angle) => (
-            <path key={angle} d="M32 20 Q42 14 44 6" transform={`rotate(${angle} 32 32)`} />
+            <g key={angle} transform={`rotate(${angle} 32 32)`}>
+              <path
+                className="nylla-logo-arm"
+                d="M32 20 Q42 14 44 6"
+                style={{ transformOrigin: "32px 20px" }}
+              />
+            </g>
           ))}
         </g>
         <circle cx="32" cy="32" r="5" fill="var(--primary)" />
