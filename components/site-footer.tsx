@@ -3,7 +3,7 @@ import { RotorMark } from "@/components/logo"
 
 export function SiteFooter() {
   return (
-    <footer className="bg-background text-foreground">
+    <footer className="site-background text-foreground">
       <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-6 px-4 py-8 md:flex-row md:items-end md:justify-between md:px-9">
         <div>
           <div className="flex items-center gap-2.5 text-foreground">
