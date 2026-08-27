@@ -51,9 +51,10 @@ export function RouteComparison() {
   }, [])
 
   return (
-    <section id="comparativo" className="relative isolate overflow-hidden px-4 md:px-9">
-      <div className="photo-grain mx-auto w-full max-w-screen-2xl bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center px-4 py-16 md:px-9 md:py-24">
-        <Reveal>
+    <section id="comparativo" className="px-4 md:px-9">
+      <div className="photo-grain mx-auto w-full max-w-screen-2xl bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-24">
+        <div className="mx-auto w-full max-w-6xl px-4 md:px-9">
+          <Reveal>
           <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
             <div className="p-5 md:p-6">
               <h2 className="font-mono text-xs text-muted-foreground">
@@ -130,7 +131,8 @@ export function RouteComparison() {
               Comparação estrutural. Disponibilidade de modelos e limites podem mudar conforme o provedor.
             </p>
           </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   )

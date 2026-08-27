@@ -20,7 +20,7 @@ function ModelSelector() {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveModel((current) => (current + 1) % models.length)
-    }, 350)
+    }, 500)
 
     return () => window.clearInterval(interval)
   }, [])

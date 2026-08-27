@@ -9,7 +9,7 @@ const SLIDE_MS = 720
 
 // Cada slide fica visível pelo tempo do próprio loop de animação interno.
 const SLIDES = [
-  { id: "vscode", label: "VS Code", duration: 2_900 },
+  { id: "vscode", label: "VS Code", duration: 4_500 },
   { id: "claude", label: "Claude Code", duration: 16_000 },
   { id: "hermes", label: "Hermes Agent", duration: 22_000 },
 ] as const
@@ -84,7 +84,13 @@ export function HarnessCarousel() {
               aria-label={slide.label}
             >
               {(index === active || index === exiting) ? (
-                <div className={index === exiting ? "h-full [animation-play-state:paused!important] [&_*]:[animation-play-state:paused!important]" : "h-full"}>
+                <div
+                  className={`mx-auto h-full w-full max-w-lg ${
+                    index === exiting
+                      ? "[animation-play-state:paused!important] [&_*]:[animation-play-state:paused!important]"
+                      : ""
+                  }`}
+                >
                   {slide.id === "vscode" ? (
                     <CommandPaletteMock />
                   ) : slide.id === "claude" ? (
