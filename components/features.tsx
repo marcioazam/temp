@@ -9,7 +9,7 @@ const features = [
     body: "OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek e open-source. Catálogo atualizado toda semana, sem lock-in.",
     link: "Explorar modelos",
     href: "#catalogo",
-    image: "/images/recursos-polar.png",
+    image: "/images/recursos-tundra.png",
   },
   {
     key: "npm",
