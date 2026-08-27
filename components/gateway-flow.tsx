@@ -36,15 +36,25 @@ function AnimatedCode() {
         return
       }
 
+      const source = CODE_LINES.map((line) => `${line.content}\n`).join("")
       let count = 0
+
       const typeNext = () => {
         count += 1
         setCharacterCount(count)
+
         if (count < totalCharacters) {
-          const currentCharacter = CODE_LINES.map((line) => `${line.content}\n`).join("")[count - 1]
-          timer = window.setTimeout(typeNext, currentCharacter === "\n" ? 180 : 24)
+          timer = window.setTimeout(typeNext, source[count - 1] === "\n" ? 180 : 24)
+          return
         }
+
+        timer = window.setTimeout(() => {
+          count = 0
+          setCharacterCount(0)
+          timer = window.setTimeout(typeNext, 500)
+        }, 2400)
       }
+
       typeNext()
     }
 
