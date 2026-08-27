@@ -99,8 +99,8 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
 
     return (
       <div
-        className={`claude-line mt-2 flex gap-1.5 rounded-[3px] px-2 py-1 ${
-          isUserMessage ? "bg-[#2b2b29] text-term-fg" : ""
+        className={`claude-line mt-2 flex gap-1.5 rounded-[3px] py-1 ${
+          isUserMessage ? "bg-[#2b2b29] px-2 text-term-fg" : ""
         }`}
       >
         <span className={isUserMessage ? "text-term-dim" : "text-term-fg"}>›</span>
@@ -115,7 +115,7 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
     const [gatewayLabel, routeDetails] = line.text.split(" → ")
 
     return (
-      <div className="claude-line mt-1.5 flex items-center gap-1.5 pl-3 text-term-fg">
+      <div className="claude-line mt-1.5 flex items-center gap-1.5 text-term-fg">
         <span className="text-term-dim" aria-hidden="true">›</span>
         <span className="text-primary">{gatewayLabel}</span>
         {routeDetails ? <> → <HermesText text={routeDetails} model={line.model} /></> : null}
