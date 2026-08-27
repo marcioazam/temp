@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="mx-auto flex min-h-56 w-full max-w-screen-2xl flex-col gap-8 px-4 py-8 md:flex-row md:items-stretch md:justify-between md:px-9">
         <div className="flex flex-col">
           <div className="flex items-center gap-2.5 text-foreground">
-            <RotorMark aria-hidden="true" className="h-8 w-8" />
+            <RotorMark aria-hidden="true" className="h-8 w-8 text-primary" />
             <span className="type-wordmark text-[1.375rem]">Nylla</span>
           </div>
           <p className="type-caption mt-5 max-w-xs text-muted-foreground">

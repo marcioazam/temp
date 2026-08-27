@@ -40,7 +40,7 @@ export function SiteHeader() {
             aria-label="Nylla, início"
             className="flex shrink-0 items-center gap-2 text-foreground sm:gap-2.5"
           >
-            <RotorMark aria-hidden="true" className="h-6 w-6 shrink-0 text-logo sm:h-7 sm:w-7" />
+            <RotorMark aria-hidden="true" className="h-6 w-6 shrink-0 text-primary sm:h-7 sm:w-7" />
             <span className="type-wordmark text-[1.1875rem] sm:text-[1.375rem]">Nylla</span>
           </Link>
 
