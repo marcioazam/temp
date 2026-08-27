@@ -126,10 +126,10 @@ export function GatewayFlow() {
 
             <div className="flex flex-col gap-3 border-t border-border px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="font-mono text-xs text-muted-foreground">
-                <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#7f9b76]" aria-hidden="true" />
+                <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#28c840]" aria-hidden="true" />
                 pronto para produção
               </p>
-              <code className="font-mono text-xs font-medium text-primary">POST /v1/chat/completions</code>
+              <code className="font-mono text-[11px] font-medium text-primary">POST /v1/chat/completions</code>
             </div>
             </div>
           </div>
