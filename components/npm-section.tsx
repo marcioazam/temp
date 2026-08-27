@@ -36,7 +36,7 @@ function InstallCommand() {
   }
 
   return (
-    <div className="flex min-h-12 max-w-sm items-stretch border border-foreground bg-card/50 pl-4">
+    <div className="flex min-h-12 max-w-sm items-stretch border border-foreground bg-card pl-4 [background-image:none]">
       <span className="type-code self-center text-[0.8125rem] text-primary" aria-hidden="true">$</span>
       <code className="type-code ml-3 min-w-0 flex-1 self-center truncate text-[0.8125rem] text-foreground">{command}</code>
       <button
