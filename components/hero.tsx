@@ -10,9 +10,9 @@ export function Hero() {
         <div className="grid items-stretch gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div>
             <Reveal>
-              <p className="font-mono text-xs text-muted-foreground">
-                <span aria-hidden="true" className="text-primary">{"// "}</span>
-                o que é o Nylla
+              <p className="flex items-center gap-2 font-mono text-xs leading-none tracking-wide text-muted-foreground">
+                <span aria-hidden="true" className="size-2 shrink-0 rounded-full bg-primary" />
+                <span>o que é o Nylla</span>
               </p>
               <h2 id="about-title" className="mt-5 max-w-xl text-balance font-sans text-4xl font-medium leading-tight tracking-[-0.04em] text-foreground md:text-6xl">
                 A camada entre você e qualquer LLM.
@@ -21,7 +21,7 @@ export function Hero() {
 
             <Reveal delay={100}>
               <p className="mt-7 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-                Nylla é um gateway universal para inteligência artificial. Ele conecta seus agents, ferramentas e produtos aos principais modelos por uma única interface, sem prender sua operação a um provedor. Você mantém o fluxo que já usa enquanto o Nylla cuida da compatibilidade, disponibilidade e escolha do modelo para entregar respostas consistentes com menos complexidade operacional.
+                Nylla é um gateway universal de IA. Conecte seus agents, ferramentas e produtos aos principais modelos por uma única interface, sem depender de um único provedor. Você mantém seu fluxo atual. A Nylla cuida da compatibilidade, disponibilidade e roteamento.
               </p>
             </Reveal>
           </div>

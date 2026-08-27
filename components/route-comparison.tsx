@@ -51,8 +51,8 @@ export function RouteComparison() {
   }, [])
 
   return (
-    <section id="comparativo" className="px-4 md:px-9">
-      <div className="photo-grain mx-auto w-full max-w-screen-2xl bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-24">
+    <section id="comparativo" className="mx-auto w-full max-w-screen-2xl px-4 md:px-9">
+      <div className="photo-grain w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-24">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-9">
           <Reveal>
           <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
