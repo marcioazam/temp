@@ -28,6 +28,7 @@
   --color-background: var(--background);
   --color-ultra: var(--ultra);
   --color-logo: var(--logo);
+  --color-tool-card: var(--tool-card);
   --radius-sm: 0rem;
   --radius-md: 0rem;
   --radius-lg: 0rem;
@@ -59,6 +60,7 @@
   --ring: #f5a524;
   --ultra: #f5a524;
   --logo: #f5a524;
+  --tool-card: #050706;
   --radius: 0rem;
 }
 
