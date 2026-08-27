@@ -53,14 +53,7 @@ export function RouteComparison() {
   return (
     <section id="comparativo">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <Reveal>
-          <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
-            <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
-            <span>comparativo</span>
-          </h2>
-        </Reveal>
-
-        <div className="photo-grain mt-6 w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-24">
+        <div className="photo-grain w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-24">
           <div className="mx-auto w-full max-w-6xl px-4 md:px-9">
             <Reveal>
             <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
@@ -72,6 +65,13 @@ export function RouteComparison() {
                 A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
                 entre o seu prompt e a resposta.
               </p>
+            </div>
+
+            <div className="border-t border-border px-5 py-4 md:px-6">
+              <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+                <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+                <span>comparativo</span>
+              </h2>
             </div>
 
             <div className="overflow-x-auto border-t border-border">
