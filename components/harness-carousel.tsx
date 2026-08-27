@@ -5,114 +5,90 @@ import { CommandPaletteMock } from "@/components/command-palette-mock"
 import { ClaudeCodeWindow } from "@/components/editor-mock"
 import { HermesTerminalMock } from "@/components/hermes-terminal-mock"
 
-const SLIDE_MS = 720
+const FADE_MS = 220
 
 // Cada slide fica visível pelo tempo do próprio loop de animação interno.
 const SLIDES = [
-  { id: "vscode", label: "VS Code", duration: 4_500 },
+  { id: "vscode", label: "VS Code", duration: 7_500 },
   { id: "claude", label: "Claude Code", duration: 16_000 },
-  { id: "hermes", label: "Hermes Agent", duration: 22_000 },
+  { id: "hermes", label: "Hermes Agent", duration: 15_000 },
 ] as const
 
 export function HarnessCarousel() {
   const [active, setActive] = useState(0)
-  const [exiting, setExiting] = useState<number | null>(null)
-  const [snap, setSnap] = useState(false)
+  const [target, setTarget] = useState<number | null>(null)
+  const [phase, setPhase] = useState<"entering" | "fadingIn" | "visible" | "exiting">("entering")
 
   useEffect(() => {
+    if (phase !== "entering") return
+    const frame = window.requestAnimationFrame(() => setPhase("fadingIn"))
+    return () => window.cancelAnimationFrame(frame)
+  }, [active, phase])
+
+  useEffect(() => {
+    if (phase !== "fadingIn") return
+    const settled = window.setTimeout(() => setPhase("visible"), FADE_MS)
+    return () => window.clearTimeout(settled)
+  }, [phase])
+
+  useEffect(() => {
+    if (phase !== "visible") return
     const advance = window.setTimeout(() => {
-      setSnap(false)
-      setExiting(active)
-      setActive((current) => (current + 1) % SLIDES.length)
+      setTarget((active + 1) % SLIDES.length)
+      setPhase("exiting")
     }, SLIDES[active].duration)
-
     return () => window.clearTimeout(advance)
-  }, [active])
-
-  // Ao fim do deslize, a janela que saiu volta sem animação para a direita,
-  // para que a próxima entrada aconteça sempre do mesmo lado.
-  useEffect(() => {
-    if (exiting === null) return
-
-    const settle = window.setTimeout(() => {
-      setSnap(true)
-      setExiting(null)
-    }, SLIDE_MS)
-
-    return () => window.clearTimeout(settle)
-  }, [exiting])
+  }, [active, phase])
 
   useEffect(() => {
-    if (!snap) return
-
-    let inner = 0
-    const outer = window.requestAnimationFrame(() => {
-      inner = window.requestAnimationFrame(() => setSnap(false))
-    })
-
-    return () => {
-      window.cancelAnimationFrame(outer)
-      window.cancelAnimationFrame(inner)
-    }
-  }, [snap])
+    if (phase !== "exiting" || target === null) return
+    const swap = window.setTimeout(() => {
+      setActive(target)
+      setTarget(null)
+      setPhase("entering")
+    }, FADE_MS)
+    return () => window.clearTimeout(swap)
+  }, [phase, target])
 
   const goTo = (index: number) => {
-    if (index === active) return
-    setSnap(false)
-    setExiting(active)
-    setActive(index)
+    if (index === active || phase === "exiting") return
+    setTarget(index)
+    setPhase("exiting")
   }
 
   return (
     <div role="group" aria-roledescription="carrossel" aria-label="Harnesses conectados ao Nylla Gateway">
-      {/* Sem overflow-hidden: qualquer recorte cortaria a sombra da janela.
-          A troca de slides usa fade + deslize curto, então nada precisa ser mascarado. */}
+      {/* Sem recorte para preservar a sombra macOS. O mock fica estático durante
+          o fade e seu loop só começa quando a entrada termina por completo. */}
       <div className="relative h-[390px] sm:h-[420px]">
-        {SLIDES.map((slide, index) => {
-          const position =
-            index === active
-              ? "translate-x-0 opacity-100"
-              : index === exiting
-                ? "-translate-x-6 opacity-0"
-                : "translate-x-6 opacity-0"
-
-          return (
-            <div
-              key={slide.id}
-              className={`motion-reduce:transition-none! absolute inset-0 ${position} ${
-                index === active ? "" : "pointer-events-none"
-              }`}
-              style={{
-                transitionProperty: snap ? "none" : "transform, opacity",
-                transitionDuration: `${SLIDE_MS}ms`,
-                transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-              }}
-              aria-hidden={index !== active}
-              aria-roledescription="slide"
-              aria-label={slide.label}
-            >
-              {(index === active || index === exiting) ? (
-                <div
-                  className={`mx-auto h-full w-full max-w-lg ${
-                    index === exiting
-                      ? "[animation-play-state:paused!important] [&_*]:[animation-play-state:paused!important]"
-                      : ""
-                  }`}
-                >
-                  {slide.id === "vscode" ? (
-                    <CommandPaletteMock />
-                  ) : slide.id === "claude" ? (
-                    <ClaudeCodeWindow />
-                  ) : (
-                    <div className="pointer-events-none h-full w-full select-none">
-                      <HermesTerminalMock />
-                    </div>
-                  )}
-                </div>
-              ) : null}
-            </div>
-          )
-        })}
+        <div
+          key={SLIDES[active].id}
+          className={`absolute inset-0 transition-[opacity,transform,filter] motion-reduce:transition-none ${
+            phase === "visible" || phase === "fadingIn"
+              ? "translate-y-0 opacity-100 blur-0"
+              : phase === "entering"
+                ? "translate-y-1 opacity-0 blur-[1px]"
+                : "-translate-y-1 opacity-0 blur-[1px]"
+          }`}
+          style={{
+            transitionDuration: `${FADE_MS}ms`,
+            transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+          }}
+          aria-roledescription="slide"
+          aria-label={SLIDES[active].label}
+        >
+          <div className="mx-auto h-full w-full max-w-lg">
+            {SLIDES[active].id === "vscode" ? (
+              <CommandPaletteMock isRunning={phase === "visible"} />
+            ) : SLIDES[active].id === "claude" ? (
+              <ClaudeCodeWindow isRunning={phase === "visible"} />
+            ) : (
+              <div className="pointer-events-none h-full w-full select-none">
+                <HermesTerminalMock isRunning={phase === "visible"} />
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="mt-5 flex justify-center">

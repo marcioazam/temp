@@ -2,38 +2,16 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 
-const BANNER_HERMES = [
-  "█  █ ████ ███  █   █ ████ ████",
-  "█  █ █    █  █ ██ ██ █    █   ",
-  "████ ███  ███  █ █ █ ███  ████",
-  "█  █ █    █ █  █   █ █       █",
-  "█  █ ████ █  █ █   █ ████ ████",
-]
-
-const BANNER_AGENT = [
-  "████ ████ ████ █  █ █████",
-  "█  █ █    █    ██ █   █  ",
-  "████ █ ██ ███  █ ██   █  ",
-  "█  █ █  █ █    █  █   █  ",
-  "█  █ ████ ████ █  █   █  ",
-]
-
 const TOOLSETS: Array<[string, string]> = [
   ["browser:", "browser_back, browser_click, ..."],
   ["code_execution:", "execute_code"],
   ["cronjob:", "cronjob"],
-  ["delegation:", "delegate_task"],
-  ["file:", "patch, read_file, write_file"],
-  ["gateway:", "route_model, list_models, ..."],
 ]
 
 const SKILLSETS: Array<[string, string]> = [
   ["autonomous-ai-agents:", "claude-code, codex, hermes-agent"],
   ["devops:", "webhook-subscriptions"],
   ["github:", "codebase-inspection, github-auth..."],
-  ["mcp:", "mcporter, native-mcp"],
-  ["research:", "arxiv, blogwatcher, polymarket..."],
-  ["software-development:", "code-review, plan, suba..."],
 ]
 
 type Line =
@@ -99,8 +77,8 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
 
     return (
       <div
-        className={`claude-line mt-2 flex gap-1.5 rounded-[3px] px-2 py-1 ${
-          isUserMessage ? "bg-[#2b2b29] text-term-fg" : ""
+        className={`claude-line mt-2 flex gap-1.5 rounded-[3px] py-1 ${
+          isUserMessage ? "bg-[#2b2b29] px-2 text-term-fg" : ""
         }`}
       >
         <span className={isUserMessage ? "text-term-dim" : "text-term-fg"}>›</span>
@@ -115,7 +93,7 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
     const [gatewayLabel, routeDetails] = line.text.split(" → ")
 
     return (
-      <div className="claude-line mt-1.5 flex items-center gap-1.5 pl-3 text-term-fg">
+      <div className="claude-line mt-1.5 flex items-center gap-1.5 text-term-fg">
         <span className="text-term-dim" aria-hidden="true">›</span>
         <span className="text-primary">{gatewayLabel}</span>
         {routeDetails ? <> → <HermesText text={routeDetails} model={line.model} /></> : null}
@@ -190,8 +168,8 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
   return null
 }
 
-export function HermesTerminalMock() {
-  const [visibleCount, setVisibleCount] = useState(0)
+export function HermesTerminalMock({ isRunning = true }: { isRunning?: boolean }) {
+ const [visibleCount, setVisibleCount] = useState(0)
   const [draft, setDraft] = useState("")
   const scrollerRef = useRef<HTMLDivElement>(null)
   const draftScrollerRef = useRef<HTMLDivElement>(null)
@@ -202,13 +180,10 @@ export function HermesTerminalMock() {
   const currentModel = SESSION[Math.max(0, visibleCount - 1)]?.model ?? PHASES[0].model
 
   useEffect(() => {
-    if (!nextLine) {
-      const restart = window.setTimeout(() => {
-        setVisibleCount(0)
-        setDraft("")
-      }, 5200)
-      return () => window.clearTimeout(restart)
-    }
+    if (!isRunning) return
+    // O carrossel remonta o Hermes na próxima exibição; mantenha o último
+    // quadro estável para não reiniciar o loop antes do fade-out.
+    if (!nextLine) return
 
     if (isTyping) {
       if (draft.length < nextLine.text.length) {
@@ -237,7 +212,7 @@ export function HermesTerminalMock() {
     }
     const reveal = window.setTimeout(() => setVisibleCount((count) => count + 1), delayByKind[nextLine.kind])
     return () => window.clearTimeout(reveal)
-  }, [draft, isTyping, nextLine])
+  }, [draft, isRunning, isTyping, nextLine])
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -274,22 +249,7 @@ export function HermesTerminalMock() {
         ref={scrollerRef}
         className="min-h-0 flex-1 overflow-y-auto px-2.5 py-2 [scrollbar-color:#55524c_transparent] [scrollbar-width:thin] sm:px-3 md:px-4 md:py-3"
       >
-        <div className="text-term-fg">
-          {BANNER_HERMES.map((row, i) => (
-            <span key={`h-${i}`} className="block whitespace-pre leading-[1.05]">
-              {row}
-            </span>
-          ))}
-          {BANNER_AGENT.map((row, i) => (
-            <span key={`a-${i}`} className="block whitespace-pre leading-[1.05]">
-              {row}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-2 flex justify-end text-term-fg">Hermes Agent v0.6.0 (2026.3.30)</div>
-
-        <div className="mt-1 flex gap-3 border border-[#5b5852]/65 p-2 md:gap-4 md:p-2.5">
+        <div className="flex gap-3 border border-[#5b5852]/65 p-2 md:gap-4 md:p-2.5">
           <div className="hidden shrink-0 flex-col items-center md:flex">
               <div
                 role="img"

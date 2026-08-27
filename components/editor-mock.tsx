@@ -199,8 +199,8 @@ function TranscriptLine({ line, delay }: { line: Line & { model?: string }; dela
   return null
 }
 
-function ClaudeCodeSession() {
-  const [visibleCount, setVisibleCount] = useState(0)
+function ClaudeCodeSession({ isRunning = true }: { isRunning?: boolean }) {
+ const [visibleCount, setVisibleCount] = useState(0)
   const [draft, setDraft] = useState("")
   const scrollerRef = useRef<HTMLDivElement>(null)
   const composerTextRef = useRef<HTMLSpanElement>(null)
@@ -210,6 +210,7 @@ function ClaudeCodeSession() {
   const isTyping = nextLine?.kind === "prompt" || nextLine?.kind === "slash"
 
   useEffect(() => {
+    if (!isRunning) return
     if (!nextLine) {
       const restart = window.setTimeout(() => {
         setVisibleCount(0)
@@ -244,7 +245,7 @@ function ClaudeCodeSession() {
     }
     const reveal = window.setTimeout(() => setVisibleCount((count) => count + 1), delayByKind[nextLine.kind])
     return () => window.clearTimeout(reveal)
-  }, [draft, isTyping, nextLine])
+  }, [draft, isRunning, isTyping, nextLine])
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -343,7 +344,7 @@ className="win @container flex h-full w-full flex-col font-mono text-[8px] leadi
   )
 }
 
-export function ClaudeCodeWindow() {
+export function ClaudeCodeWindow({ isRunning = true }: { isRunning?: boolean }) {
   return (
     <div
       className="pointer-events-none h-full w-full select-none"
@@ -351,7 +352,7 @@ export function ClaudeCodeWindow() {
       role="img"
       aria-label="Claude Code conectado ao Nylla Gateway alternando entre KIMI K3, DeepSeek V4 e GPT 5.6 SOL"
     >
-      <ClaudeCodeSession />
+      <ClaudeCodeSession isRunning={isRunning} />
     </div>
   )
 }

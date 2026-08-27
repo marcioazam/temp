@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { Check, Copy } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
@@ -36,13 +36,13 @@ function InstallCommand() {
   }
 
   return (
-    <div className="flex min-h-12 max-w-sm items-stretch border border-border bg-card/50 pl-4">
+    <div className="flex min-h-12 max-w-sm items-stretch border border-foreground bg-card/50 pl-4">
       <span className="type-code self-center text-[0.8125rem] text-primary" aria-hidden="true">$</span>
       <code className="type-code ml-3 min-w-0 flex-1 self-center truncate text-[0.8125rem] text-foreground">{command}</code>
       <button
         type="button"
         onClick={copy}
-        className="flex w-12 shrink-0 items-center justify-center self-stretch bg-secondary text-foreground transition-colors hover:bg-muted hover:text-primary"
+        className="flex w-12 shrink-0 items-center justify-center self-stretch bg-foreground text-background transition-colors hover:bg-foreground/90"
         aria-label={copied ? "Comando copiado" : `Copiar ${command}`}
         title={copied ? "Copiado" : "Copiar comando"}
       >
@@ -56,7 +56,6 @@ export function NpmSection() {
   const [visibleSteps, setVisibleSteps] = useState<TerminalStep[]>([])
   const [draft, setDraft] = useState("")
   const [stepIndex, setStepIndex] = useState(0)
-  const terminalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const step = terminalSteps[stepIndex]
@@ -87,9 +86,6 @@ export function NpmSection() {
     return () => window.clearTimeout(advance)
   }, [draft, stepIndex])
 
-  useEffect(() => {
-    terminalRef.current?.scrollTo({ top: terminalRef.current.scrollHeight, behavior: "smooth" })
-  }, [draft, visibleSteps])
 
   const currentStep = terminalSteps[stepIndex]
 
@@ -105,12 +101,12 @@ export function NpmSection() {
 
         <div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
           <Reveal className="md:order-1 md:pr-6">
-          <p className="type-heading max-w-lg text-balance text-foreground">
+          <p className="type-title max-w-xl text-balance text-foreground">
             Um pacote para conectar qualquer harness.
           </p>
-          <p className="type-lead mt-5 max-w-md text-muted-foreground">
-            O NPM do Nylla configura o harness que você já usa e aponta tudo para o Nylla Gateway. Execute um comando e o
-            CLI detecta, autentica e configura seu ambiente automaticamente.
+          <p className="type-lead mt-5 max-w-md text-pretty text-muted-foreground">
+            O NPM do Nylla configura o harness que você já usa e aponta tudo para o Nylla Gateway. Um comando, nada de
+            ajuste manual.
           </p>
           <ul className="type-label mt-7 space-y-2 text-muted-foreground">
             <li><span className="text-primary" aria-hidden="true">+ </span>detecção automática do ambiente</li>
@@ -136,8 +132,7 @@ export function NpmSection() {
               </div>
 
               <div
-                ref={terminalRef}
-                className="term-pane h-80 overflow-y-auto p-5 font-mono text-[11px] leading-6 tracking-[-0.005em] text-term-mid md:p-6 md:text-xs"
+                className="term-pane h-80 overflow-hidden p-5 font-mono text-[8px] leading-[1.65] tracking-[-0.005em] text-term-mid sm:text-[9px] md:p-6 md:text-[10px]"
                 aria-live="polite"
                 aria-label="Terminal Linux configurando o Nylla Gateway"
               >

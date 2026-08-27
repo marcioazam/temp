@@ -14,21 +14,22 @@ const models = [
   "Grok 4.6",
 ]
 
-function ModelSelector() {
+function ModelSelector({ isRunning }: { isRunning: boolean }) {
   const [activeModel, setActiveModel] = useState(0)
 
   useEffect(() => {
+    if (!isRunning) return
     const interval = window.setInterval(() => {
       setActiveModel((current) => (current + 1) % models.length)
-    }, 500)
+    }, 850)
 
     return () => window.clearInterval(interval)
-  }, [])
+  }, [isRunning])
 
   return (
     <span className="relative inline-flex min-w-[74px] items-center text-code-dim" aria-label={`Modelo selecionado: ${models[activeModel]}`}>
       <span
-        className="absolute bottom-full left-0 z-20 mb-1 w-32 overflow-hidden rounded-md border border-[#333333] bg-[#171717] p-1 shadow-[0_12px_28px_rgba(0,0,0,0.55)]"
+        className="absolute bottom-full left-0 z-20 mb-2.5 w-32 overflow-hidden rounded-md border border-[#333333] bg-[#171717] p-1 shadow-[0_12px_28px_rgba(0,0,0,0.55)]"
         role="listbox"
         aria-label="Modelos disponíveis"
       >
@@ -45,7 +46,10 @@ function ModelSelector() {
           </span>
         ))}
       </span>
-      <span>{models[activeModel]}⌃</span>
+      <span className="inline-flex items-center gap-1.5">
+        <span>{models[activeModel]}</span>
+        <span className="text-code-faint" aria-hidden="true">⌃</span>
+      </span>
     </span>
   )
 }
@@ -103,7 +107,7 @@ function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) 
   )
 }
 
-export function CommandPaletteMock() {
+export function CommandPaletteMock({ isRunning = true }: { isRunning?: boolean }) {
   return (
     <div className="win bg-[#111111]">
       <div className="win-bar">
@@ -144,7 +148,7 @@ export function CommandPaletteMock() {
           <div className="mt-auto rounded-md border border-[#303030] bg-[#151515] p-2">
             <p className="text-code-dim">Enviar uma continuação...</p>
             <div className="mt-2 flex items-center justify-between text-[9px] text-code-dim">
-              <span className="flex items-center gap-2"><span>∞ Agent⌄</span><ModelSelector /></span>
+              <span className="flex items-center gap-2"><span>∞ Agent⌄</span><ModelSelector isRunning={isRunning} /></span>
               <span className="flex size-5 items-center justify-center rounded-full bg-[#36342f]"><ArrowUp className="size-3" /></span>
             </div>
           </div>
