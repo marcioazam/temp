@@ -84,6 +84,17 @@
   /* Chrome de janelas (títulos de barra) */
   --chrome-fg: #a3a3a3;
 
+  /* Janela dos mocks — padrão único, estilo macOS moderno */
+  --win-radius: 12px;
+  --win-bg: #080806;
+  --win-border: #2b2b2b;
+  --win-bar-bg: #191919;
+  --win-bar-bg-top: #202020;
+  --win-bar-border: #262626;
+  --win-dot-close: #ff5f57;
+  --win-dot-min: #febc2e;
+  --win-dot-max: #28c840;
+
   /* Mock de editor de código */
   --code-fg: #e4e1db;
   --code-mid: #b6b2aa;
@@ -518,16 +529,100 @@ section[id] {
     0 40px 80px -16px rgba(0, 0, 0, 0.24);
 }
 
-/* Traffic-light controls (monochrome, brand-consistent) */
-.traffic {
+/* ---------------------------------------------------------------
+   Janela padrão dos mocks (macOS moderno)
+   Uso: .win > .win-bar (.win-dots > .win-dot--close|min|max, .win-title)
+   --------------------------------------------------------------- */
+.win {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--win-radius);
+  border: 1px solid var(--win-border);
+  background: var(--win-bg);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.55),
+    0 1px 1px rgba(0, 0, 0, 0.16),
+    0 2px 4px rgba(0, 0, 0, 0.14),
+    0 8px 16px -4px rgba(0, 0, 0, 0.28),
+    0 24px 48px -12px rgba(0, 0, 0, 0.5),
+    0 44px 88px -28px rgba(0, 0, 0, 0.6);
+}
+
+/* Hairline interna: dá o brilho de borda do macOS sem alterar o layout */
+.win::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+}
+
+.win-bar {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 1.75rem;
+  padding-inline: 0.625rem;
+  border-bottom: 1px solid var(--win-bar-border);
+  background: linear-gradient(180deg, var(--win-bar-bg-top), var(--win-bar-bg));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+@media (min-width: 768px) {
+  .win-bar {
+    height: 2.25rem;
+    padding-inline: 0.75rem;
+  }
+}
+
+.win-dots {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.4375rem;
+}
+
+.win-dot {
   height: 0.625rem;
   width: 0.625rem;
   border-radius: 9999px;
-  background: color-mix(in oklab, var(--muted-foreground) 38%, transparent);
+  background: color-mix(in oklab, var(--muted-foreground) 34%, transparent);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26);
   transition: background 0.25s ease;
 }
-.group\/win:hover .traffic {
-  background: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+
+.win-dot--close {
+  background: var(--win-dot-close);
+}
+.win-dot--min {
+  background: var(--win-dot-min);
+}
+.win-dot--max {
+  background: var(--win-dot-max);
+}
+
+.win-title {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--chrome-fg);
+}
+
+@media (min-width: 768px) {
+  .win-title {
+    font-size: 0.625rem;
+  }
 }
 
 /* Physical keycaps */
