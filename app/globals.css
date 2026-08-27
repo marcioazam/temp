@@ -1155,22 +1155,22 @@ kbd {
 }
 .hf-step-5 { animation-name: hf-step-5; }
 
-/* One model stays white while the packet is inside it. The 16s period is
-   five 3.2s cycles (one for each model); its active window aligns with
+/* One model stays white while the packet is inside it. The 19.2s period is
+   six 3.2s cycles (one for each model); its active window aligns with
    58–84% of that model's cycle, including the longer dwell before return. */
 @keyframes hf-model {
-  0%, 11.1%, 17.3%, 100% {
+  0%, 8.7%, 14.5%, 100% {
     color: var(--foreground);
     opacity: 0.35;
   }
-  12.1%, 16.8% {
+  9.7%, 14% {
     color: var(--foreground);
     opacity: 1;
   }
 }
 .hf-model {
   opacity: 0.35;
-  animation: hf-model 16s ease-in-out infinite;
+  animation: hf-model 19.2s ease-in-out infinite;
   animation-delay: calc(var(--model, 0) * 3.2s);
   will-change: border-color, color, opacity;
 }

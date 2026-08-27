@@ -8,6 +8,7 @@ const MODELS = [
   { name: "Claude", src: icon("claude") },
   { name: "Gemini", src: icon("gemini") },
   { name: "Deepseek", src: icon("deepseek") },
+  { name: "Qwen", src: icon("qwen", "light") },
   { name: "Kimi", src: icon("kimi", "color"), iconClassName: "mr-0.5 scale-125" },
 ]
 const STEPS = ["Valida", "Roteia", "Entrega"]
