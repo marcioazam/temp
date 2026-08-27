@@ -54,20 +54,15 @@ export function RouteComparison() {
     <section id="comparativo">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
-          <p className="type-heading max-w-xl text-balance text-foreground">Compare a rota, não o hype.</p>
+          <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+            <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+            <span>comparativo</span>
+          </h2>
+          <p className="type-heading mt-6 max-w-xl text-balance text-foreground">Compare a rota, não o hype.</p>
           <p className="type-lead mt-5 max-w-2xl text-pretty text-muted-foreground">
             A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
             entre o seu prompt e a resposta.
           </p>
-        </Reveal>
-
-        <Reveal delay={80}>
-          <div className="mt-10 border-y border-border py-4">
-            <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
-              <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
-              <span>comparativo</span>
-            </h2>
-          </div>
         </Reveal>
 
         <div className="photo-grain mt-6 w-full bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center py-16 md:py-24">
