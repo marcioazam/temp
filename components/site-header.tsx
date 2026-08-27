@@ -7,7 +7,10 @@ import { useLanguage } from "@/components/language-provider"
 
 
 const nav = [
-  { label: "Harnesses", href: "/#harnesses" },
+  { label: "Sobre", href: "/#sobre" },
+  { label: "Harness", href: "/#harnesses" },
+  { label: "Instalar", href: "/#instalar" },
+  { label: "Integração", href: "/#endpoint" },
   { label: "Recursos", href: "/#recursos" },
   { label: "Comparativo", href: "/#comparativo" },
   { label: "Planos", href: "/#planos" },

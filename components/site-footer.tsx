@@ -17,8 +17,17 @@ export function SiteFooter() {
           </p>
         </div>
         <nav aria-label="Rodapé" className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs text-background/65">
+          <Link href="/#sobre" className="transition-colors hover:text-background">
+            Sobre
+          </Link>
           <Link href="/#harnesses" className="transition-colors hover:text-background">
-            Harnesses
+            Harness
+          </Link>
+          <Link href="/#instalar" className="transition-colors hover:text-background">
+            Instalar
+          </Link>
+          <Link href="/#endpoint" className="transition-colors hover:text-background">
+            Integração
           </Link>
           <Link href="/#recursos" className="transition-colors hover:text-background">
             Recursos
@@ -31,9 +40,6 @@ export function SiteFooter() {
           </Link>
           <Link href="/#faq" className="transition-colors hover:text-background">
             FAQ
-          </Link>
-          <Link href="/docs" className="transition-colors hover:text-background">
-            Docs
           </Link>
         </nav>
       </div>
