@@ -55,6 +55,10 @@ export function Pricing() {
         </p>
 
         <div className="relative mt-14">
+          <p className="type-caption mb-4 flex items-center justify-end gap-2 text-subtle-foreground">
+            <span aria-hidden="true" className="size-1 rounded-full bg-ultra" />
+            Créditos renovados mensalmente. Cancele quando quiser.
+          </p>
           <div className="photo-grain grid grid-cols-1 gap-px bg-[url('/images/pricing-landscape.png')] bg-cover bg-center p-6 md:p-12 lg:grid-cols-3 lg:gap-px lg:p-16">
             {plans.map((plan) => (
               <article
@@ -104,12 +108,6 @@ export function Pricing() {
           </div>
         </div>
 
-        <p className="type-caption mt-6 text-subtle-foreground">
-          <span aria-hidden="true" className="text-ultra">
-            *{" "}
-          </span>
-          Créditos renovam todo mês. Cancele quando quiser.
-        </p>
       </div>
     </section>
   )
