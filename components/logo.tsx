@@ -7,7 +7,7 @@ export function NyllaLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 154 40"
+      viewBox="0 0 166 40"
       role="img"
       aria-label="Nylla"
       {...props}
@@ -27,7 +27,7 @@ export function NyllaLogo(props: SVGProps<SVGSVGElement>) {
         <circle cx="32" cy="32" r="5" fill="var(--primary)" />
       </g>
       <text
-        x="53"
+        x="65"
         y="29"
         fill="currentColor"
         fontFamily="var(--font-fira-code)"
