@@ -35,7 +35,11 @@ const rows = [
 
 export function RouteComparison() {
   return (
-    <section id="comparativo">
+    <section
+      id="comparativo"
+      className="relative isolate overflow-hidden bg-[url('/images/comparativo-landscape.png')] bg-cover bg-center"
+    >
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-background/75" />
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
           <h2 className="font-mono text-xs text-muted-foreground">
@@ -51,7 +55,7 @@ export function RouteComparison() {
         </Reveal>
 
         <Reveal delay={120} className="mt-12">
-          <div className="overflow-x-auto border border-border">
+          <div className="overflow-x-auto border border-border bg-background/90 backdrop-blur-sm">
             <table className="w-full min-w-[850px] border-collapse text-left">
               <caption className="sr-only">
                 Comparação entre Nylla, agregadores de modelos e APIs diretas de provedores
