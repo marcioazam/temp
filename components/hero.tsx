@@ -7,14 +7,17 @@ export function Hero() {
   return (
     <section id="sobre" className="relative overflow-hidden" aria-labelledby="about-title">
       <div className="relative mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
-        <div className="grid items-stretch gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+        <Reveal>
+          <p className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+            <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+            <span>o que é o Nylla</span>
+          </p>
+        </Reveal>
+
+        <div className="mt-6 grid items-stretch gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div>
             <Reveal>
-              <p className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
-                <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
-                <span>o que é o Nylla</span>
-              </p>
-              <h2 id="about-title" className="type-title mt-6 max-w-xl text-balance text-foreground">
+              <h2 id="about-title" className="type-title max-w-xl text-balance text-foreground">
                 A camada entre você e qualquer LLM.
               </h2>
             </Reveal>
