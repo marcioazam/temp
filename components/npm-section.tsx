@@ -42,7 +42,7 @@ function InstallCommand() {
       <button
         type="button"
         onClick={copy}
-        className="flex w-12 shrink-0 items-center justify-center self-stretch bg-secondary text-foreground transition-colors hover:bg-muted hover:text-primary"
+        className="flex w-12 shrink-0 items-center justify-center self-stretch border-l border-border bg-background text-foreground transition-colors hover:bg-muted hover:text-primary"
         aria-label={copied ? "Comando copiado" : `Copiar ${command}`}
         title={copied ? "Copiado" : "Copiar comando"}
       >
