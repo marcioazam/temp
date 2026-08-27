@@ -26,7 +26,10 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <Reveal delay={180} className="w-full">
+          <Reveal
+            delay={180}
+            className="w-full bg-[url('/images/hero-flow-landscape.png')] bg-cover bg-center"
+          >
             <HeroFlow />
           </Reveal>
         </div>

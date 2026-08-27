@@ -14,8 +14,7 @@ export function HeroFlow() {
   return (
     <figure
       aria-label="Papel da Nylla no fluxo entre sua ferramenta e os LLMs"
-      className="bg-cover bg-center font-mono"
-      style={{ backgroundImage: "url('/images/hero-flow-landscape.png')" }}
+      className="font-mono"
     >
       <div className="flex flex-col p-5 sm:p-8 lg:p-10">
         {/* Node: user + tool */}
