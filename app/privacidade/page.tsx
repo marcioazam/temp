@@ -47,7 +47,7 @@ export default function PrivacyPage() {
 
       <main className="site-background">
         <div className="mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
-          <div className="w-full max-w-2xl">
+          <div className="mx-auto w-full max-w-2xl">
           <h1 className="type-heading text-foreground">Aviso de privacidade</h1>
           <p className="type-micro mt-3 text-subtle-foreground">
             Versão {CONSENT_VERSION} · Atualizado em {LAST_UPDATED}
