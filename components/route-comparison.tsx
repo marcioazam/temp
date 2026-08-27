@@ -35,11 +35,11 @@ const rows = [
 
 export function RouteComparison() {
   return (
-    <section id="rotas">
+    <section id="comparativo">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
           <h2 className="font-mono text-xs text-muted-foreground">
-            <span aria-hidden="true" className="text-primary">{"// "}</span>rotas
+            <span aria-hidden="true" className="text-primary">{"// "}</span>comparativo
           </h2>
           <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
             Compare a rota, não o hype.
