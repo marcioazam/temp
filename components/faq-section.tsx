@@ -58,19 +58,17 @@ export function FaqSection() {
       <div className="grid w-full lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)]">
         <div className="bg-background px-4 py-16 md:px-9 md:py-24 lg:pr-12">
           <Reveal className="lg:sticky lg:top-24">
-            <h2 id="faq-title" className="font-mono text-xs text-muted-foreground">
-              <span aria-hidden="true" className="text-primary">
-                {"// "}
-              </span>
-              faq
+            <h2 id="faq-title" className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+              <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>faq</span>
             </h2>
-            <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+            <p className="type-heading mt-6 max-w-xl text-balance text-foreground">
               Perguntas frequentes.
             </p>
-            <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+            <p className="type-lead mt-5 max-w-xl text-pretty text-muted-foreground">
               Tudo o que você precisa saber antes de conectar seu primeiro harness à Nylla.
             </p>
-            <p className="mt-6 font-mono text-xs leading-relaxed text-ultra">
+            <p className="type-small mt-7 max-w-xs text-pretty text-subtle-foreground">
               Não encontrou sua resposta?{" "}
               <a
                 href="/docs"
@@ -93,7 +91,7 @@ export function FaqSection() {
                       aria-hidden="true"
                       className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary transition-transform duration-300 ease-out group-open:scale-110"
                     />
-                    <h3 className="flex-1 text-pretty font-mono text-sm font-medium leading-snug text-foreground transition-colors duration-300 group-hover:text-primary group-open:text-primary">
+                    <h3 className="type-subheading flex-1 text-pretty text-foreground transition-colors duration-300 group-hover:text-primary group-open:text-primary">
                       {item.question}
                     </h3>
                     <span
@@ -106,7 +104,7 @@ export function FaqSection() {
                   </summary>
                   <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 group-open:grid-rows-[1fr]">
                     <div className="overflow-hidden">
-                      <p className="max-w-2xl px-5 pb-5 pl-[2.1rem] text-sm leading-relaxed text-muted-foreground md:px-6 md:pb-6 md:pl-[2.35rem]">
+                      <p className="type-body max-w-2xl px-5 pb-5 pl-[2.1rem] text-muted-foreground md:px-6 md:pb-6 md:pl-[2.35rem]">
                         {item.answer}
                       </p>
                     </div>

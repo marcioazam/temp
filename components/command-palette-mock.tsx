@@ -26,7 +26,7 @@ function ModelSelector() {
   }, [])
 
   return (
-    <span className="relative inline-flex min-w-[74px] items-center text-[#8f8f8f]" aria-label={`Modelo selecionado: ${models[activeModel]}`}>
+    <span className="relative inline-flex min-w-[74px] items-center text-code-dim" aria-label={`Modelo selecionado: ${models[activeModel]}`}>
       <span
         className="absolute bottom-full left-0 z-20 mb-1 w-32 overflow-hidden rounded-md border border-[#333333] bg-[#171717] p-1 shadow-[0_12px_28px_rgba(0,0,0,0.55)]"
         role="listbox"
@@ -38,7 +38,7 @@ function ModelSelector() {
             role="option"
             aria-selected={index === activeModel}
             className={`flex rounded px-2 py-1.5 transition-colors duration-300 hover:text-primary ${
-              index === activeModel ? "bg-[#303030] text-primary" : "text-[#8f8c85]"
+              index === activeModel ? "bg-[#303030] text-primary" : "text-code-dim"
             }`}
           >
             {model}
@@ -64,7 +64,7 @@ const thisMonth = [
 
 function VSCodeBrand() {
   return (
-    <div className="flex items-center gap-2 text-[#d4d4d4]">
+    <div className="flex items-center gap-2 text-code-mid">
       <img
         src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/visual-studio-code/default.svg"
         alt=""
@@ -76,7 +76,7 @@ function VSCodeBrand() {
 }
 
 function TaskIcon({ type, active }: { type: string; active?: boolean }) {
-  const iconColor = active ? "text-primary" : type === "loading" ? "text-[#666666]" : "text-[#555555]"
+  const iconColor = active ? "text-primary" : "text-code-faint"
   const dotColor = active ? "bg-primary" : "bg-[#555555]"
 
   if (type === "loading") return <LoaderCircle className={`size-3.5 ${iconColor}`} />
@@ -87,12 +87,12 @@ function TaskIcon({ type, active }: { type: string; active?: boolean }) {
 function TaskGroup({ title, tasks }: { title: string; tasks: typeof thisWeek }) {
   return (
     <div className="flex flex-col gap-2">
-      <p className="text-[11px] text-[#7d7d7d]">{title}</p>
+      <p className="text-[11px] text-code-dim">{title}</p>
       <ul className="flex flex-col gap-1">
         {tasks.map((task) => (
           <li
             key={task.label}
-            className={`flex items-center gap-2.5 rounded-md px-2.5 py-2 text-[11px] text-[#d4d4d4] ${task.active ? "bg-[#252525]" : ""}`}
+            className={`flex items-center gap-2.5 rounded-md px-2.5 py-2 text-[11px] text-code-mid ${task.active ? "bg-[#252525]" : ""}`}
           >
             <span className="flex size-3.5 shrink-0 items-center justify-center"><TaskIcon type={task.type} active={task.active} /></span>
             <span className={`truncate ${task.active ? "text-primary" : ""}`}>{task.label}</span>
@@ -112,11 +112,11 @@ export function CommandPaletteMock() {
           <span className="size-2.5 rounded-full bg-[#febc2e]" />
           <span className="size-2.5 rounded-full bg-[#28c840]" />
         </div>
-        <div className="mx-auto flex h-6 w-full max-w-64 items-center justify-center gap-1.5 border border-[#333333] bg-[#202020] px-2.5 text-[9px] text-[#a0a0a0] shadow-[inset_0_1px_rgba(255,255,255,0.025)]">
+        <div className="mx-auto flex h-6 w-full max-w-64 items-center justify-center gap-1.5 border border-[#333333] bg-[#202020] px-2.5 font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg shadow-[inset_0_1px_rgba(255,255,255,0.025)]">
           <Search className="size-3" aria-hidden="true" />
           <span>Search</span>
         </div>
-        <div className="flex items-center justify-end gap-2 text-[#7d7d7d]" aria-hidden="true">
+        <div className="flex items-center justify-end gap-2 text-code-dim" aria-hidden="true">
           <PanelLeft className="size-3" />
           <PanelsTopLeft className="size-3" />
           <PanelRight className="size-3" />
@@ -130,20 +130,20 @@ export function CommandPaletteMock() {
           <TaskGroup title="This Month" tasks={thisMonth} />
         </aside>
 
-        <div className="flex min-w-0 flex-col gap-2 overflow-hidden bg-[#111111] p-3 text-[10px] leading-[1.35] text-[#e8e8e8] sm:p-4 sm:text-[11px]">
-          <h3 className="font-medium">Nylla Gateway no VS Code</h3>
-          <div className="rounded-md border border-[#303030] bg-[#171717] px-2.5 py-2 text-white">
+        <div className="flex min-w-0 flex-col gap-2 overflow-hidden bg-[#111111] p-3 text-[10px] leading-[1.5] tracking-[-0.004em] text-code-fg sm:p-4 sm:text-[11px]">
+          <h3 className="font-medium tracking-[-0.012em]">Nylla Gateway no VS Code</h3>
+          <div className="rounded-md border border-[#303030] bg-[#171717] px-2.5 py-2 text-code-fg">
             Configure o VS Code para rotear Claude Code, Codex e Gemini CLI pelo Nylla Gateway
           </div>
-          <p className="text-[#777777]">Explorou 18 arquivos, 6 configurações</p>
+          <p className="text-code-dim">Explorou 18 arquivos, 6 configurações</p>
           <p>Vou conectar os harnesses ao endpoint compatível com OpenAI, configurar os modelos e validar o streaming dentro do workspace.</p>
-          <p className="text-[#8a8a8a]">Trabalhou por <span className="text-[#7f9b76]">40s</span></p>
-          <p className="text-[#777777]">Validou credenciais e roteamento</p>
+          <p className="text-code-dim">Trabalhou por <span className="tabular-nums text-term-success">40s</span></p>
+          <p className="text-code-dim">Validou credenciais e roteamento</p>
           <p>Pronto. O workspace agora alterna modelos pelo Nylla sem alterar o fluxo do agente.</p>
 
           <div className="mt-auto rounded-md border border-[#303030] bg-[#151515] p-2">
-            <p className="text-[#999999]">Enviar uma continuação...</p>
-            <div className="mt-2 flex items-center justify-between text-[9px] text-[#8f8f8f]">
+            <p className="text-code-dim">Enviar uma continuação...</p>
+            <div className="mt-2 flex items-center justify-between text-[9px] text-code-dim">
               <span className="flex items-center gap-2"><span>∞ Agent⌄</span><ModelSelector /></span>
               <span className="flex size-5 items-center justify-center rounded-full bg-[#36342f]"><ArrowUp className="size-3" /></span>
             </div>

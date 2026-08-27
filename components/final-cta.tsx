@@ -4,13 +4,10 @@ export function FinalCta() {
   return (
     <section className="pb-8 pt-6 md:pb-10 md:pt-8" aria-labelledby="final-cta-title">
       <div
-        className="photo-grain mx-auto flex min-h-[520px] w-[calc(100%-2rem)] max-w-[1464px] flex-col items-center justify-center gap-7 overflow-hidden rounded-xl bg-cover bg-center px-6 py-24 text-center text-[#171612] md:h-[calc(100svh-8.5rem)] md:min-h-[560px] md:max-h-[720px] md:w-[calc(100%-4.5rem)]"
+        className="photo-grain mx-auto flex min-h-[520px] w-[calc(100%-2rem)] max-w-[1464px] flex-col items-center justify-center gap-10 overflow-hidden rounded-xl bg-cover bg-center px-6 py-24 text-center text-canvas-ink md:h-[calc(100svh-8.5rem)] md:min-h-[560px] md:max-h-[720px] md:w-[calc(100%-4.5rem)]"
         style={{ backgroundImage: "url('/images/nylla-cta-landscape.png')" }}
       >
-        <h1
-          id="final-cta-title"
-          className="max-w-4xl text-balance font-sans text-5xl font-normal leading-none tracking-[-0.04em] md:text-7xl"
-        >
+        <h1 id="final-cta-title" className="type-display max-w-4xl text-balance">
           Um gateway.
           <br />
           Todos os LLMs.
@@ -19,7 +16,7 @@ export function FinalCta() {
         </h1>
         <Link
           href="/#planos"
-          className="inline-flex items-center justify-center rounded-none bg-[#171612] px-8 py-4 font-sans text-base font-medium text-[#F4F3F1] transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#171612]"
+          className="type-micro inline-flex items-center justify-center rounded-none bg-canvas-ink px-8 py-4 text-canvas-paper transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-canvas-ink"
         >
           Experimente Nylla
         </Link>

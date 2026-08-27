@@ -79,7 +79,7 @@ function AnimatedCode() {
   let remainingCharacters = characterCount
 
   return (
-    <div ref={containerRef} className="w-full font-mono text-[11px] leading-6 sm:text-xs" aria-label={CODE_LINES.map((line) => line.content).join("\n")}>
+    <div ref={containerRef} className="w-full font-mono text-[11px] leading-6 tracking-[-0.005em] sm:text-xs" aria-label={CODE_LINES.map((line) => line.content).join("\n")}>
       {CODE_LINES.map((line) => {
         const visibleLength = Math.max(0, Math.min(line.content.length, remainingCharacters))
         const lineStarted = remainingCharacters > 0
@@ -104,16 +104,17 @@ export function GatewayFlow() {
   return (
     <section id="endpoint">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <h2 className="font-mono text-xs text-muted-foreground">
-          <span aria-hidden="true" className="text-primary">{"// "}</span>endpoint
+        <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+          <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+          <span>endpoint</span>
         </h2>
 
-        <div className="mt-5 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
+        <div className="mt-6 grid items-start gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:order-2">
-            <p className="max-w-xl text-balance font-mono text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+            <p className="type-title max-w-xl text-balance text-foreground">
               A inteligência do Nylla dentro do seu produto.
             </p>
-            <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
+            <p className="type-lead mt-6 max-w-xl text-pretty text-muted-foreground">
               Conecte seu SaaS, software ou aplicativo a um único endpoint compatível com OpenAI. Você desenvolve a
               experiência. O Nylla cuida dos modelos, da disponibilidade e do roteamento de cada requisição.
             </p>
@@ -121,7 +122,7 @@ export function GatewayFlow() {
             <a
               href="/nylla-postman-collection.json"
               download="nylla-postman-collection.json"
-              className="group mt-7 inline-flex items-center gap-3 bg-foreground px-4 py-2.5 font-mono text-xs font-medium text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="type-micro group mt-8 inline-flex items-center gap-3 bg-foreground px-4 py-3 text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Baixar coleção Postman
               <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-y-0.5">↓</span>
@@ -140,7 +141,7 @@ export function GatewayFlow() {
                   <span className="size-2.5 rounded-full bg-[#febc2e]" />
                   <span className="size-2.5 rounded-full bg-[#28c840]" />
                 </div>
-                <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
+                <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg md:text-[10px]">
                   api.nylla.ai
                 </span>
                 <svg
@@ -161,30 +162,30 @@ export function GatewayFlow() {
               </div>
 
               <aside className="border-t border-border bg-background/50 p-5 lg:border-l lg:border-t-0">
-                <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">uma integração</p>
-                <div className="mt-5 flex flex-col gap-5">
+                <p className="type-eyebrow text-subtle-foreground">uma integração</p>
+                <div className="mt-6 flex flex-col gap-5">
                   <div>
-                    <p className="font-mono text-sm font-medium text-primary">1 endpoint</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">para todos os modelos</p>
+                    <p className="type-subheading text-primary">1 endpoint</p>
+                    <p className="type-caption mt-1 text-muted-foreground">para todos os modelos</p>
                   </div>
                   <div>
-                    <p className="font-mono text-sm font-medium text-primary">OpenAI</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">formato compatível</p>
+                    <p className="type-subheading text-primary">OpenAI</p>
+                    <p className="type-caption mt-1 text-muted-foreground">formato compatível</p>
                   </div>
                   <div>
-                    <p className="font-mono text-sm font-medium text-primary">Atualizado</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">catálogo de modelos</p>
+                    <p className="type-subheading text-primary">Atualizado</p>
+                    <p className="type-caption mt-1 text-muted-foreground">catálogo de modelos</p>
                   </div>
                   <div>
-                    <p className="whitespace-nowrap font-mono text-sm font-medium text-primary">Baixa latência</p>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">roteamento otimizado</p>
+                    <p className="type-subheading whitespace-nowrap text-primary">Baixa latência</p>
+                    <p className="type-caption mt-1 text-muted-foreground">roteamento otimizado</p>
                   </div>
                 </div>
               </aside>
             </div>
 
             <div className="flex flex-col gap-3 border-t border-border px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="font-mono text-[10px] text-muted-foreground">
+              <p className="type-micro text-subtle-foreground">
                 <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[#28c840]" aria-hidden="true" />
                 pronto para integração
               </p>

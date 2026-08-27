@@ -30,10 +30,10 @@ export function NyllaLogo(props: SVGProps<SVGSVGElement>) {
         x="46"
         y="29"
         fill="currentColor"
-        fontFamily="var(--font-fira-code)"
+        fontFamily="var(--font-geist-mono), ui-monospace, monospace"
         fontSize="24"
         fontWeight="600"
-        letterSpacing="0.5"
+        letterSpacing="-0.7"
       >
         Nylla
       </text>

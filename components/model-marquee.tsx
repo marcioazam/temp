@@ -8,15 +8,12 @@ const brands = [
   { name: "GitHub Copilot", src: icon("github-copilot") },
   { name: "VS Code", src: icon("visual-studio-code") },
   { name: "Windsurf", src: icon("windsurf") },
-  { name: "Antigravity AI", src: icon("antigravity-google", "mono") },
+  { name: "Antigravity", src: icon("antigravity-google", "mono") },
   { name: "Cline", src: icon("cline") },
   { name: "OpenCode", src: icon("opencode") },
   { name: "Qwen Code", src: icon("qwen") },
-  { name: "Kimi Code", src: "/images/kimi-cli.svg" },
   { name: "Hermes Agent", src: icon("nousresearch-hermes", "mono") },
   { name: "OpenClaw", src: icon("openclaw-moltbot-clawdbot", "mono") },
-  { name: "Kilo Code", src: icon("kilo-code", "light") },
-  { name: "Goose", src: icon("goose-codename", "mono") },
 ]
 
 export function ModelMarquee() {
@@ -34,7 +31,7 @@ export function ModelMarquee() {
               className="h-5 w-5 shrink-0 object-contain grayscale brightness-0 invert transition-[filter] duration-200 group-hover:[filter:brightness(0)_saturate(100%)_invert(72%)_sepia(98%)_saturate(1675%)_hue-rotate(359deg)_brightness(103%)_contrast(104%)]"
               loading="lazy"
             />
-            <span className="min-w-0 truncate font-mono text-[11px] font-medium tracking-tight text-foreground/85 transition-colors duration-200 group-hover:text-primary">
+            <span className="type-label min-w-0 truncate text-[0.6875rem] text-foreground/85 transition-colors duration-200 group-hover:text-primary">
               {brand.name}
             </span>
           </div>

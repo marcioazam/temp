@@ -57,13 +57,14 @@ export function RouteComparison() {
           <Reveal>
           <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
             <div className="p-5 md:p-6">
-              <h2 className="font-mono text-xs text-muted-foreground">
-                <span aria-hidden="true" className="text-primary">{"// "}</span>comparativo
+              <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+                <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+                <span>comparativo</span>
               </h2>
-              <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+              <p className="type-heading mt-6 max-w-xl text-balance text-foreground">
                 Compare a rota, não o hype.
               </p>
-              <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
+              <p className="type-lead mt-5 max-w-2xl text-pretty text-muted-foreground">
                 A mesma ferramenta pode chegar ao mesmo modelo por caminhos muito diferentes. O que muda é tudo que existe
                 entre o seu prompt e a resposta.
               </p>
@@ -78,21 +79,21 @@ export function RouteComparison() {
                 <tr className="border-b border-border">
                   <th
                     scope="col"
-                    className="w-[16%] p-4 font-mono text-xs font-medium text-muted-foreground md:p-5"
+                    className="type-eyebrow w-[16%] p-4 text-left text-subtle-foreground md:p-5"
                   >
                     Critério
                   </th>
                   <th scope="col" className="w-[28%] bg-primary/[0.05] p-4 md:p-5">
-                    <span className="flex items-center gap-2 font-mono text-xs font-medium text-primary">
+                    <span className="type-eyebrow flex items-center gap-2 text-primary">
                       <RotorMark aria-hidden="true" className="size-4 shrink-0 text-primary" />
                       <span>Nylla Gateway</span>
                     </span>
                   </th>
                   <th scope="col" className="w-[28%] p-4 md:p-5">
-                    <span className="font-mono text-xs font-medium text-muted-foreground">Open Router</span>
+                    <span className="type-eyebrow text-subtle-foreground">Open Router</span>
                   </th>
                   <th scope="col" className="w-[28%] p-4 md:p-5">
-                    <span className="font-mono text-xs font-medium text-muted-foreground">API Direta no LLM</span>
+                    <span className="type-eyebrow text-subtle-foreground">API Direta no LLM</span>
                   </th>
                 </tr>
               </thead>
@@ -104,7 +105,7 @@ export function RouteComparison() {
                     <tr key={row.criterion} className="border-b border-border last:border-b-0">
                       <th
                         scope="row"
-                        className={`relative p-4 font-mono text-xs font-medium transition-colors duration-500 md:p-5 ${isActive ? "text-primary" : "text-muted-foreground"}`}
+                        className={`type-label relative p-4 text-left transition-colors duration-500 md:p-5 ${isActive ? "text-primary" : "text-muted-foreground"}`}
                       >
                         <span
                           key={isActive ? `scan-${activeRow}` : undefined}
@@ -114,19 +115,19 @@ export function RouteComparison() {
                         {row.criterion}
                       </th>
                       <td
-                        className={`p-4 text-sm leading-relaxed text-foreground transition-colors duration-500 md:p-5 ${isActive ? "bg-primary/[0.11]" : "bg-primary/[0.05]"}`}
+                        className={`type-body p-4 text-foreground transition-colors duration-500 md:p-5 ${isActive ? "bg-primary/[0.11]" : "bg-primary/[0.05]"}`}
                       >
                         {row.nylla}
                       </td>
-                      <td className="p-4 text-sm leading-relaxed text-muted-foreground md:p-5">{row.router}</td>
-                      <td className="p-4 text-sm leading-relaxed text-muted-foreground md:p-5">{row.direct}</td>
+                      <td className="type-body p-4 text-muted-foreground md:p-5">{row.router}</td>
+                      <td className="type-body p-4 text-muted-foreground md:p-5">{row.direct}</td>
                     </tr>
                   )
                 })}
               </tbody>
               </table>
             </div>
-            <p className="border-t border-border px-4 py-3 font-mono text-xs text-foreground md:px-5">
+            <p className="type-caption border-t border-border px-4 py-3.5 text-subtle-foreground md:px-5">
               <span aria-hidden="true" className="mr-2 text-primary">*</span>
               Comparação estrutural. Disponibilidade de modelos e limites podem mudar conforme o provedor.
             </p>

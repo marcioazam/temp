@@ -105,8 +105,8 @@ function TreeRow({ row }: { row: string }) {
   const [path, comment] = row.split("#")
   return (
     <span className="block whitespace-pre">
-      <span className="text-[#c9c5be]">{path}</span>
-      {comment ? <span className="text-[#6f6b65]">{`#${comment}`}</span> : null}
+      <span className="text-code-mid">{path}</span>
+      {comment ? <span className="text-code-faint">{`#${comment}`}</span> : null}
     </span>
   )
 }
@@ -132,12 +132,12 @@ function TranscriptLine({ line, delay }: { line: Line & { model?: string }; dela
     return (
       <div
         className={`claude-line claude-line-prompt mt-3 flex gap-2 rounded-[3px] px-2 py-1 ${
-          isUserMessage ? "bg-[#2b2b29] text-[#e7e4de]" : "bg-[#31302d]"
+          isUserMessage ? "bg-[#2b2b29] text-code-fg" : "bg-[#31302d]"
         }`}
         style={style}
       >
-        <span className={isUserMessage ? "text-[#aaa69f]" : "text-[#7c7871]"}>&gt;</span>
-        <span className="text-[#e7e4de]"><ClaudeText text={line.text} model={line.model} /></span>
+        <span className={isUserMessage ? "text-code-dim" : "text-code-faint"}>&gt;</span>
+        <span className="text-code-fg"><ClaudeText text={line.text} model={line.model} /></span>
       </div>
     )
   }
@@ -145,15 +145,15 @@ function TranscriptLine({ line, delay }: { line: Line & { model?: string }; dela
   if (line.kind === "bullet") {
     return (
       <div className="claude-line mt-3 flex items-center gap-2" style={style}>
-        <span className="block size-1 shrink-0 rounded-full bg-[#8d8981]" aria-hidden="true" />
-        <span className="leading-5 text-[#dcd8d2]"><ClaudeText text={line.text} model={line.model} /></span>
+        <span className="block size-1 shrink-0 rounded-full bg-code-dim" aria-hidden="true" />
+        <span className="leading-5 text-code-fg"><ClaudeText text={line.text} model={line.model} /></span>
       </div>
     )
   }
 
   if (line.kind === "text") {
     return (
-      <p className="claude-line mt-2 max-w-2xl pl-4 text-[#c9c5be]" style={style}>
+      <p className="claude-line mt-2 max-w-2xl pl-4 text-code-mid" style={style}>
         {line.text}
       </p>
     )
@@ -163,10 +163,10 @@ function TranscriptLine({ line, delay }: { line: Line & { model?: string }; dela
     return (
       <div className="claude-line claude-line-tool mt-3" style={style}>
         <div className="flex gap-2">
-          <span className="text-[#dcd8d2]">*</span>
-          <span className="text-[#dcd8d2]">{line.text}</span>
+          <span className="text-code-fg">*</span>
+          <span className="text-code-fg">{line.text}</span>
         </div>
-        <div className="mt-1 flex gap-2 pl-4 text-[#8d8981]">
+        <div className="mt-1 flex gap-2 pl-4 text-code-dim">
           <span>L</span>
           <span>{line.result}</span>
         </div>
@@ -177,11 +177,11 @@ function TranscriptLine({ line, delay }: { line: Line & { model?: string }; dela
   if (line.kind === "spinner") {
     return (
       <div className="claude-line mt-3 flex items-baseline gap-2" style={style}>
-        <span className="claude-activity-mark inline-block w-[1ch] text-center text-[#dcd8d2]" aria-hidden="true">*</span>
-        <span className="text-[#dcd8d2]">
+        <span className="claude-activity-mark inline-block w-[1ch] text-center text-code-fg" aria-hidden="true">*</span>
+        <span className="text-code-fg">
           Clauding<span aria-hidden="true">.</span><span className="claude-dot-two" aria-hidden="true">.</span><span className="claude-dot-three" aria-hidden="true">.</span>
         </span>
-        <span className="text-[#6f6b65]">(esc to interrupt)</span>
+        <span className="text-code-faint">(esc to interrupt)</span>
       </div>
     )
   }
@@ -265,7 +265,7 @@ function ClaudeCodeSession() {
   return (
     <div
       data-current-model={currentModel}
-className="@container flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[8px] leading-[1.6] text-[#dcd8d2] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[9px] md:text-[10px]"
+className="@container flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[8px] leading-[1.65] tracking-[-0.005em] text-code-fg shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[9px] md:text-[10px]"
   >
   <div className="relative flex h-7 shrink-0 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
   <div className="flex items-center gap-1.5" aria-hidden="true">
@@ -273,17 +273,17 @@ className="@container flex h-full w-full flex-col overflow-hidden rounded-[10px]
   <span className="size-2.5 rounded-full bg-[#febc2e]" />
   <span className="size-2.5 rounded-full bg-[#28c840]" />
   </div>
-  <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">Claude Code · taskflow</span>
+  <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg md:text-[10px]">Claude Code · taskflow</span>
       </div>
       <div ref={scrollerRef} className="min-h-0 flex-1 overflow-y-auto px-4 py-3 [scrollbar-color:#55524c_transparent] [scrollbar-width:thin] sm:px-6 sm:py-5 md:px-8 md:py-6">
         <div className="flex items-start gap-3">
           <ClaudeMascot />
           <div>
-            <p className="font-semibold text-[#f2efe9]">Claude Code</p>
-            <p className="text-[#a5a19a]">
+            <p className="font-semibold text-code-fg">Claude Code</p>
+            <p className="text-code-dim">
               <span className="text-primary">{currentModel}</span> (1M Context) · <span className="text-primary">Nylla Gateway</span>
             </p>
-            <p className="text-[#6f6b65]">/users/nylla/taskflow</p>
+            <p className="text-code-faint">/users/nylla/taskflow</p>
           </div>
         </div>
 
@@ -299,42 +299,42 @@ className="@container flex h-full w-full flex-col overflow-hidden rounded-[10px]
       <div className="shrink-0 bg-[#080806] px-4 pb-3 sm:px-6 sm:pb-4 md:px-8 md:pb-5">
         <div className="border-y border-[#5b5852]/65">
           <div className="flex min-h-7 items-center gap-2 px-1 py-1 md:min-h-9">
-            <span className="text-[#dcd8d2]">&gt;</span>
+            <span className="text-code-fg">&gt;</span>
             <span
               ref={composerTextRef}
-              className="min-w-0 overflow-x-auto whitespace-nowrap text-[#dcd8d2] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="min-w-0 overflow-x-auto whitespace-nowrap text-code-fg [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {draft}
             </span>
-            <span className="cursor-blink h-3 w-px shrink-0 bg-[#eeeae3] md:h-4" aria-hidden="true" />
+            <span className="cursor-blink h-3 w-px shrink-0 bg-code-fg md:h-4" aria-hidden="true" />
             <span className="min-w-0 flex-1" aria-hidden="true" />
           </div>
         </div>
-        <div className="flex min-w-0 items-center justify-between gap-3 px-1 pt-1.5 text-[7px] leading-none text-[#77736c] sm:text-[8px] md:text-[9px]">
+        <div className="flex min-w-0 items-center justify-between gap-3 px-1 pt-1.5 text-[7px] leading-none tracking-[0.01em] text-code-dim sm:text-[8px] md:text-[9px]">
           <div className="flex min-w-0 items-center gap-1.5 overflow-hidden whitespace-nowrap">
             <span className="shrink-0">? for shortcuts</span>
             <span className="hidden items-center gap-1.5 @xl:inline-flex">
-              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-              <span className="text-[#8d8981]">/users/nylla/taskflow</span>
+              <span className="text-code-faint" aria-hidden="true">·</span>
+              <span className="text-code-dim">/users/nylla/taskflow</span>
             </span>
             <span className="hidden items-center gap-1.5 @2xl:inline-flex">
-              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-              <span className="text-[#aaa69f]">main</span>
+              <span className="text-code-faint" aria-hidden="true">·</span>
+              <span className="text-code-mid">main</span>
             </span>
           </div>
           <div className="flex shrink-0 items-center justify-end gap-1.5 whitespace-nowrap">
-            <span className="leading-none text-[#e8e8e8]">Thinking on</span>
+            <span className="leading-none text-code-mid">Thinking on</span>
             <span className="hidden items-center gap-1.5 @lg:inline-flex">
-              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-code-faint" aria-hidden="true">·</span>
               <span className="text-primary">Nylla Gateway</span>
             </span>
             <span className="hidden items-center gap-1.5 @sm:inline-flex">
-              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
+              <span className="text-code-faint" aria-hidden="true">·</span>
               <span className="text-primary">{currentModel}</span>
             </span>
             <span className="hidden items-center gap-1.5 @2xl:inline-flex">
-              <span className="text-[#4f4c47]" aria-hidden="true">·</span>
-              <span className="text-[#e8e8e8]">Connected · 16ms</span>
+              <span className="text-code-faint" aria-hidden="true">·</span>
+              <span className="text-code-mid">Connected · 16ms</span>
             </span>
           </div>
         </div>

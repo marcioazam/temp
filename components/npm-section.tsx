@@ -37,8 +37,8 @@ function InstallCommand() {
 
   return (
     <div className="flex min-h-12 max-w-sm items-stretch border border-border bg-card/50 pl-4">
-      <span className="self-center font-mono text-sm text-primary" aria-hidden="true">$</span>
-      <code className="ml-3 min-w-0 flex-1 self-center truncate font-mono text-sm text-foreground">{command}</code>
+      <span className="type-code self-center text-[0.8125rem] text-primary" aria-hidden="true">$</span>
+      <code className="type-code ml-3 min-w-0 flex-1 self-center truncate text-[0.8125rem] text-foreground">{command}</code>
       <button
         type="button"
         onClick={copy}
@@ -97,21 +97,22 @@ export function NpmSection() {
     <section id="instalar">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
         <Reveal>
-          <h2 className="font-mono text-xs text-muted-foreground">
-            <span aria-hidden="true" className="text-primary">{"// "}</span>plug and play
+          <h2 className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+            <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+            <span>plug and play</span>
           </h2>
         </Reveal>
 
-        <div className="mt-5 grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
+        <div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
           <Reveal className="md:order-1 md:pr-6">
-          <p className="max-w-lg text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+          <p className="type-heading max-w-lg text-balance text-foreground">
             Um pacote para conectar qualquer harness.
           </p>
-          <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
+          <p className="type-lead mt-5 max-w-md text-muted-foreground">
             O NPM do Nylla configura o harness que você já usa e aponta tudo para o Nylla Gateway. Execute um comando e o
             CLI detecta, autentica e configura seu ambiente automaticamente.
           </p>
-          <ul className="mt-6 space-y-2 font-mono text-sm text-muted-foreground">
+          <ul className="type-label mt-7 space-y-2 text-muted-foreground">
             <li><span className="text-primary" aria-hidden="true">+ </span>detecção automática do ambiente</li>
             <li><span className="text-primary" aria-hidden="true">+ </span>uma chave, todos os modelos</li>
             <li><span className="text-primary" aria-hidden="true">+ </span>sem editar arquivos manualmente</li>
@@ -131,41 +132,41 @@ export function NpmSection() {
                   <span className="size-2.5 rounded-full bg-[#febc2e]" />
                   <span className="size-2.5 rounded-full bg-[#28c840]" />
                 </div>
-                <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
+                <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg md:text-[10px]">
                   bash — nylla@linux
                 </span>
               </div>
 
               <div
                 ref={terminalRef}
-                className="term-pane h-80 overflow-y-auto p-5 font-mono text-[11px] leading-6 text-[#a0a0a0] md:p-6 md:text-xs"
+                className="term-pane h-80 overflow-y-auto p-5 font-mono text-[11px] leading-6 tracking-[-0.005em] text-term-mid md:p-6 md:text-xs"
                 aria-live="polite"
                 aria-label="Terminal Linux configurando o Nylla Gateway"
               >
-                <div className="mb-5 text-[#666]">Ubuntu 24.04.1 LTS · bash 5.2.21</div>
+                <div className="mb-5 text-term-faint">Ubuntu 24.04.1 LTS · bash 5.2.21</div>
                 {visibleSteps.map((step, index) => (
-                  <div key={`${step.text}-${index}`} className={step.type === "success" ? "text-[#67c978]" : "text-[#a0a0a0]"}>
+                  <div key={`${step.text}-${index}`} className={step.type === "success" ? "text-term-success" : "text-term-mid"}>
                     {step.type === "command" && <span className="mr-2 text-primary">nylla@linux:~$</span>}
-                    <span className={step.type === "command" ? "text-[#ededed]" : undefined}>{step.text}</span>
+                    <span className={step.type === "command" ? "text-term-fg" : undefined}>{step.text}</span>
                   </div>
                 ))}
                 {currentStep?.type === "command" && (
                   <div className="flex items-center">
                     <span className="mr-2 shrink-0 text-primary">nylla@linux:~$</span>
-                    <span className="text-[#ededed]">{draft}</span>
-                    <span className="cursor-blink ml-0.5 inline-block h-3.5 w-1.5 bg-[#ededed]" aria-hidden="true" />
+                    <span className="text-term-fg">{draft}</span>
+                    <span className="cursor-blink ml-0.5 inline-block h-3.5 w-1.5 bg-term-fg" aria-hidden="true" />
                   </div>
                 )}
                 {currentStep && currentStep.type !== "command" && (
-                  <div className="flex items-center text-[#666]">
-                    <span className="mr-2 inline-block size-1.5 animate-pulse rounded-full bg-[#67c978]" aria-hidden="true" />
+                  <div className="flex items-center text-term-dim">
+                    <span className="mr-2 inline-block size-1.5 animate-pulse rounded-full bg-term-success" aria-hidden="true" />
                     processando
                   </div>
                 )}
                 {!currentStep && (
                   <div className="mt-3 flex items-center">
                     <span className="mr-2 text-primary">nylla@linux:~$</span>
-                    <span className="cursor-blink inline-block h-3.5 w-1.5 bg-[#ededed]" aria-hidden="true" />
+                    <span className="cursor-blink inline-block h-3.5 w-1.5 bg-term-fg" aria-hidden="true" />
                   </div>
                 )}
               </div>

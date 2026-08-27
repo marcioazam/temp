@@ -100,11 +100,11 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
     return (
       <div
         className={`claude-line mt-2 flex gap-1.5 rounded-[3px] px-2 py-1 ${
-          isUserMessage ? "bg-[#2b2b29] text-[#e7e4de]" : ""
+          isUserMessage ? "bg-[#2b2b29] text-term-fg" : ""
         }`}
       >
-        <span className={isUserMessage ? "text-[#aaa69f]" : "text-[#e8e8e8]"}>›</span>
-        <span className={isUserMessage ? "text-[#e7e4de]" : "text-[#e8e8e8]"}>
+        <span className={isUserMessage ? "text-term-dim" : "text-term-fg"}>›</span>
+        <span className="text-term-fg">
           <HermesText text={line.text} model={line.model} />
         </span>
       </div>
@@ -115,8 +115,8 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
     const [gatewayLabel, routeDetails] = line.text.split(" → ")
 
     return (
-      <div className="claude-line mt-1.5 flex items-center gap-1.5 pl-3 text-[#e8e8e8]">
-        <span className="text-[#8a8672]" aria-hidden="true">›</span>
+      <div className="claude-line mt-1.5 flex items-center gap-1.5 pl-3 text-term-fg">
+        <span className="text-term-dim" aria-hidden="true">›</span>
         <span className="text-primary">{gatewayLabel}</span>
         {routeDetails ? <> → <HermesText text={routeDetails} model={line.model} /></> : null}
       </div>
@@ -124,12 +124,12 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
   }
 
   if (line.kind === "out") {
-    return <p className="claude-line mt-1.5 pl-3 text-[#c4c1b2]">{line.text}</p>
+    return <p className="claude-line mt-1.5 pl-3 text-term-mid">{line.text}</p>
   }
 
   if (line.kind === "ok") {
     return (
-      <div className="claude-line mt-2 flex gap-1.5 pl-3 text-[#e8e8e8]">
+      <div className="claude-line mt-2 flex gap-1.5 pl-3 text-term-fg">
         <span aria-hidden="true">✓</span>
         <span>{line.text}</span>
       </div>
@@ -140,10 +140,10 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
     return (
       <div className="claude-line mt-2">
         <div className="flex gap-1.5">
-          <span className="text-[#e8e8e8]">*</span>
-          <span className="text-[#d6d3c4]">{line.text}</span>
+          <span className="text-term-fg">*</span>
+          <span className="text-term-mid">{line.text}</span>
         </div>
-        <div className="mt-0.5 flex gap-1.5 pl-3 text-[#7d7a68]">
+        <div className="mt-0.5 flex gap-1.5 pl-3 text-term-dim">
           <span aria-hidden="true">└</span>
           <span>{line.result}</span>
         </div>
@@ -154,10 +154,10 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
   if (line.kind === "spinner") {
     return (
       <div className="claude-line mt-2 flex items-baseline gap-1.5 pl-3">
-        <span className="claude-activity-mark inline-block w-[1ch] text-center text-[#e8e8e8]" aria-hidden="true">
+        <span className="claude-activity-mark inline-block w-[1ch] text-center text-term-fg" aria-hidden="true">
           *
         </span>
-        <span className="text-[#e8e8e8]">
+        <span className="text-term-fg">
           Reasoning<span aria-hidden="true">.</span>
           <span className="claude-dot-two" aria-hidden="true">
             .
@@ -166,7 +166,7 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
             .
           </span>
         </span>
-        <span className="text-[#6d6a5a]">(esc to interrupt)</span>
+        <span className="text-term-faint">(esc to interrupt)</span>
       </div>
     )
   }
@@ -178,8 +178,8 @@ function TranscriptLine({ line }: { line: Line & { model?: string } }) {
           const [path, comment] = row.split("#")
           return (
             <span key={row} className="block whitespace-pre">
-              <span className="text-[#c4c1b2]">{path}</span>
-              {comment ? <span className="text-[#6d6a5a]">{`#${comment}`}</span> : null}
+              <span className="text-term-mid">{path}</span>
+              {comment ? <span className="text-term-faint">{`#${comment}`}</span> : null}
             </span>
           )
         })}
@@ -258,14 +258,14 @@ export function HermesTerminalMock() {
   }, [draft])
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[7px] leading-[1.55] text-[#d6d3c4] shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[8px] md:text-[9px]">
+    <div className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-[#292929] bg-[#080806] font-mono text-[7px] leading-[1.6] tracking-[-0.005em] text-term-mid shadow-[0_26px_60px_-18px_rgba(0,0,0,0.72),0_10px_24px_-12px_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.4)] sm:text-[8px] md:text-[9px]">
       <div className="relative flex h-7 shrink-0 items-center border-b border-[#292929] bg-[#171717] px-2.5 shadow-[inset_0_1px_rgba(255,255,255,0.035)] md:h-9 md:px-3">
         <div className="flex items-center gap-1.5" aria-hidden="true">
           <span className="size-2.5 rounded-full bg-[#ff5f57]" />
           <span className="size-2.5 rounded-full bg-[#febc2e]" />
           <span className="size-2.5 rounded-full bg-[#28c840]" />
         </div>
-        <span className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">
+        <span className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-sans text-[9px] font-medium tracking-[-0.005em] text-chrome-fg md:text-[10px]">
           Hermes Agent · /opt/hermes
         </span>
       </div>
@@ -274,7 +274,7 @@ export function HermesTerminalMock() {
         ref={scrollerRef}
         className="min-h-0 flex-1 overflow-y-auto px-2.5 py-2 [scrollbar-color:#55524c_transparent] [scrollbar-width:thin] sm:px-3 md:px-4 md:py-3"
       >
-        <div className="text-[#e8e8e8]">
+        <div className="text-term-fg">
           {BANNER_HERMES.map((row, i) => (
             <span key={`h-${i}`} className="block whitespace-pre leading-[1.05]">
               {row}
@@ -287,14 +287,14 @@ export function HermesTerminalMock() {
           ))}
         </div>
 
-        <div className="mt-2 flex justify-end text-[#e8e8e8]">Hermes Agent v0.6.0 (2026.3.30)</div>
+        <div className="mt-2 flex justify-end text-term-fg">Hermes Agent v0.6.0 (2026.3.30)</div>
 
         <div className="mt-1 flex gap-3 border border-[#5b5852]/65 p-2 md:gap-4 md:p-2.5">
           <div className="hidden shrink-0 flex-col items-center md:flex">
               <div
                 role="img"
                 aria-label="Logo do Hermes Agent"
-                className="aspect-square w-[104px] bg-[#e8e8e8] lg:w-[124px]"
+                className="aspect-square w-[104px] bg-term-fg lg:w-[124px]"
                 style={{
                   maskImage: "url('/hermes-agent-logo.svg')",
                   WebkitMaskImage: "url('/hermes-agent-logo.svg')",
@@ -310,39 +310,39 @@ export function HermesTerminalMock() {
               <p className="font-semibold text-primary">
                 {currentModel} <span className="font-normal">· Nylla Gateway</span>
               </p>
-              <p className="text-[#7d7a68]">/opt/hermes</p>
+              <p className="text-term-dim">/opt/hermes</p>
             </div>
           </div>
 
           <div className="min-w-0 flex-1">
-            <p className="font-semibold text-[#e8e8e8]">Available Tools</p>
+            <p className="font-semibold text-term-fg">Available Tools</p>
             <div className="mt-0.5">
               {TOOLSETS.map(([label, value]) => (
                 <p key={label} className="truncate">
-                  <span className="text-[#8a8672]">{label}</span> <span className="text-[#e8e8e8]">{value}</span>
+                  <span className="text-term-dim">{label}</span> <span className="text-term-fg">{value}</span>
                 </p>
               ))}
-              <p className="text-[#6d6a5a]">(and 10 more toolsets...)</p>
+              <p className="text-term-faint">(and 10 more toolsets...)</p>
             </div>
 
-            <p className="mt-2 font-semibold text-[#e8e8e8]">Available Skills</p>
+            <p className="mt-2 font-semibold text-term-fg">Available Skills</p>
             <div className="mt-0.5">
               {SKILLSETS.map(([label, value]) => (
                 <p key={label} className="truncate">
-                  <span className="text-[#8a8672]">{label}</span> <span className="text-[#e8e8e8]">{value}</span>
+                  <span className="text-term-dim">{label}</span> <span className="text-term-fg">{value}</span>
                 </p>
               ))}
-              <p className="text-[#6d6a5a]">(and 14 more skillsets...)</p>
+              <p className="text-term-faint">(and 14 more skillsets...)</p>
             </div>
 
-            <p className="mt-2 font-semibold text-[#e8e8e8]">Profile: custom</p>
-            <p className="text-[#8a8672]">
-              30 tools · 70 skills · <span className="text-[#e8e8e8]">/help</span> for commands
+            <p className="mt-2 font-semibold text-term-fg">Profile: custom</p>
+            <p className="text-term-dim">
+              30 tools · 70 skills · <span className="text-term-fg">/help</span> for commands
             </p>
           </div>
         </div>
 
-        <p className="mt-2 text-[#c4c1b2]">Welcome to Hermes Agent! Type your message or /help for commands.</p>
+        <p className="mt-2 text-term-mid">Welcome to Hermes Agent! Type your message or /help for commands.</p>
 
         <div>
           {visibleLines.map((line, i) =>
@@ -354,39 +354,39 @@ export function HermesTerminalMock() {
       </div>
 
       <div className="shrink-0 border-t border-[#5b5852]/65 px-2.5 py-1 sm:px-3 md:px-4">
-        <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap text-[#8a8672]">
+        <div className="flex min-w-0 items-center gap-1.5 whitespace-nowrap text-term-dim">
           <span className="font-semibold text-primary">Nylla Gateway</span>
-          <span className="text-[#4a4636]" aria-hidden="true">
+          <span className="text-term-rule" aria-hidden="true">
             ·
           </span>
           <span className="font-semibold text-primary">{currentModel}</span>
-          <span className="text-[#4a4636]" aria-hidden="true">
+          <span className="text-term-rule" aria-hidden="true">
             |
           </span>
           <span>ctx 34%</span>
-          <span className="hidden text-[#4a4636] sm:inline" aria-hidden="true">
+          <span className="hidden text-term-rule sm:inline" aria-hidden="true">
             |
           </span>
           <span className="hidden sm:inline" aria-hidden="true">
-            [<span className="text-[#e8e8e8]">▓▓▓▓▓▓</span>
-            <span className="text-[#3a382c]">▓▓▓▓▓▓▓▓</span>]
+            [<span className="text-term-fg">▓▓▓▓▓▓</span>
+            <span className="text-term-track">▓▓▓▓▓▓▓▓</span>]
           </span>
-          <span className="ml-auto text-[#e8e8e8]">connected · 16ms</span>
+          <span className="ml-auto text-term-fg">connected · 16ms</span>
         </div>
       </div>
 
       <div className="flex min-h-6 shrink-0 items-center gap-2 border-t border-[#5b5852]/65 bg-[#080806] px-2.5 py-1.5 sm:px-3 md:min-h-8 md:px-4">
-        <span className="shrink-0 text-[#e8e8e8]">›</span>
+        <span className="shrink-0 text-term-fg">›</span>
         <div
           ref={draftScrollerRef}
           className="min-w-0 flex-1 overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <span
-            className={`font-medium ${nextLine?.kind === "slash" ? "text-[#e8e8e8]" : "text-[#d6d3c4]"}`}
+            className={`font-medium ${nextLine?.kind === "slash" ? "text-term-fg" : "text-term-mid"}`}
           >
             <HermesText text={draft} model={nextLine?.model} />
           </span>
-          <span className="cursor-blink ml-0.5 inline-block h-2.5 w-1 bg-[#e8e8e8] align-middle md:h-3" aria-hidden="true" />
+          <span className="cursor-blink ml-0.5 inline-block h-2.5 w-1 bg-term-fg align-middle md:h-3" aria-hidden="true" />
         </div>
       </div>
     </div>

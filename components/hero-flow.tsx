@@ -1,6 +1,24 @@
 import { NyllaLogo } from "@/components/logo"
 
-const MODELS = ["GPT", "Claude", "Gemini", "Deepseek", "Nylla LLM"]
+const icon = (slug: string, variant = "default") =>
+  `https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${slug}/${variant}.svg`
+
+const TOOLS = [
+  { name: "Claude Code", src: icon("claude-code", "mono") },
+  { name: "Codex", src: icon("codex", "light") },
+  { name: "Cursor", src: icon("cursor", "mono") },
+  { name: "Antigravity", src: icon("antigravity-google", "mono") },
+  { name: "OpenCode", src: icon("opencode", "mono") },
+]
+
+const MODELS = [
+  { name: "GPT", src: icon("openai") },
+  { name: "Claude", src: icon("claude") },
+  { name: "Gemini", src: icon("gemini") },
+  { name: "Deepseek", src: icon("deepseek") },
+  { name: "Qwen", src: icon("qwen", "light") },
+  { name: "Grok", src: icon("grok", "light") },
+]
 const STEPS = ["Valida", "Roteia", "Entrega"]
 
 /**
@@ -18,9 +36,19 @@ export function HeroFlow() {
     >
       <div className="flex h-full flex-col justify-center p-5 sm:p-8 lg:p-10">
         {/* Node: user + tool */}
-        <div className="flex flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
-          <span className="text-muted-foreground">Você:</span>
-          <span className="text-foreground">Claude Code, Codex, Cursor, Gemini CLI, etc...</span>
+        <div className="flex min-h-[50px] flex-wrap items-center gap-x-4 gap-y-2 border border-border bg-background/90 px-3 py-3 text-[10px] text-muted-foreground">
+          <span>Você:</span>
+          {TOOLS.map((tool) => (
+            <span key={tool.name} className="flex items-center gap-1 whitespace-nowrap">
+              <img
+                src={tool.src}
+                alt=""
+                className="size-3 shrink-0 object-contain grayscale brightness-0 invert opacity-60"
+                loading="lazy"
+              />
+              {tool.name}
+            </span>
+          ))}
         </div>
 
         {/* Connector A */}
@@ -32,7 +60,7 @@ export function HeroFlow() {
         </div>
 
         {/* Node: Nylla */}
-        <div className="relative flex min-h-16 items-center justify-between gap-6 border-0 bg-muted px-5 py-4 text-foreground outline-none ring-0">
+        <div className="relative flex min-h-18 items-center justify-between gap-6 border border-primary/50 bg-muted px-5 py-4 text-foreground shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--primary)_12%,transparent)]">
           <NyllaLogo aria-hidden="true" className="hero-logo-unfold h-7 w-auto shrink-0 text-foreground" />
           <div className="flex items-center gap-2 text-xs text-foreground">
             {STEPS.map((step, i) => (
@@ -57,15 +85,21 @@ export function HeroFlow() {
         </div>
 
         {/* Node: LLMs */}
-        <div className="flex flex-wrap items-center gap-2 border border-border bg-background/90 px-4 py-3 text-xs">
-          <span className="text-muted-foreground">LLMs:</span>
+        <div className="flex flex-wrap items-center gap-1.5 border border-border bg-background/90 px-4 py-3 text-xs">
+          <span className="mr-0.5 text-muted-foreground">LLMs:</span>
           {MODELS.map((model, i) => (
             <span
-              key={model}
-              className="hf-model border border-border px-2 py-1 text-foreground"
+              key={model.name}
+              className="hf-model flex items-center gap-1 whitespace-nowrap px-1.5 py-1 text-foreground"
               style={{ "--model": i } as React.CSSProperties}
             >
-              {model}
+              <img
+                src={model.src}
+                alt=""
+                className={`h-2.5 w-2.5 shrink-0 object-contain grayscale brightness-0 invert ${model.iconClassName ?? ""}`}
+                loading="lazy"
+              />
+              {model.name}
             </span>
           ))}
         </div>

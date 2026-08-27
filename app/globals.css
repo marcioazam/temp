@@ -29,6 +29,21 @@
   --color-ultra: var(--ultra);
   --color-logo: var(--logo);
   --color-tool-card: var(--tool-card);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-code-fg: var(--code-fg);
+  --color-code-mid: var(--code-mid);
+  --color-code-dim: var(--code-dim);
+  --color-code-faint: var(--code-faint);
+  --color-term-fg: var(--term-fg);
+  --color-term-mid: var(--term-mid);
+  --color-term-dim: var(--term-dim);
+  --color-term-faint: var(--term-faint);
+  --color-term-success: var(--term-success);
+  --color-term-rule: var(--term-rule);
+  --color-term-track: var(--term-track);
+  --color-chrome-fg: var(--chrome-fg);
+  --color-canvas-ink: var(--canvas-ink);
+  --color-canvas-paper: var(--canvas-paper);
   --radius-sm: 0rem;
   --radius-md: 0rem;
   --radius-lg: 0rem;
@@ -62,16 +77,77 @@
   --logo: #f5a524;
   --tool-card: #050604;
   --radius: 0rem;
+
+  /* Text scale — 3 níveis sobre fundo escuro, todos >= 4.5:1 */
+  --subtle-foreground: #7b7b7b;
+
+  /* Chrome de janelas (títulos de barra) */
+  --chrome-fg: #a3a3a3;
+
+  /* Mock de editor de código */
+  --code-fg: #e4e1db;
+  --code-mid: #b6b2aa;
+  --code-dim: #8f8b83;
+  --code-faint: #6b675f;
+
+  /* Mock de terminal */
+  --term-fg: #e0dcd4;
+  --term-mid: #b0aca1;
+  --term-dim: #8b877a;
+  --term-faint: #6a6759;
+  --term-success: #7cd68c;
+  /* Glifas decorativas: separadores e trilhos de barra de progresso.
+     Não carregam texto, por isso ficam abaixo do contraste de leitura. */
+  --term-rule: #4a4636;
+  --term-track: #3a382c;
+
+  /* Superfícies claras (arte pintada do hero/CTA) */
+  --canvas-ink: #171612;
+  --canvas-paper: #f4f3f1;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     @apply bg-background text-foreground;
     min-height: 100%;
     font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.006em;
+    font-optical-sizing: auto;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Números alinhados em qualquer contexto monoespaçado */
+  code,
+  kbd,
+  pre,
+  samp,
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'calt' 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   body,
@@ -83,6 +159,109 @@
     background-blend-mode: screen;
     animation: page-grain-drift 3.2s steps(1, end) infinite;
   }
+}
+
+/* ==========================================================================
+   Escala tipográfica
+   Sans (Geist) para display, títulos e leitura.
+   Mono (Geist Mono) para etiquetas, dados e chrome de interface.
+   ========================================================================== */
+@utility type-display {
+  font-family: var(--font-sans);
+  font-size: clamp(2.75rem, 6.4vw, 5.25rem);
+  font-weight: 450;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+
+@utility type-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.875rem, 3.6vw, 3.25rem);
+  font-weight: 450;
+  line-height: 1.04;
+  letter-spacing: -0.038em;
+}
+
+@utility type-heading {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 2.4vw, 2.125rem);
+  font-weight: 480;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+@utility type-subheading {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.017em;
+}
+
+@utility type-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@utility type-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+@utility type-micro {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@utility type-lead {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.62;
+  letter-spacing: -0.008em;
+}
+
+@utility type-body {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.004em;
+}
+
+@utility type-caption {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+@utility type-code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: -0.005em;
+}
+
+@utility type-wordmark {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-feature-settings: 'calt' 0;
 }
 
 @keyframes page-grain-drift {
@@ -874,9 +1053,10 @@ kbd {
 
 /* Hero flow diagram — one 3.2s cycle shared by every element.
    Request packet travels down connector A (2–16%), Nylla steps light up in
-   sequence (~18–46%), the packet crosses connector B (46–58%), a model
-   activates (58–72%), then the response packet climbs back up B (72–82%)
-   and A (84–96%). Compositor-only: opacity + translate. */
+   sequence (~18–46%), and the packet crosses connector B (46–58%). The
+   selected model stays white until 84%, creating a longer, readable dwell
+   before the response climbs back through B (84–92%) and A (94–99%).
+   Compositor-only: opacity + translate. */
 .hf-dot {
   position: absolute;
   left: -1px;
@@ -908,20 +1088,20 @@ kbd {
 }
 
 @keyframes hf-dot-b-up {
-  0%, 72% { opacity: 0; transform: translateY(40px); }
-  74% { opacity: 1; }
-  80% { opacity: 1; transform: translateY(0); }
-  82%, 100% { opacity: 0; transform: translateY(0); }
+  0%, 84% { opacity: 0; transform: translateY(40px); }
+  85% { opacity: 1; }
+  91% { opacity: 1; transform: translateY(0); }
+  92%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-b-up {
   animation: hf-dot-b-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes hf-dot-a-up {
-  0%, 88% { opacity: 0; transform: translateY(40px); }
-  89% { opacity: 1; }
-  97% { opacity: 1; transform: translateY(0); }
-  98%, 100% { opacity: 0; transform: translateY(0); }
+  0%, 94% { opacity: 0; transform: translateY(40px); }
+  95% { opacity: 1; }
+  99.4% { opacity: 1; transform: translateY(0); }
+  99.8%, 100% { opacity: 0; transform: translateY(0); }
 }
 .hf-dot-a-up {
   animation: hf-dot-a-up 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
@@ -930,9 +1110,9 @@ kbd {
 /* Nylla's internal steps use the packet contact points as their clock.
    Inbound: the packet touches Nylla at 14%, immediately lighting Valida;
    the first arrow and Roteia follow while the packet remains in Nylla.
-   Return: the packet touches Nylla at 80%, immediately lighting the final arrow;
-   Entrega follows before the packet exits at 88%. Colors only reset at 97%,
-   exactly when the packet reaches "Você + Ferramenta". */
+   Return: after the longer model dwell, the packet touches Nylla at 91%,
+   lighting the final arrow; Entrega follows before it exits at 94%. Colors
+   reset at 99%, when the packet reaches "Você + Ferramenta". */
 .hf-step {
   color: var(--foreground);
   animation-duration: 3.2s;
@@ -942,57 +1122,55 @@ kbd {
 
 @keyframes hf-step-1 {
   0%, 13.9% { color: var(--foreground); }
-  14%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  14%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-1 { animation-name: hf-step-1; }
 
 @keyframes hf-step-2 {
   0%, 23.9% { color: var(--foreground); }
-  24%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  24%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-2 { animation-name: hf-step-2; }
 
 @keyframes hf-step-3 {
   0%, 33.9% { color: var(--foreground); }
-  34%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  34%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-3 { animation-name: hf-step-3; }
 
 @keyframes hf-step-4 {
-  0%, 79.9% { color: var(--foreground); }
-  80%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  0%, 90.9% { color: var(--foreground); }
+  91%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-4 { animation-name: hf-step-4; }
 
 @keyframes hf-step-5 {
-  0%, 83.9% { color: var(--foreground); }
-  84%, 96.9% { color: var(--primary); }
-  97%, 100% { color: var(--foreground); }
+  0%, 93.9% { color: var(--foreground); }
+  94%, 98.9% { color: var(--primary); }
+  99%, 100% { color: var(--foreground); }
 }
 .hf-step-5 { animation-name: hf-step-5; }
 
-/* One model highlighted while the request lands on it. The 9.6s period is
-   three 3.2s cycles; each model's active window aligns with 58–72% of its
-   own cycle (19.3–24% of the full period), rotating the highlight. */
+/* One model stays white while the packet is inside it. The 19.2s period is
+   six 3.2s cycles (one for each model); its active window aligns with
+   58–84% of that model's cycle, including the longer dwell before return. */
 @keyframes hf-model {
-  0%, 18.6%, 24.6%, 100% {
-    border-color: var(--border);
+  0%, 8.7%, 14.5%, 100% {
     color: var(--foreground);
     opacity: 0.35;
   }
-  19.6%, 23.6% {
-    border-color: var(--foreground);
+  9.7%, 14% {
     color: var(--foreground);
     opacity: 1;
   }
 }
 .hf-model {
   opacity: 0.35;
-  animation: hf-model 9.6s ease-in-out infinite;
+  animation: hf-model 19.2s ease-in-out infinite;
   animation-delay: calc(var(--model, 0) * 3.2s);
   will-change: border-color, color, opacity;
 }
