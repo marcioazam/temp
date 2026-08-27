@@ -41,9 +41,8 @@ export function RouteComparison() {
         <Reveal>
           <div className="overflow-hidden border border-border bg-background/90 shadow-lg backdrop-blur-md">
             <div className="p-5 md:p-6">
-              <h2 className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
-                <RotorMark aria-hidden="true" className="size-4 shrink-0 text-primary" />
-                <span>Nylla Gateway</span>
+              <h2 className="font-mono text-xs text-muted-foreground">
+                <span aria-hidden="true" className="text-primary">{"// "}</span>comparativo
               </h2>
               <p className="mt-4 max-w-xl text-balance font-mono text-2xl font-medium tracking-tight text-foreground md:text-3xl">
                 Compare a rota, não o hype.
@@ -68,8 +67,9 @@ export function RouteComparison() {
                     Critério
                   </th>
                   <th scope="col" className="w-[28%] bg-primary/[0.05] p-4 md:p-5">
-                    <span className="font-mono text-xs font-medium text-foreground">
-                      <span aria-hidden="true" className="text-primary">{"// "}</span>nylla gateway
+                    <span className="flex items-center gap-2 font-mono text-xs font-medium text-foreground">
+                      <RotorMark aria-hidden="true" className="size-4 shrink-0 text-primary" />
+                      <span>Nylla Gateway</span>
                     </span>
                   </th>
                   <th scope="col" className="w-[28%] p-4 md:p-5">
