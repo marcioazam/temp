@@ -42,9 +42,9 @@ export function Features() {
   return (
     <section id="recursos">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-16 md:px-9 md:py-24">
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(20rem,0.8fr)_minmax(0,1.2fr)] lg:gap-12">
+        <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(20rem,0.8fr)_minmax(0,1.2fr)] lg:gap-12">
           <div
-            className="photo-grain overflow-hidden bg-cover bg-center p-6 sm:p-8 lg:sticky lg:top-24"
+            className="photo-grain h-full overflow-hidden bg-cover bg-center p-6 sm:p-8"
             style={{ backgroundImage: "url('/images/recursos-polar.png')" }}
           >
             <Reveal className="relative z-[2] bg-background/85 p-5 backdrop-blur-md sm:p-6">
@@ -62,9 +62,9 @@ export function Features() {
             </Reveal>
           </div>
 
-          <Reveal delay={80}>
-            <div>
-              <ul className="grid gap-3 sm:grid-cols-2">
+          <Reveal delay={80} className="h-full">
+            <div className="h-full">
+              <ul className="grid h-full gap-3 sm:grid-cols-2 sm:grid-rows-2">
                 {features.map((f, index) => {
                   const isActive = index === activeFeature
 
