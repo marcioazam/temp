@@ -806,6 +806,18 @@ kbd {
   animation: bit-scroll var(--bs-dur, 4s) steps(var(--bs-steps, 8), jump-none) infinite;
 }
 
+@keyframes hero-logo-unfold {
+  0%, 100% { transform: translate(0, -12px) rotate(-42deg); }
+  50% { transform: translate(0, -12px) rotate(42deg); }
+}
+
+.hero-logo-unfold .nylla-logo-sun {
+  transform-box: view-box;
+  transform-origin: 32px 32px;
+  animation: hero-logo-unfold 3s ease-in-out infinite;
+  will-change: transform;
+}
+
 /* Hero flow diagram — one 3.2s cycle shared by every element.
    Request packet travels down connector A (2–16%), Nylla steps light up in
    sequence (~18–46%), the packet crosses connector B (46–58%), a model
@@ -904,6 +916,7 @@ kbd {
   .term-line,
   .claude-line,
   .claude-model-enter,
+  .hero-logo-unfold .nylla-logo-sun,
   .hf-dot-a-down,
   .hf-dot-a-up,
   .hf-dot-b-down,

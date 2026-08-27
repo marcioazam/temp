@@ -1,5 +1,40 @@
 import type { SVGProps } from "react"
 
+/** Navbar lockup — rotor and wordmark in one reusable SVG. */
+export function NyllaLogo(props: SVGProps<SVGSVGElement>) {
+  const arms = [0, 60, 120, 180, 240, 300]
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 154 40"
+      role="img"
+      aria-label="Nylla"
+      {...props}
+    >
+      <g className="nylla-logo-sun" transform="translate(0 -12)">
+        <g stroke="var(--primary)" strokeWidth="5" strokeLinecap="round" fill="none">
+          {arms.map((angle) => (
+            <path key={angle} d="M32 20 Q42 14 44 6" transform={`rotate(${angle} 32 32)`} />
+          ))}
+        </g>
+        <circle cx="32" cy="32" r="5" fill="var(--primary)" />
+      </g>
+      <text
+        x="53"
+        y="29"
+        fill="currentColor"
+        fontFamily="var(--font-fira-code)"
+        fontSize="24"
+        fontWeight="600"
+        letterSpacing="0.5"
+      >
+        Nylla
+      </text>
+    </svg>
+  )
+}
+
 /** Rotor mark — AI energy in continuous motion. Inherits currentColor. */
 export function RotorMark(props: SVGProps<SVGSVGElement>) {
   const arms = [0, 60, 120, 180, 240, 300]

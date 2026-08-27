@@ -1,4 +1,4 @@
-import { RotorMark } from "@/components/logo"
+import { NyllaLogo } from "@/components/logo"
 
 const MODELS = ["GPT", "Claude", "Gemini", "Deepseek", "Nylla LLM"]
 const STEPS = ["Valida", "Roteia", "Entrega"]
@@ -30,10 +30,7 @@ export function HeroFlow() {
 
         {/* Node: Nylla */}
         <div className="relative flex items-center justify-between gap-4 border border-primary/45 bg-muted px-4 py-3 text-foreground">
-          <div className="flex shrink-0 items-center gap-2">
-            <RotorMark aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-primary" />
-            <span className="text-[10px] uppercase tracking-[0.2em] text-primary">Nylla</span>
-          </div>
+          <NyllaLogo aria-hidden="true" className="hero-logo-unfold h-6 w-auto shrink-0 text-foreground" />
           <div className="flex items-center gap-2 text-xs text-foreground">
             {STEPS.map((step, i) => (
               <span key={step} className="flex items-center gap-2">
