@@ -21,7 +21,7 @@ export function SiteFooter() {
         </div>
         <nav
           aria-label="Rodapé"
-          className="grid grid-flow-col grid-rows-4 justify-self-center gap-x-12 gap-y-3 self-end font-mono text-xs text-muted-foreground md:mx-auto"
+          className="grid grid-flow-col grid-rows-4 gap-x-12 gap-y-3 self-center font-mono text-xs text-muted-foreground md:ml-auto"
         >
           <Link href="/#sobre" className="transition-colors hover:text-foreground">
             Sobre
