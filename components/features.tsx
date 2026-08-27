@@ -7,19 +7,9 @@ const features = [
     body: "Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek e modelos open-source. Um único endpoint, roteamento transparente, sem lock-in de provedor.",
   },
   {
-    key: "agents",
-    title: "Feito para código e agents",
-    body: "Otimizado para geração de código, tool calling e workflows de agents. Streaming de baixa latência e contexto longo onde importa.",
-  },
-  {
     key: "npm",
     title: "Plug and play via npm",
     body: "O pacote npm detecta seu harness e configura o gateway automaticamente. Um comando e sua ferramenta está conectada.",
-  },
-  {
-    key: "open-source",
-    title: "Núcleo open-source",
-    body: "Modelos open-source sempre disponíveis para manter seus agentes rodando sem depender de uma única rota.",
   },
   {
     key: "catálogo",
