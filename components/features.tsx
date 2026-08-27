@@ -58,12 +58,18 @@ export function Features() {
                 className="absolute bottom-[-1px] left-0 h-px w-full origin-left scale-x-0 bg-primary/60 transition-transform duration-500 ease-out group-hover:scale-x-100"
               />
               <h3
-                className="w-fit bg-cover px-3 py-2 font-mono text-base font-medium leading-snug text-foreground"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(rgba(8,8,8,0.62), rgba(8,8,8,0.62)), url('/images/mist-lake.png')",
-                  backgroundPosition: `${(i % 2) * 40 + 20}% ${Math.floor(i / 2) * 30 + 20}%`,
-                }}
+                className={`w-fit font-mono text-base font-medium leading-snug text-foreground ${
+                  i === 0 ? "bg-cover px-3 py-2" : ""
+                }`}
+                style={
+                  i === 0
+                    ? {
+                        backgroundImage:
+                          "linear-gradient(rgba(8,8,8,0.62), rgba(8,8,8,0.62)), url('/images/mist-lake.png')",
+                        backgroundPosition: "20% 20%",
+                      }
+                    : undefined
+                }
               >
                 {f.title}
               </h3>
