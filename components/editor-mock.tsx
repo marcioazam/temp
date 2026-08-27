@@ -273,7 +273,7 @@ className="flex h-full w-full flex-col overflow-hidden rounded-[10px] border bor
   <span className="size-2.5 rounded-full bg-[#febc2e]" />
   <span className="size-2.5 rounded-full bg-[#28c840]" />
   </div>
-  <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">Claude Code : taskflow</span>
+  <span className="absolute left-1/2 -translate-x-1/2 font-sans text-[8px] font-medium tracking-[-0.01em] text-[#a0a0a0] md:text-[10px]">Claude Code · taskflow</span>
       </div>
       <div ref={scrollerRef} className="min-h-0 flex-1 overflow-y-auto px-4 py-3 [scrollbar-color:#55524c_transparent] [scrollbar-width:thin] sm:px-6 sm:py-5 md:px-8 md:py-6">
         <div className="flex items-start gap-3">
