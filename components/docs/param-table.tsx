@@ -21,7 +21,7 @@ export function TableShell({
   children: ReactNode
 }) {
   return (
-    <div className="overflow-x-auto border border-border/60">
+    <div className="docs-scrollbar overflow-x-auto border border-border/60">
       <table className="w-full" style={{ minWidth }}>
         <caption className="sr-only">{caption}</caption>
         <thead>

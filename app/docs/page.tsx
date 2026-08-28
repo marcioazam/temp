@@ -90,7 +90,7 @@ export default function DocsPage() {
   return (
     <main className="mx-auto flex w-full max-w-screen-2xl gap-14 px-4 py-14 md:px-9 md:py-20">
       <aside className="hidden w-56 shrink-0 lg:block">
-        <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pb-10 pr-3">
+        <div className="docs-scrollbar sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pb-10 pr-3">
           <DocsNav groups={navGroups} />
         </div>
       </aside>
@@ -299,7 +299,7 @@ print(completion.choices[0].message.content)`,
           title="Todos os endpoints"
           lead="A superfície da API segue o padrão OpenAI-compatible. Qualquer SDK, framework ou harness que fale esse contrato funciona sem adaptação."
         >
-          <div className="mt-6 overflow-x-auto border border-border/60">
+          <div className="docs-scrollbar mt-6 overflow-x-auto border border-border/60">
             <table className="w-full min-w-[660px]">
               <caption className="sr-only">Lista de todos os endpoints da API</caption>
               <thead>
@@ -538,7 +538,7 @@ print(completion.choices[0].message.content)`,
           id="rerank"
           eyebrow="rerank"
           title="Rerank"
-          lead="Reordena um conjunto de documentos por relevância em relação a uma query. É o segundo estágio de um RAG: recupere amplo por embedding, depois refine aqui."
+          lead="Reordena um conjunto de documentos por relev��ncia em relação a uma query. É o segundo estágio de um RAG: recupere amplo por embedding, depois refine aqui."
         >
           <div className="mt-6">
             <Endpoint method="POST" path="/v1/rerank" />

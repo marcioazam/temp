@@ -1366,3 +1366,39 @@ kbd {
     transition: none;
   }
 }
+
+/* Rolagem interna da documentação */
+.docs-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--color-muted-foreground) 28%, transparent) transparent;
+  scrollbar-gutter: stable;
+}
+
+.docs-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.docs-scrollbar::-webkit-scrollbar-track,
+.docs-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.docs-scrollbar::-webkit-scrollbar-thumb {
+  min-width: 36px;
+  min-height: 36px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-muted-foreground) 24%, transparent);
+  background-clip: padding-box;
+}
+
+.docs-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--color-muted-foreground) 42%, transparent);
+  background-clip: padding-box;
+}
+
+.docs-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+  background-clip: padding-box;
+}

@@ -111,7 +111,7 @@ export function CodeBlock({ code, lang, title, tabs, wrap = false }: Props) {
     <div className="border border-border/60 bg-secondary">
       <div className="flex items-stretch justify-between border-b border-border/60">
         {tabs ? (
-          <div className="flex items-stretch overflow-x-auto" role="tablist" aria-label="Linguagem do exemplo">
+          <div className="docs-scrollbar flex items-stretch overflow-x-auto" role="tablist" aria-label="Linguagem do exemplo">
             {tabs.map((tab, i) => (
               <button
                 key={tab.label}
@@ -143,7 +143,7 @@ export function CodeBlock({ code, lang, title, tabs, wrap = false }: Props) {
         </button>
       </div>
       <pre
-        className={`type-code max-h-[26rem] overflow-auto p-4 text-code-fg ${
+        className={`docs-scrollbar type-code max-h-[26rem] overflow-auto p-4 text-code-fg ${
           wrap ? "whitespace-pre-wrap break-words" : ""
         }`}
       >
