@@ -1,7 +1,5 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
 import { CopyCommand } from "@/components/copy-command"
 
 export const metadata: Metadata = {
@@ -18,9 +16,7 @@ const sections = [
 
 export default function DocsPage() {
   return (
-    <>
-      <SiteHeader />
-      <main className="mx-auto flex w-full max-w-6xl gap-10 px-4 py-12 md:px-6 md:py-16">
+    <main className="mx-auto flex w-full max-w-screen-2xl gap-10 px-4 py-16 md:px-9 md:py-20">
         <aside className="hidden w-40 shrink-0 md:block">
           <nav aria-label="Seções da documentação" className="type-label sticky top-24 flex flex-col gap-2.5">
             {sections.map((s) => (
@@ -163,8 +159,6 @@ nylla usage`}</code>
             </div>
           </section>
         </div>
-      </main>
-      <SiteFooter />
-    </>
+    </main>
   )
 }

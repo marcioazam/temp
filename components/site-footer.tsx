@@ -2,6 +2,17 @@ import Link from "next/link"
 import { RotorMark } from "@/components/logo"
 import { CookiePreferencesButton } from "@/components/cookie-preferences-button"
 
+const legalItemClass =
+  'type-micro text-muted-foreground transition-colors hover:text-foreground'
+
+const legalLinks = [
+  { label: 'Privacidade', href: '/privacidade' },
+  { label: 'Termos', href: '/termos' },
+  { label: 'Acessibilidade', href: '/acessibilidade' },
+  { label: 'Cookies', href: '/politica-de-cookies' },
+  { label: 'Preferências', href: null },
+]
+
 export function SiteFooter() {
   return (
     <footer className="site-background text-foreground">
@@ -14,15 +25,26 @@ export function SiteFooter() {
           <p className="type-caption mt-5 max-w-xs text-muted-foreground">
             Gateway de LLM para geração de código e agents. Um endpoint, todos os modelos.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 md:mt-auto">
-            <p className="type-micro text-subtle-foreground">© {new Date().getFullYear()} Nylla</p>
-            <Link
-              href="/privacidade"
-              className="type-micro text-subtle-foreground transition-colors hover:text-foreground"
-            >
-              Privacidade
-            </Link>
-            <CookiePreferencesButton className="type-micro text-subtle-foreground transition-colors hover:text-foreground" />
+          {/* Identidade primeiro; ações legais em uma linha secundária. */}
+          <div className="mt-2.5 flex flex-col items-start gap-2.5">
+            <p className="type-micro text-subtle-foreground/70">
+              © {new Date().getFullYear()} Nylla
+            </p>
+            <nav aria-label="Links legais" className="flex flex-wrap items-baseline gap-x-7 gap-y-2 md:gap-x-9">
+              {legalLinks.map((item) =>
+                item.href ? (
+                  <Link key={item.label} href={item.href} className={legalItemClass}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <CookiePreferencesButton
+                    key={item.label}
+                    label={item.label}
+                    className={legalItemClass}
+                  />
+                ),
+              )}
+            </nav>
           </div>
         </div>
         <nav
