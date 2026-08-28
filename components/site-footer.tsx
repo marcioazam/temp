@@ -25,24 +25,26 @@ export function SiteFooter() {
           <p className="type-caption mt-5 max-w-xs text-muted-foreground">
             Gateway de LLM para geração de código e agents. Um endpoint, todos os modelos.
           </p>
-          {/* Linha legal: autoria em contraste menor, links acionáveis um nível acima. */}
-          <div className="mt-8 flex flex-wrap items-baseline gap-x-5 gap-y-2 md:mt-auto">
-            {legalLinks.map((item) =>
-              item.href ? (
-                <Link key={item.label} href={item.href} className={legalItemClass}>
-                  {item.label}
-                </Link>
-              ) : (
-                <CookiePreferencesButton
-                  key={item.label}
-                  label={item.label}
-                  className={legalItemClass}
-                />
-              ),
-            )}
+          {/* Identidade primeiro; ações legais em uma linha secundária. */}
+          <div className="mt-8 flex flex-col items-start gap-2.5 md:mt-auto">
             <p className="type-micro text-subtle-foreground/70">
               © {new Date().getFullYear()} Nylla
             </p>
+            <nav aria-label="Links legais" className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+              {legalLinks.map((item) =>
+                item.href ? (
+                  <Link key={item.label} href={item.href} className={legalItemClass}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <CookiePreferencesButton
+                    key={item.label}
+                    label={item.label}
+                    className={legalItemClass}
+                  />
+                ),
+              )}
+            </nav>
           </div>
         </div>
         <nav
