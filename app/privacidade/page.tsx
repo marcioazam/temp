@@ -51,7 +51,11 @@ export default function PrivacyPage() {
             A Nylla é um gateway universal de IA. Este aviso explica quais dados tratamos, com
             qual finalidade e por quanto tempo, conforme a Lei 13.709/2018 (LGPD). Em resumo:
             seus prompts não são retidos nem usados para treinar modelos, e nenhum cookie
-            opcional roda antes da sua escolha.
+            opcional roda antes da sua escolha. As regras contratuais do serviço estão nos{' '}
+            <Link href="/termos" className={linkClass}>
+              termos de uso
+            </Link>
+            .
           </p>
 
           <div className="mt-14 flex flex-col gap-10">

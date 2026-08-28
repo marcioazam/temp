@@ -22,6 +22,12 @@ export function SiteFooter() {
             >
               Privacidade
             </Link>
+            <Link
+              href="/termos"
+              className="type-micro text-subtle-foreground transition-colors hover:text-foreground"
+            >
+              Termos
+            </Link>
             <CookiePreferencesButton className="type-micro text-subtle-foreground transition-colors hover:text-foreground" />
           </div>
         </div>
