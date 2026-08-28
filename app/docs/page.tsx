@@ -88,20 +88,30 @@ const META_LINKS = [
 
 export default function DocsPage() {
   return (
-    <main className="mx-auto flex w-full max-w-screen-2xl gap-14 px-4 py-14 md:px-9 md:py-20">
-      <aside className="hidden w-56 shrink-0 lg:block">
-        <div className="docs-scrollbar sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pb-10 pr-3">
-          <DocsNav groups={navGroups} />
+    <main>
+      <section className="pb-12 pt-6 md:pb-20 md:pt-8" aria-labelledby="docs-title">
+        <div
+          className="photo-grain mx-auto flex min-h-[360px] w-[calc(100%-2rem)] max-w-[1464px] items-center justify-center overflow-hidden rounded-xl bg-cover bg-center px-6 py-20 text-center text-canvas-ink md:h-[58svh] md:min-h-[460px] md:max-h-[620px] md:w-[calc(100%-4.5rem)]"
+          style={{ backgroundImage: "url('/images/docs-hero.png')" }}
+        >
+          <h1 id="docs-title" className="type-display text-balance">
+            Documentação
+          </h1>
         </div>
-      </aside>
+      </section>
 
-      <div className="min-w-0 flex-1 space-y-16 lg:max-w-3xl xl:max-w-4xl">
-        {/* ─────────────────────────── 01 · INÍCIO ─────────────────────────── */}
-        <Section
-          id="sobre"
-          as="h1"
-          eyebrow="documentação"
-          title="API do Nylla"
+      <div className="mx-auto flex w-full max-w-screen-2xl gap-14 px-4 pb-20 md:px-9">
+        <aside className="hidden w-56 shrink-0 lg:block">
+          <div className="docs-scrollbar sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pb-10 pr-3">
+            <DocsNav groups={navGroups} />
+          </div>
+        </aside>
+
+        <div className="min-w-0 flex-1 space-y-16 lg:max-w-3xl xl:max-w-4xl">
+          {/* 01 · INÍCIO */}
+          <Section
+            id="sobre"
+            title="API do Nylla"
           lead="O Nylla é um gateway de LLM: uma única API, compatível com o padrão OpenAI, na frente de todos os provedores e modelos. Você troca a base URL, mantém seu código, e ganha roteamento inteligente, fallback automático, cache, observabilidade e controle de custo."
         >
           <div className="type-label mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-muted-foreground">
@@ -1852,7 +1862,8 @@ nylla usage --since 7d`}
               <CopyCommand command="npx nylla connect" runners={false} />
             </div>
           </div>
-        </Section>
+          </Section>
+        </div>
       </div>
     </main>
   )

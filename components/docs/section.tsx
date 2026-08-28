@@ -20,7 +20,7 @@ export function Section({
   children,
 }: {
   id: string
-  eyebrow: string
+  eyebrow?: string
   title: string
   lead?: ReactNode
   as?: "h1" | "h2"
@@ -28,15 +28,17 @@ export function Section({
 }) {
   return (
     <section id={id} className="scroll-mt-24">
-      <div className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
-        <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
-        <span>{eyebrow}</span>
-      </div>
+      {eyebrow && (
+        <div className="type-eyebrow flex items-center gap-2.5 text-muted-foreground">
+          <span aria-hidden="true" className="relative -top-px size-1.5 shrink-0 rounded-full bg-primary" />
+          <span>{eyebrow}</span>
+        </div>
+      )}
 
       {As === "h1" ? (
-        <h1 className="type-title mt-5 text-balance text-foreground">{title}</h1>
+        <h1 className={`type-title text-balance text-foreground ${eyebrow ? "mt-5" : ""}`}>{title}</h1>
       ) : (
-        <h2 className="type-heading mt-5 text-balance text-foreground">
+        <h2 className={`type-heading text-balance text-foreground ${eyebrow ? "mt-5" : ""}`}>
           <a href={`#${id}`} className="group inline-flex items-baseline gap-2">
             {title}
             <span
