@@ -26,11 +26,11 @@ export function SiteFooter() {
             Gateway de LLM para geração de código e agents. Um endpoint, todos os modelos.
           </p>
           {/* Identidade primeiro; ações legais em uma linha secundária. */}
-          <div className="mt-4 flex flex-col items-start gap-2.5">
+          <div className="mt-2.5 flex flex-col items-start gap-2.5">
             <p className="type-micro text-subtle-foreground/70">
               © {new Date().getFullYear()} Nylla
             </p>
-            <nav aria-label="Links legais" className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+            <nav aria-label="Links legais" className="flex flex-wrap items-baseline gap-x-7 gap-y-2 md:gap-x-9">
               {legalLinks.map((item) =>
                 item.href ? (
                   <Link key={item.label} href={item.href} className={legalItemClass}>
