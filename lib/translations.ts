@@ -114,16 +114,16 @@ export const ptToEn: Record<string, string> = {
     "Metered billing turns every prompt into a cost decision. You hesitate before asking, and the meter always wins.",
   "na nylla": "at nylla",
   "Preço fixo, catálogo inteiro": "Flat price, full catalog",
-  "Uma assinatura, acesso ilimitado aos LLMs padrão e créditos separados para os modelos frontier. Pergunte quantas vezes precisar — a fatura não muda.":
-    "One subscription, unlimited standard LLM access, and separate credits for frontier models. Ask as often as needed—the bill stays the same.",
+  "Uma assinatura, acesso ilimitado aos LLMs padrão e créditos separados para os modelos frontier. Pergunte quantas vezes precisar, porque a fatura não muda.":
+    "One subscription, unlimited standard LLM access, and separate credits for frontier models. Ask as often as needed, because the bill stays the same.",
   "núcleo fixo": "fixed core",
   "Open-source sempre ativo": "Open source, always on",
   "Llama, Qwen, DeepSeek, Mistral, Gemma e companhia ficam permanentemente no catálogo. Nada entra em fila, nada sai sem aviso.":
     "Llama, Qwen, DeepSeek, Mistral, Gemma, and more stay permanently in the catalog. Nothing queues up, nothing disappears without notice.",
   "rotação semanal": "weekly rotation",
   "Uma seleção nova toda semana": "A fresh selection every week",
-  "Testamos lançamentos por capacidade real de código e custo por tarefa. O que passa entra no catálogo — para todos os planos, no mesmo dia.":
-    "We test releases for real coding capability and cost per task. What passes enters the catalog—for every plan, on the same day.",
+  "Testamos lançamentos por capacidade real de código e custo por tarefa. O que passa entra no catálogo para todos os planos, no mesmo dia.":
+    "We test releases for real coding capability and cost per task. What passes enters the catalog for every plan, on the same day.",
   "Os modelos de ponta por crédito": "Frontier models by credit",
   "Claude, GPT e Gemini de última geração consomem os créditos mensais do plano. Você escolhe quando vale gastar, sem contratar mais um provedor.":
     "The latest Claude, GPT, and Gemini models use your monthly plan credits. You decide when they're worth it, without signing up for another provider.",

@@ -95,17 +95,17 @@ export default function PrivacyPage() {
             <Section title="Finalidades e bases legais">
               <dl className="flex flex-col gap-3">
                 <Row term="Operar o gateway e rotear requisições">
-                  Execução de contrato — art. 7º, V
+                  Execução de contrato (art. 7º, V)
                 </Row>
-                <Row term="Faturamento e obrigações fiscais">Obrigação legal — art. 7º, II</Row>
+                <Row term="Faturamento e obrigações fiscais">Obrigação legal (art. 7º, II)</Row>
                 <Row term="Segurança, antifraude e limite de uso">
-                  Legítimo interesse e obrigação legal — art. 7º, IX e II
+                  Legítimo interesse e obrigação legal (art. 7º, IX e II)
                 </Row>
                 <Row term="Suporte e comunicação de serviço">
-                  Execução de contrato — art. 7º, V
+                  Execução de contrato (art. 7º, V)
                 </Row>
-                <Row term="Métricas de uso do site">Consentimento — art. 7º, I</Row>
-                <Row term="Campanhas e conteúdo personalizado">Consentimento — art. 7º, I</Row>
+                <Row term="Métricas de uso do site">Consentimento (art. 7º, I)</Row>
+                <Row term="Campanhas e conteúdo personalizado">Consentimento (art. 7º, I)</Row>
               </dl>
             </Section>
 
@@ -134,7 +134,7 @@ export default function PrivacyPage() {
               <P>
                 Nada além do necessário roda antes da sua escolha, e recusar tem o mesmo peso
                 que aceitar. Guardamos apenas versão do aviso, data/hora, método e categorias
-                aceitas — a prova exigida pelo art. 8º, §1º. Vale {CONSENT_MAX_AGE_DAYS} dias e
+                aceitas, que é a prova exigida pelo art. 8º, §1º. Vale {CONSENT_MAX_AGE_DAYS} dias e
                 é reapresentado quando a versão muda. O sinal Global Privacy Control do
                 navegador é respeitado como recusa. O inventário nominal completo está na{' '}
                 <Link href="/politica-de-cookies" className={linkClass}>
@@ -165,7 +165,7 @@ export default function PrivacyPage() {
 
             <Section title="Retenção">
               <dl className="flex flex-col gap-3">
-                <Row term="Prompts e respostas">Não retidos — descartados após a entrega</Row>
+                <Row term="Prompts e respostas">Não retidos, descartados após a entrega</Row>
                 <Row term="Metadados de roteamento">12 meses, depois agregados</Row>
                 <Row term="Registros de acesso">6 meses (Marco Civil, art. 15)</Row>
                 <Row term="Dados fiscais">5 anos, por obrigação legal</Row>

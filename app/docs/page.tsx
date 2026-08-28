@@ -7,7 +7,7 @@ import { DataTable, ParamTable, TableShell } from "@/components/docs/param-table
 import { Body, Bullets, C, Callout, GroupDivider, Note, Section, SubHeading } from "@/components/docs/section"
 
 export const metadata: Metadata = {
-  title: "Docs | Nylla — API Reference",
+  title: "Docs | Nylla API Reference",
   description:
     "Documentação da API do Nylla: gateway de LLM compatível com OpenAI. Endpoints, autenticação, streaming, roteamento, cache, tool calling, observabilidade e SDKs.",
 }
@@ -250,7 +250,7 @@ print(completion.choices[0].message.content)`,
           <SubHeading>Boas práticas</SubHeading>
           <Bullets
             items={[
-              "Nunca exponha a chave no client — chame a API sempre do servidor.",
+              "Nunca exponha a chave no client. Chame a API sempre do servidor.",
               "Use uma chave por ambiente (dev, staging, produção) e por serviço.",
               "Conceda o menor escopo suficiente; reserve admin para automações de infraestrutura.",
               "Defina limite de gasto por chave para conter incidentes.",
@@ -263,7 +263,7 @@ print(completion.choices[0].message.content)`,
           id="compatibilidade"
           eyebrow="compatibilidade"
           title="Compatibilidade OpenAI"
-          lead="O contrato é o mesmo da OpenAI, campo por campo. O que o provedor de destino não suporta nativamente, o gateway emula ou normaliza — você nunca escreve código específico de provedor."
+          lead="O contrato é o mesmo da OpenAI, campo por campo. O que o provedor de destino não suporta nativamente, o gateway emula ou normaliza, de modo que você nunca escreve código específico de provedor."
         >
           <div className="mt-6">
             <DataTable
@@ -442,7 +442,7 @@ print(completion.choices[0].message.content)`,
             />
           </div>
           <Note>
-            O objeto <C>nylla</C> é uma extensão de metadados do gateway — provedor usado, motivo da rota,
+            O objeto <C>nylla</C> é uma extensão de metadados do gateway: provedor usado, motivo da rota,
             latência, cache hit, tentativas e custo. SDKs padrão o ignoram sem erro.
           </Note>
         </Section>
@@ -668,8 +668,8 @@ print(completion.choices[0].message.content)`,
           </div>
           <Callout>
             Para aplicar moderação automaticamente em toda requisição, ative <C>guardrails</C> nas
-            configurações do projeto — o gateway rejeita com <C>400 content_policy_violation</C> antes de
-            gastar tokens.
+            configurações do projeto. O gateway passa a rejeitar com <C>400 content_policy_violation</C>{" "}
+            antes de gastar tokens.
           </Callout>
         </Section>
 
@@ -762,7 +762,7 @@ print(completion.choices[0].message.content)`,
           </div>
           <div className="mt-4">
             <CodeBlock
-              title="200 OK — /v1/models"
+              title="200 OK · /v1/models"
               lang="json"
               code={`{
   "object": "list",
@@ -799,7 +799,7 @@ print(completion.choices[0].message.content)`,
           id="usage"
           eyebrow="usage"
           title="Usage"
-          lead="Consulta o consumo agregado de tokens e créditos por período, chave e modelo — a mesma fonte de dados do dashboard."
+          lead="Consulta o consumo agregado de tokens e créditos por período, chave e modelo, na mesma fonte de dados que alimenta o dashboard."
         >
           <div className="mt-6">
             <Endpoint method="GET" path="/v1/usage" />
@@ -889,7 +889,7 @@ print(completion.choices[0].message.content)`,
           id="health"
           eyebrow="health"
           title="Health"
-          lead="Estado do gateway e de cada provedor upstream. Não exige autenticação e não conta para rate limit — use em health checks e dashboards."
+          lead="Estado do gateway e de cada provedor upstream. Não exige autenticação e não conta para rate limit, então pode ser usado em health checks e dashboards."
         >
           <div className="mt-6">
             <Endpoint method="GET" path="/v1/health" note="público" />
@@ -963,8 +963,8 @@ for await (const chunk of stream) {
             />
           </div>
           <Note>
-            Se um provedor cair no meio do stream, o gateway reconecta em outro provedor de forma transparente
-            — o cliente continua recebendo o mesmo stream SSE, sem duplicar tokens já emitidos.
+            Se um provedor cair no meio do stream, o gateway reconecta em outro provedor de forma
+            transparente. O cliente continua recebendo o mesmo stream SSE, sem duplicar tokens já emitidos.
           </Note>
         </Section>
 
@@ -1036,7 +1036,7 @@ for await (const chunk of stream) {
               </>,
               <>
                 <span className="text-foreground">Troca de provedor</span> quando o modelo existe em mais de um
-                upstream — mesma resposta, cobrança pelo que foi efetivamente usado.
+                upstream, devolvendo a mesma resposta e cobrando pelo que foi efetivamente usado.
               </>,
               <>
                 <span className="text-foreground">Troca de modelo</span> seguindo <C>route.fallbacks</C> quando
@@ -1071,7 +1071,7 @@ x-nylla-latency-ms: 412`}
         >
           <SubHeading>Prompt caching</SubHeading>
           <Body>
-            Marque os blocos estáveis do contexto — instruções longas, documentos, definições de tools. O
+            Marque os blocos estáveis do contexto, como instruções longas, documentos e definições de tools. O
             gateway reaproveita o prefixo entre requisições e cobra a fração de leitura de cache.
           </Body>
           <div className="mt-4">
@@ -1198,7 +1198,7 @@ x-nylla-latency-ms: 412`}
           id="tool-calling"
           eyebrow="tool calling"
           title="Tool calling"
-          lead="Function calling no formato padrão OpenAI, normalizado entre todos os provedores — a mesma definição de tool funciona em Claude, GPT, Gemini ou Llama."
+          lead="Function calling no formato padrão OpenAI, normalizado entre todos os provedores. A mesma definição de tool funciona em Claude, GPT, Gemini ou Llama."
         >
           <div className="mt-6">
             <CodeBlock
@@ -1321,7 +1321,7 @@ x-nylla-latency-ms: 412`}
         <Section
           id="byok"
           eyebrow="byok"
-          title="BYOK — traga sua chave"
+          title="BYOK: traga sua chave"
           lead="Cadastre suas próprias chaves de provedor para usar créditos, descontos negociados ou modelos fine-tuned. O gateway continua entregando roteamento, cache e observabilidade, e não cobra tokens sobre tráfego BYOK."
         >
           <div className="mt-6">
@@ -1423,7 +1423,7 @@ X-Nylla-Timeout-Ms: 20000`}
           <Bullets
             items={[
               "A chave de idempotência vale 24h; requisições repetidas recebem a resposta original com x-nylla-idempotent-replay: true.",
-              "Repita apenas 408, 429, 500, 502, 503 — os demais são determinísticos e vão falhar igual.",
+              "Repita apenas 408, 429, 500, 502 e 503; os demais são determinísticos e vão falhar igual.",
               "Use backoff exponencial com jitter, começando em 500ms e limitado a ~8s.",
               "Respeite retry-after quando presente; ele vem calculado pela janela real do rate limit.",
             ]}
@@ -1553,7 +1553,7 @@ export function verify(rawBody: string, header: string, secret: string) {
           </div>
           <div className="mt-4">
             <CodeBlock
-              title="200 OK — /v1/logs/req_8k2m4x"
+              title="200 OK · /v1/logs/req_8k2m4x"
               lang="json"
               code={`{
   "request_id": "req_8k2m4x",
@@ -1619,7 +1619,7 @@ export function verify(rawBody: string, header: string, secret: string) {
         >
           <Bullets
             items={[
-              "Trate campos desconhecidos como opcionais — o gateway adiciona metadados ao longo do tempo.",
+              "Trate campos desconhecidos como opcionais, porque o gateway adiciona metadados ao longo do tempo.",
               "IDs de modelo são estáveis; aliases como nylla/auto podem passar a resolver para modelos melhores.",
               "Depreciações são anunciadas com 6 meses de antecedência e sinalizadas no header sunset.",
               "Fixe um modelo explícito quando precisar de saída reprodutível entre deploys.",
@@ -1646,7 +1646,7 @@ link: <https://docs.nylla.ai/changelog>; rel="deprecation"`}
           lead={
             <>
               Não existe SDK proprietário para aprender: o Nylla é compatível com os SDKs oficiais da OpenAI e
-              com o AI SDK da Vercel — basta trocar a <C>baseURL</C>.
+              com o AI SDK da Vercel. Basta trocar a <C>baseURL</C>.
             </>
           }
         >

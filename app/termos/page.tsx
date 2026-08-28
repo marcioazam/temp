@@ -70,7 +70,7 @@ export default function TermsPage() {
                 A Nylla expõe um endpoint único que recebe suas requisições e as roteia para o
                 modelo de linguagem apropriado, escolhido por disponibilidade, latência, custo e
                 pelas regras da sua organização. Atuamos como intermediário técnico entre você e
-                os provedores de modelo — não desenvolvemos os modelos nem garantimos qualquer
+                os provedores de modelo. Não desenvolvemos os modelos nem garantimos qualquer
                 resultado específico de inferência.
               </P>
             </Section>

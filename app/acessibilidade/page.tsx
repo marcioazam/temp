@@ -63,7 +63,7 @@ export default function AccessibilityPage() {
                 </Row>
                 <Row term="Nível pretendido">AA</Row>
                 <Row term="Status atual">
-                  <span className="text-foreground">Parcialmente conforme</span> — a maior parte
+                  <span className="text-foreground">Parcialmente conforme</span>: a maior parte
                   do site atende ao nível AA, com as exceções listadas em limitações conhecidas.
                 </Row>
                 <Row term="Base legal">

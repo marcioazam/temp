@@ -120,7 +120,7 @@ export default function CookiePolicyPage() {
               <P>
                 Cookies são pequenos arquivos gravados pelo navegador para lembrar informações
                 entre páginas e visitas. Tecnologias similares, como o armazenamento local
-                (localStorage), cumprem a mesma função e recebem aqui o mesmo tratamento — por
+                (localStorage), cumprem a mesma função e recebem aqui o mesmo tratamento. Por
                 isso aparecem no inventário, e não em nota de rodapé.
               </P>
             </Section>
@@ -134,7 +134,7 @@ export default function CookiePolicyPage() {
                 leitura.
               </P>
               <P>
-                Guardamos apenas a prova exigida pelo art. 8º, §1º da LGPD — versão do aviso,
+                Guardamos apenas a prova exigida pelo art. 8º, §1º da LGPD: versão do aviso,
                 data e hora, método e categorias aceitas. O aviso é reapresentado quando a versão
                 muda ou quando o prazo de {CONSENT_MAX_AGE_DAYS} dias expira.
               </P>
@@ -147,7 +147,7 @@ export default function CookiePolicyPage() {
                     {category.description}{' '}
                     <span className="text-subtle-foreground">
                       {category.required
-                        ? 'Sempre ativo — legítimo interesse na operação do site.'
+                        ? 'Sempre ativo, por legítimo interesse na operação do site.'
                         : 'Só roda com o seu consentimento.'}
                     </span>
                   </Row>
@@ -168,7 +168,7 @@ export default function CookiePolicyPage() {
                 Nossa plataforma de análise não grava cookie nem qualquer identificador no seu
                 dispositivo. Ela conta visitas por meio de um valor derivado da própria
                 requisição, renovado todos os dias. Mesmo assim, ela só é carregada se você
-                aceitar a categoria Análise — porque ainda há processamento de dado
+                aceitar a categoria Análise, porque ainda há processamento de dado
                 potencialmente pessoal, e a escolha é sua.
               </P>
             </Section>
@@ -185,10 +185,10 @@ export default function CookiePolicyPage() {
             <Section title="Base legal">
               <dl className="flex flex-col gap-3">
                 <Row term="Necessários">
-                  Legítimo interesse e execução do serviço — art. 7º, incisos V e IX da LGPD.
+                  Legítimo interesse e execução do serviço (art. 7º, incisos V e IX da LGPD).
                 </Row>
-                <Row term="Análise">Consentimento — art. 7º, inciso I.</Row>
-                <Row term="Marketing">Consentimento — art. 7º, inciso I.</Row>
+                <Row term="Análise">Consentimento (art. 7º, inciso I).</Row>
+                <Row term="Marketing">Consentimento (art. 7º, inciso I).</Row>
               </dl>
             </Section>
 
