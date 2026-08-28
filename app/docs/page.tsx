@@ -89,12 +89,12 @@ const META_LINKS = [
 export default function DocsPage() {
   return (
     <main>
-      <section className="pb-12 pt-6 md:pb-20 md:pt-8" aria-labelledby="docs-title">
+      <section className="pb-10 pt-6 md:pb-14 md:pt-8" aria-labelledby="docs-title">
         <div
-          className="photo-grain mx-auto flex min-h-[360px] w-[calc(100%-2rem)] max-w-[1464px] items-center justify-center overflow-hidden rounded-xl bg-cover bg-center px-6 py-20 text-center text-canvas-ink md:h-[58svh] md:min-h-[460px] md:max-h-[620px] md:w-[calc(100%-4.5rem)]"
+          className="photo-grain mx-auto flex h-52 w-[calc(100%-2rem)] max-w-[1464px] items-center justify-center overflow-hidden rounded-xl bg-cover bg-center px-6 text-center text-canvas-ink sm:h-60 md:h-72 md:w-[calc(100%-4.5rem)]"
           style={{ backgroundImage: "url('/images/docs-hero.png')" }}
         >
-          <h1 id="docs-title" className="type-display text-balance">
+          <h1 id="docs-title" className="type-title text-balance md:text-5xl">
             Documentação
           </h1>
         </div>
