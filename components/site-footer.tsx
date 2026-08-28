@@ -26,7 +26,7 @@ export function SiteFooter() {
             Gateway de LLM para geração de código e agents. Um endpoint, todos os modelos.
           </p>
           {/* Identidade primeiro; ações legais em uma linha secundária. */}
-          <div className="mt-8 flex flex-col items-start gap-2.5 md:mt-auto">
+          <div className="mt-4 flex flex-col items-start gap-2.5">
             <p className="type-micro text-subtle-foreground/70">
               © {new Date().getFullYear()} Nylla
             </p>
