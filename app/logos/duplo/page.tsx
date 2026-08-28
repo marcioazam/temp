@@ -6,7 +6,7 @@ import { solDuploVariants, SolDuploLockup } from "@/components/logo-sol-duplo"
 export const metadata: Metadata = {
   title: "sol duplo · Nylla",
   description:
-    "15 variantes do sol da Nylla com um segundo sol: mesma geometria de braço, novas composições, posições e cores.",
+    "30 variantes do sol da Nylla com um segundo sol: mesma geometria de braço, novas composições, posições e cores.",
 }
 
 export default function SolDuploPage() {
@@ -42,9 +42,9 @@ export default function SolDuploPage() {
           </div>
           <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">Sol duplo</h1>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            15 variantes que mantêm o sol atual e acrescentam um segundo. O braço, o traço e o
+            30 variantes que mantêm o sol atual e acrescentam um segundo. O braço, o traço e o
             núcleo são exatamente os do logo em uso: o que muda é posição, escala, espelhamento,
-            contagem de braços e, em três casos, uma segunda cor.
+            contagem de braços e, em seis casos, uma segunda cor.
           </p>
         </header>
 

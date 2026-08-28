@@ -18,11 +18,14 @@ const ARM_SHORT = "M32 22 Q39 18 40 13"
 /** Braço externo : começa fora do disco, para halos concêntricos. */
 const ARM_RING = "M32 14 Q38 10 39 5"
 
-/* Segunda cor: usada em 3 das 15 variantes. Amarelo âmbar = sol quente,
-   cyan/magenta/aço = sol frio, o contraponto do par binário. */
+/* Segunda cor: usada em 3 de cada série de 15. Amarelo âmbar = sol quente;
+   as demais são o contraponto frio ou vegetal do par binário. */
 const CYAN = "#24d3f5"
 const MAGENTA = "#f5249c"
 const COOL = "#9db4c8"
+const VIOLETA = "#a78bfa"
+const VERDE = "#34d399"
+const ROSA = "#fb7185"
 
 const PRIMARY = "var(--primary)"
 
@@ -285,6 +288,185 @@ function QuenteFrio(props: SolDuploProps) {
   )
 }
 
+/* ==========================================================================
+   Série 2 : variantes 16-30. Mesmo primitivo, novas relações entre o par.
+   ========================================================================== */
+
+/* ---- 16 · eco -----------------------------------------------------------
+   Mesmo centro: o segundo sol é um fantasma rotacionado a 30°.
+   Lê como um sol de 12 braços onde metade é memória do outro. */
+function Eco(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={48} y={32} s={0.82} armOffset={30} core={0} opacity={0.3} />
+      <Sol x={48} y={32} s={0.82} />
+    </Canvas>
+  )
+}
+
+/* ---- 17 · horizonte -----------------------------------------------------
+   O segundo sol nasce: cortado pela linha da base, só o topo aparece. */
+function Horizonte({ uid = "a", ...props }: SolDuploProps) {
+  const maskId = `sol-duplo-horizon-${uid}`
+
+  return (
+    <Canvas {...props}>
+      <mask id={maskId} maskUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="96" height="52" fill="#fff" />
+      </mask>
+      <Sol x={34} y={26} s={0.62} />
+      <g mask={`url(#${maskId})`}>
+        <Sol x={70} y={52} s={0.5} />
+      </g>
+      <line x1={56} y1={52} x2={86} y2={52} stroke={PRIMARY} strokeWidth={2.4} strokeLinecap="round" />
+    </Canvas>
+  )
+}
+
+/* ---- 18 · cascata -------------------------------------------------------
+   Vertical com hierarquia: o maior acima, o menor cai abaixo. */
+function Cascata(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={48} y={22} s={0.56} />
+      <Sol x={48} y={50} s={0.32} weight={4} core={6} />
+    </Canvas>
+  )
+}
+
+/* ---- 19 · assimetria ----------------------------------------------------
+   Discos iguais, braços diferentes: 6 contra 3. Irmãos, não gêmeos. */
+function Assimetria(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={30} y={32} s={0.48} />
+      <Sol x={66} y={32} s={0.48} arms={3} armOffset={30} />
+    </Canvas>
+  )
+}
+
+/* ---- 20 · peso ----------------------------------------------------------
+   Mesma forma, traço grosso contra traço fino: presença e sussurro. */
+function Peso(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={30} y={32} s={0.48} weight={6.6} core={6} />
+      <Sol x={66} y={32} s={0.48} weight={2.6} core={3.4} />
+    </Canvas>
+  )
+}
+
+/* ---- 21 · abraço --------------------------------------------------------
+   Dois leques parciais abrindo para fora: os núcleos se aproximam no centro. */
+function Abraco(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={38} y={32} s={0.56} angles={[130, 180, 230]} />
+      <Sol x={58} y={32} s={0.56} angles={[310, 0, 50]} />
+    </Canvas>
+  )
+}
+
+/* ---- 22 · trânsito ------------------------------------------------------
+   Um sol-ponto (só núcleo, sem braços) passa à frente do sol pleno. */
+function Transito(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={44} y={32} s={0.8} />
+      <Sol x={62} y={26} s={0.8} arms={0} core={7} />
+    </Canvas>
+  )
+}
+
+/* ---- 23 · sombra --------------------------------------------------------
+   O gêmeo deslocado atrás, quase apagado: profundidade sem perspectiva. */
+function Sombra(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={58} y={26} s={0.62} opacity={0.24} />
+      <Sol x={42} y={36} s={0.62} />
+    </Canvas>
+  )
+}
+
+/* ---- 24 · extremos ------------------------------------------------------
+   Contraste máximo de escala: o sistema inteiro e sua menor estrela. */
+function Extremos(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={42} y={32} s={0.9} />
+      <Sol x={84} y={46} s={0.18} weight={2.8} core={7} />
+    </Canvas>
+  )
+}
+
+/* ---- 25 · tangente diagonal --------------------------------------------
+   Discos tangentes no eixo diagonal, curvaturas espelhadas. */
+function TangenteDiagonal(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={33} y={43} s={0.46} />
+      <Sol x={63} y={21} s={0.46} mirror />
+    </Canvas>
+  )
+}
+
+/* ---- 26 · coroa partilhada ----------------------------------------------
+   Um halo externo envolve o par: dois sóis sob a mesma coroa. */
+function CoroaPartilhada(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={48} y={32} s={1.04} arms={10} armPath={ARM_RING} weight={2.2} core={0} opacity={0.34} armOffset={18} />
+      <Sol x={38} y={32} s={0.3} weight={3.8} />
+      <Sol x={58} y={32} s={0.3} weight={3.8} armOffset={30} />
+    </Canvas>
+  )
+}
+
+/* ---- 27 · companheiro ---------------------------------------------------
+   O segundo sol usa o braço curto: mesma família, voz mais baixa. */
+function Companheiro(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={34} y={32} s={0.58} />
+      <Sol x={68} y={32} s={0.58} armPath={ARM_SHORT} weight={4.2} core={4} />
+    </Canvas>
+  )
+}
+
+/* ---- 28 · violeta espelho -----------------------------------------------
+   2ª cor: o gêmeo violeta gira ao contrário. Crepúsculo. */
+function VioletaEspelho(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={30} y={32} s={0.48} />
+      <Sol x={66} y={32} s={0.48} color={VIOLETA} mirror />
+    </Canvas>
+  )
+}
+
+/* ---- 29 · órbita verde --------------------------------------------------
+   2ª cor: satélite verde, pequeno e vivo, na diagonal alta. */
+function OrbitaVerde(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={44} y={32} s={0.78} />
+      <Sol x={80} y={12} s={0.26} weight={3.4} core={6} color={VERDE} />
+    </Canvas>
+  )
+}
+
+/* ---- 30 · nascente rosa -------------------------------------------------
+   2ª cor: empilhados, o de baixo em rosa. Poente e nascente. */
+function NascenteRosa(props: SolDuploProps) {
+  return (
+    <Canvas {...props}>
+      <Sol x={48} y={17} s={0.42} />
+      <Sol x={48} y={47} s={0.42} color={ROSA} armOffset={30} />
+    </Canvas>
+  )
+}
+
 export type SolDuploVariant = {
   id: string
   name: string
@@ -308,6 +490,21 @@ export const solDuploVariants: SolDuploVariant[] = [
   { id: "binario-cyan", name: "13 binário cyan", note: "2ª cor · temperaturas opostas", Mark: BinarioCyan },
   { id: "eclipse-magenta", name: "14 eclipse magenta", note: "2ª cor · mistura de luz", Mark: EclipseMagenta },
   { id: "quente-frio", name: "15 quente e frio", note: "2ª cor · âmbar e aço", Mark: QuenteFrio },
+  { id: "eco", name: "16 eco", note: "fantasma a 30° · mesmo centro", Mark: Eco },
+  { id: "horizonte", name: "17 horizonte", note: "o segundo sol nasce", Mark: Horizonte },
+  { id: "cascata", name: "18 cascata", note: "vertical com hierarquia", Mark: Cascata },
+  { id: "assimetria", name: "19 assimetria", note: "6 braços contra 3", Mark: Assimetria },
+  { id: "peso", name: "20 peso", note: "traço grosso e fino", Mark: Peso },
+  { id: "abraco", name: "21 abraço", note: "leques abrindo para fora", Mark: Abraco },
+  { id: "transito", name: "22 trânsito", note: "sol-ponto à frente", Mark: Transito },
+  { id: "sombra", name: "23 sombra", note: "gêmeo quase apagado", Mark: Sombra },
+  { id: "extremos", name: "24 extremos", note: "contraste máximo de escala", Mark: Extremos },
+  { id: "tangente-diagonal", name: "25 tangente", note: "diagonal · espelhados", Mark: TangenteDiagonal },
+  { id: "coroa-partilhada", name: "26 coroa partilhada", note: "dois sóis, uma coroa", Mark: CoroaPartilhada },
+  { id: "companheiro", name: "27 companheiro", note: "braço curto · voz baixa", Mark: Companheiro },
+  { id: "violeta-espelho", name: "28 violeta espelho", note: "2ª cor · crepúsculo", Mark: VioletaEspelho },
+  { id: "orbita-verde", name: "29 órbita verde", note: "2ª cor · satélite vivo", Mark: OrbitaVerde },
+  { id: "nascente-rosa", name: "30 nascente", note: "2ª cor · poente e nascente", Mark: NascenteRosa },
 ]
 
 /**
