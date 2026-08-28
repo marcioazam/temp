@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SiteHeader } from '@/components/site-header'
-import { SiteFooter } from '@/components/site-footer'
 import { CookiePreferencesButton } from '@/components/cookie-preferences-button'
 import { CONSENT_CATEGORIES, CONSENT_MAX_AGE_DAYS, CONSENT_VERSION } from '@/lib/consent'
 
@@ -42,10 +40,7 @@ function Row({ term, children }: { term: string; children: React.ReactNode }) {
 
 export default function PrivacyPage() {
   return (
-    <>
-      <SiteHeader />
-
-      <main className="site-background">
+    <main className="site-background">
         <div className="mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
           <div className="mx-auto w-full max-w-2xl">
           <h1 className="type-heading text-foreground">Aviso de privacidade</h1>
@@ -227,9 +222,6 @@ export default function PrivacyPage() {
           </Link>
           </div>
         </div>
-      </main>
-
-      <SiteFooter />
-    </>
+    </main>
   )
 }
