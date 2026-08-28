@@ -35,7 +35,7 @@ export function SiteFooter() {
             aria-label="Rodapé"
             className="grid grid-flow-col grid-rows-5 gap-x-12 gap-y-3"
           >
-            <Link href="/#sobre" className={footerLinkClass}>Sobre</Link>
+            <Link href="/login" className={footerLinkClass}>Entrar</Link>
             <Link href="/#harnesses" className={footerLinkClass}>Harness</Link>
             <Link href="/#instalar" className={footerLinkClass}>Instalar</Link>
             <Link href="/#endpoint" className={footerLinkClass}>Integração</Link>
