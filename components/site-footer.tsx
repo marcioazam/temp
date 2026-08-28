@@ -33,7 +33,7 @@ export function SiteFooter() {
         <div className="type-label flex flex-col gap-8 self-start text-muted-foreground sm:flex-row sm:gap-12 md:ml-auto md:self-center">
           <nav
             aria-label="Rodapé"
-            className="grid grid-flow-col grid-rows-4 gap-x-12 gap-y-3"
+            className="grid grid-flow-col grid-rows-5 gap-x-12 gap-y-3"
           >
             <Link href="/#sobre" className={footerLinkClass}>Sobre</Link>
             <Link href="/#harnesses" className={footerLinkClass}>Harness</Link>
