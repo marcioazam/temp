@@ -136,7 +136,11 @@ export default function PrivacyPage() {
                 que aceitar. Guardamos apenas versão do aviso, data/hora, método e categorias
                 aceitas — a prova exigida pelo art. 8º, §1º. Vale {CONSENT_MAX_AGE_DAYS} dias e
                 é reapresentado quando a versão muda. O sinal Global Privacy Control do
-                navegador é respeitado como recusa.
+                navegador é respeitado como recusa. O inventário nominal completo está na{' '}
+                <Link href="/politica-de-cookies" className={linkClass}>
+                  política de cookies
+                </Link>
+                .
               </P>
               <CookiePreferencesButton
                 className={`${linkClass} type-caption self-start`}

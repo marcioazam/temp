@@ -34,6 +34,12 @@ export function SiteFooter() {
             >
               Acessibilidade
             </Link>
+            <Link
+              href="/politica-de-cookies"
+              className="type-micro text-subtle-foreground transition-colors hover:text-foreground"
+            >
+              Cookies
+            </Link>
             <CookiePreferencesButton className="type-micro text-subtle-foreground transition-colors hover:text-foreground" />
           </div>
         </div>
