@@ -78,13 +78,13 @@
   --tool-card: #050604;
   --radius: 0rem;
 
-  /* Text scale — 3 níveis sobre fundo escuro, todos >= 4.5:1 */
+  /* Text scale : 3 níveis sobre fundo escuro, todos >= 4.5:1 */
   --subtle-foreground: #7b7b7b;
 
   /* Chrome de janelas (títulos de barra) */
   --chrome-fg: #a3a3a3;
 
-  /* Janela dos mocks — padrão único, estilo macOS moderno */
+  /* Janela dos mocks : padrão único, estilo macOS moderno */
   --win-radius: 12px;
   --win-bg: #080806;
   --win-border: #2b2b2b;
@@ -426,7 +426,7 @@ section[id] {
 
 /* Continuously animating layers are promoted to their own compositor
    layer so each frame is a GPU transform with no layout or paint work.
-   `will-change` is scoped to these elements only — applying it broadly
+   `will-change` is scoped to these elements only : applying it broadly
    would waste memory and slow the page down instead. */
 .marquee-track,
 .ambient-drift,
@@ -880,7 +880,7 @@ kbd {
 
 /* Subtle hover lift for iOS-style cards.
    The shadow lives on a pseudo-element and cross-fades via opacity, so the
-   hover never triggers a box-shadow repaint — only compositor work. */
+   hover never triggers a box-shadow repaint : only compositor work. */
 .card-lift {
   position: relative;
   transition:
@@ -1051,7 +1051,7 @@ kbd {
   animation: dice-tumble 7s steps(1, jump-none) infinite;
 }
 
-/* Token — cells light up in sequence, like tokens being emitted. */
+/* Token : cells light up in sequence, like tokens being emitted. */
 @keyframes token-emit {
   0%,
   8% {
@@ -1071,7 +1071,7 @@ kbd {
   animation-delay: var(--tk-delay, 0s);
 }
 
-/* Gateway — a pixel packet traveling left to right in quantized hops. */
+/* Gateway : a pixel packet traveling left to right in quantized hops. */
 @keyframes gw-hop {
   0% {
     transform: translateX(0);
@@ -1102,7 +1102,7 @@ kbd {
   animation-delay: var(--gw-delay, 0s);
 }
 
-/* Chunk — blocks of the mark shift out of register and snap back. */
+/* Chunk : blocks of the mark shift out of register and snap back. */
 @keyframes chunk-shift {
   0%,
   78%,
@@ -1123,7 +1123,7 @@ kbd {
   animation-delay: var(--ck-delay, 0s);
 }
 
-/* Stream — a column of bits scrolling upward in steps. */
+/* Stream : a column of bits scrolling upward in steps. */
 @keyframes bit-scroll {
   from {
     transform: translateY(0);
@@ -1146,7 +1146,7 @@ kbd {
   will-change: transform;
 }
 
-/* Hero flow diagram — one 3.2s cycle shared by every element.
+/* Hero flow diagram : one 3.2s cycle shared by every element.
    Request packet travels down connector A (2–16%), Nylla steps light up in
    sequence (~18–46%), and the packet crosses connector B (46–58%). The
    selected model stays white until 84%, creating a longer, readable dwell
@@ -1270,7 +1270,7 @@ kbd {
   will-change: border-color, color, opacity;
 }
 
-/* Grain padrão para fotos de fundo — mesmo noise do body (fractalNoise .72, tile 240px) */
+/* Grain padrão para fotos de fundo : mesmo noise do body (fractalNoise .72, tile 240px) */
 .photo-grain {
   position: relative;
 }

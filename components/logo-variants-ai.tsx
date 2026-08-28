@@ -1,12 +1,12 @@
 import type { SVGProps } from "react"
 
 /**
- * Minimal AI marks — estudos inspirados em cursor.com, openai.com e claude.ai.
+ * Minimal AI marks : estudos inspirados em cursor.com, openai.com e claude.ai.
  * Todas monocromáticas via currentColor, geometria limpa, sem pixel-crisp:
  * são a contraparte "moderna e suave" do sistema pixel do Nylla.
  */
 
-/** 01 — Cubo isométrico com faces em três tons (estudo cursor). */
+/** 01 : Cubo isométrico com faces em três tons (estudo cursor). */
 export function CubeMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="cubo" {...props}>
@@ -22,7 +22,7 @@ export function CubeMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 02 — Cubo aberto: arestas com vértice em falta, como um gate (estudo cursor). */
+/** 02 : Cubo aberto: arestas com vértice em falta, como um gate (estudo cursor). */
 export function CubeWireMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="cubo aberto" {...props}>
@@ -36,7 +36,7 @@ export function CubeWireMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 03 — Nó de três laços entrelaçados (estudo openai). */
+/** 03 : Nó de três laços entrelaçados (estudo openai). */
 export function KnotMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="nó" {...props}>
@@ -49,7 +49,7 @@ export function KnotMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 04 — Hexágono duplo em contra-rotação, um portal (estudo openai). */
+/** 04 : Hexágono duplo em contra-rotação, um portal (estudo openai). */
 export function PortalMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="portal" {...props}>
@@ -62,7 +62,7 @@ export function PortalMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 05 — Starburst radial com raios de comprimentos variados (estudo claude). */
+/** 05 : Starburst radial com raios de comprimentos variados (estudo claude). */
 export function SunburstMark(props: SVGProps<SVGSVGElement>) {
   const spokes = [26, 21, 25, 20, 27, 22, 24, 20, 26, 21, 25, 22]
   return (
@@ -76,7 +76,7 @@ export function SunburstMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 06 — Starburst quantizado em pixels: a ponte entre claude e o DNA Nylla. */
+/** 06 : Starburst quantizado em pixels: a ponte entre claude e o DNA Nylla. */
 export function PixelBurstMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" className="pixel-crisp" role="img" aria-label="burst pixel" {...props}>
@@ -103,7 +103,7 @@ export function PixelBurstMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 07 — Núcleo com anel orbital: o modelo e seu contexto. */
+/** 07 : Núcleo com anel orbital: o modelo e seu contexto. */
 export function OrbitMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="órbita" {...props}>
@@ -116,7 +116,7 @@ export function OrbitMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 08 — Monograma "n" em traço contínuo, terminais arredondados. */
+/** 08 : Monograma "n" em traço contínuo, terminais arredondados. */
 export function StrokeNMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="n" {...props}>
@@ -131,7 +131,7 @@ export function StrokeNMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 09 — Gate: um token atravessando duas barras verticais. */
+/** 09 : Gate: um token atravessando duas barras verticais. */
 export function GateDotMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="gate" {...props}>
@@ -146,7 +146,7 @@ export function GateDotMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 10 — Malha: três nós conectados, inferência distribuída. */
+/** 10 : Malha: três nós conectados, inferência distribuída. */
 export function MeshMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="malha" {...props}>

@@ -20,7 +20,7 @@ const LAST_UPDATED = '27 de agosto de 2026'
 const linkClass =
   'text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-primary'
 
-/** Inventário auditado no código — ver docs/spec-politica-de-cookies.md. */
+/** Inventário auditado no código : ver docs/spec-politica-de-cookies.md. */
 const INVENTORY: Array<{
   name: string
   kind: string

@@ -1,5 +1,5 @@
 /**
- * Camada de consentimento (LGPD — Lei 13.709/2018).
+ * Camada de consentimento (LGPD : Lei 13.709/2018).
  *
  * Princípios aplicados:
  * - Opt-in real: nada além do estritamente necessário roda antes da escolha (art. 7º/8º).
@@ -27,7 +27,7 @@ export type ConsentMethod = 'accept-all' | 'reject-all' | 'custom' | 'gpc'
 
 export type ConsentRecord = {
   version: string
-  /** ISO 8601 — data/hora da manifestação de vontade. */
+  /** ISO 8601 : data/hora da manifestação de vontade. */
   timestamp: string
   method: ConsentMethod
   choices: ConsentChoices

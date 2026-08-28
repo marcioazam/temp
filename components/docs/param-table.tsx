@@ -8,7 +8,7 @@ export type Param = {
   desc: ReactNode
 }
 
-/** Casca de tabela compartilhada — hairlines, header mono, scroll horizontal. */
+/** Casca de tabela compartilhada : hairlines, header mono, scroll horizontal. */
 export function TableShell({
   caption,
   head,

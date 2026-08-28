@@ -27,7 +27,7 @@ function P({ children }: { children: React.ReactNode }) {
   return <p className="type-caption text-pretty text-muted-foreground">{children}</p>
 }
 
-/** Linha rótulo → valor, sem bordas nem tabela — igual ao aviso de privacidade. */
+/** Linha rótulo → valor, sem bordas nem tabela : igual ao aviso de privacidade. */
 function Row({ term, children }: { term: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-6">
@@ -165,7 +165,7 @@ export default function TermsPage() {
 
             <Section title="Disponibilidade e suporte">
               <P>
-                Empregamos melhores esforços para manter o gateway disponível, mas não há SLA no
+                Empregamos melhores esfor��os para manter o gateway disponível, mas não há SLA no
                 plano gratuito. Manutenções programadas são avisadas quando possível, e janelas
                 de degradação causadas por provedores externos estão fora do nosso controle.
                 Planos com SLA contratual têm suas próprias regras de crédito.

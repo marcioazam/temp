@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 
-/** Divisor de grupo — régua editorial que abre cada bloco da documentação. */
+/** Divisor de grupo : régua editorial que abre cada bloco da documentação. */
 export function GroupDivider({ label, index }: { label: string; index: string }) {
   return (
     <div className="flex items-center gap-4 pt-4">

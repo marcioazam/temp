@@ -28,7 +28,7 @@ function P({ children }: { children: React.ReactNode }) {
   return <p className="type-caption text-pretty text-muted-foreground">{children}</p>
 }
 
-/** Linha rótulo → valor, sem bordas nem tabela — igual às demais páginas legais. */
+/** Linha rótulo → valor, sem bordas nem tabela : igual às demais páginas legais. */
 function Row({ term, children }: { term: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-6">

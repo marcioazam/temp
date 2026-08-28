@@ -23,7 +23,7 @@ type Props = {
 }
 
 /* --------------------------------------------------------------------------
-   Tokenizer mínimo — o suficiente para dar hierarquia ao código sem
+   Tokenizer mínimo : o suficiente para dar hierarquia ao código sem
    arrastar um highlighter completo para o bundle.
    Paleta restrita: âmbar para literais de texto, verde para números,
    neutros para o resto.
