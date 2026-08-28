@@ -12,7 +12,7 @@ const composition = [
   {
     id: "rotação semanal",
     title: "Uma seleção nova toda semana",
-    body: "Testamos lançamentos por capacidade real de código e custo por tarefa. O que passa entra no catálogo — para todos os planos, no mesmo dia.",
+    body: "Testamos lançamentos por capacidade real de código e custo por tarefa. O que passa entra no catálogo para todos os planos, no mesmo dia.",
   },
   {
     id: "frontier",
@@ -124,7 +124,7 @@ export function CatalogSection() {
             <h3 className="type-subheading mt-6 text-foreground">Preço fixo, catálogo inteiro</h3>
             <p className="type-body mt-3 text-muted-foreground">
               Uma assinatura, acesso ilimitado aos LLMs padrão e créditos separados para os modelos frontier. Pergunte
-              quantas vezes precisar — a fatura não muda.
+              quantas vezes precisar, porque a fatura não muda.
             </p>
           </Reveal>
         </div>

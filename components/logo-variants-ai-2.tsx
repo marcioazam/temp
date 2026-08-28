@@ -1,7 +1,7 @@
 import type { SVGProps } from "react"
 
 /**
- * Minimal AI marks — série 2. Vinte derivações dos dez estudos originais
+ * Minimal AI marks : série 2. Vinte derivações dos dez estudos originais
  * (cubo, nó, portal, burst, órbita, traço, gate, malha), mantendo a mesma
  * gramática: monocromático via currentColor, geometria limpa, opacidades
  * em 3 níveis no máximo.
@@ -9,7 +9,7 @@ import type { SVGProps } from "react"
 
 /* ---------------------------------------------------------------- cubos */
 
-/** 11 — Pilha isométrica: dois cubos empilhados, camadas de modelo. */
+/** 11 : Pilha isométrica: dois cubos empilhados, camadas de modelo. */
 export function StackMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="pilha" {...props}>
@@ -25,7 +25,7 @@ export function StackMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 12 — Cubo fatiado: face superior deslocada, um glitch volumétrico. */
+/** 12 : Cubo fatiado: face superior deslocada, um glitch volumétrico. */
 export function SplitCubeMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="cubo fatiado" {...props}>
@@ -38,7 +38,7 @@ export function SplitCubeMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 13 — Cubo em x-ray: só vértices, o volume implícito. */
+/** 13 : Cubo em x-ray: só vértices, o volume implícito. */
 export function VertexCubeMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="vértices" {...props}>
@@ -57,7 +57,7 @@ export function VertexCubeMark(props: SVGProps<SVGSVGElement>) {
 
 /* ------------------------------------------------------------------ nós */
 
-/** 14 — Laço duplo: infinito vertical, dois estados entrelaçados. */
+/** 14 : Laço duplo: infinito vertical, dois estados entrelaçados. */
 export function LoopMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="laço" {...props}>
@@ -69,7 +69,7 @@ export function LoopMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 15 — Nó quádruplo: quatro laços a 45 graus, uma flor técnica. */
+/** 15 : Nó quádruplo: quatro laços a 45 graus, uma flor técnica. */
 export function QuadKnotMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="nó quádruplo" {...props}>
@@ -83,7 +83,7 @@ export function QuadKnotMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 16 — Trança: três arcos que se cruzam num fluxo contínuo. */
+/** 16 : Trança: três arcos que se cruzam num fluxo contínuo. */
 export function BraidMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="trança" {...props}>
@@ -98,7 +98,7 @@ export function BraidMark(props: SVGProps<SVGSVGElement>) {
 
 /* -------------------------------------------------------------- portais */
 
-/** 17 — Portal triplo: hexágonos aninhados afunilando ao centro. */
+/** 17 : Portal triplo: hexágonos aninhados afunilando ao centro. */
 export function TunnelMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="túnel" {...props}>
@@ -111,7 +111,7 @@ export function TunnelMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 18 — Portal com abertura: hexágono com fresta e token saindo. */
+/** 18 : Portal com abertura: hexágono com fresta e token saindo. */
 export function SlitPortalMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="fresta" {...props}>
@@ -127,7 +127,7 @@ export function SlitPortalMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 19 — Diafragma: hexágono com pás convergindo, uma íris. */
+/** 19 : Diafragma: hexágono com pás convergindo, uma íris. */
 export function IrisMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="íris" {...props}>
@@ -149,7 +149,7 @@ export function IrisMark(props: SVGProps<SVGSVGElement>) {
 
 /* --------------------------------------------------------------- bursts */
 
-/** 20 — Meia-explosão: raios só no hemisfério superior, um amanhecer. */
+/** 20 : Meia-explosão: raios só no hemisfério superior, um amanhecer. */
 export function RiseMark(props: SVGProps<SVGSVGElement>) {
   const angles = [-80, -60, -40, -20, 0, 20, 40, 60, 80]
   return (
@@ -171,7 +171,7 @@ export function RiseMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 21 — Burst pontilhado: raios de pontos que se dissipam. */
+/** 21 : Burst pontilhado: raios de pontos que se dissipam. */
 export function DotBurstMark(props: SVGProps<SVGSVGElement>) {
   const arms = [0, 45, 90, 135, 180, 225, 270, 315]
   return (
@@ -187,7 +187,7 @@ export function DotBurstMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 22 — Burst rotor: raios curvos, energia em rotação. */
+/** 22 : Burst rotor: raios curvos, energia em rotação. */
 export function SpinBurstMark(props: SVGProps<SVGSVGElement>) {
   const arms = [0, 60, 120, 180, 240, 300]
   return (
@@ -202,7 +202,7 @@ export function SpinBurstMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 23 — Burst pixel diagonal: quantizado, girado 45 graus. */
+/** 23 : Burst pixel diagonal: quantizado, girado 45 graus. */
 export function PixelStarMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -234,7 +234,7 @@ export function PixelStarMark(props: SVGProps<SVGSVGElement>) {
 
 /* -------------------------------------------------------------- órbitas */
 
-/** 24 — Átomo: duas elipses cruzadas em torno do núcleo. */
+/** 24 : Átomo: duas elipses cruzadas em torno do núcleo. */
 export function AtomMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="átomo" {...props}>
@@ -248,7 +248,7 @@ export function AtomMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 25 — Órbita dupla: dois satélites em anéis concêntricos. */
+/** 25 : Órbita dupla: dois satélites em anéis concêntricos. */
 export function TwinOrbitMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="órbita dupla" {...props}>
@@ -261,7 +261,7 @@ export function TwinOrbitMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 26 — Órbita pixel: o anel quantizado em células. */
+/** 26 : Órbita pixel: o anel quantizado em células. */
 export function PixelOrbitMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -289,7 +289,7 @@ export function PixelOrbitMark(props: SVGProps<SVGSVGElement>) {
 
 /* --------------------------------------------------------------- traços */
 
-/** 27 — Monograma "y" em traço contínuo, o irmão do "n". */
+/** 27 : Monograma "y" em traço contínuo, o irmão do "n". */
 export function StrokeYMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="y" {...props}>
@@ -301,7 +301,7 @@ export function StrokeYMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 28 — Ligadura "ny": os dois monogramas partilhando uma haste. */
+/** 28 : Ligadura "ny": os dois monogramas partilhando uma haste. */
 export function StrokeNYMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64" role="img" aria-label="ny" {...props}>
@@ -314,7 +314,7 @@ export function StrokeNYMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 29 — Traço espiral: um caminho que converge ao centro. */
+/** 29 : Traço espiral: um caminho que converge ao centro. */
 export function CoilMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="espiral" {...props}>
@@ -331,7 +331,7 @@ export function CoilMark(props: SVGProps<SVGSVGElement>) {
 
 /* ---------------------------------------------------------------- gates */
 
-/** 30 — Gate duplo: brackets aninhados, escopo dentro de escopo. */
+/** 30 : Gate duplo: brackets aninhados, escopo dentro de escopo. */
 export function NestedGateMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="gate duplo" {...props}>
@@ -346,7 +346,7 @@ export function NestedGateMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 31 — Gate fluxo: tokens em fila atravessando a barreira. */
+/** 31 : Gate fluxo: tokens em fila atravessando a barreira. */
 export function FlowGateMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="fluxo" {...props}>
@@ -363,7 +363,7 @@ export function FlowGateMark(props: SVGProps<SVGSVGElement>) {
 
 /* ---------------------------------------------------------------- malhas */
 
-/** 32 — Malha quadrada: quatro nós, todas as ligações. */
+/** 32 : Malha quadrada: quatro nós, todas as ligações. */
 export function GridMeshMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="malha quadrada" {...props}>
@@ -385,7 +385,7 @@ export function GridMeshMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 33 — Anel de nós: seis pontos em círculo ligados ao centro. */
+/** 33 : Anel de nós: seis pontos em círculo ligados ao centro. */
 export function HubMark(props: SVGProps<SVGSVGElement>) {
   const nodes = [0, 60, 120, 180, 240, 300]
   return (
@@ -405,7 +405,7 @@ export function HubMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 34 — Constelação: nós dispersos, um caminho de inferência. */
+/** 34 : Constelação: nós dispersos, um caminho de inferência. */
 export function PathMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="caminho" {...props}>
@@ -424,7 +424,7 @@ export function PathMark(props: SVGProps<SVGSVGElement>) {
 
 /* --------------------------------------------------------------- outros */
 
-/** 35 — Pulso: onda quadrada, o batimento digital. */
+/** 35 : Pulso: onda quadrada, o batimento digital. */
 export function PulseMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="pulso" {...props}>
@@ -440,7 +440,7 @@ export function PulseMark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** 36 — Faísca: losango de quatro pontas, o glint da geração. */
+/** 36 : Faísca: losango de quatro pontas, o glint da geração. */
 export function SparkMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="faísca" {...props}>

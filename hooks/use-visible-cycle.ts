@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react"
  * actually on screen and the tab is visible.
  *
  * Mock UIs animate continuously, so a naive setInterval keeps re-rendering
- * its whole subtree even when scrolled far out of view — burning main-thread
+ * its whole subtree even when scrolled far out of view , burning main-thread
  * time that the visible animations need to hold a steady frame rate. This
  * parks the timer instead, so only the section the user is looking at costs
  * anything.

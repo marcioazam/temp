@@ -27,7 +27,7 @@ function P({ children }: { children: React.ReactNode }) {
   return <p className="type-caption text-pretty text-muted-foreground">{children}</p>
 }
 
-/** Linha rótulo → valor, sem bordas nem tabela — igual ao aviso de privacidade. */
+/** Linha rótulo → valor, sem bordas nem tabela : igual ao aviso de privacidade. */
 function Row({ term, children }: { term: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-6">
@@ -40,10 +40,20 @@ function Row({ term, children }: { term: string; children: React.ReactNode }) {
 export default function TermsPage() {
   return (
     <main className="site-background">
-      <div className="mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
+      <section className="pb-8 pt-5 md:pb-10 md:pt-6" aria-labelledby="terms-title">
+        <div
+          className="photo-grain mx-auto flex h-36 w-[calc(100%-2rem)] max-w-[1464px] items-center justify-center overflow-hidden rounded-xl bg-cover bg-center px-6 text-center text-canvas-ink sm:h-40 md:h-44 md:w-[calc(100%-4.5rem)]"
+          style={{ backgroundImage: "url('/images/terms-hero.png')" }}
+        >
+          <h1 id="terms-title" className="type-heading text-balance md:text-4xl">
+            Termos de uso
+          </h1>
+        </div>
+      </section>
+
+      <div className="mx-auto w-full max-w-screen-2xl px-4 pb-20 md:px-9 md:pb-28">
         <div className="mx-auto w-full max-w-2xl">
-          <h1 className="type-heading text-foreground">Termos de uso</h1>
-          <p className="type-micro mt-3 text-subtle-foreground">
+          <p className="type-micro text-subtle-foreground">
             Versão {CONSENT_VERSION} · Atualizado em {LAST_UPDATED}
           </p>
           <p className="type-caption mt-6 text-pretty text-muted-foreground">
@@ -70,7 +80,7 @@ export default function TermsPage() {
                 A Nylla expõe um endpoint único que recebe suas requisições e as roteia para o
                 modelo de linguagem apropriado, escolhido por disponibilidade, latência, custo e
                 pelas regras da sua organização. Atuamos como intermediário técnico entre você e
-                os provedores de modelo — não desenvolvemos os modelos nem garantimos qualquer
+                os provedores de modelo. Não desenvolvemos os modelos nem garantimos qualquer
                 resultado específico de inferência.
               </P>
             </Section>
@@ -165,7 +175,7 @@ export default function TermsPage() {
 
             <Section title="Disponibilidade e suporte">
               <P>
-                Empregamos melhores esforços para manter o gateway disponível, mas não há SLA no
+                Empregamos melhores esfor��os para manter o gateway disponível, mas não há SLA no
                 plano gratuito. Manutenções programadas são avisadas quando possível, e janelas
                 de degradação causadas por provedores externos estão fora do nosso controle.
                 Planos com SLA contratual têm suas próprias regras de crédito.

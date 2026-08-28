@@ -1,6 +1,6 @@
 import type { SVGProps } from "react"
 
-/** Navbar lockup — rotor and wordmark in one reusable SVG. */
+/** Navbar lockup : rotor and wordmark in one reusable SVG. */
 export function NyllaLogo(props: SVGProps<SVGSVGElement>) {
   const arms = [0, 60, 120, 180, 240, 300]
 
@@ -41,7 +41,7 @@ export function NyllaLogo(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** Rotor mark — AI energy in continuous motion. Inherits currentColor. */
+/** Rotor mark : AI energy in continuous motion. Inherits currentColor. */
 export function RotorMark(props: SVGProps<SVGSVGElement>) {
   const arms = [0, 60, 120, 180, 240, 300]
 
@@ -64,7 +64,7 @@ export function RotorMark(props: SVGProps<SVGSVGElement>) {
 }
 
 /**
- * Flat "Nylla" pixel wordmark — inherits currentColor.
+ * Flat "Nylla" pixel wordmark : inherits currentColor.
  * Glyphs are grouped so each letter can be shifted right, producing
  * optical letter-spacing that raw pixel paths can't express.
  */
@@ -106,7 +106,7 @@ export function NyllaWordmark(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** Flat "ny" pixel monogram — inherits currentColor. */
+/** Flat "ny" pixel monogram : inherits currentColor. */
 export function NyMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg

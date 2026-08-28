@@ -2,7 +2,7 @@
 
 import { CONSENT_OPEN_EVENT } from '@/lib/consent'
 
-/** Acesso permanente às preferências — revogação simples exigida pela LGPD (art. 8º, §5º). */
+/** Acesso permanente às preferências : revogação simples exigida pela LGPD (art. 8º, §5º). */
 export function CookiePreferencesButton({
   className,
   label = 'Preferências de cookies',

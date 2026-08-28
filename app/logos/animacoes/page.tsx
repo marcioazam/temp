@@ -34,7 +34,7 @@ export default function LogoAnimationsPage() {
             Animações do sol
           </h1>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            A mesma geometria da marca — seis braços e um núcleo — animada de vinte formas
+            A mesma geometria da marca, seis braços e um núcleo, animada de vinte formas
             diferentes. Tudo roda em transform, opacity e stroke-dash, sem custo de layout.
           </p>
         </header>

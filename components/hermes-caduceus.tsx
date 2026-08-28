@@ -1,5 +1,5 @@
 /**
- * Caduceu do Hermes Agent — bitmap traçado à mão a partir da arte ASCII
+ * Caduceu do Hermes Agent : bitmap traçado à mão a partir da arte ASCII
  * de referência. Cada caractere é uma célula da matriz de pontos:
  *   '#' → ponto branco
  *   '.' → ponto branco

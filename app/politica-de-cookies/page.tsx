@@ -20,7 +20,7 @@ const LAST_UPDATED = '27 de agosto de 2026'
 const linkClass =
   'text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-primary'
 
-/** Inventário auditado no código — ver docs/spec-politica-de-cookies.md. */
+/** Inventário auditado no código : ver docs/spec-politica-de-cookies.md. */
 const INVENTORY: Array<{
   name: string
   kind: string
@@ -102,10 +102,20 @@ function Entry({
 export default function CookiePolicyPage() {
   return (
     <main className="site-background">
-      <div className="mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
+      <section className="pb-8 pt-5 md:pb-10 md:pt-6" aria-labelledby="cookies-title">
+        <div
+          className="photo-grain mx-auto flex h-36 w-[calc(100%-2rem)] max-w-[1464px] items-center justify-center overflow-hidden rounded-xl bg-cover bg-center px-6 text-center text-canvas-ink sm:h-40 md:h-44 md:w-[calc(100%-4.5rem)]"
+          style={{ backgroundImage: "url('/images/cookies-hero.png')" }}
+        >
+          <h1 id="cookies-title" className="type-heading text-balance md:text-4xl">
+            Política de cookies
+          </h1>
+        </div>
+      </section>
+
+      <div className="mx-auto w-full max-w-screen-2xl px-4 pb-20 md:px-9 md:pb-28">
         <div className="mx-auto w-full max-w-2xl">
-          <h1 className="type-heading text-foreground">Política de cookies</h1>
-          <p className="type-micro mt-3 text-subtle-foreground">
+          <p className="type-micro text-subtle-foreground">
             Versão {CONSENT_VERSION} · Atualizado em {LAST_UPDATED}
           </p>
           <p className="type-caption mt-6 text-pretty text-muted-foreground">
@@ -120,7 +130,7 @@ export default function CookiePolicyPage() {
               <P>
                 Cookies são pequenos arquivos gravados pelo navegador para lembrar informações
                 entre páginas e visitas. Tecnologias similares, como o armazenamento local
-                (localStorage), cumprem a mesma função e recebem aqui o mesmo tratamento — por
+                (localStorage), cumprem a mesma função e recebem aqui o mesmo tratamento. Por
                 isso aparecem no inventário, e não em nota de rodapé.
               </P>
             </Section>
@@ -134,7 +144,7 @@ export default function CookiePolicyPage() {
                 leitura.
               </P>
               <P>
-                Guardamos apenas a prova exigida pelo art. 8º, §1º da LGPD — versão do aviso,
+                Guardamos apenas a prova exigida pelo art. 8º, §1º da LGPD: versão do aviso,
                 data e hora, método e categorias aceitas. O aviso é reapresentado quando a versão
                 muda ou quando o prazo de {CONSENT_MAX_AGE_DAYS} dias expira.
               </P>
@@ -147,7 +157,7 @@ export default function CookiePolicyPage() {
                     {category.description}{' '}
                     <span className="text-subtle-foreground">
                       {category.required
-                        ? 'Sempre ativo — legítimo interesse na operação do site.'
+                        ? 'Sempre ativo, por legítimo interesse na operação do site.'
                         : 'Só roda com o seu consentimento.'}
                     </span>
                   </Row>
@@ -168,7 +178,7 @@ export default function CookiePolicyPage() {
                 Nossa plataforma de análise não grava cookie nem qualquer identificador no seu
                 dispositivo. Ela conta visitas por meio de um valor derivado da própria
                 requisição, renovado todos os dias. Mesmo assim, ela só é carregada se você
-                aceitar a categoria Análise — porque ainda há processamento de dado
+                aceitar a categoria Análise, porque ainda há processamento de dado
                 potencialmente pessoal, e a escolha é sua.
               </P>
             </Section>
@@ -185,10 +195,10 @@ export default function CookiePolicyPage() {
             <Section title="Base legal">
               <dl className="flex flex-col gap-3">
                 <Row term="Necessários">
-                  Legítimo interesse e execução do serviço — art. 7º, incisos V e IX da LGPD.
+                  Legítimo interesse e execução do serviço (art. 7º, incisos V e IX da LGPD).
                 </Row>
-                <Row term="Análise">Consentimento — art. 7º, inciso I.</Row>
-                <Row term="Marketing">Consentimento — art. 7º, inciso I.</Row>
+                <Row term="Análise">Consentimento (art. 7º, inciso I).</Row>
+                <Row term="Marketing">Consentimento (art. 7º, inciso I).</Row>
               </dl>
             </Section>
 

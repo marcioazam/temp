@@ -128,7 +128,7 @@ export function NpmSection() {
                   <span className="win-dot win-dot--min" />
                   <span className="win-dot win-dot--max" />
                 </div>
-                <span className="win-title">bash — nylla@linux</span>
+                <span className="win-title">bash · nylla@linux</span>
               </div>
 
               <div

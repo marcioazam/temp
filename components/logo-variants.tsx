@@ -4,7 +4,7 @@ import { useState } from "react"
 import { NyMark, NyllaWordmark } from "@/components/logo"
 
 /* ------------------------------------------------------------------ */
-/* Glitch ghost — the mark plus two offset ghost copies that snap in   */
+/* Glitch ghost : the mark plus two offset ghost copies that snap in   */
 /* for a few frames, like a corrupted render.                          */
 /* ------------------------------------------------------------------ */
 export function GlitchGhostMark({ className }: { className?: string }) {
@@ -24,7 +24,7 @@ export function GlitchGhostMark({ className }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Slice glitch — the mark cut into 3 horizontal bands; each band      */
+/* Slice glitch : the mark cut into 3 horizontal bands; each band      */
 /* tears sideways on its own clock.                                    */
 /* ------------------------------------------------------------------ */
 const SLICES = [
@@ -64,7 +64,7 @@ export function SliceGlitch({
 }
 
 /* ------------------------------------------------------------------ */
-/* Tetris — the "n" decomposed into tetromino pieces that drop in and  */
+/* Tetris : the "n" decomposed into tetromino pieces that drop in and  */
 /* lock into place. Hover replays the assembly.                        */
 /* ------------------------------------------------------------------ */
 const CELL = 6
@@ -74,13 +74,13 @@ const STEP = CELL + GAP
 type Piece = { cells: [number, number][]; opacity: number; drop: number }
 
 const PIECES: Piece[] = [
-  // J piece — top bar + left shoulder
+  // J piece : top bar + left shoulder
   { cells: [[1, 0], [2, 0], [3, 0], [0, 1]], opacity: 1, drop: 2 },
-  // I piece — left column
+  // I piece : left column
   { cells: [[0, 2], [0, 3], [0, 4], [0, 5]], opacity: 0.72, drop: 4 },
-  // I piece — right column (upper)
+  // I piece : right column (upper)
   { cells: [[4, 1], [4, 2], [4, 3]], opacity: 0.55, drop: 3 },
-  // domino — right column (lower)
+  // domino : right column (lower)
   { cells: [[4, 4], [4, 5]], opacity: 0.85, drop: 5 },
 ]
 
@@ -113,7 +113,7 @@ export function TetrisMark({ className }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Dice — a pixel die whose pips draw the "ny" diagonal; tumbles in    */
+/* Dice : a pixel die whose pips draw the "ny" diagonal; tumbles in    */
 /* quantized 90° steps.                                                */
 /* ------------------------------------------------------------------ */
 export function DiceMark({ className }: { className?: string }) {
@@ -128,7 +128,7 @@ export function DiceMark({ className }: { className?: string }) {
       <g fill="currentColor">
         {/* stepped pixel-rounded frame */}
         <path d="M8 0h28v4h-28zM4 4h4v4h-4zM36 4h4v4h-4zM0 8h4v28h-4zM40 8h4v28h-4zM4 36h4v4h-4zM36 36h4v4h-4zM8 40h28v4h-28z" />
-        {/* pips — five face */}
+        {/* pips : five face */}
         <rect x="10" y="10" width="7" height="7" />
         <rect x="27" y="10" width="7" height="7" />
         <rect x="18.5" y="18.5" width="7" height="7" />
@@ -140,7 +140,7 @@ export function DiceMark({ className }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Dissolve — the mark holding shape while loose pixels flicker off    */
+/* Dissolve : the mark holding shape while loose pixels flicker off    */
 /* its trailing edge.                                                  */
 /* ------------------------------------------------------------------ */
 const LOOSE: { x: number; y: number; s: number; dur: string; delay: string; o: number }[] = [
@@ -187,7 +187,7 @@ export function DissolveMark({ className }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Token — a block of text decomposed into pixel cells that light up   */
+/* Token : a block of text decomposed into pixel cells that light up   */
 /* in sequence, like tokens being emitted by a model.                  */
 /* ------------------------------------------------------------------ */
 const TOKEN_CELLS: { x: number; y: number; w: number; delay: number }[] = [
@@ -226,7 +226,7 @@ export function TokenMark({ className }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Gateway — packets hop through the mark: many inputs, one gate,      */
+/* Gateway : packets hop through the mark: many inputs, one gate,      */
 /* one stream out. The core product diagram reduced to pixels.         */
 /* ------------------------------------------------------------------ */
 const GW_LANES = [
@@ -303,7 +303,7 @@ function NyGlyphs() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Chunk — the mark split into rectangular data chunks that shift out  */
+/* Chunk : the mark split into rectangular data chunks that shift out  */
 /* of register and snap back, like chunked payloads reassembling.      */
 /* ------------------------------------------------------------------ */
 const CHUNKS = [
@@ -337,7 +337,7 @@ export function ChunkMark({ className }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Stream — columns of bits scrolling upward beside the mark, the      */
+/* Stream : columns of bits scrolling upward beside the mark, the      */
 /* token stream flowing through the gateway.                           */
 /* ------------------------------------------------------------------ */
 const BIT_COLS = [
@@ -382,7 +382,7 @@ export function StreamMark({ className }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Dados — the mark rising out of a pixel bar field, data becoming     */
+/* Dados : the mark rising out of a pixel bar field, data becoming     */
 /* signal. Bars flicker at the base like sampled measurements.         */
 /* ------------------------------------------------------------------ */
 const BARS = [
@@ -427,11 +427,11 @@ export function DadosMark({ className }: { className?: string }) {
 }
 
 /* ================================================================== */
-/* STATIC VARIANTS — 10 fixed pixel marks, each symbolizing a          */
+/* STATIC VARIANTS : 10 fixed pixel marks, each symbolizing a          */
 /* product concept. No animation; pure composition.                    */
 /* ================================================================== */
 
-/* 1. Rota — a pixel packet path stepping through corners, in one gate,
+/* 1. Rota : a pixel packet path stepping through corners, in one gate,
       out the other side. The routing decision frozen in time.         */
 export function RouteStatic({ className }: { className?: string }) {
   return (
@@ -455,7 +455,7 @@ export function RouteStatic({ className }: { className?: string }) {
   )
 }
 
-/* 2. Latência — a pixel sparkline with the p50 marker cell filled.    */
+/* 2. Latência : a pixel sparkline with the p50 marker cell filled.    */
 export function LatencyStatic({ className }: { className?: string }) {
   const heights = [8, 14, 6, 18, 10, 24, 12, 16, 7, 20]
   return (
@@ -479,7 +479,7 @@ export function LatencyStatic({ className }: { className?: string }) {
   )
 }
 
-/* 3. Cache — stacked pixel layers; the hot layer solid on top.        */
+/* 3. Cache : stacked pixel layers; the hot layer solid on top.        */
 export function CacheStatic({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 56 40" className={`pixel-crisp ${className ?? ""}`} role="img" aria-label="cache pixel">
@@ -495,7 +495,7 @@ export function CacheStatic({ className }: { className?: string }) {
   )
 }
 
-/* 5. Multiplex — many inputs merging into a single output lane.       */
+/* 5. Multiplex : many inputs merging into a single output lane.       */
 export function MultiplexStatic({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 72 32" className={`pixel-crisp ${className ?? ""}`} role="img" aria-label="multiplex pixel">
@@ -516,7 +516,7 @@ export function MultiplexStatic({ className }: { className?: string }) {
   )
 }
 
-/* 6. Créditos — a usage meter of pixel cells, partially consumed.     */
+/* 6. Créditos : a usage meter of pixel cells, partially consumed.     */
 export function CreditsStatic({ className }: { className?: string }) {
   const CELLS = 10
   const used = 6
@@ -536,7 +536,7 @@ export function CreditsStatic({ className }: { className?: string }) {
   )
 }
 
-/* 7. Handshake — two pixel brackets interlocking at the center.       */
+/* 7. Handshake : two pixel brackets interlocking at the center.       */
 export function HandshakeStatic({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 56 32" className={`pixel-crisp ${className ?? ""}`} role="img" aria-label="handshake pixel">
@@ -554,7 +554,7 @@ export function HandshakeStatic({ className }: { className?: string }) {
   )
 }
 
-/* 8. Checksum — a pixel grid with one verified cell standing out.     */
+/* 8. Checksum : a pixel grid with one verified cell standing out.     */
 export function ChecksumStatic({ className }: { className?: string }) {
   const GRID = 5
   const pattern = [
@@ -577,7 +577,7 @@ export function ChecksumStatic({ className }: { className?: string }) {
   )
 }
 
-  /* 8b. Checksum Y — the noisy grid resolving into a "y": the verified
+  /* 8b. Checksum Y : the noisy grid resolving into a "y": the verified
         cells spell the letter out of the noise field.                   */
   const CHECKSUM_NOISE = [
     0.2, 0.35, 0.2, 0.45, 0.25,
@@ -637,7 +637,7 @@ export function ChecksumStatic({ className }: { className?: string }) {
     return <ChecksumLetter mask={N_MASK} label="checksum formando n" className={className} />
   }
 
-  /* 9. Cursor — the terminal block cursor resting beside the mark.      */
+  /* 9. Cursor : the terminal block cursor resting beside the mark.      */
 export function CursorStatic({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 66 27" className={`pixel-crisp ${className ?? ""}`} role="img" aria-label="ny com cursor">
@@ -648,7 +648,7 @@ export function CursorStatic({ className }: { className?: string }) {
   )
 }
 
-/* 10. Cluster — nodes orbiting the mark on a pixel constellation.     */
+/* 10. Cluster : nodes orbiting the mark on a pixel constellation.     */
 export function ClusterStatic({ className }: { className?: string }) {
   const NODES = [
     { x: 2, y: 2, s: 3, o: 0.5 },
@@ -673,7 +673,7 @@ export function ClusterStatic({ className }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* App icon — macOS-style rounded tile, positive and negative.         */
+/* App icon : macOS-style rounded tile, positive and negative.         */
 /* ------------------------------------------------------------------ */
 export function AppIconTile({
   inverted = false,
