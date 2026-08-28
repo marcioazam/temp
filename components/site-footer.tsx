@@ -28,6 +28,12 @@ export function SiteFooter() {
             >
               Termos
             </Link>
+            <Link
+              href="/acessibilidade"
+              className="type-micro text-subtle-foreground transition-colors hover:text-foreground"
+            >
+              Acessibilidade
+            </Link>
             <CookiePreferencesButton className="type-micro text-subtle-foreground transition-colors hover:text-foreground" />
           </div>
         </div>
