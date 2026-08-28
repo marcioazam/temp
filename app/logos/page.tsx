@@ -199,7 +199,7 @@ export default function LogosPage() {
     <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
         <header className="mb-14 max-w-2xl">
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link
               href="/"
               className="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
@@ -217,6 +217,12 @@ export default function LogosPage() {
               className="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
               {"animações do sol ->"}
+            </Link>
+            <Link
+              href="/logos/duplo"
+              className="font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {"sol duplo ->"}
             </Link>
           </div>
           <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
