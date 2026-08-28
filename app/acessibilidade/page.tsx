@@ -41,10 +41,20 @@ function Row({ term, children }: { term: string; children: React.ReactNode }) {
 export default function AccessibilityPage() {
   return (
     <main className="site-background">
-      <div className="mx-auto w-full max-w-screen-2xl px-4 py-20 md:px-9 md:py-28">
+      <section className="pb-8 pt-5 md:pb-10 md:pt-6" aria-labelledby="accessibility-title">
+        <div
+          className="photo-grain mx-auto flex h-36 w-[calc(100%-2rem)] max-w-[1464px] items-center justify-center overflow-hidden rounded-xl bg-cover bg-center px-6 text-center text-canvas-ink sm:h-40 md:h-44 md:w-[calc(100%-4.5rem)]"
+          style={{ backgroundImage: "url('/images/accessibility-hero.png')" }}
+        >
+          <h1 id="accessibility-title" className="type-heading text-balance md:text-4xl">
+            Declaração de acessibilidade
+          </h1>
+        </div>
+      </section>
+
+      <div className="mx-auto w-full max-w-screen-2xl px-4 pb-20 md:px-9 md:pb-28">
         <div className="mx-auto w-full max-w-2xl">
-          <h1 className="type-heading text-foreground">Declaração de acessibilidade</h1>
-          <p className="type-micro mt-3 text-subtle-foreground">
+          <p className="type-micro text-subtle-foreground">
             Versão {CONSENT_VERSION} · Atualizado em {LAST_UPDATED}
           </p>
           <p className="type-caption mt-6 text-pretty text-muted-foreground">
