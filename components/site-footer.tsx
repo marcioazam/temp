@@ -37,6 +37,8 @@ export function SiteFooter() {
           >
             <Link href="/login" className={footerLinkClass}>Entrar</Link>
             <Link href="/docs" className={footerLinkClass}>Docs</Link>
+            <Link href="/#sobre" className={footerLinkClass}>Sobre</Link>
+            <Link href="/#harnesses" className={footerLinkClass}>Harness</Link>
             <Link href="/#instalar" className={footerLinkClass}>Instalar</Link>
             <Link href="/#endpoint" className={footerLinkClass}>Integração</Link>
             <Link href="/#recursos" className={footerLinkClass}>Recursos</Link>
