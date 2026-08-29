@@ -211,7 +211,7 @@ export default function ApiKeysPage() {
 
       <section className="border border-border/35 bg-muted/20" aria-label="Chaves ativas">
         <div className="px-4 pb-1 pt-4">
-          <h2 className="text-[15px] font-medium tracking-tight text-foreground">Chaves ativas</h2>
+          <h2 className="text-base font-medium tracking-tight text-foreground">Chaves ativas</h2>
         </div>
 
         <div className="overflow-x-auto px-4 pb-4 pt-3">

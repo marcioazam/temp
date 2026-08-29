@@ -19,7 +19,7 @@ function Section({
   return (
     <section className="border border-border/35 bg-muted/20" aria-label={title}>
       <div className="px-4 pb-1 pt-4">
-        <h2 className="text-[15px] font-medium tracking-tight text-foreground">{title}</h2>
+        <h2 className="text-base font-medium tracking-tight text-foreground">{title}</h2>
         {description && <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">{description}</p>}
       </div>
       <div className="px-4 pb-4 pt-2">{children}</div>
@@ -175,7 +175,7 @@ export default function SettingsPage() {
 
           <section className="border border-destructive/35 bg-muted/20" aria-label="Zona de perigo">
             <div className="px-4 pb-1 pt-4">
-              <h2 className="text-[15px] font-medium tracking-tight text-destructive">Zona de perigo</h2>
+              <h2 className="text-base font-medium tracking-tight text-destructive">Zona de perigo</h2>
             </div>
             <div className="flex items-center justify-between gap-6 px-4 pb-4 pt-2">
               <div className="flex flex-col gap-0.5">
