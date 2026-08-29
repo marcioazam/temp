@@ -4,7 +4,7 @@ type Tone = 'success' | 'warning' | 'danger' | 'server' | 'muted' | 'primary'
 
 const tones: Record<Tone, string> = {
   success: 'text-term-success border-term-success/30 bg-term-success/5',
-  warning: 'text-destructive border-destructive/30 bg-destructive/5',
+  warning: 'text-status-warning border-status-warning/40 bg-status-warning/10',
   danger: 'text-destructive border-destructive/30 bg-destructive/5',
   server: 'text-status-server border-status-server/30 bg-status-server/5',
   muted: 'text-muted-foreground border-border bg-transparent',

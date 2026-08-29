@@ -41,7 +41,7 @@
   --color-term-dim: var(--term-dim);
   --color-term-faint: var(--term-faint);
   --color-term-success: var(--term-success);
-  --color-status-server: var(--status-server);
+  --color-status-warning: var(--status-warning);
   --color-term-rule: var(--term-rule);
   --color-term-track: var(--term-track);
   --color-chrome-fg: var(--chrome-fg);
@@ -112,7 +112,7 @@
   --term-dim: #8b877a;
   --term-faint: #6a6759;
   --term-success: #7cd68c;
-  --status-server: #a78bfa;
+  --status-warning: #ff8a00;
   /* Glifas decorativas: separadores e trilhos de barra de progresso.
      Não carregam texto, por isso ficam abaixo do contraste de leitura. */
   --term-rule: #4a4636;
