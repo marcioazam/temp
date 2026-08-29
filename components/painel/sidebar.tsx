@@ -83,7 +83,7 @@ export function PainelSidebar({
   return (
     <nav
       aria-label="Navegação do painel"
-      className="flex h-full w-56 flex-col border-r border-border bg-background"
+      className="flex h-full w-56 flex-col border-r border-border bg-sidebar"
     >
       <div className="flex items-center gap-2 px-4 py-4">
         <Link
