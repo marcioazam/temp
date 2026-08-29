@@ -62,7 +62,7 @@ function Segmented<T extends string>({
 const kpis = [
   { label: 'Requisições', value: '452.890', delta: 12.0, spark: [28, 31, 30, 34, 36, 35, 39, 41, 40, 44, 46, 49] },
   { label: 'Tokens', value: '1,8 bi', delta: 8.0, spark: [40, 42, 41, 44, 43, 46, 48, 47, 50, 52, 51, 54] },
-  { label: 'Custo', value: 'US$ 5.670,57', delta: 5.0, spark: [36, 38, 37, 40, 42, 41, 43, 45, 44, 46, 48, 47] },
+  { label: 'Tempo de resposta', value: '12,4 h', delta: -9.2, spark: [54, 52, 53, 49, 47, 48, 44, 43, 40, 41, 37, 35], invert: true },
   { label: 'Latência média', value: '428 ms', delta: -6.0, spark: [52, 50, 51, 48, 47, 49, 45, 44, 46, 42, 41, 39], invert: true },
   { label: 'Taxa de sucesso', value: '98,7%', delta: 0.4, spark: [44, 45, 43, 46, 45, 47, 46, 48, 47, 48, 49, 48] },
   { label: 'Erros (24h)', value: '214', delta: -18.0, spark: [58, 55, 56, 52, 50, 51, 46, 44, 45, 40, 38, 34], invert: true },
