@@ -30,10 +30,10 @@ export function IncidentHistory({ incidents }: { incidents: Incident[] }) {
         <li key={`${incident.date}-${incident.title}`} className="border-b border-border py-6">
           <article>
             <div className="mb-10 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-              <div className="flex min-w-0 items-baseline gap-2.5">
+              <div className="flex min-w-0 items-center gap-2.5">
                 <span
                   aria-hidden="true"
-                  className="mt-1.5 h-1.5 w-1.5 shrink-0 self-start rounded-full"
+                  className="h-1.5 w-1.5 shrink-0 rounded-full"
                   style={{ background: severityColor[incident.severity] }}
                 />
                 <h3
