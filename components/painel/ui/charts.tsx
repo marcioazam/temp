@@ -5,6 +5,35 @@ import { cn } from '@/lib/utils'
 import { fmtCompact, fmtCurrency } from '@/lib/painel/format'
 import type { UsagePoint } from '@/lib/painel/data'
 
+// ── Sparkline (mini tendência para KPIs) ─────────────────────────────────────
+
+export function Sparkline({
+  data,
+  tone = 'neutral',
+  className,
+}: {
+  data: number[]
+  tone?: 'up' | 'down' | 'neutral'
+  className?: string
+}) {
+  const W = 64
+  const H = 22
+  const max = Math.max(...data)
+  const min = Math.min(...data)
+  const span = max - min || 1
+  const px = (i: number) => (i / (data.length - 1)) * W
+  const py = (v: number) => H - 2 - ((v - min) / span) * (H - 4)
+  const d = data.map((v, i) => `${i === 0 ? 'M' : 'L'}${px(i).toFixed(1)},${py(v).toFixed(1)}`).join(' ')
+  const stroke =
+    tone === 'up' ? 'var(--term-success)' : tone === 'down' ? 'var(--destructive)' : 'var(--muted-foreground)'
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className={cn('h-[22px] w-16', className)} aria-hidden="true">
+      <path d={d} fill="none" stroke={stroke} strokeWidth="1.25" strokeOpacity="0.7" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 // ── Gráfico de área (uso/custo) ─────────────────────────────────────────────
 
 export type ChartShape = 'area' | 'line' | 'bars'
@@ -200,7 +229,7 @@ export function AreaChart({
           <span className="text-subtle-foreground">{hoverPoint.label}</span>
           <span>{fmt(hoverValue)}</span>
           {delta !== null && (
-            <span className={delta >= 0 ? 'text-term-success' : 'text-term-error'}>
+            <span className={delta >= 0 ? 'text-term-success' : 'text-destructive'}>
               {delta >= 0 ? '+' : ''}
               {delta.toFixed(1)}%
             </span>

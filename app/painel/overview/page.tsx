@@ -10,7 +10,7 @@ import { fmtCompact, fmtCurrency, fmtLatency, fmtPercent } from '@/lib/painel/fo
 import { PageHeader } from '@/components/painel/page-header'
 import { StatusBadge } from '@/components/painel/ui/badge'
 import { StatCard } from '@/components/painel/ui/stat-card'
-import { AreaChart, YearHeatmap, type ChartShape } from '@/components/painel/ui/charts'
+import { AreaChart, Sparkline, YearHeatmap, type ChartShape } from '@/components/painel/ui/charts'
 import { Button } from '@/components/ui/button'
 
 type Range = '24h' | '7d' | '30d'
@@ -50,6 +50,57 @@ function Segmented<T extends string>({
           {o.label}
         </button>
       ))}
+    </div>
+  )
+}
+
+// Sparklines determinísticos por KPI (tendência de demonstração)
+const kpis = [
+  { label: 'Requisições', value: '452.890', delta: 12.0, spark: [28, 31, 30, 34, 36, 35, 39, 41, 40, 44, 46, 49] },
+  { label: 'Tokens', value: '1,8 bi', delta: 8.0, spark: [40, 42, 41, 44, 43, 46, 48, 47, 50, 52, 51, 54] },
+  { label: 'Custo', value: 'US$ 5.670,57', delta: 5.0, spark: [36, 38, 37, 40, 42, 41, 43, 45, 44, 46, 48, 47] },
+  { label: 'Latência média', value: '428 ms', delta: -6.0, spark: [52, 50, 51, 48, 47, 49, 45, 44, 46, 42, 41, 39], invert: true },
+  { label: 'Taxa de sucesso', value: '98,7%', delta: 0.4, spark: [44, 45, 43, 46, 45, 47, 46, 48, 47, 48, 49, 48] },
+  { label: 'Erros (24h)', value: '214', delta: -18.0, spark: [58, 55, 56, 52, 50, 51, 46, 44, 45, 40, 38, 34], invert: true },
+] as const
+
+function KpiCard({
+  label,
+  value,
+  delta,
+  spark,
+  invert = false,
+}: {
+  label: string
+  value: string
+  delta: number
+  spark: readonly number[]
+  invert?: boolean
+}) {
+  // Para métricas em que queda é positiva (latência, erros), o tom acompanha o benefício.
+  const positive = invert ? delta <= 0 : delta >= 0
+  return (
+    <div className="group flex flex-col gap-2 border border-border/35 bg-muted/20 p-4 transition-colors hover:border-border/60">
+      <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{label}</p>
+      <div className="flex items-end justify-between gap-3">
+        <div className="flex flex-col gap-1.5">
+          <p className="font-mono text-xl tabular-nums leading-none text-foreground">{value}</p>
+          <p
+            className={cn(
+              'font-mono text-[11px] tabular-nums leading-none',
+              positive ? 'text-term-success' : 'text-destructive',
+            )}
+          >
+            {delta >= 0 ? '+' : ''}
+            {delta.toFixed(1).replace('.', ',')}%
+          </p>
+        </div>
+        <Sparkline
+          data={[...spark]}
+          tone={positive ? (delta >= 0 ? 'up' : 'neutral') : 'down'}
+          className="opacity-60 transition-opacity group-hover:opacity-100"
+        />
+      </div>
     </div>
   )
 }
@@ -144,6 +195,14 @@ export default function OverviewPage() {
         </section>
       )}
 
+      <section aria-label="Indicadores">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {kpis.map((k) => (
+            <KpiCard key={k.label} label={k.label} value={k.value} delta={k.delta} spark={k.spark} invert={'invert' in k && k.invert} />
+          ))}
+        </div>
+      </section>
+
       <section className="border border-border/35 bg-muted/20" aria-label="Uso">
         <div className="flex flex-wrap items-end justify-between gap-4 px-4 pb-3 pt-4">
           <div className="flex flex-col gap-1">
@@ -160,7 +219,7 @@ export default function OverviewPage() {
               <span
                 className={cn(
                   'font-mono text-[11px] tabular-nums',
-                  periodDelta >= 0 ? 'text-term-success' : 'text-term-error',
+                  periodDelta >= 0 ? 'text-term-success' : 'text-destructive',
                 )}
               >
                 {periodDelta >= 0 ? '+' : ''}
