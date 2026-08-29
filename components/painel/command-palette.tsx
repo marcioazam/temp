@@ -105,7 +105,7 @@ export function CommandPalette({
             />
           </div>
 
-          <ul className="max-h-[min(380px,50vh)] overflow-y-auto py-1.5" role="listbox">
+          <ul className="docs-scrollbar max-h-[min(380px,50vh)] overflow-y-auto py-1.5" role="listbox">
             {results.length === 0 && (
               <li className="px-4 py-8 text-center text-[12px] text-subtle-foreground">
                 Nenhum resultado para &quot;{query}&quot;
