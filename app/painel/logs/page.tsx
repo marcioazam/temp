@@ -131,18 +131,6 @@ export default function LogsPage() {
         description="Todas as requisições roteadas pelo gateway, com status, latência e tokens por chamada."
       />
 
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] leading-none">
-        {[
-          { label: 'Requisições no período', value: fmtNumber(periodSummary.requests) },
-          { label: 'Tokens no período', value: fmtCompact(periodSummary.tokens) },
-        ].map((s) => (
-          <div key={s.label} className="flex items-center gap-2">
-            <span className="uppercase tracking-[0.12em] text-subtle-foreground">{s.label}</span>
-            <span className="tabular-nums text-foreground">{s.value}</span>
-          </div>
-        ))}
-      </div>
-
       <div className="flex flex-wrap items-center gap-2">
         <div className="relative min-w-52 flex-1 sm:max-w-72">
           <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground" />
@@ -211,6 +199,18 @@ export default function LogsPage() {
         <span className="ml-auto font-mono text-[11px] tabular-nums text-subtle-foreground">
           {filtered.length} de {state.logs.length} requisições
         </span>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] leading-none">
+        {[
+          { label: 'Requisições no período', value: fmtNumber(periodSummary.requests) },
+          { label: 'Tokens no período', value: fmtCompact(periodSummary.tokens) },
+        ].map((summary) => (
+          <div key={summary.label} className="flex items-center gap-2">
+            <span className="uppercase tracking-[0.12em] text-subtle-foreground">{summary.label}</span>
+            <span className="tabular-nums text-foreground">{summary.value}</span>
+          </div>
+        ))}
       </div>
 
       <Table className="border-border/35 bg-muted/20">
