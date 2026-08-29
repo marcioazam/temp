@@ -13,7 +13,6 @@ import {
   Search,
   Server,
   Settings,
-  SquareTerminal,
   Users,
 } from 'lucide-react'
 import { RotorMark } from '@/components/logo'
@@ -32,7 +31,6 @@ const groups: { title: string | null; items: NavItem[] }[] = [
     title: null,
     items: [
       { href: '/painel/overview', label: 'Visão geral', icon: LayoutDashboard },
-      { href: '/painel/playground', label: 'Playground', icon: SquareTerminal },
     ],
   },
   {
