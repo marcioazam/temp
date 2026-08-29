@@ -115,7 +115,12 @@ export default function OverviewPage() {
         title="Visão geral"
         description="Acompanhe uso, custo e a saúde dos provedores do workspace Nylla Labs."
         actions={
-          <Button variant="outline" size="sm" onClick={refresh} disabled={refreshing}>
+          <Button
+            size="sm"
+            className="type-micro h-9 rounded-none border border-foreground bg-foreground px-4 uppercase text-background hover:bg-foreground/90"
+            onClick={refresh}
+            disabled={refreshing}
+          >
             <RefreshCw className={cn('size-3.5', refreshing && 'animate-spin')} />
             Atualizar
           </Button>
