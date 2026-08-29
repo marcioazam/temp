@@ -1,0 +1,132 @@
+'use client'
+
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Dialog as BaseDialog } from '@base-ui/react/dialog'
+import {
+  Boxes,
+  ChartColumn,
+  CircleDollarSign,
+  CornerDownLeft,
+  KeyRound,
+  LayoutDashboard,
+  ScrollText,
+  Search,
+  Server,
+  Settings,
+  SquareTerminal,
+  Users,
+} from 'lucide-react'
+import { cn } from '@/lib/utils'
+
+const commands = [
+  { href: '/painel/overview', label: 'Visão geral', group: 'Páginas', icon: LayoutDashboard, keywords: 'dashboard overview inicio' },
+  { href: '/painel/playground', label: 'Playground', group: 'Páginas', icon: SquareTerminal, keywords: 'testar prompt executar' },
+  { href: '/painel/providers', label: 'Provedores', group: 'Infraestrutura', icon: Server, keywords: 'openai anthropic google provider' },
+  { href: '/painel/models', label: 'Modelos', group: 'Infraestrutura', icon: Boxes, keywords: 'gpt claude gemini modelo' },
+  { href: '/painel/api-keys', label: 'Chaves de API', group: 'API Gateway', icon: KeyRound, keywords: 'key token credencial' },
+  { href: '/painel/logs', label: 'Logs', group: 'Observabilidade', icon: ScrollText, keywords: 'requisições requests historico' },
+  { href: '/painel/costs', label: 'Custos', group: 'Observabilidade', icon: CircleDollarSign, keywords: 'gastos billing orçamento custo' },
+  { href: '/painel/users', label: 'Usuários', group: 'Organização', icon: Users, keywords: 'equipe membros time convite' },
+  { href: '/painel/settings', label: 'Configurações', group: 'Organização', icon: Settings, keywords: 'ajustes settings webhook retenção' },
+]
+
+export function CommandPalette({
+  open,
+  onOpenChange,
+}: {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}) {
+  const router = useRouter()
+  const [query, setQuery] = useState('')
+  const [active, setActive] = useState(0)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return commands
+    return commands.filter(
+      (c) => c.label.toLowerCase().includes(q) || c.keywords.includes(q),
+    )
+  }, [query])
+
+  useEffect(() => {
+    if (open) {
+      setQuery('')
+      setActive(0)
+    }
+  }, [open])
+
+  useEffect(() => {
+    setActive(0)
+  }, [query])
+
+  function go(href: string) {
+    onOpenChange(false)
+    router.push(href)
+  }
+
+  return (
+    <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
+      <BaseDialog.Portal>
+        <BaseDialog.Backdrop className="fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px] transition-opacity data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
+        <BaseDialog.Popup className="fixed left-1/2 top-[18vh] z-50 w-[min(560px,calc(100vw-2rem))] -translate-x-1/2 border border-border bg-popover shadow-[0_24px_60px_rgba(0,0,0,0.6)] outline-none transition-all data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0">
+          <BaseDialog.Title className="sr-only">Buscar no painel</BaseDialog.Title>
+          <div className="flex items-center gap-2.5 border-b border-border px-4">
+            <Search className="size-4 shrink-0 text-subtle-foreground" />
+            <input
+              ref={inputRef}
+              autoFocus
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowDown') {
+                  e.preventDefault()
+                  setActive((a) => Math.min(results.length - 1, a + 1))
+                } else if (e.key === 'ArrowUp') {
+                  e.preventDefault()
+                  setActive((a) => Math.max(0, a - 1))
+                } else if (e.key === 'Enter' && results[active]) {
+                  if (e.nativeEvent.isComposing || e.keyCode === 229) return
+                  e.preventDefault()
+                  go(results[active].href)
+                }
+              }}
+              placeholder="Buscar páginas e ações…"
+              className="h-11 w-full bg-transparent text-sm text-foreground placeholder:text-subtle-foreground focus:outline-none"
+              aria-label="Buscar páginas e ações"
+            />
+            <kbd className="border border-border px-1.5 py-0.5 font-mono text-[9px] uppercase text-subtle-foreground">esc</kbd>
+          </div>
+          <ul className="max-h-[300px] overflow-y-auto p-1.5" role="listbox">
+            {results.length === 0 && (
+              <li className="px-3 py-6 text-center text-[12px] text-subtle-foreground">Nenhum resultado para &quot;{query}&quot;</li>
+            )}
+            {results.map((cmd, i) => {
+              const Icon = cmd.icon
+              return (
+                <li key={cmd.href} role="option" aria-selected={i === active}>
+                  <button
+                    type="button"
+                    onClick={() => go(cmd.href)}
+                    onMouseEnter={() => setActive(i)}
+                    className={cn(
+                      'flex w-full items-center gap-2.5 px-2.5 py-2 text-left text-[13px] transition-colors',
+                      i === active ? 'bg-muted text-foreground' : 'text-muted-foreground',
+                    )}
+                  >
+                    <Icon className={cn('size-4 shrink-0', i === active ? 'text-primary' : 'text-subtle-foreground')} />
+                    <span className="flex-1 truncate">{cmd.label}</span>
+                    <span className="font-mono text-[9px] uppercase tracking-wide text-subtle-foreground">{cmd.group}</span>
+                    {i === active && <CornerDownLeft className="size-3 text-subtle-foreground" />}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </BaseDialog.Popup>
+      </BaseDialog.Portal>
+    </BaseDialog.Root>
+  )
+}
