@@ -200,7 +200,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
 
   return (
     <div>
-      <section aria-labelledby="filtros-heading" className="mt-10 mb-8">
+      <section aria-labelledby="filtros-heading" className="mt-10 mb-16">
         <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-border pb-3">
           <h2 id="filtros-heading" className="type-label text-foreground">
             Filtrar histórico
