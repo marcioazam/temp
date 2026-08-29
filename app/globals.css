@@ -1402,3 +1402,9 @@ kbd {
   background: var(--color-primary);
   background-clip: padding-box;
 }
+
+/* A página de status funciona como um subsite independente. */
+body:has(#status-page) > div > header,
+body:has(#status-page) > div > footer {
+  display: none;
+}
