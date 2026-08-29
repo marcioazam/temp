@@ -77,7 +77,10 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
               {children}
               <footer className="mt-auto flex items-center justify-between border-t border-border pt-4 font-mono text-[10px] uppercase tracking-[0.1em] text-subtle-foreground">
                 <span>© 2026 Nylla AI</span>
-                <a href="/docs" className="transition-colors hover:text-muted-foreground">Docs</a>
+                <nav aria-label="Links do rodapé" className="flex items-center gap-4">
+                  <a href="/status" className="transition-colors hover:text-muted-foreground">Status</a>
+                  <a href="/docs" className="transition-colors hover:text-muted-foreground">Docs</a>
+                </nav>
               </footer>
             </div>
           </main>
