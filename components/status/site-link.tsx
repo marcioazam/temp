@@ -4,12 +4,12 @@ export function StatusSiteLink() {
   return (
     <Link
       href="/"
-      className="type-micro group inline-flex items-center gap-2 whitespace-nowrap border border-foreground bg-foreground px-4 py-2.5 text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="type-micro group inline-flex items-stretch whitespace-nowrap border border-border bg-transparent text-foreground transition-colors hover:border-muted-foreground hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
-      Ir para o Site
+      <span className="flex items-center px-4 py-2.5">Ir para o Site</span>
       <span
         aria-hidden="true"
-        className="text-sm leading-none transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        className="flex items-center border-l border-border px-3 text-sm leading-none transition-colors group-hover:border-muted-foreground"
       >
         ↗
       </span>
