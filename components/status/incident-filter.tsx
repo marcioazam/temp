@@ -209,15 +209,32 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
           <h2 id="filtros-heading" className="type-label text-foreground">
             Filtrar histórico
           </h2>
-          {isFiltered && (
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="type-micro text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Limpar filtros
-            </button>
-          )}
+
+          <div className="flex items-baseline gap-6">
+            {isFiltered && (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="type-micro text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Limpar filtros
+              </button>
+            )}
+            <div className="flex items-baseline gap-6" aria-label="Modo de visualização">
+              <FilterOption
+                compact
+                active={view === "timeline"}
+                label="Timeline"
+                onSelect={() => changeView("timeline")}
+              />
+              <FilterOption
+                compact
+                active={view === "list"}
+                label="Listagem"
+                onSelect={() => changeView("list")}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col">
@@ -274,27 +291,12 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
         </div>
       </section>
 
-      <div className="flex flex-wrap items-center justify-between gap-4 py-4">
+      <div className="py-4">
         <p aria-live="polite" className="type-micro text-subtle-foreground">
           Exibindo {visibleCount} de {filtered.length}{" "}
           {filtered.length === 1 ? "incidente" : "incidentes"}
           {isFiltered ? ` · ${incidents.length} no total` : ""}
         </p>
-
-        <div className="flex items-baseline gap-6" aria-label="Modo de visualização">
-          <FilterOption
-            compact
-            active={view === "timeline"}
-            label="Timeline"
-            onSelect={() => changeView("timeline")}
-          />
-          <FilterOption
-            compact
-            active={view === "list"}
-            label="Listagem"
-            onSelect={() => changeView("list")}
-          />
-        </div>
       </div>
 
       {filtered.length === 0 ? (
