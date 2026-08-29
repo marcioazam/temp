@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { IncidentHistory } from "@/components/status/incident-history"
-import { LastUpdated } from "@/components/status/last-updated"
 import { UptimeBar } from "@/components/status/uptime-bar"
 import { RotorMark } from "@/components/logo"
 import { getIncidents, getStatusServices, statusLabels } from "@/lib/status-data"
@@ -22,7 +21,25 @@ export default function StatusPage() {
   const now = new Date()
   const services = getStatusServices(now)
   const incidents = getIncidents(now)
-  const allOperational = services.every((s) => s.status === "operational")
+  const overallStatus = services.some((service) => service.status === "outage")
+    ? "outage"
+    : services.some((service) => service.status === "degraded" || service.status === "maintenance")
+      ? "degraded"
+      : "operational"
+  const overallState = {
+    operational: {
+      label: "Todos os sistemas operacionais",
+      background: "var(--term-success)",
+    },
+    degraded: {
+      label: "Desempenho degradado",
+      background: "var(--primary)",
+    },
+    outage: {
+      label: "Interrupção em andamento",
+      background: "var(--destructive)",
+    },
+  }[overallStatus]
 
   return (
     <main className="mx-auto w-full max-w-screen-2xl px-4 pb-24 pt-8 md:px-9 md:pt-10">
@@ -33,16 +50,13 @@ export default function StatusPage() {
 
       {/* Estado geral */}
       <section aria-labelledby="status-geral" className="mt-16 md:mt-20">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <h1 id="status-geral" className="type-title flex items-center gap-4 text-foreground">
-            <span
-              aria-hidden="true"
-              className="status-pulse h-2.5 w-2.5 shrink-0 rounded-full"
-              style={{ color: allOperational ? "var(--term-success)" : "var(--destructive)", background: "currentColor" }}
-            />
-            {allOperational ? "Todos os sistemas operacionais" : "Interrupção em andamento"}
+        <div
+          className="px-5 py-4 text-background md:px-6 md:py-5"
+          style={{ background: overallState.background }}
+        >
+          <h1 id="status-geral" className="type-title">
+            {overallState.label}
           </h1>
-          <LastUpdated />
         </div>
         <p className="type-lead mt-4 max-w-xl text-muted-foreground">
           Disponibilidade da plataforma Nylla nos últimos 90 dias, atualizada continuamente.
