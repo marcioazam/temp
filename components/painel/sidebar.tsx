@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import {
+  Activity,
   BookOpen,
   Boxes,
   CircleDollarSign,
@@ -12,7 +13,6 @@ import {
   LogOut,
   MoreHorizontal,
   PanelLeft,
-  ScrollText,
   Search,
   Settings,
   Sparkles,
@@ -44,7 +44,7 @@ const groups: { title: string | null; items: NavItem[] }[] = [
   {
     title: 'Observabilidade',
     items: [
-      { href: '/painel/logs', label: 'Logs', icon: ScrollText },
+      { href: '/painel/logs', label: 'Usage', icon: Activity },
       { href: '/painel/costs', label: 'Custos', icon: CircleDollarSign },
     ],
   },
