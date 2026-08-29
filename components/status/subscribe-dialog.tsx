@@ -129,7 +129,7 @@ export function SubscribeDialog() {
                 type="button"
                 onClick={close}
                 aria-label="Fechar"
-                className="type-micro -mr-1 -mt-1 p-1 text-subtle-foreground transition-colors hover:text-foreground"
+                className="-mr-2 -mt-2 flex size-10 shrink-0 items-center justify-center text-xl leading-none text-subtle-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 ✕
               </button>
