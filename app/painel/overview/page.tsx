@@ -146,8 +146,11 @@ export default function OverviewPage() {
       </section>
 
       <section className="border border-border/35 bg-muted/20" aria-label="Atividade anual">
-        <div className="border-b border-border/35 px-4 py-3">
-          <p className="text-[13px] text-foreground">Atividade de requisições — últimos 12 meses</p>
+        <div className="px-4 pb-1 pt-4">
+          <div className="flex items-baseline gap-2">
+            <h2 className="text-sm font-medium tracking-tight text-foreground">Atividade de requisições</h2>
+            <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-subtle-foreground">Últimos 12 meses</span>
+          </div>
         </div>
         <div className="px-4 py-4">
           <YearHeatmap data={heatmapSeed} />
