@@ -85,10 +85,10 @@ export function PainelSidebar({
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2.5 text-foreground"
-          aria-label="Nylla Panel — voltar ao site"
+          aria-label="Nylla — voltar ao site"
         >
           <RotorMark aria-hidden="true" className="size-7 shrink-0 text-primary" />
-          {!collapsed && <span className="type-wordmark whitespace-nowrap text-[1.1875rem]">Nylla Panel</span>}
+          {!collapsed && <span className="type-wordmark whitespace-nowrap text-[1.1875rem]">Nylla</span>}
         </Link>
       </div>
 
