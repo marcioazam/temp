@@ -159,7 +159,7 @@ export function getIncidents(now: Date): Incident[] {
     },
     {
       date: isoDaysAgo(63, now),
-      title: "Interrupção parcial no Streaming",
+      title: "Interrupção",
       severity: "outage",
       resolved: true,
       duration: "48min",
