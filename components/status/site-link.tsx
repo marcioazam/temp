@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { SubscribeDialog } from "@/components/status/subscribe-dialog"
 
 export function StatusSiteLink() {
   return (
@@ -17,12 +18,7 @@ export function StatusSiteLink() {
       </Link>
 
       <div className="flex items-stretch">
-        <button
-          type="button"
-          className="type-micro inline-flex w-44 items-center justify-center whitespace-nowrap bg-foreground px-4 py-2.5 text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        >
-          <span>Obter Atualizações</span>
-        </button>
+        <SubscribeDialog />
       </div>
     </div>
   )
