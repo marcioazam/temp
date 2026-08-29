@@ -70,7 +70,7 @@ export default function OverviewPage() {
               {doneCount} de {state.checklist.length}
             </p>
           </div>
-          <ul className="grid sm:grid-cols-5">
+          <ul className="flex flex-wrap items-stretch gap-x-2">
             {state.checklist.map((item) => (
               <li key={item.id} className="bg-transparent">
                 <button
@@ -78,7 +78,7 @@ export default function OverviewPage() {
                   disabled={item.done}
                   onClick={() => dispatch({ type: 'complete_checklist', id: item.id })}
                   className={cn(
-                    'flex h-full w-full items-start gap-2 px-3 py-3 text-left text-[12px] leading-snug transition-colors',
+                    'flex h-full items-start gap-2 px-3 py-3 text-left text-[12px] leading-snug transition-colors',
                     item.done ? 'text-subtle-foreground' : 'text-foreground hover:bg-muted/50',
                   )}
                 >
