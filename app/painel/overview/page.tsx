@@ -52,12 +52,7 @@ function KpiCard({
       <div className="flex items-end justify-between gap-3">
         <div className="flex flex-col gap-1.5">
           <p className="font-mono text-xl tabular-nums leading-none text-foreground">{value}</p>
-          <p
-            className={cn(
-              'font-mono text-[11px] tabular-nums leading-none',
-              positive ? 'text-term-success' : 'text-destructive',
-            )}
-          >
+          <p className="font-mono text-[11px] tabular-nums leading-none text-muted-foreground">
             {delta >= 0 ? '+' : ''}
             {delta.toFixed(1).replace('.', ',')}%
           </p>
@@ -182,12 +177,7 @@ export default function OverviewPage() {
               <span className="tabular-nums text-foreground">
                 {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
               </span>
-              <span
-                className={cn(
-                  'tabular-nums',
-                  periodDelta >= 0 ? 'text-term-success' : 'text-destructive',
-                )}
-              >
+              <span className="tabular-nums text-muted-foreground">
                 {periodDelta >= 0 ? '+' : ''}
                 {periodDelta.toFixed(1)}%
               </span>

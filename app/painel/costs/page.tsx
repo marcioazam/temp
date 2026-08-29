@@ -91,7 +91,7 @@ export default function CostsPage() {
         <div className="flex flex-col gap-2 border border-border bg-card p-4">
           <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Orçamento utilizado</p>
           <p className="font-mono text-xl tabular-nums text-foreground">{fmtPercent(usedPct)}</p>
-          <ProgressBar value={usedPct} tone={usedPct > 90 ? 'danger' : 'primary'} />
+          <ProgressBar value={usedPct} tone={usedPct > 90 ? 'danger' : 'neutral'} />
           <p className="text-[11px] text-subtle-foreground">
             Limite mensal: {fmtCurrency(limit)}
           </p>
