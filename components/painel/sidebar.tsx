@@ -11,7 +11,6 @@ import {
   PanelLeft,
   ScrollText,
   Search,
-  Server,
   Settings,
   Users,
 } from 'lucide-react'
@@ -39,10 +38,7 @@ const groups: { title: string | null; items: NavItem[] }[] = [
   },
   {
     title: 'Infraestrutura',
-    items: [
-      { href: '/painel/providers', label: 'Provedores', icon: Server },
-      { href: '/painel/models', label: 'Modelos', icon: Boxes },
-    ],
+    items: [{ href: '/painel/models', label: 'Modelos', icon: Boxes }],
   },
   {
     title: 'Observabilidade',

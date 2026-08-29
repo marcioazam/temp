@@ -10,7 +10,6 @@ import {
   LayoutDashboard,
   ScrollText,
   Search,
-  Server,
   Settings,
   Users,
 } from 'lucide-react'
@@ -18,7 +17,6 @@ import { cn } from '@/lib/utils'
 
 const commands = [
   { href: '/painel/overview', label: 'Visão geral', group: 'Painel', icon: LayoutDashboard, keywords: 'dashboard overview inicio' },
-  { href: '/painel/providers', label: 'Provedores', group: 'Infraestrutura', icon: Server, keywords: 'openai anthropic google provider' },
   { href: '/painel/models', label: 'Modelos', group: 'Infraestrutura', icon: Boxes, keywords: 'gpt claude gemini modelo' },
   { href: '/painel/api-keys', label: 'Chaves de API', group: 'API Gateway', icon: KeyRound, keywords: 'key token credencial' },
   { href: '/painel/logs', label: 'Logs', group: 'Observabilidade', icon: ScrollText, keywords: 'requisições requests historico' },
