@@ -104,7 +104,6 @@ export default function LogsPage() {
             <TH>Requisição</TH>
             <TH className="hidden sm:table-cell">Horário</TH>
             <TH>Modelo</TH>
-            <TH className="hidden md:table-cell">Provedor</TH>
             <TH>Status</TH>
             <TH className="hidden lg:table-cell">Latência</TH>
             <TH className="hidden lg:table-cell">Tokens</TH>
@@ -121,7 +120,6 @@ export default function LogsPage() {
               <TD>
                 <span className="font-mono text-[12px]" data-no-translate>{log.model}</span>
               </TD>
-              <TD className="hidden text-muted-foreground md:table-cell">{log.provider}</TD>
               <TD>
                 <StatusBadge tone={statusTone(log.status)} dot={false}>
                   {log.status}
@@ -140,7 +138,7 @@ export default function LogsPage() {
           ))}
           {filtered.length === 0 && (
             <TR>
-              <TD colSpan={8} className="py-10 text-center text-subtle-foreground">
+              <TD colSpan={7} className="py-10 text-center text-subtle-foreground">
                 Nenhuma requisição corresponde aos filtros.
               </TD>
             </TR>
