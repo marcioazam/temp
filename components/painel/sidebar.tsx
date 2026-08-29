@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEffect, useRef } from 'react'
 import {
   BookOpen,
   Boxes,
@@ -67,6 +68,17 @@ export function PainelSidebar({
   onNavigate?: () => void
 }) {
   const pathname = usePathname()
+  const accountMenuRef = useRef<HTMLDetailsElement>(null)
+
+  useEffect(() => {
+    function closeAccountMenu(event: PointerEvent) {
+      const menu = accountMenuRef.current
+      if (menu?.open && !menu.contains(event.target as Node)) menu.open = false
+    }
+
+    document.addEventListener('pointerdown', closeAccountMenu)
+    return () => document.removeEventListener('pointerdown', closeAccountMenu)
+  }, [])
 
   return (
     <nav
@@ -190,7 +202,7 @@ export function PainelSidebar({
             <span className="truncate text-[12px] text-foreground">Ana Ribeiro</span>
             <span className="truncate text-[10px] text-subtle-foreground">ana@nyllalabs.com</span>
           </div>
-          <details className="group/profile shrink-0">
+          <details ref={accountMenuRef} className="group/profile shrink-0">
             <summary
               className="flex size-7 cursor-pointer list-none items-center justify-center text-subtle-foreground transition-colors hover:bg-muted/50 hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary [&::-webkit-details-marker]:hidden"
               aria-label="Abrir opções da conta"
