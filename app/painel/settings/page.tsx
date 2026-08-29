@@ -130,7 +130,7 @@ export default function SettingsPage() {
                   />
                 </Field>
               </div>
-              <div className="flex items-center justify-between gap-3 border-t border-border/35 pt-3">
+              <div className="flex items-center justify-end gap-3 border-t border-border/35 pt-3">
                 <p
                   id="profile-message"
                   role={profileMessage?.type === 'error' ? 'alert' : 'status'}
