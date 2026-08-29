@@ -317,7 +317,7 @@ export default function OverviewPage() {
           <ul>
             {state.activity.slice(0, 6).map((item) => (
               <li key={item.id} className="flex items-baseline gap-3 px-4 py-2.5">
-                <span className="mt-1 size-1 shrink-0 bg-term-success/70" aria-hidden="true" />
+                <span className="mt-1 size-1 shrink-0 rounded-full bg-foreground" aria-hidden="true" />
                 <div className="flex min-w-0 flex-1 flex-col">
                   <span className="text-[12px] text-foreground">{item.text}</span>
                   <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
