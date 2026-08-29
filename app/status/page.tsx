@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import { IncidentHistory } from "@/components/status/incident-history"
 import { LastUpdated } from "@/components/status/last-updated"
-import { UptimeBar } from "@/components/status/uptime-bar"
+import { UptimeViews } from "@/components/status/uptime-views"
 import { RotorMark } from "@/components/logo"
-import { getIncidents, getStatusServices, statusLabels } from "@/lib/status-data"
+import { getIncidents, getStatusServices } from "@/lib/status-data"
 
 export const metadata: Metadata = {
   title: "Status | Nylla",
@@ -62,32 +62,13 @@ export default function StatusPage() {
 
       {/* Serviços */}
       <section aria-labelledby="servicos" className="mt-14">
-        <div className="flex items-end justify-between gap-6 border-b border-foreground/20 pb-4">
+        <div className="border-b border-foreground/20 pb-4">
           <h2 id="servicos" className="font-sans text-2xl font-medium tracking-tight text-foreground md:text-3xl">
             Serviços
           </h2>
-          <p className="type-micro pb-1 text-subtle-foreground/60">90 dias atrás → hoje</p>
         </div>
 
-        <ul>
-          {services.map((service) => (
-            <li key={service.name} className="border-b border-border py-5">
-              <div className="flex items-baseline justify-between gap-6">
-                <h3 className="type-subheading truncate text-foreground">{service.name}</h3>
-                <div className="flex shrink-0 items-baseline gap-4">
-                  {service.status !== "operational" && (
-                    <span className="type-label text-muted-foreground">{statusLabels[service.status]}</span>
-                  )}
-                  <span className="type-label text-subtle-foreground">{service.uptime}</span>
-                </div>
-              </div>
-              <p className="type-caption mt-1 truncate text-subtle-foreground/70">{service.description}</p>
-              <div className="mt-4">
-                <UptimeBar days={service.days} serviceName={service.name} />
-              </div>
-            </li>
-          ))}
-        </ul>
+        <UptimeViews services={services} />
       </section>
 
       {/* Histórico de incidentes */}

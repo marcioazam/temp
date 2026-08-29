@@ -9,12 +9,25 @@ export interface UptimeDay {
   status: DayStatus
 }
 
+export interface UptimeMonth {
+  month: string // ISO yyyy-mm
+  uptime: string
+  status: DayStatus
+}
+
+export interface UptimeHour {
+  time: string // HH:00
+  status: DayStatus
+}
+
 export interface StatusService {
   name: string
   description: string
   status: DayStatus
   uptime: string
   days: UptimeDay[]
+  months: UptimeMonth[]
+  hours: UptimeHour[]
 }
 
 export interface IncidentUpdate {
@@ -34,6 +47,8 @@ export interface Incident {
 }
 
 export const DAYS_SHOWN = 90
+export const MONTHS_SHOWN = 12
+export const HOURS_SHOWN = 24
 
 export const statusLabels: Record<DayStatus, string> = {
   operational: "Operacional",
@@ -63,6 +78,42 @@ function buildDays(
   return days
 }
 
+function isoMonthsAgo(monthsAgo: number, now: Date): string {
+  const d = new Date(now.getFullYear(), now.getMonth() - monthsAgo, 1)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`
+}
+
+/** Gera a série de 12 meses com quedas pontuais em meses fixos. */
+function buildMonths(
+  now: Date,
+  dips: Record<number, { status: DayStatus; uptime: string }> = {},
+): UptimeMonth[] {
+  const months: UptimeMonth[] = []
+  for (let i = MONTHS_SHOWN - 1; i >= 0; i--) {
+    const dip = dips[i]
+    months.push({
+      month: isoMonthsAgo(i, now),
+      uptime: dip?.uptime ?? "100%",
+      status: dip?.status ?? "operational",
+    })
+  }
+  return months
+}
+
+/** Gera as últimas 24 horas com anomalias em deslocamentos fixos. */
+function buildHours(now: Date, anomalies: Record<number, DayStatus> = {}): UptimeHour[] {
+  const hours: UptimeHour[] = []
+  for (let i = HOURS_SHOWN - 1; i >= 0; i--) {
+    const d = new Date(now)
+    d.setHours(d.getHours() - i, 0, 0, 0)
+    hours.push({
+      time: `${String(d.getHours()).padStart(2, "0")}:00`,
+      status: anomalies[i] ?? "operational",
+    })
+  }
+  return hours
+}
+
 export function getStatusServices(now: Date): StatusService[] {
   return [
     {
@@ -71,6 +122,12 @@ export function getStatusServices(now: Date): StatusService[] {
       status: "operational",
       uptime: "99,98%",
       days: buildDays(now, { 41: "degraded", 12: "degraded" }),
+      months: buildMonths(now, {
+        0: { status: "degraded", uptime: "99,91%" },
+        1: { status: "degraded", uptime: "99,87%" },
+        7: { status: "degraded", uptime: "99,94%" },
+      }),
+      hours: buildHours(now),
     },
     {
       name: "Roteamento de modelos",
@@ -78,6 +135,8 @@ export function getStatusServices(now: Date): StatusService[] {
       status: "operational",
       uptime: "99,99%",
       days: buildDays(now, { 41: "degraded" }),
+      months: buildMonths(now, { 1: { status: "degraded", uptime: "99,95%" } }),
+      hours: buildHours(now),
     },
     {
       name: "Streaming",
@@ -85,6 +144,12 @@ export function getStatusServices(now: Date): StatusService[] {
       status: "operational",
       uptime: "99,95%",
       days: buildDays(now, { 63: "outage", 12: "degraded" }),
+      months: buildMonths(now, {
+        0: { status: "degraded", uptime: "99,89%" },
+        2: { status: "outage", uptime: "99,78%" },
+        9: { status: "degraded", uptime: "99,93%" },
+      }),
+      hours: buildHours(now),
     },
     {
       name: "Dashboard",
@@ -92,6 +157,8 @@ export function getStatusServices(now: Date): StatusService[] {
       status: "operational",
       uptime: "99,97%",
       days: buildDays(now, { 27: "maintenance" }),
+      months: buildMonths(now, { 0: { status: "maintenance", uptime: "99,92%" } }),
+      hours: buildHours(now),
     },
     {
       name: "Autenticação",
@@ -99,6 +166,8 @@ export function getStatusServices(now: Date): StatusService[] {
       status: "operational",
       uptime: "100%",
       days: buildDays(now),
+      months: buildMonths(now),
+      hours: buildHours(now),
     },
     {
       name: "Docs",
@@ -106,6 +175,8 @@ export function getStatusServices(now: Date): StatusService[] {
       status: "operational",
       uptime: "100%",
       days: buildDays(now),
+      months: buildMonths(now),
+      hours: buildHours(now),
     },
   ]
 }
