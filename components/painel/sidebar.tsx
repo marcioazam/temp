@@ -34,15 +34,15 @@ const groups: { title: string | null; items: NavItem[] }[] = [
     ],
   },
   {
+    title: 'API Gateway',
+    items: [{ href: '/painel/api-keys', label: 'Chaves de API', icon: KeyRound }],
+  },
+  {
     title: 'Infraestrutura',
     items: [
       { href: '/painel/providers', label: 'Provedores', icon: Server },
       { href: '/painel/models', label: 'Modelos', icon: Boxes },
     ],
-  },
-  {
-    title: 'API Gateway',
-    items: [{ href: '/painel/api-keys', label: 'Chaves de API', icon: KeyRound }],
   },
   {
     title: 'Observabilidade',
