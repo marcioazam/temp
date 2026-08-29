@@ -304,7 +304,7 @@ export default function OverviewPage() {
                 <span className="w-4 font-mono text-[10px] tabular-nums text-subtle-foreground">{i + 1}</span>
                 <span className="min-w-0 flex-1 truncate font-mono text-[12px] text-foreground">{model.name}</span>
                 <div className="hidden h-1 w-24 bg-muted sm:block" aria-hidden="true">
-                  <div className="h-full bg-term-success/70" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
+                  <div className="h-full bg-foreground" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
                 </div>
                 <span className="w-12 text-right font-mono text-[11px] tabular-nums text-muted-foreground">
                   {fmtPercent(model.trafficPct, 0)}
