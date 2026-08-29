@@ -17,12 +17,27 @@ import { Button } from '@/components/ui/button'
 const PAGE_SIZE = 30
 
 type StatusFilter = 'all' | '2xx' | '4xx' | '5xx'
-type PeriodFilter = 'all' | '1h' | '24h' | '7d'
+type PeriodFilter = 'all' | '1h' | '24h' | '7d' | 'custom'
 
-const periodMinutes: Record<Exclude<PeriodFilter, 'all'>, number> = {
+const periodMinutes: Record<Exclude<PeriodFilter, 'all' | 'custom'>, number> = {
   '1h': 60,
   '24h': 1440,
   '7d': 10_080,
+}
+
+function logTimestamp(datetime: string) {
+  const [date, time] = datetime.split(' ')
+  const [day, month, year] = date.split('/').map(Number)
+  const [hour, minute, second] = time.split(':').map(Number)
+  return Date.UTC(year, month - 1, day, hour, minute, second)
+}
+
+function isInCustomRange(log: LogEntry, start: string, end: string) {
+  if (!start || !end) return false
+  const timestamp = logTimestamp(log.datetime)
+  const startAt = new Date(`${start}T00:00:00Z`).getTime()
+  const endAt = new Date(`${end}T23:59:59.999Z`).getTime()
+  return timestamp >= startAt && timestamp <= endAt
 }
 
 function statusTone(status: number) {
@@ -67,6 +82,8 @@ export default function LogsPage() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
   const [modelFilter, setModelFilter] = useState('all')
   const [periodFilter, setPeriodFilter] = useState<PeriodFilter>('all')
+  const [customStart, setCustomStart] = useState('2026-08-22')
+  const [customEnd, setCustomEnd] = useState('2026-08-29')
   const [page, setPage] = useState(1)
   const [detail, setDetail] = useState<LogEntry | null>(null)
   const [replaying, setReplaying] = useState(false)
@@ -83,24 +100,27 @@ export default function LogsPage() {
         if (statusFilter === '4xx' && (l.status < 400 || l.status >= 500)) return false
         if (statusFilter === '5xx' && l.status < 500) return false
         if (modelFilter !== 'all' && l.model !== modelFilter) return false
-        if (periodFilter !== 'all' && l.ageMinutes > periodMinutes[periodFilter]) return false
+        if (periodFilter === 'custom' && !isInCustomRange(l, customStart, customEnd)) return false
+        if (periodFilter !== 'all' && periodFilter !== 'custom' && l.ageMinutes > periodMinutes[periodFilter]) return false
         const q = query.trim().toLowerCase()
         if (q && !`${l.id} ${l.model} ${l.endpoint}`.toLowerCase().includes(q)) return false
         return true
       }),
-    [state.logs, statusFilter, modelFilter, periodFilter, query],
+    [state.logs, statusFilter, modelFilter, periodFilter, customStart, customEnd, query],
   )
 
   const periodSummary = useMemo(() => {
-    const logsInPeriod = state.logs.filter(
-      (log) => periodFilter === 'all' || log.ageMinutes <= periodMinutes[periodFilter],
-    )
+    const logsInPeriod = state.logs.filter((log) => {
+      if (periodFilter === 'all') return true
+      if (periodFilter === 'custom') return isInCustomRange(log, customStart, customEnd)
+      return log.ageMinutes <= periodMinutes[periodFilter]
+    })
 
     return {
       requests: logsInPeriod.length,
       tokens: logsInPeriod.reduce((total, log) => total + log.tokensIn + log.tokensOut, 0),
     }
-  }, [state.logs, periodFilter])
+  }, [state.logs, periodFilter, customStart, customEnd])
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
   const currentPage = Math.min(page, totalPages)
@@ -188,6 +208,7 @@ export default function LogsPage() {
             { value: '1h', label: '1h' },
             { value: '24h', label: '24h' },
             { value: '7d', label: '7d' },
+            { value: 'custom', label: 'Personalizado' },
           ]}
         />
         {hasActiveFilters && (
@@ -200,6 +221,37 @@ export default function LogsPage() {
           {filtered.length} de {state.logs.length} requisições
         </span>
       </div>
+
+      {periodFilter === 'custom' && (
+        <div className="flex flex-wrap items-end gap-3 border-l border-border/50 pl-3">
+          <label className="flex min-w-40 flex-col gap-1.5 font-mono text-[10px] uppercase tracking-[0.1em] text-subtle-foreground">
+            Data inicial
+            <TextInput
+              type="date"
+              value={customStart}
+              max={customEnd}
+              onChange={(event) => {
+                setCustomStart(event.target.value)
+                setPage(1)
+              }}
+              className="font-mono text-[11px] text-foreground"
+            />
+          </label>
+          <label className="flex min-w-40 flex-col gap-1.5 font-mono text-[10px] uppercase tracking-[0.1em] text-subtle-foreground">
+            Data final
+            <TextInput
+              type="date"
+              value={customEnd}
+              min={customStart}
+              onChange={(event) => {
+                setCustomEnd(event.target.value)
+                setPage(1)
+              }}
+              className="font-mono text-[11px] text-foreground"
+            />
+          </label>
+        </div>
+      )}
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] leading-none">
         {[
