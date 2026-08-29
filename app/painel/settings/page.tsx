@@ -93,16 +93,6 @@ export default function SettingsPage() {
           <Section title="Roteamento" description="Comportamento do gateway de inferência.">
             <div className="divide-y divide-border/35">
               <SettingRow
-                title="Fallback automático"
-                description="Redireciona requisições para o próximo provedor saudável em caso de falha."
-              >
-                <Toggle
-                  checked={s.fallbackEnabled}
-                  onChange={(v) => update({ fallbackEnabled: v })}
-                  label="Fallback automático"
-                />
-              </SettingRow>
-              <SettingRow
                 title="Cache semântico"
                 description="Reutiliza respostas para prompts semanticamente equivalentes."
               >
