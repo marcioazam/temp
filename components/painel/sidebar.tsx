@@ -6,11 +6,8 @@ import { useEffect, useRef } from 'react'
 import {
   BookOpen,
   Boxes,
-  ChevronRight,
   CircleDollarSign,
-  CircleHelp,
   CircleUserRound,
-  Contrast,
   KeyRound,
   LayoutDashboard,
   LogOut,
@@ -243,25 +240,6 @@ export function PainelSidebar({
                   <KeyRound className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
                   <span>Chaves de API</span>
                 </Link>
-                <Link
-                  href="/painel/settings"
-                  className="flex items-center gap-2.5 px-2 py-1.5 text-[12.5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
-                >
-                  <Contrast className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
-                  <span>Aparência</span>
-                  <span className="ml-auto flex items-center gap-1 text-[11px] text-subtle-foreground">
-                    Escuro
-                    <ChevronRight className="size-3" aria-hidden="true" />
-                  </span>
-                </Link>
-                <a
-                  href="/docs"
-                  className="flex items-center gap-2.5 px-2 py-1.5 text-[12.5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
-                >
-                  <CircleHelp className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
-                  <span>Ajuda</span>
-                  <ChevronRight className="ml-auto size-3 text-subtle-foreground" aria-hidden="true" />
-                </a>
               </div>
 
               <div className="border-t border-border p-1">
