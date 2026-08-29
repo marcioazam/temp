@@ -11,6 +11,7 @@ import {
   PanelLeft,
   ScrollText,
   Search,
+  Server,
   Settings,
   Users,
 } from 'lucide-react'
