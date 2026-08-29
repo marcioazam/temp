@@ -173,7 +173,7 @@ export default function ModelsPage() {
               <TD className="hidden md:table-cell">
                 <div className="flex items-center gap-2">
                   <div className="h-1 w-16 bg-muted">
-                    <div className="h-full bg-primary/70" style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }} />
+                    <div className="h-full bg-foreground/60" style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }} />
                   </div>
                   <span className="font-mono text-[11px] tabular-nums text-subtle-foreground">
                     {fmtPercent(model.trafficPct, 0)}

@@ -1,5 +1,6 @@
 'use client'
 
+import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function Field({
@@ -55,18 +56,27 @@ export function TextArea({
 export function NativeSelect({
   className,
   children,
+  showChevron = true,
   ...props
-}: React.SelectHTMLAttributes<HTMLSelectElement>) {
+}: React.SelectHTMLAttributes<HTMLSelectElement> & { showChevron?: boolean }) {
   return (
-    <select
-      className={cn(
-        'h-8 w-full appearance-none border border-border bg-background px-2.5 text-[13px] text-foreground focus-visible:border-ring focus-visible:outline-none',
-        className,
+    <span className="relative block w-full">
+      <select
+        className={cn(
+          'h-8 w-full cursor-pointer appearance-none border border-border bg-background px-2.5 pr-9 text-[13px] text-foreground focus-visible:border-ring focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </select>
+      {showChevron && (
+        <ChevronDown
+          className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground"
+          aria-hidden="true"
+        />
       )}
-      {...props}
-    >
-      {children}
-    </select>
+    </span>
   )
 }
 

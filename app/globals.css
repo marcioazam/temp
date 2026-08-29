@@ -27,6 +27,7 @@
   --color-foreground: var(--foreground);
   --color-background: var(--background);
   --color-status-background: var(--status-background);
+  --color-sidebar: var(--sidebar);
   --color-ultra: var(--ultra);
   --color-logo: var(--logo);
   --color-tool-card: var(--tool-card);
@@ -58,6 +59,7 @@
   color-scheme: dark;
   --background: #090909;
   --status-background: #0d0d0d;
+  --sidebar: #0c0c0c;
   --foreground: #ededed;
   --card: #101010;
   --card-foreground: #ededed;

@@ -1,7 +1,7 @@
 'use client'
 
-import { useMemo, useState } from 'react'
-import { Check, ChevronDown, Copy, Plus, RotateCcw, Search, TriangleAlert } from 'lucide-react'
+import { useState } from 'react'
+import { Check, Copy, Pencil, Plus, RotateCcw, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import type { ApiKey, KeyEnvironment } from '@/lib/painel/data'
@@ -13,14 +13,7 @@ import { Field, TextInput } from '@/components/painel/ui/controls'
 import { Segmented } from '@/components/painel/ui/segmented'
 import { Button } from '@/components/ui/button'
 
-type EnvFilter = 'all' | KeyEnvironment
 type Expiry = 'never' | '30d' | '90d' | '1y'
-
-const scopeOptions = [
-  { value: 'Completo', description: 'Leitura, inferência e gerenciamento de recursos.' },
-  { value: 'Somente inferência', description: 'Executa modelos, sem acesso administrativo.' },
-  { value: 'Somente leitura', description: 'Consulta métricas e configurações, sem executar.' },
-] as const
 
 const expiryLabel: Record<Expiry, string> = {
   never: 'Nunca',
@@ -35,6 +28,23 @@ function expiryDate(expiry: Expiry): string {
   const d = new Date()
   d.setDate(d.getDate() + days)
   return d.toLocaleDateString('pt-BR')
+}
+
+function toDateInput(value?: string): string {
+  if (!value || value === 'Nunca') return ''
+  const [day, month, year] = value.split('/')
+  return day && month && year ? `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}` : ''
+}
+
+function toDisplayDate(value: string): string {
+  const [year, month, day] = value.split('-')
+  return `${day}/${month}/${year}`
+}
+
+function todayInputValue(): string {
+  const now = new Date()
+  const offset = now.getTimezoneOffset()
+  return new Date(now.getTime() - offset * 60_000).toISOString().slice(0, 10)
 }
 
 function CopyPrefixButton({ prefix, name }: { prefix: string; name: string }) {
@@ -55,7 +65,7 @@ function CopyPrefixButton({ prefix, name }: { prefix: string; name: string }) {
         }
       }}
     >
-      {copied ? <Check className="text-term-success" /> : <Copy />}
+      {copied ? <Check className="text-primary" /> : <Copy />}
     </Button>
   )
 }
@@ -63,18 +73,11 @@ function CopyPrefixButton({ prefix, name }: { prefix: string; name: string }) {
 export default function ApiKeysPage() {
   const { state, dispatch } = usePainel()
 
-  // Listagem
-  const [query, setQuery] = useState('')
-  const [envFilter, setEnvFilter] = useState<EnvFilter>('all')
-  const [revokedOpen, setRevokedOpen] = useState(false)
-
   // Criação
   const [createOpen, setCreateOpen] = useState(false)
   const [newName, setNewName] = useState('')
   const [newEnv, setNewEnv] = useState<KeyEnvironment>('prod')
-  const [newScope, setNewScope] = useState<string>('Completo')
   const [newExpiry, setNewExpiry] = useState<Expiry>('never')
-  const [newRateLimit, setNewRateLimit] = useState('')
   const [createdKey, setCreatedKey] = useState<string | null>(null)
   const [createdSummary, setCreatedSummary] = useState<ApiKey | null>(null)
   const [copied, setCopied] = useState(false)
@@ -85,47 +88,39 @@ export default function ApiKeysPage() {
   const [rotatedCopied, setRotatedCopied] = useState(false)
   const [confirmRevoke, setConfirmRevoke] = useState<ApiKey | null>(null)
 
+  // Expiração
+  const [editingExpiration, setEditingExpiration] = useState<ApiKey | null>(null)
+  const [expirationDate, setExpirationDate] = useState('')
+  const [neverExpires, setNeverExpires] = useState(false)
+
   const activeKeys = state.keys.filter((k) => !k.revoked)
-  const revokedKeys = state.keys.filter((k) => k.revoked)
 
-  const filteredKeys = useMemo(() => {
-    const q = query.trim().toLowerCase()
-    return activeKeys.filter((k) => {
-      if (envFilter !== 'all' && k.environment !== envFilter) return false
-      if (q && !k.name.toLowerCase().includes(q) && !k.prefix.toLowerCase().includes(q)) return false
-      return true
-    })
-  }, [activeKeys, envFilter, query])
+  const hasReachedKeyLimit = activeKeys.length >= 10
 
-  const prodCount = activeKeys.filter((k) => k.environment === 'prod').length
   const totalRequests30d = activeKeys.reduce((acc, k) => acc + (k.requests30d ?? 0), 0)
 
   const stats = [
     { label: 'Chaves ativas', value: String(activeKeys.length) },
-    { label: 'Produção', value: String(prodCount) },
-    { label: 'Staging', value: String(activeKeys.length - prodCount) },
     { label: 'Req. 30d', value: fmtCompact(totalRequests30d) },
   ]
 
   function createKey() {
-    if (!newName.trim()) return
+    if (!newName.trim() || hasReachedKeyLimit) return
     const suffix = randomKeySuffix()
     const envPrefix = newEnv === 'prod' ? 'nyl_live' : 'nyl_test'
     const full = `${envPrefix}_${suffix}`
-    const parsedLimit = Number.parseInt(newRateLimit, 10)
     const key: ApiKey = {
       id: `k_${Date.now()}`,
       name: newName.trim(),
       prefix: `${envPrefix}_${suffix.slice(0, 4)}`,
       environment: newEnv,
-      scope: newScope,
+      scope: 'Completo',
       lastUsed: '—',
       createdBy: 'Ana Ribeiro',
       createdAt: new Date().toLocaleDateString('pt-BR'),
       revoked: false,
       expiresAt: expiryDate(newExpiry),
       requests30d: 0,
-      ...(Number.isFinite(parsedLimit) && parsedLimit > 0 ? { rateLimit: parsedLimit } : {}),
     }
     dispatch({ type: 'create_key', key })
     setCreatedSummary(key)
@@ -148,9 +143,7 @@ export default function ApiKeysPage() {
     setCreatedSummary(null)
     setNewName('')
     setNewEnv('prod')
-    setNewScope('Completo')
     setNewExpiry('never')
-    setNewRateLimit('')
   }
 
   function rotate(key: ApiKey) {
@@ -165,13 +158,42 @@ export default function ApiKeysPage() {
     setRotatedKey(null)
   }
 
+  function openExpirationEditor(key: ApiKey) {
+    const currentDate = toDateInput(key.expiresAt)
+    setEditingExpiration(key)
+    setExpirationDate(currentDate)
+    setNeverExpires(!currentDate)
+  }
+
+  function closeExpirationEditor() {
+    setEditingExpiration(null)
+    setExpirationDate('')
+    setNeverExpires(false)
+  }
+
+  function saveExpiration() {
+    if (!editingExpiration || (!neverExpires && (!expirationDate || expirationDate < todayInputValue()))) return
+    dispatch({
+      type: 'update_key_expiration',
+      id: editingExpiration.id,
+      expiresAt: neverExpires ? 'Nunca' : toDisplayDate(expirationDate),
+    })
+    closeExpirationEditor()
+  }
+
   return (
     <>
       <PageHeader
         title="Chaves de API"
         description="Crie e gerencie credenciais para acessar o gateway. A chave completa só é exibida uma vez, na criação."
         actions={
-          <Button size="sm" onClick={() => setCreateOpen(true)}>
+          <Button
+            size="sm"
+            className="h-7 rounded-none border border-foreground bg-foreground! px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-background! hover:bg-foreground/90!"
+            onClick={() => setCreateOpen(true)}
+            disabled={hasReachedKeyLimit}
+            title={hasReachedKeyLimit ? 'Limite de 10 chaves ativas atingido' : undefined}
+          >
             <Plus className="size-3.5" />
             Criar chave
           </Button>
@@ -188,48 +210,21 @@ export default function ApiKeysPage() {
       </div>
 
       <section className="border border-border/35 bg-muted/20" aria-label="Chaves ativas">
-        <div className="flex flex-wrap items-center justify-between gap-3 px-4 pb-1 pt-4">
-          <div className="flex flex-col gap-1.5">
-            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Chaves ativas</h2>
-            <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
-              {filteredKeys.length} de {activeKeys.length}
-            </span>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="relative">
-              <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground" aria-hidden="true" />
-              <TextInput
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Buscar por nome ou prefixo"
-                className="h-[30px] w-56 pl-8"
-                aria-label="Buscar chaves"
-              />
-            </div>
-            <Segmented
-              label="Filtrar por ambiente"
-              value={envFilter}
-              onChange={setEnvFilter}
-              options={[
-                { value: 'all', label: 'Todas' },
-                { value: 'prod', label: 'Prod' },
-                { value: 'staging', label: 'Staging' },
-              ]}
-            />
-          </div>
+        <div className="px-4 pb-1 pt-4">
+          <h2 className="text-base font-medium tracking-tight text-foreground">Chaves ativas</h2>
         </div>
 
         <div className="overflow-x-auto px-4 pb-4 pt-3">
-          <table className="w-full min-w-[860px] border-collapse text-left">
+          <table className="w-full min-w-[760px] border-collapse text-left">
             <thead>
               <tr>
-                {['Nome', 'Chave', 'Ambiente', 'Último uso', 'Req. 30d', 'Expira', ''].map((h, i) => (
+                {['Nome', 'Chave', 'Último uso', 'Req. 30d', 'Expira', ''].map((h, i) => (
                   <th
                     key={h || 'acoes'}
                     className={cn(
                       'pb-2.5 pr-4 font-mono text-[9px] font-normal uppercase tracking-[0.12em] text-subtle-foreground',
-                      i >= 4 && 'text-right',
-                      i === 6 && 'pr-0',
+                      i >= 3 && 'text-right',
+                      i === 5 && 'pr-0',
                     )}
                   >
                     {h || <span className="sr-only">Ações</span>}
@@ -238,7 +233,7 @@ export default function ApiKeysPage() {
               </tr>
             </thead>
             <tbody>
-              {filteredKeys.map((key) => (
+              {activeKeys.map((key) => (
                 <tr key={key.id} className="group">
                   <td className="py-2.5 pr-4">
                     <div className="flex flex-col gap-0.5">
@@ -258,17 +253,23 @@ export default function ApiKeysPage() {
                       <CopyPrefixButton prefix={key.prefix} name={key.name} />
                     </div>
                   </td>
-                  <td className="py-2.5 pr-4">
-                    <StatusBadge tone={key.environment === 'prod' ? 'primary' : 'muted'} dot={false}>
-                      {key.environment === 'prod' ? 'Prod' : 'Staging'}
-                    </StatusBadge>
-                  </td>
                   <td className="py-2.5 pr-4 font-mono text-[12px] text-subtle-foreground">{key.lastUsed}</td>
                   <td className="py-2.5 pr-4 text-right font-mono text-[12px] tabular-nums text-muted-foreground">
                     {key.requests30d != null ? fmtCompact(key.requests30d) : '—'}
                   </td>
-                  <td className="py-2.5 pr-4 text-right font-mono text-[12px] text-subtle-foreground">
-                    {key.expiresAt ?? 'Nunca'}
+                  <td className="py-2.5 pr-4">
+                    <div className="flex items-center justify-end gap-1 font-mono text-[12px] text-subtle-foreground">
+                      <span>{key.expiresAt ?? 'Nunca'}</span>
+                      <Button
+                        variant="ghost"
+                        size="icon-xs"
+                        onClick={() => openExpirationEditor(key)}
+                        aria-label={`Alterar expiração da chave ${key.name}`}
+                        title="Alterar expiração"
+                      >
+                        <Pencil className="size-3" />
+                      </Button>
+                    </div>
                   </td>
                   <td className="py-2.5 text-right">
                     <div className="flex items-center justify-end gap-1">
@@ -288,13 +289,11 @@ export default function ApiKeysPage() {
                   </td>
                 </tr>
               ))}
-              {filteredKeys.length === 0 && (
+              {activeKeys.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center">
+                  <td colSpan={6} className="py-12 text-center">
                     <p className="text-[13px] text-muted-foreground">
-                      {activeKeys.length === 0
-                        ? 'Nenhuma chave ativa. Crie a primeira chave para começar.'
-                        : 'Nenhuma chave corresponde à busca ou filtro atual.'}
+                      Nenhuma chave ativa. Crie a primeira chave para começar.
                     </p>
                   </td>
                 </tr>
@@ -304,51 +303,17 @@ export default function ApiKeysPage() {
         </div>
       </section>
 
-      {revokedKeys.length > 0 && (
-        <section aria-label="Chaves revogadas" className="border border-border/35 bg-muted/20">
-          <button
-            type="button"
-            onClick={() => setRevokedOpen((o) => !o)}
-            aria-expanded={revokedOpen}
-            className="flex w-full items-center justify-between gap-2 px-4 py-3 text-left"
-          >
-            <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
-              Revogadas · {revokedKeys.length}
-            </span>
-            <ChevronDown
-              className={cn('size-3.5 text-subtle-foreground transition-transform', revokedOpen && 'rotate-180')}
-              aria-hidden="true"
-            />
-          </button>
-          {revokedOpen && (
-            <ul className="px-4 pb-4">
-              {revokedKeys.map((key) => (
-                <li key={key.id} className="flex flex-wrap items-center justify-between gap-2 py-2 opacity-60">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[13px] text-foreground">{key.name}</span>
-                    <span className="font-mono text-[12px] text-subtle-foreground line-through" data-no-translate>
-                      {key.prefix}
-                      {'••••••••'}
-                    </span>
-                  </div>
-                  <span className="font-mono text-[11px] text-subtle-foreground">criada em {key.createdAt}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      )}
-
       <Dialog
         open={createOpen}
         onOpenChange={(o) => {
           if (!o) closeCreate()
         }}
+        showHeaderBorder={false}
         title={createdKey ? 'Chave criada' : 'Criar chave de API'}
         description={
           createdKey
             ? 'Copie a chave agora. Por segurança, ela não será exibida novamente.'
-            : 'A chave herda as permissões do escopo selecionado.'
+            : 'Defina um nome e a expiração da nova chave.'
         }
       >
         {createdKey ? (
@@ -358,16 +323,14 @@ export default function ApiKeysPage() {
                 {createdKey}
               </code>
               <Button variant="outline" size="icon-sm" onClick={() => copyText(createdKey, setCopied)} aria-label="Copiar chave">
-                {copied ? <Check className="text-term-success" /> : <Copy />}
+                {copied ? <Check className="text-primary" /> : <Copy />}
               </Button>
             </div>
             {createdSummary && (
-              <dl className="grid grid-cols-2 gap-x-6 gap-y-2 font-mono text-[11px] sm:grid-cols-4">
+              <dl className="grid grid-cols-2 gap-x-6 gap-y-2 font-mono text-[11px]">
                 {[
                   { dt: 'Ambiente', dd: createdSummary.environment === 'prod' ? 'Produção' : 'Staging' },
-                  { dt: 'Escopo', dd: createdSummary.scope },
                   { dt: 'Expira', dd: createdSummary.expiresAt ?? 'Nunca' },
-                  { dt: 'Rate limit', dd: createdSummary.rateLimit ? `${createdSummary.rateLimit} req/min` : '—' },
                 ].map((row) => (
                   <div key={row.dt} className="flex flex-col gap-0.5">
                     <dt className="text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">{row.dt}</dt>
@@ -402,82 +365,94 @@ export default function ApiKeysPage() {
               />
             </Field>
 
-            <fieldset className="flex flex-col gap-1.5">
-              <legend className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
-                Escopo
-              </legend>
-              <div className="flex flex-col gap-1.5">
-                {scopeOptions.map((s) => (
-                  <label
-                    key={s.value}
-                    className={cn(
-                      'flex cursor-pointer items-start gap-2.5 border p-2.5 transition-colors',
-                      newScope === s.value
-                        ? 'border-primary/50 bg-primary/5'
-                        : 'border-border bg-background hover:border-foreground/25',
-                    )}
-                  >
-                    <input
-                      type="radio"
-                      name="scope"
-                      value={s.value}
-                      checked={newScope === s.value}
-                      onChange={() => setNewScope(s.value)}
-                      className="sr-only"
-                    />
-                    <span
-                      className={cn(
-                        'mt-1 size-1.5 shrink-0 rounded-full',
-                        newScope === s.value ? 'bg-primary' : 'bg-border',
-                      )}
-                      aria-hidden="true"
-                    />
-                    <span className="flex flex-col gap-0.5">
-                      <span className="text-[13px] text-foreground">{s.value}</span>
-                      <span className="text-[11px] leading-relaxed text-muted-foreground">{s.description}</span>
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="flex flex-col gap-1.5">
-                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Expiração</span>
-                <Segmented
-                  label="Expiração da chave"
-                  value={newExpiry}
-                  onChange={setNewExpiry}
-                  options={[
-                    { value: 'never', label: 'Nunca' },
-                    { value: '30d', label: '30d' },
-                    { value: '90d', label: '90d' },
-                    { value: '1y', label: '1 ano' },
-                  ]}
-                />
-              </div>
-              <Field label="Rate limit (req/min)" hint="Opcional. Vazio usa o limite do workspace.">
-                <TextInput
-                  type="number"
-                  min={1}
-                  inputMode="numeric"
-                  value={newRateLimit}
-                  onChange={(e) => setNewRateLimit(e.target.value)}
-                  placeholder="Ex.: 600"
-                />
-              </Field>
+            <div className="flex flex-col gap-1.5">
+              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Expiração</span>
+              <Segmented
+                label="Expiração da chave"
+                value={newExpiry}
+                onChange={setNewExpiry}
+                options={[
+                  { value: 'never', label: 'Nunca' },
+                  { value: '30d', label: '30d' },
+                  { value: '90d', label: '90d' },
+                  { value: '1y', label: '1 ano' },
+                ]}
+              />
             </div>
 
             <div className="flex justify-end gap-2 pt-1">
               <Button variant="ghost" size="sm" type="button" onClick={closeCreate}>
                 Cancelar
               </Button>
-              <Button size="sm" type="submit" disabled={!newName.trim()}>
+              <Button
+                size="sm"
+                type="submit"
+                disabled={!newName.trim()}
+                className="h-7 rounded-none border border-foreground bg-foreground! px-3 font-mono text-[9px] font-semibold uppercase tracking-wide text-background! hover:bg-foreground/90!"
+              >
                 Criar chave
               </Button>
             </div>
           </form>
         )}
+      </Dialog>
+
+      <Dialog
+        open={editingExpiration !== null}
+        onOpenChange={(open) => {
+          if (!open) closeExpirationEditor()
+        }}
+        title="Alterar expiração"
+        description={editingExpiration ? `Defina quando a chave ${editingExpiration.name} deve expirar.` : undefined}
+      >
+        <form
+          className="flex flex-col gap-4 p-5"
+          onSubmit={(event) => {
+            event.preventDefault()
+            saveExpiration()
+          }}
+        >
+          <Field
+            label="Data de expiração"
+            hint={!neverExpires && expirationDate && expirationDate < todayInputValue() ? 'Selecione hoje ou uma data futura.' : undefined}
+          >
+            {neverExpires ? (
+              <TextInput type="text" value="-" disabled aria-label="Data de expiração desabilitada" />
+            ) : (
+              <TextInput
+                type="date"
+                min={todayInputValue()}
+                value={expirationDate}
+                onChange={(event) => setExpirationDate(event.target.value)}
+                aria-invalid={Boolean(expirationDate) && expirationDate < todayInputValue()}
+              />
+            )}
+          </Field>
+
+          <label className="flex cursor-pointer items-center gap-2 text-[12px] text-muted-foreground">
+            <input
+              type="checkbox"
+              checked={neverExpires}
+              onChange={(event) => setNeverExpires(event.target.checked)}
+              className="size-3.5 rounded-none accent-primary"
+            />
+            Esta chave nunca expira
+          </label>
+
+          <div className="flex justify-end gap-2 pt-1">
+            <Button variant="ghost" size="sm" type="button" onClick={closeExpirationEditor}>
+              Cancelar
+            </Button>
+            <Button
+              size="sm"
+              type="submit"
+              disabled={!neverExpires && (!expirationDate || expirationDate < todayInputValue())}
+              className="h-7 rounded-none border border-foreground bg-foreground! px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-background! hover:bg-foreground/90!"
+            >
+              Salvar
+            </Button>
+          </div>
+        </form>
       </Dialog>
 
       <Dialog
@@ -505,7 +480,7 @@ export default function ApiKeysPage() {
                   onClick={() => copyText(rotatedKey, setRotatedCopied)}
                   aria-label="Copiar nova chave"
                 >
-                  {rotatedCopied ? <Check className="text-term-success" /> : <Copy />}
+                  {rotatedCopied ? <Check className="text-primary" /> : <Copy />}
                 </Button>
               </div>
               <Button size="sm" onClick={closeRotate} className="self-end">

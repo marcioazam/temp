@@ -21,14 +21,17 @@ const rangeLabel: Record<Range, string> = {
   '30d': 'últimos 30 dias',
 }
 
-// Sparklines determinísticos por KPI (tendência de demonstração)
+// Sparklines determinísticos por KPI (tendência de demonstração).
+// `quality: true` = métrica de desempenho, recebe verde (bom) ou vermelho (ruim).
+// `invert: true` = queda é o resultado desejado (latência, tempo de resposta, erros).
+// Volume puro (requisições, tokens) permanece neutro para não estimular consumo.
 const kpis = [
   { label: 'Requisições', value: '452.890', delta: 12.0, spark: [28, 31, 30, 34, 36, 35, 39, 41, 40, 44, 46, 49] },
   { label: 'Tokens', value: '1,8 bi', delta: 8.0, spark: [40, 42, 41, 44, 43, 46, 48, 47, 50, 52, 51, 54] },
-  { label: 'Tempo de resposta', value: '12,4 h', delta: -9.2, spark: [54, 52, 53, 49, 47, 48, 44, 43, 40, 41, 37, 35], invert: true },
-  { label: 'Latência média', value: '428 ms', delta: -6.0, spark: [52, 50, 51, 48, 47, 49, 45, 44, 46, 42, 41, 39], invert: true },
-  { label: 'Taxa de sucesso', value: '98,7%', delta: 0.4, spark: [44, 45, 43, 46, 45, 47, 46, 48, 47, 48, 49, 48] },
-  { label: 'Erros (24h)', value: '214', delta: -18.0, spark: [58, 55, 56, 52, 50, 51, 46, 44, 45, 40, 38, 34], invert: true },
+  { label: 'Tempo de resposta', value: '12,4 h', delta: -9.2, spark: [54, 52, 53, 49, 47, 48, 44, 43, 40, 41, 37, 35], invert: true, quality: true },
+  { label: 'Latência média', value: '428 ms', delta: -6.0, spark: [52, 50, 51, 48, 47, 49, 45, 44, 46, 42, 41, 39], invert: true, quality: true },
+  { label: 'Taxa de sucesso', value: '98,7%', delta: 0.4, spark: [44, 45, 43, 46, 45, 47, 46, 48, 47, 48, 49, 48], quality: true },
+  { label: 'Erros (24h)', value: '214', delta: -18.0, spark: [58, 55, 56, 52, 50, 51, 46, 44, 45, 40, 38, 34], invert: true, quality: true },
 ] as const
 
 function KpiCard({
@@ -37,15 +40,17 @@ function KpiCard({
   delta,
   spark,
   invert = false,
+  quality = false,
 }: {
   label: string
   value: string
   delta: number
   spark: readonly number[]
   invert?: boolean
+  quality?: boolean
 }) {
   // Para métricas em que queda é positiva (latência, erros), o tom acompanha o benefício.
-  const positive = invert ? delta <= 0 : delta >= 0
+  const good = invert ? delta <= 0 : delta >= 0
   return (
     <div className="group flex flex-col gap-2 border border-border/35 bg-muted/20 p-4 transition-colors hover:border-border/60">
       <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{label}</p>
@@ -55,7 +60,7 @@ function KpiCard({
           <p
             className={cn(
               'font-mono text-[11px] tabular-nums leading-none',
-              positive ? 'text-term-success' : 'text-destructive',
+              quality ? (good ? 'text-term-success' : 'text-destructive') : 'text-muted-foreground',
             )}
           >
             {delta >= 0 ? '+' : ''}
@@ -64,7 +69,7 @@ function KpiCard({
         </div>
         <Sparkline
           data={[...spark]}
-          tone={positive ? 'up' : 'down'}
+          tone={quality ? (good ? 'up' : 'down') : 'neutral'}
           className="opacity-55 transition-opacity group-hover:opacity-95"
         />
       </div>
@@ -81,7 +86,7 @@ const providerLabel = {
 
 export default function OverviewPage() {
   const { state, dispatch } = usePainel()
-  const [range, setRange] = useState<Range>('7d')
+  const [range, setRange] = useState<Range>('24h')
   const [metric, setMetric] = useState<'requests' | 'tokens'>('requests')
   const [activityMetric, setActivityMetric] = useState<'requests' | 'tokens'>('requests')
   const [shape, setShape] = useState<ChartShape>('area')
@@ -115,7 +120,12 @@ export default function OverviewPage() {
         title="Visão geral"
         description="Acompanhe uso, custo e a saúde dos provedores do workspace Nylla Labs."
         actions={
-          <Button variant="outline" size="sm" onClick={refresh} disabled={refreshing}>
+          <Button
+            size="sm"
+            className="h-7 rounded-none border border-foreground bg-foreground px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-background hover:bg-foreground/90"
+            onClick={refresh}
+            disabled={refreshing}
+          >
             <RefreshCw className={cn('size-3.5', refreshing && 'animate-spin')} />
             Atualizar
           </Button>
@@ -125,7 +135,7 @@ export default function OverviewPage() {
       {!allDone && (
         <section className="border border-border/35 bg-muted/20" aria-label="Configuração inicial">
           <div className="flex items-center justify-between px-4 py-3">
-            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Configuração inicial</h2>
+            <h2 className="text-base font-medium tracking-tight text-foreground">Configuração inicial</h2>
             <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
               {doneCount} de {state.checklist.length}
             </p>
@@ -145,7 +155,7 @@ export default function OverviewPage() {
                   <span
                     className={cn(
                       'mt-0.5 flex size-3.5 shrink-0 items-center justify-center rounded-full border',
-                      item.done ? 'border-term-success/50 text-term-success' : 'border-border',
+                      item.done ? 'border-foreground/50 text-foreground' : 'border-border',
                     )}
                   >
                     {item.done && <Check className="size-2.5" />}
@@ -161,7 +171,15 @@ export default function OverviewPage() {
       <section aria-label="Indicadores">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {kpis.map((k) => (
-            <KpiCard key={k.label} label={k.label} value={k.value} delta={k.delta} spark={k.spark} invert={'invert' in k && k.invert} />
+            <KpiCard
+              key={k.label}
+              label={k.label}
+              value={k.value}
+              delta={k.delta}
+              spark={k.spark}
+              invert={'invert' in k && k.invert}
+              quality={'quality' in k && k.quality}
+            />
           ))}
         </div>
       </section>
@@ -169,7 +187,7 @@ export default function OverviewPage() {
       <section className="border border-border/35 bg-muted/20" aria-label="Uso">
         <div className="flex flex-wrap items-end justify-between gap-4 px-4 pb-3 pt-4">
           <div className="flex flex-col gap-2">
-            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Uso</h2>
+            <h2 className="text-base font-medium tracking-tight text-foreground">Uso</h2>
             <div className="flex items-center gap-2.5 font-mono text-[10px] leading-none">
               <span className="uppercase tracking-[0.12em] text-subtle-foreground">
                 {rangeLabel[range]}
@@ -177,12 +195,7 @@ export default function OverviewPage() {
               <span className="tabular-nums text-foreground">
                 {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
               </span>
-              <span
-                className={cn(
-                  'tabular-nums',
-                  periodDelta >= 0 ? 'text-term-success' : 'text-destructive',
-                )}
-              >
+              <span className="tabular-nums text-muted-foreground">
                 {periodDelta >= 0 ? '+' : ''}
                 {periodDelta.toFixed(1)}%
               </span>
@@ -244,7 +257,7 @@ export default function OverviewPage() {
       <section className="border border-border/35 bg-muted/20" aria-label="Atividade anual">
         <div className="flex items-start justify-between gap-4 px-4 pb-1 pt-4">
           <div className="flex flex-col gap-1.5">
-            <h2 className="text-[15px] font-medium tracking-tight text-foreground">
+            <h2 className="text-base font-medium tracking-tight text-foreground">
               Atividade de {activityMetric === 'requests' ? 'requisições' : 'tokens'}
             </h2>
             <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-subtle-foreground">Últimos 12 meses</span>
@@ -267,7 +280,7 @@ export default function OverviewPage() {
       <div className="grid gap-4 lg:grid-cols-2">
         <section className="border border-border/35 bg-muted/20" aria-label="Atividade recente">
           <div className="flex items-center justify-between px-4 py-3">
-            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Atividade</h2>
+            <h2 className="text-base font-medium tracking-tight text-foreground">Atividade</h2>
             <Link href="/painel/logs" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver logs <ArrowUpRight className="size-3" />
             </Link>
@@ -288,7 +301,7 @@ export default function OverviewPage() {
 
         <section className="border border-border/35 bg-muted/20" aria-label="Modelos em alta">
           <div className="flex items-center justify-between px-4 py-3">
-            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Modelos em alta</h2>
+            <h2 className="text-base font-medium tracking-tight text-foreground">Modelos em alta</h2>
             <Link href="/painel/models" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver todos <ArrowUpRight className="size-3" />
             </Link>
@@ -299,7 +312,7 @@ export default function OverviewPage() {
                 <span className="w-4 font-mono text-[10px] tabular-nums text-subtle-foreground">{i + 1}</span>
                 <span className="min-w-0 flex-1 truncate font-mono text-[12px] text-foreground">{model.name}</span>
                 <div className="hidden h-1 w-24 bg-muted sm:block" aria-hidden="true">
-                  <div className="h-full bg-term-success/70" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
+                  <div className="h-full bg-foreground/70" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
                 </div>
                 <span className="w-12 text-right font-mono text-[11px] tabular-nums text-muted-foreground">
                   {fmtPercent(model.trafficPct, 0)}

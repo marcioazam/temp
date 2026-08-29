@@ -12,6 +12,7 @@ export function Dialog({
   children,
   side = 'center',
   className,
+  showHeaderBorder = true,
 }: {
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -20,6 +21,7 @@ export function Dialog({
   children: React.ReactNode
   side?: 'center' | 'right'
   className?: string
+  showHeaderBorder?: boolean
 }) {
   return (
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
@@ -35,7 +37,12 @@ export function Dialog({
             className,
           )}
         >
-          <div className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
+          <div
+            className={cn(
+              'flex items-start justify-between gap-4 px-5 py-4',
+              showHeaderBorder && 'border-b border-border',
+            )}
+          >
             <div className="flex flex-col gap-1">
               <BaseDialog.Title className="text-sm font-medium text-foreground">{title}</BaseDialog.Title>
               {description && (
