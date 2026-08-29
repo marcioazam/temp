@@ -13,7 +13,6 @@ import { Field, TextInput } from '@/components/painel/ui/controls'
 import { Segmented } from '@/components/painel/ui/segmented'
 import { Button } from '@/components/ui/button'
 
-type EnvFilter = 'all' | KeyEnvironment
 type Expiry = 'never' | '30d' | '90d' | '1y'
 
 const scopeOptions = [
@@ -65,7 +64,7 @@ export default function ApiKeysPage() {
 
   // Listagem
   const [query, setQuery] = useState('')
-  const [envFilter, setEnvFilter] = useState<EnvFilter>('all')
+  const [page, setPage] = useState(1)
 
   // Criação
   const [createOpen, setCreateOpen] = useState(false)
@@ -89,11 +88,15 @@ export default function ApiKeysPage() {
   const filteredKeys = useMemo(() => {
     const q = query.trim().toLowerCase()
     return activeKeys.filter((k) => {
-      if (envFilter !== 'all' && k.environment !== envFilter) return false
       if (q && !k.name.toLowerCase().includes(q) && !k.prefix.toLowerCase().includes(q)) return false
       return true
     })
-  }, [activeKeys, envFilter, query])
+  }, [activeKeys, query])
+
+  const pageSize = 10
+  const totalPages = Math.max(1, Math.ceil(filteredKeys.length / pageSize))
+  const currentPage = Math.min(page, totalPages)
+  const paginatedKeys = filteredKeys.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 
   const prodCount = activeKeys.filter((k) => k.environment === 'prod').length
   const totalRequests30d = activeKeys.reduce((acc, k) => acc + (k.requests30d ?? 0), 0)
@@ -202,22 +205,15 @@ export default function ApiKeysPage() {
               <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground" aria-hidden="true" />
               <TextInput
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value)
+                  setPage(1)
+                }}
                 placeholder="Buscar por nome ou prefixo"
                 className="h-[30px] w-56 pl-8"
                 aria-label="Buscar chaves"
               />
             </div>
-            <Segmented
-              label="Filtrar por ambiente"
-              value={envFilter}
-              onChange={setEnvFilter}
-              options={[
-                { value: 'all', label: 'Todas' },
-                { value: 'prod', label: 'Prod' },
-                { value: 'staging', label: 'Staging' },
-              ]}
-            />
           </div>
         </div>
 
@@ -240,7 +236,7 @@ export default function ApiKeysPage() {
               </tr>
             </thead>
             <tbody>
-              {filteredKeys.map((key) => (
+              {paginatedKeys.map((key) => (
                 <tr key={key.id} className="group">
                   <td className="py-2.5 pr-4">
                     <div className="flex flex-col gap-0.5">
@@ -287,7 +283,7 @@ export default function ApiKeysPage() {
               ))}
               {filteredKeys.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center">
+                  <td colSpan={6} className="py-12 text-center">
                     <p className="text-[13px] text-muted-foreground">
                       {activeKeys.length === 0
                         ? 'Nenhuma chave ativa. Crie a primeira chave para começar.'
@@ -298,6 +294,32 @@ export default function ApiKeysPage() {
               )}
             </tbody>
           </table>
+          {totalPages > 1 && (
+            <nav
+              aria-label="Paginação das chaves de API"
+              className="flex items-center justify-between border-t border-border pt-3 font-mono text-[9px] uppercase tracking-wide"
+            >
+              <Button
+                variant="ghost"
+                size="xs"
+                disabled={currentPage === 1}
+                onClick={() => setPage(currentPage - 1)}
+              >
+                Anterior
+              </Button>
+              <span className="text-subtle-foreground">
+                Página {currentPage} de {totalPages}
+              </span>
+              <Button
+                variant="ghost"
+                size="xs"
+                disabled={currentPage === totalPages}
+                onClick={() => setPage(currentPage + 1)}
+              >
+                Próxima
+              </Button>
+            </nav>
+          )}
         </div>
       </section>
 
