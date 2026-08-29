@@ -298,8 +298,8 @@ export function HBarList({
 
 // ── Heatmap anual estilo contribuições ──────────────────────────────────────
 
-// Escala neutra (cinza → claro): intensidade de uso sem sinalizar recompensa
-const heatColors = ['#161616', '#2b2b2b', '#454545', '#6a6a6a', '#9c9c9c']
+// Escala sempre verde: a intensidade varia sem alterar o significado da cor.
+const heatColors = ['#102017', '#173522', '#245332', '#397a49', 'var(--term-success)']
 const levelRequests = [0, 420, 1180, 2640, 4310]
 const levelTokens = [0, 1_680_000, 4_720_000, 10_560_000, 17_240_000]
 const weekdayLabels = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
