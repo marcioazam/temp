@@ -28,6 +28,7 @@ const groups: { title: string | null; items: NavItem[] }[] = [
   {
     title: null,
     items: [
+      { href: '/painel/settings', label: 'Configurações', icon: Settings },
       { href: '/painel/overview', label: 'Visão geral', icon: LayoutDashboard },
     ],
   },
@@ -48,10 +49,7 @@ const groups: { title: string | null; items: NavItem[] }[] = [
   },
   {
     title: 'Organização',
-    items: [
-      { href: '/painel/users', label: 'Usuários', icon: Users },
-      { href: '/painel/settings', label: 'Configurações', icon: Settings },
-    ],
+    items: [{ href: '/painel/users', label: 'Usuários', icon: Users }],
   },
 ]
 
