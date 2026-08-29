@@ -11,8 +11,10 @@ export function StatusSiteLink() {
       </span>
       <span
         aria-hidden="true"
-        className="w-0.5 bg-foreground transition-opacity group-hover:opacity-70"
-      />
+        className="flex items-center border-r-2 border-foreground px-2 text-sm leading-none transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+      >
+        ↗
+      </span>
     </Link>
   )
 }
