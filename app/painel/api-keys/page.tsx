@@ -167,7 +167,7 @@ export default function ApiKeysPage() {
         actions={
           <Button
             size="sm"
-            className="h-7 rounded-none border border-foreground bg-foreground! px-3 font-mono text-[9px] font-semibold uppercase tracking-wide text-background! hover:bg-foreground/90!"
+            className="h-7 rounded-none border border-foreground bg-foreground! px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-background! hover:bg-foreground/90!"
             onClick={() => setCreateOpen(true)}
             disabled={hasReachedKeyLimit}
             title={hasReachedKeyLimit ? 'Limite de 10 chaves ativas atingido' : undefined}
