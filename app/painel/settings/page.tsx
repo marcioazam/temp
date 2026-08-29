@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { RotateCcw } from 'lucide-react'
 import { PageHeader } from '@/components/painel/page-header'
-import { Field, NativeSelect, SettingRow, TextInput, Toggle } from '@/components/painel/ui/controls'
+import { Field, SettingRow, TextInput, Toggle } from '@/components/painel/ui/controls'
 import { Dialog } from '@/components/painel/ui/dialog'
 import { fmtCurrency } from '@/lib/painel/format'
 import { resetPainelStorage, usePainel } from '@/lib/painel/store'
@@ -60,36 +60,6 @@ export default function SettingsPage() {
 
       <div className="grid items-start gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
-          <Section title="Workspace" description="Identidade e ambiente padrão do workspace.">
-            <div className="flex flex-col gap-4 pt-2">
-              <Field label="Nome do workspace">
-                <TextInput value={s.workspaceName} onChange={(e) => update({ workspaceName: e.target.value })} />
-              </Field>
-              <Field label="Ambiente padrão" hint="Usado como padrão ao criar novas chaves de API.">
-                <NativeSelect
-                  value={s.defaultEnvironment}
-                  onChange={(e) => update({ defaultEnvironment: e.target.value as 'prod' | 'staging' })}
-                >
-                  <option value="prod">Produção</option>
-                  <option value="staging">Staging</option>
-                </NativeSelect>
-              </Field>
-              <Field
-                label="Limite mensal (US$)"
-                hint={`Gasto atual estimado: ${fmtCurrency(5670.57)} de ${fmtCurrency(s.monthlyLimit)}.`}
-              >
-                <TextInput
-                  type="number"
-                  min={0}
-                  inputMode="numeric"
-                  className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                  value={s.monthlyLimit}
-                  onChange={(e) => update({ monthlyLimit: Math.max(0, Number(e.target.value) || 0) })}
-                />
-              </Field>
-            </div>
-          </Section>
-
           <Section title="Roteamento" description="Comportamento do gateway de inferência.">
             <div className="divide-y divide-border/35">
               <SettingRow
