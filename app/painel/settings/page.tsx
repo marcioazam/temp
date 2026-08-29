@@ -197,7 +197,7 @@ export default function SettingsPage() {
                 className="flex h-7 shrink-0 items-center gap-2 border border-destructive/50 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-destructive transition-colors hover:bg-destructive/10 focus-visible:outline-1 focus-visible:outline-destructive"
               >
                 <RotateCcw className="size-3" />
-                Restaurar demo
+                Restaurar
               </button>
             </div>
           </section>
@@ -227,7 +227,7 @@ export default function SettingsPage() {
             }}
             className="h-7 border border-destructive/50 bg-destructive/10 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-destructive transition-colors hover:bg-destructive/20"
           >
-            Restaurar demo
+            Restaurar
           </button>
         </div>
       </Dialog>
