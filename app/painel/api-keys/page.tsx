@@ -224,16 +224,16 @@ export default function ApiKeysPage() {
         </div>
 
         <div className="overflow-x-auto px-4 pb-4 pt-3">
-          <table className="w-full min-w-[860px] border-collapse text-left">
+          <table className="w-full min-w-[760px] border-collapse text-left">
             <thead>
               <tr>
-                {['Nome', 'Chave', 'Ambiente', 'Último uso', 'Req. 30d', 'Expira', ''].map((h, i) => (
+                {['Nome', 'Chave', 'Último uso', 'Req. 30d', 'Expira', ''].map((h, i) => (
                   <th
                     key={h || 'acoes'}
                     className={cn(
                       'pb-2.5 pr-4 font-mono text-[9px] font-normal uppercase tracking-[0.12em] text-subtle-foreground',
-                      i >= 4 && 'text-right',
-                      i === 6 && 'pr-0',
+                      i >= 3 && 'text-right',
+                      i === 5 && 'pr-0',
                     )}
                   >
                     {h || <span className="sr-only">Ações</span>}
@@ -261,11 +261,6 @@ export default function ApiKeysPage() {
                       </span>
                       <CopyPrefixButton prefix={key.prefix} name={key.name} />
                     </div>
-                  </td>
-                  <td className="py-2.5 pr-4">
-                    <StatusBadge tone={key.environment === 'prod' ? 'primary' : 'muted'} dot={false}>
-                      {key.environment === 'prod' ? 'Prod' : 'Staging'}
-                    </StatusBadge>
                   </td>
                   <td className="py-2.5 pr-4 font-mono text-[12px] text-subtle-foreground">{key.lastUsed}</td>
                   <td className="py-2.5 pr-4 text-right font-mono text-[12px] tabular-nums text-muted-foreground">
