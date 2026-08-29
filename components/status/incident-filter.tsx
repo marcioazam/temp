@@ -162,10 +162,6 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
   const start = (currentPage - 1) * pageSize
   const pagedListed = listed.slice(start, start + pageSize)
   const pagedByMonth = byMonth.slice(start, start + pageSize)
-  const visibleCount =
-    view === "list"
-      ? pagedListed.length
-      : pagedByMonth.reduce((total, [, list]) => total + list.length, 0)
 
   function changeView(next: ViewMode) {
     setView(next)
@@ -290,14 +286,6 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
           </FilterGroup>
         </div>
       </section>
-
-      <div className="py-4">
-        <p aria-live="polite" className="type-micro text-subtle-foreground">
-          Exibindo {visibleCount} de {filtered.length}{" "}
-          {filtered.length === 1 ? "incidente" : "incidentes"}
-          {isFiltered ? ` · ${incidents.length} no total` : ""}
-        </p>
-      </div>
 
       {filtered.length === 0 ? (
         <div className="mt-8 border-t border-border">
