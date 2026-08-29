@@ -171,7 +171,11 @@ export default function ApiKeysPage() {
         title="Chaves de API"
         description="Crie e gerencie credenciais para acessar o gateway. A chave completa só é exibida uma vez, na criação."
         actions={
-          <Button size="sm" onClick={() => setCreateOpen(true)}>
+          <Button
+            size="sm"
+            className="h-7 rounded-none border border-foreground bg-foreground px-3 font-mono text-[9px] font-semibold uppercase tracking-wide text-background hover:bg-foreground/90"
+            onClick={() => setCreateOpen(true)}
+          >
             <Plus className="size-3.5" />
             Criar chave
           </Button>
