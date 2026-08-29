@@ -209,20 +209,20 @@ export default function OverviewPage() {
 
       <section className="border border-border/35 bg-muted/20" aria-label="Uso">
         <div className="flex flex-wrap items-end justify-between gap-4 px-4 pb-3 pt-4">
-          <div className="flex flex-col gap-1">
-            <div className="flex items-baseline gap-2">
-              <h2 className="text-[15px] font-medium tracking-tight text-foreground">Uso</h2>
-              <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-subtle-foreground">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-3">
+              <h2 className="text-base font-medium leading-none tracking-tight text-foreground">Uso</h2>
+              <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
                 {rangeLabel[range]}
               </span>
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-mono text-[13px] tabular-nums leading-none text-foreground">
+            <div className="flex items-center gap-2.5">
+              <span className="font-mono text-sm tabular-nums leading-none text-foreground">
                 {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
               </span>
               <span
                 className={cn(
-                  'font-mono text-[11px] tabular-nums',
+                  'font-mono text-[10px] tabular-nums leading-none',
                   periodDelta >= 0 ? 'text-term-success' : 'text-destructive',
                 )}
               >
