@@ -189,12 +189,7 @@ export default function ApiKeysPage() {
 
       <section className="border border-border/35 bg-muted/20" aria-label="Chaves ativas">
         <div className="flex flex-wrap items-center justify-between gap-3 px-4 pb-1 pt-4">
-          <div className="flex flex-col gap-1.5">
-            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Chaves ativas</h2>
-            <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
-              {filteredKeys.length} de {activeKeys.length}
-            </span>
-          </div>
+          <h2 className="text-[15px] font-medium tracking-tight text-foreground">Chaves ativas</h2>
           <div className="flex flex-wrap items-center gap-2">
             <div className="relative">
               <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground" aria-hidden="true" />
