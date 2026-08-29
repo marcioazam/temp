@@ -51,10 +51,10 @@ export default function StatusPage() {
       {/* Estado geral */}
       <section aria-labelledby="status-geral" className="mt-16 md:mt-20">
         <div
-          className="px-5 py-4 text-background md:px-6 md:py-5"
+          className="px-5 py-4 text-foreground md:px-6 md:py-5"
           style={{ background: overallState.background }}
         >
-          <h1 id="status-geral" className="type-title text-background">
+          <h1 id="status-geral" className="type-title text-foreground">
             {overallState.label}
           </h1>
         </div>
