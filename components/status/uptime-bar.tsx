@@ -15,7 +15,6 @@ function formatDay(iso: string): string {
   return new Date(y, m - 1, d).toLocaleDateString("pt-BR", {
     day: "numeric",
     month: "short",
-    year: "numeric",
   })
 }
 
@@ -27,17 +26,18 @@ export function UptimeBar({ days, serviceName }: { days: UptimeDay[]; serviceNam
       <div
         role="img"
         aria-label={`Histórico de 90 dias de ${serviceName}`}
-        className="flex h-8 items-stretch gap-px"
+        className="flex h-6 items-stretch gap-px"
         onMouseLeave={() => setActive(null)}
       >
         {days.map((day, i) => (
           <span
             key={day.date}
             onMouseEnter={() => setActive(i)}
-            className="min-w-0 flex-1 cursor-default transition-opacity"
+            className="min-w-0 flex-1 cursor-default transition-opacity duration-150"
             style={{
               background: barColor[day.status],
-              opacity: active === null || active === i ? (day.status === "operational" ? 0.75 : 1) : 0.25,
+              // Dias operacionais recuam; anomalias e o dia sob o cursor ficam em destaque.
+              opacity: active === i ? 1 : day.status === "operational" ? 0.45 : 0.9,
             }}
           />
         ))}
@@ -45,10 +45,8 @@ export function UptimeBar({ days, serviceName }: { days: UptimeDay[]; serviceNam
 
       {active !== null && (
         <div
-          className="type-label pointer-events-none absolute -top-9 z-10 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap border border-border bg-popover px-2.5 py-1.5 text-popover-foreground"
-          style={{
-            left: `${((active + 0.5) / days.length) * 100}%`,
-          }}
+          className="type-label pointer-events-none absolute -top-8 z-10 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap border border-border bg-popover px-2 py-1 text-popover-foreground"
+          style={{ left: `${((active + 0.5) / days.length) * 100}%` }}
         >
           <span
             aria-hidden="true"
