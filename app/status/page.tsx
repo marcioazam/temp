@@ -26,9 +26,9 @@ export default function StatusPage() {
 
   return (
     <main className="mx-auto w-full max-w-screen-2xl px-4 pb-24 pt-8 md:px-9 md:pt-10">
-      <div className="flex items-center gap-2.5 text-foreground" aria-label="Nylla Status">
-        <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0 text-primary" />
-        <span className="type-wordmark text-[1.375rem]">Nylla Status</span>
+      <div className="flex items-center gap-4 text-foreground" aria-label="Nylla Status">
+        <RotorMark aria-hidden="true" className="h-10 w-10 shrink-0 text-primary" />
+        <span className="type-wordmark text-3xl">Nylla Status</span>
       </div>
 
       {/* Estado geral */}
