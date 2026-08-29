@@ -7,9 +7,9 @@ import { statusLabels, type StatusService } from "@/lib/status-data"
 type TabId = "days" | "months" | "hours"
 
 const tabs: { id: TabId; label: string; scale: string }[] = [
+  { id: "hours", label: "24 horas", scale: "24 horas atrás → agora" },
   { id: "days", label: "90 dias", scale: "90 dias atrás → hoje" },
   { id: "months", label: "12 meses", scale: "12 meses atrás → hoje" },
-  { id: "hours", label: "24 horas", scale: "24 horas atrás → agora" },
 ]
 
 function formatDay(iso: string): string {
@@ -46,7 +46,7 @@ function segmentsFor(service: StatusService, tab: TabId): Segment[] {
 }
 
 export function UptimeViews({ services }: { services: StatusService[] }) {
-  const [tab, setTab] = useState<TabId>("days")
+  const [tab, setTab] = useState<TabId>("hours")
   const activeTab = tabs.find((t) => t.id === tab)!
 
   return (
