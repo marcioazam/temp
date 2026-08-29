@@ -34,6 +34,7 @@ export default function SettingsPage() {
   const [firstName, setFirstName] = useState(s.firstName)
   const [lastName, setLastName] = useState(s.lastName)
   const [profileMessage, setProfileMessage] = useState<{ type: 'error' | 'success'; text: string } | null>(null)
+  const [webhookSaved, setWebhookSaved] = useState(false)
   const [passwordOpen, setPasswordOpen] = useState(false)
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -190,16 +191,37 @@ export default function SettingsPage() {
               <SettingRow title="Webhook ativo" description="Envia eventos em tempo real para a URL configurada.">
                 <Toggle checked={s.webhookEnabled} onChange={(v) => update({ webhookEnabled: v })} label="Webhook ativo" />
               </SettingRow>
-              <div className="pt-3.5">
-                <Field label="URL do webhook">
-                  <TextInput
-                    value={s.webhookUrl}
-                    disabled={!s.webhookEnabled}
-                    onChange={(e) => update({ webhookUrl: e.target.value })}
-                    className="font-mono text-[12px] disabled:opacity-50"
-                  />
-                </Field>
+            <form
+              className="flex flex-col gap-3 pt-3.5"
+              onSubmit={(event) => {
+                event.preventDefault()
+                setWebhookSaved(true)
+              }}
+            >
+              <Field label="URL do webhook">
+                <TextInput
+                  value={s.webhookUrl}
+                  disabled={!s.webhookEnabled}
+                  onChange={(event) => {
+                    update({ webhookUrl: event.target.value })
+                    setWebhookSaved(false)
+                  }}
+                  className="font-mono text-[12px] disabled:opacity-50"
+                />
+              </Field>
+              <div className="flex items-center justify-end gap-3">
+                <p role="status" aria-live="polite" className="text-[11px] text-primary">
+                  {webhookSaved ? 'Webhook salvo.' : null}
+                </p>
+                <button
+                  type="submit"
+                  disabled={!s.webhookEnabled}
+                  className="h-7 shrink-0 border border-primary/50 bg-primary/10 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/20 focus-visible:outline-1 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Salvar alterações
+                </button>
               </div>
+            </form>
             </div>
           </Section>
         </div>
