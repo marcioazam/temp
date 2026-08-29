@@ -52,7 +52,7 @@ function KpiCard({
       <div className="flex items-end justify-between gap-3">
         <div className="flex flex-col gap-1.5">
           <p className="font-mono text-xl tabular-nums leading-none text-foreground">{value}</p>
-          <p className="font-mono text-[11px] tabular-nums leading-none text-muted-foreground">
+          <p className="font-mono text-[11px] tabular-nums leading-none text-primary">
             {delta >= 0 ? '+' : ''}
             {delta.toFixed(1).replace('.', ',')}%
           </p>
@@ -145,7 +145,7 @@ export default function OverviewPage() {
                   <span
                     className={cn(
                       'mt-0.5 flex size-3.5 shrink-0 items-center justify-center rounded-full border',
-                      item.done ? 'border-foreground/50 text-foreground' : 'border-border',
+                      item.done ? 'border-primary/50 text-primary' : 'border-border',
                     )}
                   >
                     {item.done && <Check className="size-2.5" />}
@@ -177,7 +177,7 @@ export default function OverviewPage() {
               <span className="tabular-nums text-foreground">
                 {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
               </span>
-              <span className="tabular-nums text-muted-foreground">
+              <span className="tabular-nums text-primary">
                 {periodDelta >= 0 ? '+' : ''}
                 {periodDelta.toFixed(1)}%
               </span>
@@ -294,7 +294,7 @@ export default function OverviewPage() {
                 <span className="w-4 font-mono text-[10px] tabular-nums text-subtle-foreground">{i + 1}</span>
                 <span className="min-w-0 flex-1 truncate font-mono text-[12px] text-foreground">{model.name}</span>
                 <div className="hidden h-1 w-24 bg-muted sm:block" aria-hidden="true">
-                  <div className="h-full bg-foreground" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
+                  <div className="h-full bg-primary/80" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
                 </div>
                 <span className="w-12 text-right font-mono text-[11px] tabular-nums text-muted-foreground">
                   {fmtPercent(model.trafficPct, 0)}

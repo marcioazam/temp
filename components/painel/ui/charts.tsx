@@ -24,8 +24,8 @@ export function Sparkline({
   const px = (i: number) => (i / (data.length - 1)) * W
   const py = (v: number) => H - 2 - ((v - min) / span) * (H - 4)
   const d = data.map((v, i) => `${i === 0 ? 'M' : 'L'}${px(i).toFixed(1)},${py(v).toFixed(1)}`).join(' ')
-  // Tendência de uso é sempre neutra: nada de verde/vermelho incentivando consumo.
-  const stroke = 'var(--muted-foreground)'
+  // Tendência de uso sempre em âmbar: sem verde/vermelho incentivando consumo.
+  const stroke = 'var(--primary)'
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className={cn('h-[22px] w-16', className)} aria-hidden="true">
@@ -115,8 +115,8 @@ export function AreaChart({
       >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--foreground)" stopOpacity="0.16" />
-            <stop offset="100%" stopColor="var(--foreground)" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.22" />
+            <stop offset="100%" stopColor="var(--primary)" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -182,7 +182,7 @@ export function AreaChart({
                   y={y(v)}
                   width={barW}
                   height={Math.max(1, H - PAD - y(v))}
-                  fill="var(--foreground)"
+                  fill="var(--primary)"
                   fillOpacity={active ? 0.24 : 0.14}
                 />
                 <rect
@@ -190,7 +190,7 @@ export function AreaChart({
                   y={y(v)}
                   width={barW}
                   height="1.5"
-                  fill="var(--foreground)"
+                  fill="var(--primary)"
                   fillOpacity={hover === null || active ? 0.9 : 0.45}
                 />
               </g>
@@ -202,8 +202,8 @@ export function AreaChart({
             <path
               d={line}
               fill="none"
-              stroke="var(--foreground)"
-              strokeOpacity="0.85"
+              stroke="var(--primary)"
+              strokeOpacity="0.9"
               strokeWidth="1.5"
               strokeLinejoin="round"
             />
@@ -247,7 +247,7 @@ export function AreaChart({
           <span className="text-subtle-foreground">{hoverPoint.label}</span>
           <span>{fmt(hoverValue)}</span>
           {delta !== null && (
-            <span className="text-muted-foreground">
+            <span className="text-primary">
               {delta >= 0 ? '+' : ''}
               {delta.toFixed(1)}%
             </span>
@@ -287,7 +287,7 @@ export function HBarList({
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{format(item.value)}</span>
           </div>
           <div className="h-1 w-full bg-muted">
-            <div className="h-full bg-foreground/60" style={{ width: `${(item.value / max) * 100}%` }} />
+            <div className="h-full bg-primary/70" style={{ width: `${(item.value / max) * 100}%` }} />
           </div>
         </li>
       ))}
@@ -297,8 +297,8 @@ export function HBarList({
 
 // ── Heatmap anual estilo contribuições ──────────────────────────────────────
 
-// Escala neutra (cinza → claro): intensidade de uso sem sinalizar recompensa
-const heatColors = ['#161616', '#2b2b2b', '#454545', '#6a6a6a', '#9c9c9c']
+// Escala âmbar derivada de --primary (#f5a524): intensidade sem sinalizar recompensa
+const heatColors = ['#161616', '#3b2e14', '#6b5116', '#a87b18', '#f5a524']
 const levelRequests = [0, 420, 1180, 2640, 4310]
 const levelTokens = [0, 1_680_000, 4_720_000, 10_560_000, 17_240_000]
 const weekdayLabels = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
@@ -474,7 +474,7 @@ export function ProgressBar({
       <div
           className={cn(
             'h-full transition-all',
-            tone === 'danger' ? 'bg-destructive' : tone === 'neutral' ? 'bg-foreground/60' : 'bg-primary',
+            tone === 'danger' ? 'bg-destructive' : tone === 'neutral' ? 'bg-primary/70' : 'bg-primary',
           )}
         style={{ width: `${Math.min(100, value)}%` }}
       />

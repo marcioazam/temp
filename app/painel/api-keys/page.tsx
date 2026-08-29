@@ -65,7 +65,7 @@ function CopyPrefixButton({ prefix, name }: { prefix: string; name: string }) {
         }
       }}
     >
-      {copied ? <Check className="text-term-success" /> : <Copy />}
+      {copied ? <Check className="text-primary" /> : <Copy />}
     </Button>
   )
 }
@@ -323,7 +323,7 @@ export default function ApiKeysPage() {
                 {createdKey}
               </code>
               <Button variant="outline" size="icon-sm" onClick={() => copyText(createdKey, setCopied)} aria-label="Copiar chave">
-                {copied ? <Check className="text-term-success" /> : <Copy />}
+                {copied ? <Check className="text-primary" /> : <Copy />}
               </Button>
             </div>
             {createdSummary && (
@@ -480,7 +480,7 @@ export default function ApiKeysPage() {
                   onClick={() => copyText(rotatedKey, setRotatedCopied)}
                   aria-label="Copiar nova chave"
                 >
-                  {rotatedCopied ? <Check className="text-term-success" /> : <Copy />}
+                  {rotatedCopied ? <Check className="text-primary" /> : <Copy />}
                 </Button>
               </div>
               <Button size="sm" onClick={closeRotate} className="self-end">

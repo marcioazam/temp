@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 type Tone = 'success' | 'warning' | 'danger' | 'muted' | 'primary'
 
 const tones: Record<Tone, string> = {
-  success: 'text-term-success border-term-success/30 bg-term-success/5',
+  success: 'text-primary border-primary/30 bg-primary/5',
   warning: 'text-primary border-primary/30 bg-primary/5',
   danger: 'text-destructive border-destructive/30 bg-destructive/5',
   muted: 'text-muted-foreground border-border bg-transparent',

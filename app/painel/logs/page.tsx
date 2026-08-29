@@ -79,7 +79,7 @@ function CopyIdButton({ id, className }: { id: string; className?: string }) {
         }
       }}
     >
-      {copied ? <Check className="text-term-success" /> : <Copy />}
+      {copied ? <Check className="text-primary" /> : <Copy />}
     </Button>
   )
 }
@@ -429,7 +429,7 @@ export default function LogsPage() {
                 ].map((item, i, arr) => (
                   <li key={item.step} className="flex gap-3">
                     <div className="flex flex-col items-center">
-                      <span className={cn('mt-1 size-1.5 shrink-0', item.ok ? 'bg-term-success' : 'bg-destructive')} />
+                      <span className={cn('mt-1 size-1.5 shrink-0', item.ok ? 'bg-primary' : 'bg-destructive')} />
                       {i < arr.length - 1 && <span className="w-px flex-1 bg-border" />}
                     </div>
                     <div className="flex flex-1 items-baseline justify-between gap-3 pb-3.5">

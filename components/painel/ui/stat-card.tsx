@@ -15,7 +15,7 @@ export function StatCard({
 }) {
   const hintClass = {
     muted: 'text-subtle-foreground',
-    success: 'text-term-success',
+    success: 'text-primary',
     warning: 'text-primary',
     danger: 'text-destructive',
   }[hintTone]
