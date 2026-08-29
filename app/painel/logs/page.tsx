@@ -49,7 +49,7 @@ function isInCustomRange(log: LogEntry, start: string, end: string) {
 }
 
 function statusTone(status: number) {
-  if (status >= 500) return 'danger' as const
+  if (status >= 500) return 'server' as const
   if (status >= 400) return 'warning' as const
   return 'success' as const
 }
