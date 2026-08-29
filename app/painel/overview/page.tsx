@@ -117,7 +117,7 @@ export default function OverviewPage() {
         actions={
           <Button
             size="sm"
-            className="type-micro h-9 rounded-none border border-foreground bg-foreground px-4 uppercase text-background hover:bg-foreground/90"
+            className="type-micro h-7 rounded-none border border-foreground bg-foreground px-3 uppercase text-background hover:bg-foreground/90"
             onClick={refresh}
             disabled={refreshing}
           >
