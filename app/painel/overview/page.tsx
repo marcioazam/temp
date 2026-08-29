@@ -211,24 +211,22 @@ export default function OverviewPage() {
         <div className="flex flex-wrap items-end justify-between gap-4 px-4 pb-3 pt-4">
           <div className="flex flex-col gap-2">
             <h2 className="text-base font-medium leading-none tracking-tight text-foreground">Uso</h2>
-            <div className="flex flex-col gap-1.5">
-              <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+            <div className="flex items-center gap-2.5 font-mono text-[10px] leading-none">
+              <span className="uppercase tracking-[0.12em] text-subtle-foreground">
                 {rangeLabel[range]}
               </span>
-              <div className="flex items-center gap-2.5">
-                <span className="font-mono text-sm tabular-nums leading-none text-foreground">
-                  {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
-                </span>
-                <span
-                  className={cn(
-                    'font-mono text-[10px] tabular-nums leading-none',
-                    periodDelta >= 0 ? 'text-term-success' : 'text-destructive',
-                  )}
-                >
-                  {periodDelta >= 0 ? '+' : ''}
-                  {periodDelta.toFixed(1)}%
-                </span>
-              </div>
+              <span className="tabular-nums text-foreground">
+                {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
+              </span>
+              <span
+                className={cn(
+                  'tabular-nums',
+                  periodDelta >= 0 ? 'text-term-success' : 'text-destructive',
+                )}
+              >
+                {periodDelta >= 0 ? '+' : ''}
+                {periodDelta.toFixed(1)}%
+              </span>
             </div>
           </div>
 
