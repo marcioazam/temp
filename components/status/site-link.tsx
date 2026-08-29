@@ -16,8 +16,7 @@ export function StatusSiteLink() {
         </span>
       </Link>
 
-      <div className="flex items-stretch gap-2">
-        <span aria-hidden="true" className="w-0.5 bg-foreground" />
+      <div className="flex items-stretch">
         <button
           type="button"
           className="type-micro group inline-flex items-center gap-2 whitespace-nowrap bg-foreground px-4 py-2.5 text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
