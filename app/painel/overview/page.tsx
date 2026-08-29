@@ -217,7 +217,7 @@ export default function OverviewPage() {
               </span>
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="font-mono text-xl tabular-nums leading-none text-foreground">
+              <span className="font-mono text-[13px] tabular-nums leading-none text-foreground">
                 {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
               </span>
               <span
