@@ -306,6 +306,7 @@ export default function ApiKeysPage() {
         onOpenChange={(o) => {
           if (!o) closeCreate()
         }}
+        showHeaderBorder={false}
         title={createdKey ? 'Chave criada' : 'Criar chave de API'}
         description={
           createdKey
