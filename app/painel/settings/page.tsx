@@ -184,7 +184,7 @@ export default function SettingsPage() {
                 <button
                   type="submit"
                   disabled={!s.webhookEnabled}
-                  className="h-7 shrink-0 border border-primary/50 bg-primary/10 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/20 focus-visible:outline-1 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50"
+                  className="h-7 shrink-0 border border-foreground bg-foreground px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-background transition-colors hover:bg-foreground/90 focus-visible:outline-1 focus-visible:outline-ring disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Salvar alterações
                 </button>
@@ -234,7 +234,7 @@ export default function SettingsPage() {
                 </p>
                 <button
                   type="submit"
-                  className="ml-auto h-7 shrink-0 border border-primary/50 bg-primary/10 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/20 focus-visible:outline-1 focus-visible:outline-primary"
+                  className="ml-auto h-7 shrink-0 border border-foreground bg-foreground px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-background transition-colors hover:bg-foreground/90 focus-visible:outline-1 focus-visible:outline-ring"
                 >
                   Salvar alterações
                 </button>
@@ -369,7 +369,7 @@ export default function SettingsPage() {
             </button>
             <button
               type="submit"
-              className="h-7 border border-primary/50 bg-primary/10 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/20"
+              className="h-7 border border-foreground bg-foreground px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-background transition-colors hover:bg-foreground/90 focus-visible:outline-1 focus-visible:outline-ring"
             >
               Salvar senha
             </button>
