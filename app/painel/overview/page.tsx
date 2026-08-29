@@ -81,7 +81,7 @@ const providerLabel = {
 
 export default function OverviewPage() {
   const { state, dispatch } = usePainel()
-  const [range, setRange] = useState<Range>('7d')
+  const [range, setRange] = useState<Range>('24h')
   const [metric, setMetric] = useState<'requests' | 'tokens'>('requests')
   const [activityMetric, setActivityMetric] = useState<'requests' | 'tokens'>('requests')
   const [shape, setShape] = useState<ChartShape>('area')
