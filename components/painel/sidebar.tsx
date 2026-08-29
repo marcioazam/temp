@@ -17,6 +17,7 @@ import {
   SquareTerminal,
   Users,
 } from 'lucide-react'
+import { RotorMark } from '@/components/logo'
 import { cn } from '@/lib/utils'
 import { initials } from '@/lib/painel/format'
 
@@ -81,8 +82,8 @@ export function PainelSidebar({
       )}
     >
       <div className="flex items-center justify-center border-b border-border py-4">
-        <Link href="/" className="flex size-6 shrink-0 items-center justify-center bg-primary" aria-label="Nylla — voltar ao site">
-          <span className="font-mono text-[13px] font-semibold text-primary-foreground">N</span>
+        <Link href="/" className="flex size-7 shrink-0 items-center justify-center text-primary" aria-label="Nylla — voltar ao site">
+          <RotorMark aria-hidden="true" className="size-7" />
         </Link>
       </div>
 
