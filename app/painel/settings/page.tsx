@@ -31,8 +31,42 @@ export default function SettingsPage() {
   const { state, dispatch } = usePainel()
   const s = state.settings
   const [resetOpen, setResetOpen] = useState(false)
+  const [passwordOpen, setPasswordOpen] = useState(false)
+  const [currentPassword, setCurrentPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
   const update = (patch: Partial<typeof s>) => dispatch({ type: 'update_settings', settings: patch })
+
+  const closePasswordDialog = () => {
+    setPasswordOpen(false)
+    setCurrentPassword('')
+    setNewPassword('')
+    setConfirmPassword('')
+    setPasswordError('')
+  }
+
+  const handlePasswordSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      setPasswordError('Preencha todos os campos.')
+      return
+    }
+
+    if (newPassword.length < 8) {
+      setPasswordError('A nova senha deve ter pelo menos 8 caracteres.')
+      return
+    }
+
+    if (newPassword !== confirmPassword) {
+      setPasswordError('As novas senhas não coincidem.')
+      return
+    }
+
+    closePasswordDialog()
+  }
 
   return (
     <div className="flex flex-col gap-6">
@@ -101,6 +135,15 @@ export default function SettingsPage() {
 
           <Section title="Dados e segurança" description="Retenção de logs e proteção de dados sensíveis.">
             <div className="divide-y divide-border/35">
+              <SettingRow title="Senha" description="Atualize a senha usada para acessar sua conta.">
+                <button
+                  type="button"
+                  onClick={() => setPasswordOpen(true)}
+                  className="h-7 shrink-0 border border-border px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  Alterar senha
+                </button>
+              </SettingRow>
               <div className="pb-3.5 pt-2">
                 <Field label="Retenção de logs" hint="Logs de requisição são removidos automaticamente após o período.">
                   <NativeSelect
@@ -153,6 +196,68 @@ export default function SettingsPage() {
           </section>
         </div>
       </div>
+
+      <Dialog
+        open={passwordOpen}
+        onOpenChange={(open) => {
+          if (open) setPasswordOpen(true)
+          else closePasswordDialog()
+        }}
+        title="Alterar senha"
+        description="Use uma senha exclusiva com pelo menos 8 caracteres."
+      >
+        <form onSubmit={handlePasswordSubmit} className="flex flex-col gap-4 px-5 py-4">
+          <Field label="Senha atual">
+            <TextInput
+              type="password"
+              autoComplete="current-password"
+              value={currentPassword}
+              onChange={(event) => setCurrentPassword(event.target.value)}
+              autoFocus
+            />
+          </Field>
+          <Field label="Nova senha" hint="Mínimo de 8 caracteres.">
+            <TextInput
+              type="password"
+              autoComplete="new-password"
+              minLength={8}
+              value={newPassword}
+              onChange={(event) => setNewPassword(event.target.value)}
+            />
+          </Field>
+          <Field label="Confirmar nova senha">
+            <TextInput
+              type="password"
+              autoComplete="new-password"
+              minLength={8}
+              value={confirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)}
+              aria-invalid={Boolean(passwordError)}
+              aria-describedby={passwordError ? 'password-error' : undefined}
+            />
+          </Field>
+          {passwordError && (
+            <p id="password-error" role="alert" className="text-[11px] text-destructive">
+              {passwordError}
+            </p>
+          )}
+          <div className="flex items-center justify-end gap-2 border-t border-border/35 pt-4">
+            <button
+              type="button"
+              onClick={closePasswordDialog}
+              className="h-7 border border-border px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              className="h-7 border border-primary/50 bg-primary/10 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/20"
+            >
+              Salvar senha
+            </button>
+          </div>
+        </form>
+      </Dialog>
 
       <Dialog
         open={resetOpen}
