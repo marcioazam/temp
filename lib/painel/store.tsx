@@ -34,9 +34,19 @@ type Action =
 
 function pushActivity(state: PainelState, text: string, detail: string, kind: PainelState['activity'][number]['kind']): PainelState['activity'] {
   return [
-    { id: `a_${Date.now()}`, text, detail, time: 'agora', kind },
+    {
+      id: `a_${Date.now()}`,
+      text,
+      detail,
+      time: 'agora',
+      occurredAt: new Intl.DateTimeFormat('pt-BR', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+      }).format(new Date()).replace(',', ''),
+      kind,
+    },
     ...state.activity,
-  ].slice(0, 12)
+  ].slice(0, 30)
 }
 
 function reducer(state: PainelState, action: Action): PainelState {
@@ -186,6 +196,8 @@ export function PainelProvider({ children }: { children: React.ReactNode }) {
               ...parsed,
               keys,
               logs,
+              // Mantém a demonstração populada sincronizada com o seed atual.
+              activity: seedState.activity,
               settings: { ...seedState.settings, ...parsed.settings },
             },
           })
