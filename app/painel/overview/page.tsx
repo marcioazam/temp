@@ -10,6 +10,7 @@ import { fmtCompact, fmtPercent } from '@/lib/painel/format'
 import { PageHeader } from '@/components/painel/page-header'
 import { StatCard } from '@/components/painel/ui/stat-card'
 import { AreaChart, Sparkline, YearHeatmap, type ChartShape } from '@/components/painel/ui/charts'
+import { Segmented } from '@/components/painel/ui/segmented'
 import { Button } from '@/components/ui/button'
 
 type Range = '24h' | '7d' | '30d'
@@ -18,43 +19,6 @@ const rangeLabel: Record<Range, string> = {
   '24h': 'últimas 24 horas',
   '7d': 'últimos 7 dias',
   '30d': 'últimos 30 dias',
-}
-
-function Segmented<T extends string>({
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  label: string
-  value: T
-  options: { value: T; label: string }[]
-  onChange: (v: T) => void
-}) {
-  return (
-    <div
-      className="flex h-[30px] items-center border border-foreground/25 bg-background p-0.5 font-mono text-[10px] uppercase tracking-[0.1em]"
-      role="group"
-      aria-label={label}
-    >
-      {options.map((o) => (
-        <button
-          key={o.value}
-          type="button"
-          onClick={() => onChange(o.value)}
-          aria-pressed={value === o.value}
-          className={cn(
-            'grid h-6 min-w-7 place-items-center px-1.5 transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-foreground',
-            value === o.value
-              ? 'bg-foreground text-background'
-              : 'bg-background text-muted-foreground hover:text-foreground',
-          )}
-        >
-          {o.label}
-        </button>
-      ))}
-    </div>
-  )
 }
 
 // Sparklines determinísticos por KPI (tendência de demonstração)

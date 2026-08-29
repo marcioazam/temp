@@ -41,6 +41,9 @@ export interface ApiKey {
   createdBy: string
   createdAt: string
   revoked: boolean
+  expiresAt?: string
+  requests30d?: number
+  rateLimit?: number
 }
 
 export interface Member {
@@ -142,10 +145,10 @@ export const modelsSeed: Model[] = [
 ]
 
 export const keysSeed: ApiKey[] = [
-  { id: 'k1', name: 'Produção — API principal', prefix: 'nyl_live_4f2a', environment: 'prod', scope: 'Completo', lastUsed: 'há 2 min', createdBy: 'Ana Ribeiro', createdAt: '12/01/2026', revoked: false },
-  { id: 'k2', name: 'CI/CD — Deploy pipeline', prefix: 'nyl_live_9c81', environment: 'prod', scope: 'Somente inferência', lastUsed: 'há 34 min', createdBy: 'Bruno Costa', createdAt: '03/02/2026', revoked: false },
-  { id: 'k3', name: 'Staging — testes de agente', prefix: 'nyl_test_b7e3', environment: 'staging', scope: 'Completo', lastUsed: 'há 3 h', createdBy: 'Camila Souza', createdAt: '18/03/2026', revoked: false },
-  { id: 'k4', name: 'Playground local', prefix: 'nyl_test_2d09', environment: 'staging', scope: 'Somente leitura', lastUsed: 'há 2 dias', createdBy: 'Diego Martins', createdAt: '02/05/2026', revoked: false },
+  { id: 'k1', name: 'Produção — API principal', prefix: 'nyl_live_4f2a', environment: 'prod', scope: 'Completo', lastUsed: 'há 2 min', createdBy: 'Ana Ribeiro', createdAt: '12/01/2026', revoked: false, expiresAt: 'Nunca', requests30d: 284_120, rateLimit: 600 },
+  { id: 'k2', name: 'CI/CD — Deploy pipeline', prefix: 'nyl_live_9c81', environment: 'prod', scope: 'Somente inferência', lastUsed: 'há 34 min', createdBy: 'Bruno Costa', createdAt: '03/02/2026', revoked: false, expiresAt: '03/02/2027', requests30d: 96_480, rateLimit: 300 },
+  { id: 'k3', name: 'Staging — testes de agente', prefix: 'nyl_test_b7e3', environment: 'staging', scope: 'Completo', lastUsed: 'há 3 h', createdBy: 'Camila Souza', createdAt: '18/03/2026', revoked: false, expiresAt: '16/06/2026', requests30d: 41_305 },
+  { id: 'k4', name: 'Playground local', prefix: 'nyl_test_2d09', environment: 'staging', scope: 'Somente leitura', lastUsed: 'há 2 dias', createdBy: 'Diego Martins', createdAt: '02/05/2026', revoked: false, expiresAt: 'Nunca', requests30d: 2_940 },
   { id: 'k5', name: 'Legado — app mobile v1', prefix: 'nyl_live_77aa', environment: 'prod', scope: 'Completo', lastUsed: 'há 3 meses', createdBy: 'Ana Ribeiro', createdAt: '20/08/2025', revoked: true },
 ]
 
