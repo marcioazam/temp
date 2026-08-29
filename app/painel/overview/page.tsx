@@ -211,7 +211,7 @@ export default function OverviewPage() {
       <section className="border border-border/35 bg-muted/20" aria-label="Uso">
         <div className="flex flex-wrap items-end justify-between gap-4 px-4 pb-3 pt-4">
           <div className="flex flex-col gap-2">
-            <h2 className="text-base font-medium leading-none tracking-tight text-foreground">Uso</h2>
+            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Uso</h2>
             <div className="flex items-center gap-2.5 font-mono text-[10px] leading-none">
               <span className="uppercase tracking-[0.12em] text-subtle-foreground">
                 {rangeLabel[range]}
