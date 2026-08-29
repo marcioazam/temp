@@ -3,7 +3,7 @@ import { statusLabels, type Incident } from "@/lib/status-data"
 const severityColor: Record<Incident["severity"], string> = {
   degraded: "var(--primary)",
   outage: "var(--destructive)",
-  maintenance: "var(--muted-foreground)",
+  maintenance: "var(--primary)",
 }
 
 function formatDate(iso: string): string {
