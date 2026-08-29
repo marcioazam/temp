@@ -84,7 +84,7 @@ export default function OverviewPage() {
                 >
                   <span
                     className={cn(
-                      'mt-0.5 flex size-3.5 shrink-0 items-center justify-center border',
+                      'mt-0.5 flex size-3.5 shrink-0 items-center justify-center rounded-full border',
                       item.done ? 'border-term-success/50 text-term-success' : 'border-border',
                     )}
                   >
