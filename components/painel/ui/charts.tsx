@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useState } from 'react'
+import { useId, useMemo, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { fmtCompact, fmtCurrency } from '@/lib/painel/format'
 import type { UsagePoint } from '@/lib/painel/data'
@@ -128,33 +128,127 @@ export function HBarList({
 // ── Heatmap anual estilo contribuições ──────────────────────────────────────
 
 const heatColors = ['#161616', '#3d2f12', '#6b4e14', '#a87717', '#f5a524']
+const levelRequests = [0, 420, 1180, 2640, 4310]
+const weekdayLabels = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
+const monthNames = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+
+const CELL = 14
+const GAP = 4
+const PITCH = CELL + GAP
 
 export function YearHeatmap({ data, className }: { data: number[][]; className?: string }) {
+  const [hover, setHover] = useState<{ w: number; d: number } | null>(null)
+
+  const { cellDate, months } = useMemo(() => {
+    const weeks = data.length
+    const total = weeks * 7
+    const end = new Date()
+    end.setHours(12, 0, 0, 0)
+    const start = new Date(end)
+    start.setDate(start.getDate() - (total - 1))
+
+    const cellDate = (w: number, d: number) => {
+      const date = new Date(start)
+      date.setDate(date.getDate() + w * 7 + d)
+      return date
+    }
+
+    const months: { w: number; label: string }[] = []
+    let last = -1
+    for (let w = 0; w < weeks; w++) {
+      const m = cellDate(w, 0).getMonth()
+      if (m !== last) {
+        last = m
+        const prev = months[months.length - 1]
+        if (prev && w - prev.w < 2) continue
+        if (w > weeks - 2) continue
+        months.push({ w, label: monthNames[m] })
+      }
+    }
+    return { cellDate, months }
+  }, [data])
+
+  const hovered = hover ? { level: data[hover.w][hover.d], date: cellDate(hover.w, hover.d) } : null
+
   return (
-    <div className={cn('overflow-x-auto', className)}>
-      <svg
-        viewBox={`0 0 ${52 * 11} ${7 * 11}`}
-        className="block h-auto w-full min-w-[560px]"
-        role="img"
-        aria-label="Atividade de requisições nos últimos 12 meses"
-      >
-        {data.map((week, w) =>
-          week.map((v, d) => (
-            <rect
-              key={`${w}-${d}`}
-              x={w * 11}
-              y={d * 11}
-              width="9"
-              height="9"
-              fill={heatColors[v]}
-            />
-          )),
-        )}
-      </svg>
-      <div className="mt-2 flex items-center justify-end gap-1.5 font-mono text-[9px] uppercase tracking-wide text-subtle-foreground">
+    <div className={cn('flex flex-col gap-2', className)}>
+      <div className="overflow-x-auto pb-1">
+        <div className="flex gap-2" style={{ width: 'max-content' }}>
+          <div className="flex shrink-0 flex-col pt-4" style={{ gap: GAP }} aria-hidden="true">
+            {weekdayLabels.map((label, i) => (
+              <span
+                key={label}
+                className="flex items-center font-mono text-[8px] uppercase tracking-[0.08em] text-subtle-foreground"
+                style={{ height: CELL, width: 20 }}
+              >
+                {i % 2 === 0 ? label : ''}
+              </span>
+            ))}
+          </div>
+
+          <div className="relative" onMouseLeave={() => setHover(null)}>
+            <div className="relative h-4" suppressHydrationWarning>
+              {months.map((m) => (
+                <span
+                  key={`${m.w}-${m.label}`}
+                  className="absolute top-0 font-mono text-[8px] uppercase tracking-[0.08em] text-subtle-foreground"
+                  style={{ left: m.w * PITCH }}
+                >
+                  {m.label}
+                </span>
+              ))}
+            </div>
+
+            <div
+              className="flex"
+              style={{ gap: GAP }}
+              role="img"
+              aria-label="Atividade de requisições nos últimos 12 meses"
+            >
+              {data.map((week, w) => (
+                <div key={w} className="flex flex-col" style={{ gap: GAP }}>
+                  {week.map((v, d) => {
+                    const active = hover?.w === w && hover?.d === d
+                    const dimmed = hover !== null && !active
+                    return (
+                      <div
+                        key={`${w}-${d}`}
+                        onMouseEnter={() => setHover({ w, d })}
+                        className="rounded-[2px] transition-opacity duration-150"
+                        style={{
+                          width: CELL,
+                          height: CELL,
+                          backgroundColor: heatColors[v],
+                          opacity: dimmed ? 0.45 : 1,
+                          boxShadow: active ? '0 0 0 1px var(--foreground)' : undefined,
+                        }}
+                      />
+                    )
+                  })}
+                </div>
+              ))}
+            </div>
+
+            {hover && hovered && (
+              <div
+                className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap border border-border bg-popover px-2 py-1 font-mono text-[10px] tabular-nums text-foreground"
+                style={{ left: hover.w * PITCH + CELL / 2, top: 16 + hover.d * PITCH - 4 }}
+                suppressHydrationWarning
+              >
+                <span className="text-subtle-foreground">
+                  {hovered.date.getDate()} {monthNames[hovered.date.getMonth()]}
+                </span>{' '}
+                {hovered.level === 0 ? 'sem tráfego' : `${fmtCompact(levelRequests[hovered.level])} req`}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-end gap-1.5 font-mono text-[9px] uppercase tracking-[0.08em] text-subtle-foreground">
         <span>Menos</span>
         {heatColors.map((c) => (
-          <span key={c} className="size-2" style={{ backgroundColor: c }} />
+          <span key={c} className="size-2 rounded-[2px]" style={{ backgroundColor: c }} />
         ))}
         <span>Mais</span>
       </div>

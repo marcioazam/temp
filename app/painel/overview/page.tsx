@@ -141,6 +141,15 @@ export default function OverviewPage() {
         </div>
       </section>
 
+      <section className="border border-border/35 bg-muted/20" aria-label="Atividade anual">
+        <div className="border-b border-border/35 px-4 py-3">
+          <p className="text-[13px] text-foreground">Atividade de requisições — últimos 12 meses</p>
+        </div>
+        <div className="px-4 py-4">
+          <YearHeatmap data={heatmapSeed} />
+        </div>
+      </section>
+
       <div className="grid gap-4 lg:grid-cols-2">
         <section className="border border-border/35 bg-muted/20" aria-label="Atividade recente">
           <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
@@ -219,15 +228,6 @@ export default function OverviewPage() {
               </dl>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="border border-border/35 bg-muted/20" aria-label="Atividade anual">
-        <div className="border-b border-border/35 px-4 py-3">
-          <p className="text-[13px] text-foreground">Atividade de requisições — últimos 12 meses</p>
-        </div>
-        <div className="px-4 py-4">
-          <YearHeatmap data={heatmapSeed} />
         </div>
       </section>
     </>
