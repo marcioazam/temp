@@ -103,53 +103,6 @@ export default function SettingsPage() {
 
       <div className="grid items-start gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
-          <Section title="Perfil" description="Atualize como seu nome aparece no painel.">
-            <form onSubmit={handleProfileSubmit} className="flex flex-col gap-4">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Field label="Nome">
-                  <TextInput
-                    value={firstName}
-                    onChange={(event) => {
-                      setFirstName(event.target.value)
-                      setProfileMessage(null)
-                    }}
-                    autoComplete="given-name"
-                    aria-invalid={profileMessage?.type === 'error'}
-                    aria-describedby={profileMessage ? 'profile-message' : undefined}
-                  />
-                </Field>
-                <Field label="Sobrenome">
-                  <TextInput
-                    value={lastName}
-                    onChange={(event) => {
-                      setLastName(event.target.value)
-                      setProfileMessage(null)
-                    }}
-                    autoComplete="family-name"
-                    aria-invalid={profileMessage?.type === 'error'}
-                    aria-describedby={profileMessage ? 'profile-message' : undefined}
-                  />
-                </Field>
-              </div>
-              <div className="flex items-center justify-end gap-3 border-t border-border/35 pt-3">
-                <p
-                  id="profile-message"
-                  role={profileMessage?.type === 'error' ? 'alert' : 'status'}
-                  aria-live="polite"
-                  className={profileMessage?.type === 'error' ? 'text-[11px] text-destructive' : 'text-[11px] text-primary'}
-                >
-                  {profileMessage?.text}
-                </p>
-                <button
-                  type="submit"
-                  className="ml-auto h-7 shrink-0 border border-primary/50 bg-primary/10 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/20 focus-visible:outline-1 focus-visible:outline-primary"
-                >
-                  Salvar alterações
-                </button>
-              </div>
-            </form>
-          </Section>
-
           <Section title="Roteamento" description="Comportamento do gateway de inferência.">
             <div className="divide-y divide-border/35">
               <SettingRow
@@ -227,6 +180,53 @@ export default function SettingsPage() {
         </div>
 
         <div className="flex flex-col gap-4">
+          <Section title="Perfil" description="Atualize como seu nome aparece no painel.">
+            <form onSubmit={handleProfileSubmit} className="flex flex-col gap-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Field label="Nome">
+                  <TextInput
+                    value={firstName}
+                    onChange={(event) => {
+                      setFirstName(event.target.value)
+                      setProfileMessage(null)
+                    }}
+                    autoComplete="given-name"
+                    aria-invalid={profileMessage?.type === 'error'}
+                    aria-describedby={profileMessage ? 'profile-message' : undefined}
+                  />
+                </Field>
+                <Field label="Sobrenome">
+                  <TextInput
+                    value={lastName}
+                    onChange={(event) => {
+                      setLastName(event.target.value)
+                      setProfileMessage(null)
+                    }}
+                    autoComplete="family-name"
+                    aria-invalid={profileMessage?.type === 'error'}
+                    aria-describedby={profileMessage ? 'profile-message' : undefined}
+                  />
+                </Field>
+              </div>
+              <div className="flex items-center justify-end gap-3 border-t border-border/35 pt-3">
+                <p
+                  id="profile-message"
+                  role={profileMessage?.type === 'error' ? 'alert' : 'status'}
+                  aria-live="polite"
+                  className={profileMessage?.type === 'error' ? 'text-[11px] text-destructive' : 'text-[11px] text-primary'}
+                >
+                  {profileMessage?.text}
+                </p>
+                <button
+                  type="submit"
+                  className="ml-auto h-7 shrink-0 border border-primary/50 bg-primary/10 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/20 focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  Salvar alterações
+                </button>
+              </div>
+            </form>
+          </Section>
+
           <Section title="Dados e segurança" description="Retenção de logs e proteção de dados sensíveis.">
             <div className="divide-y divide-border/35">
               <SettingRow title="Senha" description="Atualize a senha usada para acessar sua conta.">
