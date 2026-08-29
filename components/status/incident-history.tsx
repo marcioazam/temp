@@ -29,7 +29,7 @@ export function IncidentHistory({ incidents }: { incidents: Incident[] }) {
       {incidents.map((incident) => (
         <li key={`${incident.date}-${incident.title}`} className="border-b border-border py-6">
           <article>
-            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+            <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
               <div className="flex min-w-0 items-baseline gap-2.5">
                 <span
                   aria-hidden="true"
@@ -43,7 +43,7 @@ export function IncidentHistory({ incidents }: { incidents: Incident[] }) {
               </p>
             </div>
 
-            <ol className="mt-4 flex flex-col gap-3 pl-4">
+            <ol className="flex flex-col gap-3 pl-4">
               {incident.updates.map((update) => (
                 <li key={`${update.time}-${update.label}`} className="flex gap-4">
                   <p className="type-label w-14 shrink-0 text-subtle-foreground">{update.time}</p>
