@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { IncidentFilter } from "@/components/status/incident-filter"
-import { LastUpdated } from "@/components/status/last-updated"
 import { StatusNav } from "@/components/status/status-nav"
 import { StatusSiteLink } from "@/components/status/site-link"
 import { RotorMark } from "@/components/logo"
@@ -31,10 +30,7 @@ export default function StatusHistoryPage() {
           <RotorMark aria-hidden="true" className="h-10 w-10 shrink-0 text-primary" />
           <span className="type-wordmark text-3xl">Nylla Status</span>
         </div>
-        <div className="flex items-center gap-4">
-          <LastUpdated />
-          <StatusSiteLink />
-        </div>
+        <StatusSiteLink />
       </header>
 
       <div className="mt-10">
