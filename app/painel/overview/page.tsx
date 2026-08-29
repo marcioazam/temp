@@ -24,7 +24,7 @@ const rangeLabel: Record<Range, string> = {
 // Sparklines determinísticos por KPI (tendência de demonstração).
 // `quality: true` = métrica de desempenho, recebe verde (bom) ou vermelho (ruim).
 // `invert: true` = queda é o resultado desejado (latência, tempo de resposta, erros).
-// Volume puro (requisições, tokens) permanece neutro para não estimular consumo.
+// Volume puro (requisições, tokens) usa verde na variação, independentemente do sinal.
 const kpis = [
   { label: 'Requisições', value: '452.890', delta: 12.0, spark: [28, 31, 30, 34, 36, 35, 39, 41, 40, 44, 46, 49] },
   { label: 'Tokens', value: '1,8 bi', delta: 8.0, spark: [40, 42, 41, 44, 43, 46, 48, 47, 50, 52, 51, 54] },
@@ -60,7 +60,7 @@ function KpiCard({
           <p
             className={cn(
               'font-mono text-[11px] tabular-nums leading-none',
-              quality ? (good ? 'text-term-success' : 'text-destructive') : 'text-muted-foreground',
+              quality ? (good ? 'text-term-success' : 'text-destructive') : 'text-term-success',
             )}
           >
             {delta >= 0 ? '+' : ''}
