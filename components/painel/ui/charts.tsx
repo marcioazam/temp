@@ -24,8 +24,7 @@ export function Sparkline({
   const px = (i: number) => (i / (data.length - 1)) * W
   const py = (v: number) => H - 2 - ((v - min) / span) * (H - 4)
   const d = data.map((v, i) => `${i === 0 ? 'M' : 'L'}${px(i).toFixed(1)},${py(v).toFixed(1)}`).join(' ')
-  const stroke =
-    tone === 'up' ? 'var(--term-success)' : tone === 'down' ? 'var(--destructive)' : 'var(--muted-foreground)'
+  const stroke = tone === 'down' ? 'var(--destructive)' : 'var(--term-success)'
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className={cn('h-[22px] w-16', className)} aria-hidden="true">
@@ -115,8 +114,8 @@ export function AreaChart({
       >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--foreground)" stopOpacity="0.14" />
-            <stop offset="100%" stopColor="var(--foreground)" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--term-success)" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="var(--term-success)" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -182,16 +181,16 @@ export function AreaChart({
                   y={y(v)}
                   width={barW}
                   height={Math.max(1, H - PAD - y(v))}
-                  fill={active ? 'var(--primary)' : 'var(--foreground)'}
-                  fillOpacity={active ? 0.2 : 0.1}
+                  fill={active ? 'var(--primary)' : 'var(--term-success)'}
+                  fillOpacity={active ? 0.24 : 0.14}
                 />
                 <rect
                   x={cx(i) - barW / 2}
                   y={y(v)}
                   width={barW}
                   height="1.5"
-                  fill={active ? 'var(--primary)' : 'var(--foreground)'}
-                  fillOpacity={hover === null || active ? 0.85 : 0.4}
+                  fill={active ? 'var(--primary)' : 'var(--term-success)'}
+                  fillOpacity={hover === null || active ? 0.9 : 0.45}
                 />
               </g>
             )
@@ -202,8 +201,8 @@ export function AreaChart({
             <path
               d={line}
               fill="none"
-              stroke="var(--foreground)"
-              strokeOpacity="0.85"
+              stroke="var(--term-success)"
+              strokeOpacity="0.9"
               strokeWidth="1.5"
               strokeLinejoin="round"
             />
@@ -287,7 +286,7 @@ export function HBarList({
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{format(item.value)}</span>
           </div>
           <div className="h-1 w-full bg-muted">
-            <div className="h-full bg-foreground/45" style={{ width: `${(item.value / max) * 100}%` }} />
+            <div className="h-full bg-term-success/70" style={{ width: `${(item.value / max) * 100}%` }} />
           </div>
         </li>
       ))}
@@ -297,8 +296,8 @@ export function HBarList({
 
 // ── Heatmap anual estilo contribuições ──────────────────────────────────────
 
-// Escala neutra: intensidade lida pelo brilho, sem semântica de alerta
-const heatColors = ['#161616', '#282828', '#414141', '#636363', '#969696']
+// Escala verde derivada de --term-success (#7cd68c) sobre a superfície escura
+const heatColors = ['#161616', '#283929', '#3a593f', '#51855a', '#6db97a']
 const levelRequests = [0, 420, 1180, 2640, 4310]
 const weekdayLabels = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
 const monthNames = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']

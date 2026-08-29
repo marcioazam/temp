@@ -99,7 +99,11 @@ function KpiCard({
             {delta.toFixed(1).replace('.', ',')}%
           </p>
         </div>
-        <Sparkline data={[...spark]} className="opacity-50 transition-opacity group-hover:opacity-90" />
+        <Sparkline
+          data={[...spark]}
+          tone={positive ? 'up' : 'down'}
+          className="opacity-55 transition-opacity group-hover:opacity-95"
+        />
       </div>
     </div>
   )
@@ -303,7 +307,7 @@ export default function OverviewPage() {
           <ul className="divide-y divide-border/35">
             {state.activity.slice(0, 6).map((item) => (
               <li key={item.id} className="flex items-baseline gap-3 px-4 py-2.5">
-                <span className="mt-1 size-1 shrink-0 bg-foreground/45" aria-hidden="true" />
+                <span className="mt-1 size-1 shrink-0 bg-term-success/70" aria-hidden="true" />
                 <div className="flex min-w-0 flex-1 flex-col">
                   <span className="text-[12px] text-foreground">{item.text}</span>
                   <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
@@ -327,7 +331,7 @@ export default function OverviewPage() {
                 <span className="w-4 font-mono text-[10px] tabular-nums text-subtle-foreground">{i + 1}</span>
                 <span className="min-w-0 flex-1 truncate font-mono text-[12px] text-foreground">{model.name}</span>
                 <div className="hidden h-1 w-24 bg-muted sm:block" aria-hidden="true">
-                  <div className="h-full bg-foreground/45" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
+                  <div className="h-full bg-term-success/70" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
                 </div>
                 <span className="w-12 text-right font-mono text-[11px] tabular-nums text-muted-foreground">
                   {fmtPercent(model.trafficPct, 0)}
