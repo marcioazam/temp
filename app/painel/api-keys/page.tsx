@@ -64,7 +64,6 @@ export default function ApiKeysPage() {
 
   // Listagem
   const [query, setQuery] = useState('')
-  const [page, setPage] = useState(1)
 
   // Criação
   const [createOpen, setCreateOpen] = useState(false)
@@ -93,10 +92,7 @@ export default function ApiKeysPage() {
     })
   }, [activeKeys, query])
 
-  const pageSize = 10
-  const totalPages = Math.max(1, Math.ceil(filteredKeys.length / pageSize))
-  const currentPage = Math.min(page, totalPages)
-  const paginatedKeys = filteredKeys.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+  const hasReachedKeyLimit = activeKeys.length >= 10
 
   const prodCount = activeKeys.filter((k) => k.environment === 'prod').length
   const totalRequests30d = activeKeys.reduce((acc, k) => acc + (k.requests30d ?? 0), 0)
@@ -109,7 +105,7 @@ export default function ApiKeysPage() {
   ]
 
   function createKey() {
-    if (!newName.trim()) return
+    if (!newName.trim() || hasReachedKeyLimit) return
     const suffix = randomKeySuffix()
     const envPrefix = newEnv === 'prod' ? 'nyl_live' : 'nyl_test'
     const full = `${envPrefix}_${suffix}`
@@ -176,6 +172,8 @@ export default function ApiKeysPage() {
             size="sm"
             className="h-7 rounded-none border border-foreground bg-foreground px-3 font-mono text-[9px] font-semibold uppercase tracking-wide text-background hover:bg-foreground/90"
             onClick={() => setCreateOpen(true)}
+            disabled={hasReachedKeyLimit}
+            title={hasReachedKeyLimit ? 'Limite de 10 chaves ativas atingido' : undefined}
           >
             <Plus className="size-3.5" />
             Criar chave
@@ -205,10 +203,7 @@ export default function ApiKeysPage() {
               <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground" aria-hidden="true" />
               <TextInput
                 value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value)
-                  setPage(1)
-                }}
+                onChange={(e) => setQuery(e.target.value)}
                 placeholder="Buscar por nome ou prefixo"
                 className="h-[30px] w-56 pl-8"
                 aria-label="Buscar chaves"
@@ -236,7 +231,7 @@ export default function ApiKeysPage() {
               </tr>
             </thead>
             <tbody>
-              {paginatedKeys.map((key) => (
+              {filteredKeys.map((key) => (
                 <tr key={key.id} className="group">
                   <td className="py-2.5 pr-4">
                     <div className="flex flex-col gap-0.5">
@@ -294,32 +289,6 @@ export default function ApiKeysPage() {
               )}
             </tbody>
           </table>
-          {totalPages > 1 && (
-            <nav
-              aria-label="Paginação das chaves de API"
-              className="flex items-center justify-between border-t border-border pt-3 font-mono text-[9px] uppercase tracking-wide"
-            >
-              <Button
-                variant="ghost"
-                size="xs"
-                disabled={currentPage === 1}
-                onClick={() => setPage(currentPage - 1)}
-              >
-                Anterior
-              </Button>
-              <span className="text-subtle-foreground">
-                Página {currentPage} de {totalPages}
-              </span>
-              <Button
-                variant="ghost"
-                size="xs"
-                disabled={currentPage === totalPages}
-                onClick={() => setPage(currentPage + 1)}
-              >
-                Próxima
-              </Button>
-            </nav>
-          )}
         </div>
       </section>
 
