@@ -200,7 +200,6 @@ export function PainelSidebar({
           </span>
           <div className="flex min-w-0 flex-1 flex-col">
             <span className="truncate text-[12px] text-foreground">Ana Ribeiro</span>
-            <span className="truncate text-[10px] text-subtle-foreground">ana@nyllalabs.com</span>
             <span className="mt-0.5 w-fit font-mono text-[9px] font-medium uppercase tracking-wide text-primary">
               Plano Free
             </span>
