@@ -124,14 +124,14 @@ const providerLabel = {
 export default function OverviewPage() {
   const { state, dispatch } = usePainel()
   const [range, setRange] = useState<Range>('7d')
-  const [metric, setMetric] = useState<'requests' | 'cost'>('requests')
+  const [metric, setMetric] = useState<'requests' | 'tokens'>('requests')
   const [shape, setShape] = useState<ChartShape>('area')
   const [showAvg, setShowAvg] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
 
   const series = usageSeries[range]
   const totalRequests = series.reduce((acc, p) => acc + p.requests, 0)
-  const totalCost = series.reduce((acc, p) => acc + p.cost, 0)
+  const totalTokens = series.reduce((acc, p) => acc + p.tokens, 0)
 
   const half = Math.floor(series.length / 2)
   const firstHalf = series.slice(0, half).reduce((acc, p) => acc + p[metric], 0)
@@ -218,7 +218,7 @@ export default function OverviewPage() {
             </div>
             <div className="flex items-baseline gap-2">
               <span className="font-mono text-xl tabular-nums leading-none text-foreground">
-                {metric === 'requests' ? fmtCompact(totalRequests) : fmtCurrency(totalCost)}
+                {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
               </span>
               <span
                 className={cn(
@@ -239,7 +239,7 @@ export default function OverviewPage() {
               onChange={setMetric}
               options={[
                 { value: 'requests', label: 'Req' },
-                { value: 'cost', label: 'Custo' },
+                { value: 'tokens', label: 'Tokens' },
               ]}
             />
             <Segmented

@@ -276,6 +276,7 @@ export const seedState: PainelState = {
 export interface UsagePoint {
   label: string
   requests: number
+  tokens: number
   cost: number
 }
 
@@ -284,7 +285,8 @@ function buildSeries(labels: string[], base: number, amp: number, seed: number):
   return labels.map((label, i) => {
     const wave = Math.sin(i / labels.length * Math.PI * 1.6) * amp
     const requests = Math.max(80, Math.round(base + wave + rand() * amp * 0.6))
-    return { label, requests, cost: Number((requests * 0.0038).toFixed(2)) }
+    const tokens = Math.round(requests * (3600 + rand() * 900))
+    return { label, requests, tokens, cost: Number((requests * 0.0038).toFixed(2)) }
   })
 }
 

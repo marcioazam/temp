@@ -46,7 +46,7 @@ export function AreaChart({
   className,
 }: {
   data: UsagePoint[]
-  metric?: 'requests' | 'cost'
+  metric?: 'requests' | 'tokens'
   height?: number
   shape?: ChartShape
   showAverage?: boolean
@@ -64,7 +64,7 @@ export function AreaChart({
   const avg = values.reduce((a, b) => a + b, 0) / (values.length || 1)
   const peak = values.indexOf(Math.max(...values))
 
-  const fmt = (v: number) => (metric === 'requests' ? fmtCompact(v) : fmtCurrency(v))
+  const fmt = (v: number) => `${fmtCompact(v)}${metric === 'tokens' ? ' tok' : ' req'}`
   const x = (i: number) => LEFT + (i / Math.max(1, data.length - 1)) * (W - LEFT - PAD)
   const y = (v: number) => H - PAD - (v / max) * (H - PAD * 2)
 
@@ -94,7 +94,7 @@ export function AreaChart({
         className="block h-auto w-full cursor-crosshair outline-none focus-visible:ring-1 focus-visible:ring-ring"
         role="img"
         tabIndex={0}
-        aria-label={`${metric === 'requests' ? 'Requisições' : 'Custo'} ao longo do tempo. Use as setas para navegar pelos pontos.`}
+        aria-label={`${metric === 'requests' ? 'Requisições' : 'Tokens'} ao longo do tempo. Use as setas para navegar pelos pontos.`}
         onMouseLeave={() => setHover(null)}
         onBlur={() => setHover(null)}
         onKeyDown={(e) => {
