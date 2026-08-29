@@ -59,6 +59,8 @@ export interface Member {
 export interface LogEntry {
   id: string
   time: string
+  datetime: string
+  ageMinutes: number
   model: string
   provider: string
   status: number
@@ -184,12 +186,38 @@ function lcg(seed: number) {
   }
 }
 
+// "Agora" fixo de demonstração para datetimes determinísticos.
+const LOG_NOW = Date.UTC(2026, 7, 29, 14, 32, 5)
+
+const ULID_CHARS = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
+
+function pad2(n: number) {
+  return n.toString().padStart(2, '0')
+}
+
+function fmtLogDatetime(msUtc: number): string {
+  const d = new Date(msUtc)
+  return `${pad2(d.getUTCDate())}/${pad2(d.getUTCMonth() + 1)}/${d.getUTCFullYear()} ${pad2(d.getUTCHours())}:${pad2(d.getUTCMinutes())}:${pad2(d.getUTCSeconds())}`
+}
+
+function relativeTime(minutes: number): string {
+  if (minutes < 60) return `há ${minutes} min`
+  if (minutes < 1440) {
+    const h = Math.floor(minutes / 60)
+    const m = minutes % 60
+    return m > 0 ? `há ${h} h ${m} min` : `há ${h} h`
+  }
+  const days = Math.floor(minutes / 1440)
+  return days === 1 ? 'há 1 dia' : `há ${days} dias`
+}
+
 export const logsSeed: LogEntry[] = (() => {
   const rand = lcg(42)
   const entries: LogEntry[] = []
   let minutes = 0
-  for (let i = 0; i < 48; i++) {
-    minutes += Math.floor(rand() * 9) + 1
+  for (let i = 0; i < 120; i++) {
+    // Densidade decrescente: recentes a poucos minutos, antigos além de 7 dias.
+    minutes += i < 12 ? Math.floor(rand() * 5) + 1 : i < 80 ? Math.floor(rand() * 90) + 2 : Math.floor(rand() * 240) + 60
     const pick = logModels[Math.floor(rand() * logModels.length)]
     const r = rand()
     const status = r > 0.94 ? 429 : r > 0.9 ? 500 : r > 0.86 ? 400 : 200
@@ -197,11 +225,13 @@ export const logsSeed: LogEntry[] = (() => {
     const tokensOut = status === 200 ? Math.floor(rand() * 2400) + 60 : 0
     const latencyMs = status === 200 ? Math.floor(rand() * 1800) + 120 : Math.floor(rand() * 400) + 40
     const cost = status === 200 ? Number(((tokensIn * 2 + tokensOut * 8) / 1_000_000).toFixed(4)) : 0
-    const h = Math.floor(minutes / 60)
-    const m = minutes % 60
+    let ulid = ''
+    for (let c = 0; c < 20; c++) ulid += ULID_CHARS[Math.floor(rand() * ULID_CHARS.length)]
     entries.push({
-      id: `req_${(9000 - i).toString().padStart(4, '0')}`,
-      time: h > 0 ? `há ${h} h ${m} min` : `há ${m} min`,
+      id: `req_01JC${ulid}`,
+      time: relativeTime(minutes),
+      datetime: fmtLogDatetime(LOG_NOW - minutes * 60_000),
+      ageMinutes: minutes,
       model: pick.model,
       provider: pick.provider,
       status,

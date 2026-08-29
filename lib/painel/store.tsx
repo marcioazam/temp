@@ -174,12 +174,18 @@ export function PainelProvider({ children }: { children: React.ReactNode }) {
             const seed = seedState.keys.find((s) => s.id === k.id)
             return seed ? { ...seed, ...k, requests30d: k.requests30d ?? seed.requests30d, expiresAt: k.expiresAt ?? seed.expiresAt, rateLimit: k.rateLimit ?? seed.rateLimit } : k
           })
+          // Logs persistidos de versões anteriores (sem datetime) são descartados em favor do seed
+          const logs =
+            Array.isArray(parsed.logs) && parsed.logs.every((l) => typeof l?.datetime === 'string')
+              ? parsed.logs
+              : seedState.logs
           dispatch({
             type: 'hydrate',
             state: {
               ...seedState,
               ...parsed,
               keys,
+              logs,
               settings: { ...seedState.settings, ...parsed.settings },
             },
           })
