@@ -174,9 +174,6 @@ export default function SettingsPage() {
               <SettingRow title="Redação de PII" description="Mascara dados pessoais identificáveis nos logs armazenados.">
                 <Toggle checked={s.piiRedaction} onChange={(v) => update({ piiRedaction: v })} label="Redação de PII" />
               </SettingRow>
-              <SettingRow title="Exigir SSO" description="Todos os membros devem autenticar via provedor de identidade.">
-                <Toggle checked={s.ssoRequired} onChange={(v) => update({ ssoRequired: v })} label="Exigir SSO" />
-              </SettingRow>
             </div>
           </Section>
 
