@@ -80,18 +80,10 @@ export function PainelSidebar({
         collapsed ? 'w-14' : 'w-56',
       )}
     >
-      <div className={cn('flex items-center gap-2.5 border-b border-border px-4 py-4', collapsed && 'justify-center px-0')}>
+      <div className="flex items-center justify-center border-b border-border py-4">
         <Link href="/" className="flex size-6 shrink-0 items-center justify-center bg-primary" aria-label="Nylla — voltar ao site">
           <span className="font-mono text-[13px] font-semibold text-primary-foreground">N</span>
         </Link>
-        {!collapsed && (
-          <div className="flex min-w-0 flex-col">
-            <span className="truncate text-[13px] font-medium text-foreground">Nylla Labs</span>
-            <span className="truncate font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
-              Pro Workspace
-            </span>
-          </div>
-        )}
       </div>
 
       <div className="flex-1 overflow-y-auto py-3">
