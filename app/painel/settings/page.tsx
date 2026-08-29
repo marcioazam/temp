@@ -19,11 +19,11 @@ function Section({
 }) {
   return (
     <section className="border border-border bg-card">
-      <div className="border-b border-border px-5 py-3.5">
+      <div className="px-5 py-3.5">
         <h2 className="text-[13px] font-medium text-foreground">{title}</h2>
         {description && <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">{description}</p>}
       </div>
-      <div className="divide-y divide-border px-5">{children}</div>
+      <div className="px-5">{children}</div>
     </section>
   )
 }
@@ -152,7 +152,7 @@ export default function SettingsPage() {
           </Section>
 
           <section className="border border-destructive/40 bg-card">
-            <div className="border-b border-destructive/40 px-5 py-3.5">
+            <div className="px-5 py-3.5">
               <h2 className="text-[13px] font-medium text-destructive">Zona de perigo</h2>
             </div>
             <div className="flex items-center justify-between gap-6 px-5 py-4">

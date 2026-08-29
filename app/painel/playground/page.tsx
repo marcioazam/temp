@@ -184,7 +184,7 @@ export default function PlaygroundPage() {
             ))}
           </div>
 
-          <div className="border-t border-border p-3">
+          <div className="p-3">
             <div className="flex items-end gap-2">
               <textarea
                 value={input}

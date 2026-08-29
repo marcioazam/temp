@@ -308,7 +308,7 @@ export default function OverviewPage() {
 
       <div className="grid gap-4 lg:grid-cols-2">
         <section className="border border-border/35 bg-muted/20" aria-label="Atividade recente">
-          <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
+          <div className="flex items-center justify-between px-4 py-3">
             <h2 className="text-[15px] font-medium tracking-tight text-foreground">Atividade</h2>
             <Link href="/painel/logs" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver logs <ArrowUpRight className="size-3" />
@@ -329,13 +329,13 @@ export default function OverviewPage() {
         </section>
 
         <section className="border border-border/35 bg-muted/20" aria-label="Modelos em alta">
-          <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
+          <div className="flex items-center justify-between px-4 py-3">
             <h2 className="text-[15px] font-medium tracking-tight text-foreground">Modelos em alta</h2>
             <Link href="/painel/models" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver todos <ArrowUpRight className="size-3" />
             </Link>
           </div>
-          <ul className="divide-y divide-border/35">
+          <ul>
             {topModels.map((model, i) => (
               <li key={model.id} className="flex items-center gap-3 px-4 py-2.5">
                 <span className="w-4 font-mono text-[10px] tabular-nums text-subtle-foreground">{i + 1}</span>
@@ -353,13 +353,13 @@ export default function OverviewPage() {
       </div>
 
       <section className="border border-border/35 bg-muted/20" aria-label="Provedores">
-        <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
+        <div className="flex items-center justify-between px-4 py-3">
           <h2 className="text-[15px] font-medium tracking-tight text-foreground">Provedores</h2>
           <Link href="/painel/providers" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
             Gerenciar <ArrowUpRight className="size-3" />
           </Link>
         </div>
-        <div className="grid gap-px bg-border/35 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4">
           {state.providers.map((p) => (
             <div key={p.id} className="flex flex-col gap-2.5 bg-transparent p-4">
               <div className="flex items-center justify-between gap-2">
