@@ -62,11 +62,11 @@ export default function StatusPage() {
 
       {/* Serviços */}
       <section aria-labelledby="servicos" className="mt-14">
-        <div className="flex items-baseline justify-between gap-6 border-b border-border pb-4">
-          <h2 id="servicos" className="font-mono text-xl font-medium uppercase tracking-[0.08em] text-foreground">
+        <div className="flex items-end justify-between gap-6 border-b border-foreground/20 pb-4">
+          <h2 id="servicos" className="font-sans text-2xl font-medium tracking-tight text-foreground md:text-3xl">
             Serviços
           </h2>
-          <p className="type-micro text-subtle-foreground/60">90 dias atrás → hoje</p>
+          <p className="type-micro pb-1 text-subtle-foreground/60">90 dias atrás → hoje</p>
         </div>
 
         <ul>
@@ -94,7 +94,7 @@ export default function StatusPage() {
       <section aria-labelledby="incidentes" className="mt-14">
         <h2
           id="incidentes"
-          className="border-b border-border pb-4 font-mono text-xl font-medium uppercase tracking-[0.08em] text-foreground"
+          className="border-b border-foreground/20 pb-4 font-sans text-2xl font-medium tracking-tight text-foreground md:text-3xl"
         >
           Incidentes recentes
         </h2>
