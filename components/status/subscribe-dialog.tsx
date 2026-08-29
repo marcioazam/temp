@@ -18,11 +18,12 @@ const LEVELS = [
   { id: "outages", label: "Somente interrupções", hint: "Apenas indisponibilidade total" },
 ] as const
 
-type Channel = "email" | "rss" | "webhook" | "slack"
+type Channel = "email" | "rss" | "json" | "webhook" | "slack"
 
 const CHANNELS: Array<{ id: Channel; label: string }> = [
   { id: "email", label: "E-mail" },
   { id: "rss", label: "RSS / Atom" },
+  { id: "json", label: "JSON" },
   { id: "webhook", label: "Webhook" },
   { id: "slack", label: "Slack" },
 ]
@@ -137,7 +138,7 @@ export function SubscribeDialog() {
             <div
               role="tablist"
               aria-label="Canal de notificação"
-              className="flex gap-6 border-b border-border px-6"
+              className="flex overflow-x-auto border-b border-border px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {CHANNELS.map((option) => {
                 const active = channel === option.id
@@ -149,7 +150,7 @@ export function SubscribeDialog() {
                     type="button"
                     onClick={() => setChannel(option.id)}
                     className={cn(
-                      "type-micro border-b py-3 transition-colors",
+                      "type-micro shrink-0 border-b px-3 py-3 transition-colors first:pl-0 last:pr-0",
                       active
                         ? "border-foreground text-foreground"
                         : "border-transparent text-subtle-foreground/60 hover:text-foreground",
@@ -164,6 +165,7 @@ export function SubscribeDialog() {
             <div className="px-6 py-6">
               {channel === "email" && <EmailPanel />}
               {channel === "rss" && <RssPanel />}
+              {channel === "json" && <JsonPanel />}
               {channel === "webhook" && <WebhookPanel />}
               {channel === "slack" && <SlackPanel />}
             </div>
@@ -414,6 +416,36 @@ function RssPanel() {
       </p>
       <CopyRow label="RSS" url="https://verbo.ai/status/feed.rss" />
       <CopyRow label="Atom" url="https://verbo.ai/status/feed.atom" />
+    </div>
+  )
+}
+
+function JsonPanel() {
+  const preview = `{
+  "status": "operational",
+  "updated_at": "2026-08-29T10:47:00Z",
+  "incidents": [],
+  "components": [
+    { "name": "Gateway API", "status": "operational" }
+  ]
+}`
+
+  return (
+    <div className="flex flex-col gap-4">
+      <p className="type-micro leading-relaxed text-subtle-foreground">
+        Consulte o estado atual dos serviços e incidentes em formato estruturado. O endpoint pode
+        ser usado em automações, dashboards e integrações próprias.
+      </p>
+      <CopyRow label="Endpoint JSON" url="https://verbo.ai/status/index.json" />
+      <div className="border border-border">
+        <div className="flex items-center justify-between border-b border-border px-3 py-2">
+          <span className="type-micro text-subtle-foreground/60">RESPOSTA</span>
+          <span className="type-micro text-subtle-foreground/50">application/json</span>
+        </div>
+        <pre className="overflow-x-auto p-3 font-mono text-sm leading-relaxed text-subtle-foreground">
+          <code>{preview}</code>
+        </pre>
+      </div>
     </div>
   )
 }
