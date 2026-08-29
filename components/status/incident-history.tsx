@@ -27,38 +27,49 @@ export function IncidentHistory({ incidents }: { incidents: Incident[] }) {
   return (
     <ol>
       {incidents.map((incident) => (
-        <li key={`${incident.date}-${incident.title}`} className="border-b border-border py-6">
+        <li key={`${incident.date}-${incident.title}`} className="border-b border-border py-7 md:py-8">
           <article>
-            <div className="mb-10 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-              <div className="flex min-w-0 items-center gap-2.5">
+            <header className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between md:gap-8">
+              <div className="flex min-w-0 items-center gap-3">
                 <span
                   aria-hidden="true"
-                  className="h-1.5 w-1.5 shrink-0 rounded-full"
+                  className="h-2 w-2 shrink-0 rounded-full"
                   style={{ background: severityColor[incident.severity] }}
                 />
-                <h3
-                  className="type-subheading"
-                  style={{ color: severityColor[incident.severity] }}
-                >
+                <h3 className="font-sans text-base font-medium tracking-tight text-foreground md:text-lg">
                   {incident.title}
                 </h3>
               </div>
-              <p className="type-micro shrink-0 text-subtle-foreground/70">
-                {formatDate(incident.date)} · {incident.duration} · {incident.affected.join(", ")}
-              </p>
-            </div>
 
-            <ol className="flex flex-col gap-3 pl-4">
-              {incident.updates.map((update) => (
-                <li key={`${update.time}-${update.label}`} className="flex gap-4">
-                  <p className="type-label w-14 shrink-0 text-subtle-foreground">{update.time}</p>
-                  <p className="type-caption min-w-0 flex-1 text-muted-foreground">
-                    <span className="type-label text-foreground">{update.label}</span>
-                    <span aria-hidden="true" className="mx-2 text-border">
-                      —
-                    </span>
-                    {update.body}
-                  </p>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pl-5 md:justify-end md:pl-0">
+                <span className="type-micro text-subtle-foreground">{formatDate(incident.date)}</span>
+                <span aria-hidden="true" className="h-0.5 w-0.5 rounded-full bg-subtle-foreground/50" />
+                <span className="type-micro text-subtle-foreground">{incident.duration}</span>
+                <span aria-hidden="true" className="h-0.5 w-0.5 rounded-full bg-subtle-foreground/50" />
+                <span className="type-micro text-subtle-foreground">{incident.affected.join(" · ")}</span>
+              </div>
+            </header>
+
+            <ol className="relative mt-7 ml-1 flex flex-col gap-5 border-l border-border pl-7 md:ml-0 md:pl-8">
+              {incident.updates.map((update, index) => (
+                <li
+                  key={`${update.time}-${update.label}`}
+                  className="relative grid gap-1 md:grid-cols-[4rem_6.5rem_minmax(0,1fr)] md:items-baseline md:gap-4"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-2 -left-[1.95rem] h-1.5 w-1.5 rounded-full bg-subtle-foreground md:-left-[2.2rem]"
+                  />
+                  <time className="type-label text-subtle-foreground">{update.time}</time>
+                  <p className="type-label text-foreground">{update.label}</p>
+                  <p className="type-caption min-w-0 text-muted-foreground">{update.body}</p>
+                  {index === 0 && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-2 -left-[1.95rem] h-1.5 w-1.5 rounded-full md:-left-[2.2rem]"
+                      style={{ background: severityColor[incident.severity] }}
+                    />
+                  )}
                 </li>
               ))}
             </ol>
