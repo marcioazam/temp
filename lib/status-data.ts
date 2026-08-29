@@ -183,13 +183,58 @@ export function getStatusServices(now: Date): StatusService[] {
 
 export const HISTORY_MONTHS = 6
 
+const DEMO_HISTORY: Array<{
+  daysAgo: number
+  title: string
+  severity: Incident["severity"]
+  duration: string
+  affected: string[]
+}> = [
+  { daysAgo: 20, title: "Oscilação nas métricas do Dashboard", severity: "degraded", duration: "31min", affected: ["Dashboard"] },
+  { daysAgo: 35, title: "Manutenção nos nós de Streaming", severity: "maintenance", duration: "44min", affected: ["Streaming"] },
+  { daysAgo: 44, title: "Falhas pontuais na emissão de chaves", severity: "degraded", duration: "27min", affected: ["Autenticação"] },
+  { daysAgo: 52, title: "Indisponibilidade regional do Gateway", severity: "outage", duration: "19min", affected: ["Gateway API"] },
+  { daysAgo: 75, title: "Latência no roteamento automático", severity: "degraded", duration: "1h 08min", affected: ["Roteamento de modelos"] },
+  { daysAgo: 84, title: "Atualização programada da autenticação", severity: "maintenance", duration: "38min", affected: ["Autenticação"] },
+  { daysAgo: 96, title: "Queda parcial de conexões SSE", severity: "outage", duration: "36min", affected: ["Streaming", "Gateway API"] },
+  { daysAgo: 112, title: "Processamento lento de métricas", severity: "degraded", duration: "56min", affected: ["Dashboard"] },
+  { daysAgo: 121, title: "Manutenção do balanceador principal", severity: "maintenance", duration: "42min", affected: ["Gateway API", "Roteamento de modelos"] },
+  { daysAgo: 140, title: "Erros em sessões recém-criadas", severity: "degraded", duration: "33min", affected: ["Autenticação"] },
+  { daysAgo: 166, title: "Interrupção em respostas via streaming", severity: "outage", duration: "29min", affected: ["Streaming"] },
+  { daysAgo: 176, title: "Atualização da infraestrutura de métricas", severity: "maintenance", duration: "47min", affected: ["Dashboard"] },
+]
+
+function getDemoHistory(now: Date): Incident[] {
+  return DEMO_HISTORY.map((incident) => ({
+    date: isoDaysAgo(incident.daysAgo, now),
+    title: incident.title,
+    severity: incident.severity,
+    resolved: true,
+    duration: incident.duration,
+    affected: incident.affected,
+    updates: [
+      {
+        time: "11:40",
+        label: incident.severity === "maintenance" ? "Concluído" : "Resolvido",
+        body: "O serviço voltou a operar normalmente e permaneceu estável durante o período de monitoramento.",
+      },
+      {
+        time: "10:55",
+        label: incident.severity === "maintenance" ? "Em andamento" : "Investigando",
+        body: "A equipe identificou o impacto e iniciou os procedimentos de mitigação.",
+      },
+    ],
+  }))
+}
+
 /**
  * Histórico completo para a aba /status/history: incidentes dos últimos
- * 90 dias mais registros anteriores, agrupáveis por mês.
+ * seis meses, agrupáveis por mês.
  */
 export function getIncidentHistory(now: Date): Incident[] {
   return [
     ...getIncidents(now),
+    ...getDemoHistory(now),
     {
       date: isoDaysAgo(104, now),
       title: "Erros intermitentes na Autenticação",
@@ -266,7 +311,7 @@ export function getIncidents(now: Date): Incident[] {
         {
           time: "14:52",
           label: "Resolvido",
-          body: "As latências retornaram aos níveis normais. Seguimos monitorando por 24h como precaução.",
+          body: "As latências retornaram aos n��veis normais. Seguimos monitorando por 24h como precaução.",
         },
         {
           time: "14:10",
