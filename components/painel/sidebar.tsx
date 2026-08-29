@@ -151,33 +151,29 @@ export function PainelSidebar({
       </div>
 
       <div className="flex flex-col border-t border-border">
-        <a
-          href="/docs"
-          className="flex items-center gap-2.5 px-4 py-2.5 text-[12px] text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <BookOpen className="size-4 shrink-0 text-subtle-foreground" />
-          <span>Documentação</span>
-        </a>
-
-        <div className="flex items-center gap-2 border-t border-border px-4 py-3">
-          <div className="flex flex-1 border border-border" role="group" aria-label="Ambiente">
-            {(['prod', 'staging'] as const).map((env) => (
-              <button
-                key={env}
-                type="button"
-                onClick={() => setEnvironment(env)}
-                aria-pressed={environment === env}
-                className={cn(
-                  'flex-1 py-1 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
-                  environment === env
-                    ? 'bg-muted text-primary'
-                    : 'text-subtle-foreground hover:text-muted-foreground',
-                )}
-              >
-                {env === 'prod' ? 'Prod' : 'Staging'}
-              </button>
-            ))}
-          </div>
+        <div className="flex flex-col py-1">
+          <a
+            href="/docs"
+            className="flex items-center gap-2.5 px-4 py-2 text-[12px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+          >
+            <BookOpen className="size-4 shrink-0 text-subtle-foreground" />
+            <span>Documentação</span>
+          </a>
+          <button
+            type="button"
+            onClick={() => setEnvironment(environment === 'prod' ? 'staging' : 'prod')}
+            className="flex items-center gap-2.5 px-4 py-2 text-left text-[12px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+            aria-label={`Ambiente atual: ${environment}. Alternar ambiente`}
+          >
+            <Server className="size-4 shrink-0 text-subtle-foreground" />
+            <span className="flex-1">Ambiente</span>
+            <span className={cn(
+              'font-mono text-[9px] uppercase tracking-[0.1em]',
+              environment === 'prod' ? 'text-primary' : 'text-subtle-foreground',
+            )}>
+              {environment}
+            </span>
+          </button>
         </div>
 
         <div className="flex items-center gap-2.5 border-t border-border px-4 py-3">
