@@ -225,7 +225,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
         </div>
       </section>
 
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border py-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 py-4">
         <p aria-live="polite" className="type-micro text-subtle-foreground">
           Exibindo {filtered.length} de {incidents.length} {incidents.length === 1 ? "incidente" : "incidentes"}
         </p>
