@@ -193,14 +193,60 @@ export function PainelSidebar({
             >
               <MoreHorizontal className="size-4" aria-hidden="true" />
             </summary>
-            <div className="absolute bottom-9 right-0 z-50 w-36 border border-border bg-popover p-1 shadow-lg">
-              <Link
-                href="/"
-                className="flex items-center gap-2 px-2 py-1.5 text-[12px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
-              >
-                <LogOut className="size-3.5" aria-hidden="true" />
-                <span>Sair</span>
-              </Link>
+            <div className="absolute bottom-9 right-0 z-50 w-60 border border-border bg-popover shadow-lg">
+              <div className="flex flex-col gap-0.5 px-3 py-2.5">
+                <span className="truncate text-[13px] text-foreground">Ana Ribeiro</span>
+                <span className="truncate text-[11px] text-subtle-foreground">ana@nyllalabs.com</span>
+              </div>
+
+              <div className="border-t border-border p-1">
+                <Link
+                  href="/painel/settings"
+                  onClick={onNavigate}
+                  className="group/item flex items-center gap-2.5 px-2 py-1.5 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  <Settings
+                    className="size-4 shrink-0 text-subtle-foreground transition-colors group-hover/item:text-primary"
+                    aria-hidden="true"
+                  />
+                  <span>Configurações</span>
+                </Link>
+                <a
+                  href="/docs"
+                  className="group/item flex items-center gap-2.5 px-2 py-1.5 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  <BookOpen
+                    className="size-4 shrink-0 text-subtle-foreground transition-colors group-hover/item:text-primary"
+                    aria-hidden="true"
+                  />
+                  <span>Documentação</span>
+                </a>
+                <Link
+                  href="/painel/users"
+                  onClick={onNavigate}
+                  className="group/item flex items-center gap-2.5 px-2 py-1.5 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  <Users
+                    className="size-4 shrink-0 text-subtle-foreground transition-colors group-hover/item:text-primary"
+                    aria-hidden="true"
+                  />
+                  <span>Equipe</span>
+                  <ChevronRight className="ml-auto size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
+                </Link>
+              </div>
+
+              <div className="border-t border-border p-1">
+                <Link
+                  href="/"
+                  className="group/item flex items-center gap-2.5 px-2 py-1.5 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  <LogOut
+                    className="size-4 shrink-0 text-subtle-foreground transition-colors group-hover/item:text-primary"
+                    aria-hidden="true"
+                  />
+                  <span>Sair</span>
+                </Link>
+              </div>
             </div>
           </details>
         </div>
