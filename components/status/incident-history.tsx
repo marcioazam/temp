@@ -33,10 +33,15 @@ export function IncidentHistory({ incidents }: { incidents: Incident[] }) {
               <div className="flex min-w-0 items-baseline gap-2.5">
                 <span
                   aria-hidden="true"
-                  className="mt-1.5 h-1.5 w-1.5 shrink-0 self-start"
+                  className="mt-1.5 h-1.5 w-1.5 shrink-0 self-start rounded-full"
                   style={{ background: severityColor[incident.severity] }}
                 />
-                <h3 className="type-subheading text-foreground">{incident.title}</h3>
+                <h3
+                  className="type-subheading"
+                  style={{ color: severityColor[incident.severity] }}
+                >
+                  {incident.title}
+                </h3>
               </div>
               <p className="type-micro shrink-0 text-subtle-foreground/70">
                 {formatDate(incident.date)} · {incident.duration} · {incident.affected.join(", ")}
