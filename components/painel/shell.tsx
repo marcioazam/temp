@@ -72,10 +72,10 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
         </BaseDialog.Root>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <main className="flex-1 overflow-y-auto">
-            <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6">
+          <main className="min-h-0 flex-1 overflow-y-auto">
+            <div className="mx-auto flex min-h-full w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6">
               {children}
-              <footer className="mt-4 flex items-center justify-between border-t border-border pt-4 font-mono text-[10px] uppercase tracking-[0.1em] text-subtle-foreground">
+              <footer className="mt-auto flex items-center justify-between border-t border-border pt-4 font-mono text-[10px] uppercase tracking-[0.1em] text-subtle-foreground">
                 <span>© 2026 Nylla AI</span>
                 <a href="/docs" className="transition-colors hover:text-muted-foreground">Docs</a>
               </footer>
