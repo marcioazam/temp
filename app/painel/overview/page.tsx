@@ -131,7 +131,7 @@ export default function OverviewPage() {
                 className={cn(
                   'min-h-7 px-2.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
                   range === r
-                    ? 'bg-foreground text-background'
+                    ? 'bg-muted/60 text-primary'
                     : 'text-subtle-foreground hover:bg-muted/40 hover:text-foreground',
                 )}
               >
