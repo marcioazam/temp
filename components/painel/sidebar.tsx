@@ -81,7 +81,7 @@ export function PainelSidebar({
         collapsed ? 'w-14' : 'w-56',
       )}
     >
-      <div className={cn('flex items-center border-b border-border py-4', collapsed ? 'justify-center' : 'px-4')}>
+      <div className={cn('flex items-center py-4', collapsed ? 'justify-center' : 'px-4')}>
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2.5 text-foreground"
