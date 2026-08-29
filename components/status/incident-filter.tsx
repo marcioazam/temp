@@ -55,15 +55,15 @@ function FilterOption({
       aria-pressed={active}
       onClick={onSelect}
       className={cn(
-        "type-micro border transition-colors",
-        compact ? "border-x-0 border-t-0 px-0 py-1" : "px-3 py-2",
+        "type-micro transition-colors",
+        compact ? "border-b border-x-0 border-t-0 px-0 py-1" : "px-2.5 py-1.5",
         active
           ? compact
             ? "border-foreground text-foreground"
-            : "border-foreground bg-foreground text-background"
+            : "bg-foreground text-background"
           : compact
             ? "border-transparent text-subtle-foreground/60 hover:text-foreground"
-            : "border-border text-subtle-foreground hover:border-muted-foreground hover:text-foreground",
+            : "text-subtle-foreground hover:bg-secondary hover:text-foreground",
       )}
     >
       {label}
@@ -71,22 +71,15 @@ function FilterOption({
   )
 }
 
-function FilterGroup({
-  legend,
-  description,
-  children,
-  className,
-}: {
-  legend: string
-  description: string
-  children: React.ReactNode
-  className?: string
-}) {
+/** Linha de filtro: rótulo alinhado à esquerda, opções à direita. */
+function FilterGroup({ legend, children }: { legend: string; children: React.ReactNode }) {
   return (
-    <fieldset className={cn("min-w-0", className)}>
-      <legend className="type-label text-foreground">{legend}</legend>
-      <p className="type-micro mt-1 text-subtle-foreground/60">{description}</p>
-      <div className="mt-4 flex flex-wrap gap-2">{children}</div>
+    <fieldset className="grid min-w-0 gap-x-8 gap-y-2 border-b border-border py-3 md:grid-cols-[8rem_minmax(0,1fr)] md:items-start">
+      <legend className="sr-only">{legend}</legend>
+      <p aria-hidden="true" className="type-micro pt-1.5 text-subtle-foreground/60">
+        {legend}
+      </p>
+      <div className="-ml-2.5 flex flex-wrap gap-1">{children}</div>
     </fieldset>
   )
 }
@@ -166,33 +159,24 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
 
   return (
     <div>
-      <section aria-labelledby="filtros-heading" className="mt-10 border border-border">
-        <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border px-5 py-4 md:px-6">
-          <div>
-            <h2 id="filtros-heading" className="type-label text-foreground">
-              Filtrar histórico
-            </h2>
-            <p className="type-caption mt-1 text-subtle-foreground/70">
-              Refine os incidentes por categoria, serviço ou período.
-            </p>
-          </div>
+      <section aria-labelledby="filtros-heading" className="mt-10">
+        <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-border pb-3">
+          <h2 id="filtros-heading" className="type-label text-foreground">
+            Filtrar histórico
+          </h2>
           {isFiltered && (
             <button
               type="button"
               onClick={clearFilters}
-              className="type-micro border-b border-muted-foreground pb-1 text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+              className="type-micro text-muted-foreground transition-colors hover:text-foreground"
             >
               Limpar filtros
             </button>
           )}
         </div>
 
-        <div className="grid gap-0 md:grid-cols-2">
-          <FilterGroup
-            legend="Severidade"
-            description="Tipo do incidente"
-            className="border-b border-border p-5 md:border-r md:p-6"
-          >
+        <div className="flex flex-col">
+          <FilterGroup legend="Severidade">
             {severityOptions.map((option) => (
               <FilterOption
                 key={option.id}
@@ -203,11 +187,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
             ))}
           </FilterGroup>
 
-          <FilterGroup
-            legend="Serviço afetado"
-            description="Área da plataforma"
-            className="border-b border-border p-5 md:p-6"
-          >
+          <FilterGroup legend="Serviço afetado">
             <FilterOption active={service === "all"} label="Todos" onSelect={() => setService("all")} />
             {services.map((name) => (
               <FilterOption
@@ -219,11 +199,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
             ))}
           </FilterGroup>
 
-          <FilterGroup
-            legend="Ano"
-            description="Selecione o ano"
-            className="border-b border-border p-5 md:border-b-0 md:border-r md:p-6"
-          >
+          <FilterGroup legend="Ano">
             <FilterOption active={year === "all"} label="Todos" onSelect={() => selectYear("all")} />
             {years.map((value) => (
               <FilterOption
@@ -235,7 +211,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
             ))}
           </FilterGroup>
 
-          <FilterGroup legend="Mês" description="Selecione o mês" className="p-5 md:p-6">
+          <FilterGroup legend="Mês">
             <FilterOption active={month === "all"} label="Todos" onSelect={() => setMonth("all")} />
             {monthOptions.map((value) => (
               <FilterOption
@@ -249,7 +225,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
         </div>
       </section>
 
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border py-5">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border py-4">
         <p aria-live="polite" className="type-micro text-subtle-foreground">
           Exibindo {filtered.length} de {incidents.length} {incidents.length === 1 ? "incidente" : "incidentes"}
         </p>
