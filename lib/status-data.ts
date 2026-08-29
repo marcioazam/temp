@@ -181,6 +181,78 @@ export function getStatusServices(now: Date): StatusService[] {
   ]
 }
 
+export const HISTORY_MONTHS = 6
+
+/**
+ * Histórico completo para a aba /status/history: incidentes dos últimos
+ * 90 dias mais registros anteriores, agrupáveis por mês.
+ */
+export function getIncidentHistory(now: Date): Incident[] {
+  return [
+    ...getIncidents(now),
+    {
+      date: isoDaysAgo(104, now),
+      title: "Erros intermitentes na Autenticação",
+      severity: "degraded",
+      resolved: true,
+      duration: "52min",
+      affected: ["Autenticação", "Dashboard"],
+      updates: [
+        {
+          time: "17:20",
+          label: "Resolvido",
+          body: "A validação de chaves de API voltou ao normal após reinício do cluster de cache.",
+        },
+        {
+          time: "16:28",
+          label: "Investigando",
+          body: "Parte das requisições de validação de chaves retornava erro 503. Chamadas já autenticadas não foram afetadas.",
+        },
+      ],
+    },
+    {
+      date: isoDaysAgo(131, now),
+      title: "Degradação no roteamento de modelos",
+      severity: "degraded",
+      resolved: true,
+      duration: "2h 05min",
+      affected: ["Roteamento de modelos", "Gateway API"],
+      updates: [
+        {
+          time: "12:40",
+          label: "Resolvido",
+          body: "Failover automático normalizado após correção na verificação de saúde dos provedores.",
+        },
+        {
+          time: "10:35",
+          label: "Identificado",
+          body: "Um provedor upstream reportava saúde incorreta, causando roteamento subótimo e latência elevada.",
+        },
+      ],
+    },
+    {
+      date: isoDaysAgo(155, now),
+      title: "Interrupção total do Gateway API",
+      severity: "outage",
+      resolved: true,
+      duration: "23min",
+      affected: ["Gateway API", "Roteamento de modelos", "Streaming"],
+      updates: [
+        {
+          time: "08:11",
+          label: "Resolvido",
+          body: "Tráfego restabelecido em todas as regiões. Post-mortem publicado com ações corretivas.",
+        },
+        {
+          time: "07:48",
+          label: "Investigando",
+          body: "Falha em cascata no balanceador principal derrubou o endpoint de inferência. Mitigação imediata em andamento.",
+        },
+      ],
+    },
+  ]
+}
+
 export function getIncidents(now: Date): Incident[] {
   return [
     {

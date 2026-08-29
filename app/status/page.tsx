@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { IncidentHistory } from "@/components/status/incident-history"
 import { LastUpdated } from "@/components/status/last-updated"
+import { StatusNav } from "@/components/status/status-nav"
 import { UptimeViews } from "@/components/status/uptime-views"
 import { RotorMark } from "@/components/logo"
 import { getIncidents, getStatusServices } from "@/lib/status-data"
@@ -47,8 +48,12 @@ export default function StatusPage() {
         <LastUpdated />
       </header>
 
+      <div className="mt-10">
+        <StatusNav />
+      </div>
+
       {/* Estado geral: único elemento cromático da página */}
-      <section aria-labelledby="status-geral" className="mt-10">
+      <section aria-labelledby="status-geral" className="mt-12">
         <div
           className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-5 py-4 md:px-6"
           style={{ background: overallState.background }}
