@@ -217,9 +217,6 @@ export default function LogsPage() {
             Limpar filtros
           </Button>
         )}
-        <span className="ml-auto font-mono text-[11px] tabular-nums text-subtle-foreground">
-          {filtered.length} de {state.logs.length} requisições
-        </span>
       </div>
 
       {periodFilter === 'custom' && (
