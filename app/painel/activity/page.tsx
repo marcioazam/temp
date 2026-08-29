@@ -12,6 +12,8 @@ import type { ActivityItem } from '@/lib/painel/data'
 
 type KindFilter = 'all' | ActivityItem['kind']
 
+const PAGE_SIZE = 20
+
 const kindLabels: Record<ActivityItem['kind'], string> = {
   key: 'Chave',
   model: 'Modelo',
@@ -24,6 +26,7 @@ export default function ActivityLogsPage() {
   const { state } = usePainel()
   const [query, setQuery] = useState('')
   const [kindFilter, setKindFilter] = useState<KindFilter>('all')
+  const [page, setPage] = useState(1)
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -35,6 +38,11 @@ export default function ActivityLogsPage() {
   }, [state.activity, query, kindFilter])
 
   const hasActiveFilters = query !== '' || kindFilter !== 'all'
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const currentPage = Math.min(page, pageCount)
+  const pageItems = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+  const firstItem = filtered.length === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1
+  const lastItem = Math.min(currentPage * PAGE_SIZE, filtered.length)
 
   return (
     <>
@@ -48,7 +56,10 @@ export default function ActivityLogsPage() {
           <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground" />
           <TextInput
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value)
+              setPage(1)
+            }}
             placeholder="Buscar por evento, detalhe…"
             className="pl-8"
             aria-label="Buscar atividades"
@@ -57,7 +68,10 @@ export default function ActivityLogsPage() {
         <Segmented
           label="Filtrar por tipo"
           value={kindFilter}
-          onChange={setKindFilter}
+          onChange={(value) => {
+            setKindFilter(value)
+            setPage(1)
+          }}
           options={[
             { value: 'all', label: 'Tudo' },
             { value: 'key', label: 'Chaves' },
@@ -74,6 +88,7 @@ export default function ActivityLogsPage() {
             onClick={() => {
               setQuery('')
               setKindFilter('all')
+              setPage(1)
             }}
             className="font-mono text-[10px] uppercase tracking-wide"
           >
@@ -94,21 +109,45 @@ export default function ActivityLogsPage() {
             Nenhuma atividade encontrada para os filtros atuais.
           </p>
         ) : (
-          <ul className="divide-y divide-border/30">
-            {filtered.map((item) => (
-              <li key={item.id} className="flex items-baseline gap-3 px-4 py-3 transition-colors hover:bg-muted/30">
-                <span className="mt-1 size-1 shrink-0 rounded-full bg-term-success" aria-hidden="true" />
-                <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-                  <span className="text-[13px] text-foreground">{item.text}</span>
-                  <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
-                </div>
-                <StatusBadge tone="muted" dot={false} className="hidden shrink-0 sm:inline-flex">
-                  {kindLabels[item.kind]}
-                </StatusBadge>
-                <span className="shrink-0 font-mono text-[10px] text-subtle-foreground">{item.time}</span>
-              </li>
-            ))}
-          </ul>
+          <>
+            <ul className="divide-y divide-border/30">
+              {pageItems.map((item) => (
+                <li key={item.id} className="flex items-baseline gap-3 px-4 py-3 transition-colors hover:bg-muted/30">
+                  <span className="mt-1 size-1 shrink-0 rounded-full bg-term-success" aria-hidden="true" />
+                  <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                    <span className="text-[13px] text-foreground">{item.text}</span>
+                    <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
+                  </div>
+                  <StatusBadge tone="muted" dot={false} className="hidden shrink-0 sm:inline-flex">
+                    {kindLabels[item.kind]}
+                  </StatusBadge>
+                  <time
+                    dateTime={item.occurredAt}
+                    className="shrink-0 font-mono text-[10px] tabular-nums text-subtle-foreground"
+                    title={item.time}
+                  >
+                    {item.occurredAt}
+                  </time>
+                </li>
+              ))}
+            </ul>
+            <footer className="flex items-center justify-between border-t border-border/30 px-4 py-2.5">
+              <span className="font-mono text-[10px] tabular-nums text-subtle-foreground">
+                {firstItem}–{lastItem} de {filtered.length} eventos
+              </span>
+              <div className="flex items-center gap-1">
+                <Button variant="outline" size="xs" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}>
+                  Anterior
+                </Button>
+                <span className="min-w-12 text-center font-mono text-[10px] tabular-nums text-subtle-foreground">
+                  {currentPage}/{pageCount}
+                </span>
+                <Button variant="outline" size="xs" disabled={currentPage === pageCount} onClick={() => setPage(currentPage + 1)}>
+                  Próxima
+                </Button>
+              </div>
+            </footer>
+          </>
         )}
       </section>
     </>

@@ -85,6 +85,7 @@ export interface ActivityItem {
   text: string
   detail: string
   time: string
+  occurredAt: string
   kind: 'key' | 'model' | 'user' | 'budget' | 'provider'
 }
 
@@ -255,12 +256,12 @@ export const budgetsSeed: BudgetAlert[] = [
 ]
 
 export const activitySeed: ActivityItem[] = [
-  { id: 'a1', text: 'Chave criada', detail: 'CI/CD — Deploy pipeline por Bruno Costa', time: 'há 34 min', kind: 'key' },
-  { id: 'a2', text: 'Modelo ativado', detail: 'gemini-2.5-flash por Camila Souza', time: 'há 2 h', kind: 'model' },
-  { id: 'a3', text: 'Usuário convidado', detail: 'felipe@nyllalabs.com como Viewer', time: 'há 5 h', kind: 'user' },
-  { id: 'a4', text: 'Alerta de orçamento', detail: '70% do limite mensal atingido', time: 'ontem', kind: 'budget' },
-  { id: 'a5', text: 'Provedor degradado', detail: 'Google Gemini — latência elevada', time: 'ontem', kind: 'provider' },
-  { id: 'a6', text: 'Chave revogada', detail: 'Legado — app mobile v1 por Ana Ribeiro', time: 'há 3 dias', kind: 'key' },
+  { id: 'a1', text: 'Chave criada', detail: 'CI/CD — Deploy pipeline por Bruno Costa', time: 'há 34 min', occurredAt: '29/08/2026 14:30:05', kind: 'key' },
+  { id: 'a2', text: 'Modelo ativado', detail: 'gemini-2.5-flash por Camila Souza', time: 'há 2 h', occurredAt: '29/08/2026 13:04:18', kind: 'model' },
+  { id: 'a3', text: 'Usuário convidado', detail: 'felipe@nyllalabs.com como Viewer', time: 'há 5 h', occurredAt: '29/08/2026 09:42:51', kind: 'user' },
+  { id: 'a4', text: 'Alerta de orçamento', detail: '70% do limite mensal atingido', time: 'ontem', occurredAt: '28/08/2026 18:17:09', kind: 'budget' },
+  { id: 'a5', text: 'Provedor degradado', detail: 'Google Gemini — latência elevada', time: 'ontem', occurredAt: '28/08/2026 11:26:43', kind: 'provider' },
+  { id: 'a6', text: 'Chave revogada', detail: 'Legado — app mobile v1 por Ana Ribeiro', time: 'há 3 dias', occurredAt: '26/08/2026 16:08:22', kind: 'key' },
 ]
 
 export const costHistorySeed: CostMonth[] = [
