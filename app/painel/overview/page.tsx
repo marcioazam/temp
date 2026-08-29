@@ -98,8 +98,8 @@ export default function OverviewPage() {
         </section>
       )}
 
-      <section className="border border-border bg-muted/25" aria-label="Uso">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3">
+      <section className="border border-border/35 bg-muted/20" aria-label="Uso">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/35 px-4 py-3">
           <div className="flex items-center gap-4">
             <p className="text-[13px] text-foreground">Uso</p>
             <div className="flex border border-border" role="group" aria-label="Métrica">
@@ -142,14 +142,14 @@ export default function OverviewPage() {
       </section>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <section className="border border-border bg-card" aria-label="Atividade recente">
-          <div className="flex items-center justify-between border-b border-border px-4 py-3">
+        <section className="border border-border/35 bg-muted/20" aria-label="Atividade recente">
+          <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
             <p className="text-[13px] text-foreground">Atividade</p>
             <Link href="/painel/logs" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver logs <ArrowUpRight className="size-3" />
             </Link>
           </div>
-          <ul className="divide-y divide-border">
+          <ul className="divide-y divide-border/35">
             {state.activity.slice(0, 6).map((item) => (
               <li key={item.id} className="flex items-baseline gap-3 px-4 py-2.5">
                 <span className="mt-1 size-1 shrink-0 bg-primary" aria-hidden="true" />
@@ -163,14 +163,14 @@ export default function OverviewPage() {
           </ul>
         </section>
 
-        <section className="border border-border bg-card" aria-label="Modelos em alta">
-          <div className="flex items-center justify-between border-b border-border px-4 py-3">
+        <section className="border border-border/35 bg-muted/20" aria-label="Modelos em alta">
+          <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
             <p className="text-[13px] text-foreground">Modelos em alta</p>
             <Link href="/painel/models" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver todos <ArrowUpRight className="size-3" />
             </Link>
           </div>
-          <ul className="divide-y divide-border">
+          <ul className="divide-y divide-border/35">
             {topModels.map((model, i) => (
               <li key={model.id} className="flex items-center gap-3 px-4 py-2.5">
                 <span className="w-4 font-mono text-[10px] tabular-nums text-subtle-foreground">{i + 1}</span>
@@ -187,16 +187,16 @@ export default function OverviewPage() {
         </section>
       </div>
 
-      <section className="border border-border bg-card" aria-label="Provedores">
-        <div className="flex items-center justify-between border-b border-border px-4 py-3">
+      <section className="border border-border/35 bg-muted/20" aria-label="Provedores">
+        <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
           <p className="text-[13px] text-foreground">Provedores</p>
           <Link href="/painel/providers" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
             Gerenciar <ArrowUpRight className="size-3" />
           </Link>
         </div>
-        <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-px bg-border/35 sm:grid-cols-2 lg:grid-cols-4">
           {state.providers.map((p) => (
-            <div key={p.id} className="flex flex-col gap-2.5 bg-card p-4">
+            <div key={p.id} className="flex flex-col gap-2.5 bg-transparent p-4">
               <div className="flex items-center justify-between gap-2">
                 <span className="truncate text-[13px] text-foreground">{p.name}</span>
                 <StatusBadge tone={providerTone[p.status]}>{providerLabel[p.status]}</StatusBadge>
@@ -222,8 +222,8 @@ export default function OverviewPage() {
         </div>
       </section>
 
-      <section className="border border-border bg-card" aria-label="Atividade anual">
-        <div className="border-b border-border px-4 py-3">
+      <section className="border border-border/35 bg-muted/20" aria-label="Atividade anual">
+        <div className="border-b border-border/35 px-4 py-3">
           <p className="text-[13px] text-foreground">Atividade de requisições — últimos 12 meses</p>
         </div>
         <div className="px-4 py-4">
