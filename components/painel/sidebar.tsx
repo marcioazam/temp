@@ -81,9 +81,14 @@ export function PainelSidebar({
         collapsed ? 'w-14' : 'w-56',
       )}
     >
-      <div className="flex items-center justify-center border-b border-border py-4">
-        <Link href="/" className="flex size-7 shrink-0 items-center justify-center text-primary" aria-label="Nylla — voltar ao site">
-          <RotorMark aria-hidden="true" className="size-7" />
+      <div className={cn('flex items-center border-b border-border py-4', collapsed ? 'justify-center' : 'px-4')}>
+        <Link
+          href="/"
+          className="flex shrink-0 items-center gap-2.5 text-foreground"
+          aria-label="Nylla Panel — voltar ao site"
+        >
+          <RotorMark aria-hidden="true" className="size-7 shrink-0 text-primary" />
+          {!collapsed && <span className="type-wordmark whitespace-nowrap text-[1.1875rem]">Nylla Panel</span>}
         </Link>
       </div>
 
