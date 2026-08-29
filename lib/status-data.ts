@@ -139,7 +139,7 @@ export function getIncidents(now: Date): Incident[] {
     },
     {
       date: isoDaysAgo(27, now),
-      title: "Manutenção programada do Dashboard",
+      title: "Manutenção",
       severity: "maintenance",
       resolved: true,
       duration: "35min",
