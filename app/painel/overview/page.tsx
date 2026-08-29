@@ -72,7 +72,7 @@ export default function OverviewPage() {
           </div>
           <ul className="grid gap-px bg-border/50 sm:grid-cols-5">
             {state.checklist.map((item) => (
-              <li key={item.id} className="bg-transparent">
+              <li key={item.id} className="bg-background">
                 <button
                   type="button"
                   disabled={item.done}
