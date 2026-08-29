@@ -33,8 +33,7 @@ export default function StatusPage() {
 
       {/* Estado geral */}
       <section aria-labelledby="status-geral" className="mt-16 md:mt-20">
-        <p className="type-eyebrow text-subtle-foreground">Visão geral</p>
-        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h1 id="status-geral" className="type-title flex items-center gap-4 text-foreground">
             <span
               aria-hidden="true"
