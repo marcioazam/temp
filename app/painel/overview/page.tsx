@@ -33,7 +33,11 @@ function Segmented<T extends string>({
   onChange: (v: T) => void
 }) {
   return (
-    <div className="flex border border-border/70 bg-background" role="group" aria-label={label}>
+    <div
+      className="flex h-[30px] items-center border border-foreground/25 bg-background p-0.5 font-mono text-[10px] uppercase tracking-[0.1em]"
+      role="group"
+      aria-label={label}
+    >
       {options.map((o) => (
         <button
           key={o.value}
@@ -41,10 +45,10 @@ function Segmented<T extends string>({
           onClick={() => onChange(o.value)}
           aria-pressed={value === o.value}
           className={cn(
-            'min-h-7 px-2.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
+            'grid h-6 min-w-7 place-items-center px-1.5 transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-foreground',
             value === o.value
-              ? 'bg-muted/60 text-primary'
-              : 'text-subtle-foreground hover:bg-muted/40 hover:text-foreground',
+              ? 'bg-foreground text-background'
+              : 'bg-background text-muted-foreground hover:text-foreground',
           )}
         >
           {o.label}
@@ -248,19 +252,21 @@ export default function OverviewPage() {
                 { value: 'bars', label: 'Barras' },
               ]}
             />
-            <button
-              type="button"
-              onClick={() => setShowAvg((v) => !v)}
-              aria-pressed={showAvg}
-              className={cn(
-                'min-h-7 border px-2.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
-                showAvg
-                  ? 'border-primary/40 bg-muted/60 text-primary'
-                  : 'border-border/70 bg-background text-subtle-foreground hover:text-foreground',
-              )}
-            >
-              Média
-            </button>
+            <div className="flex h-[30px] items-center border border-foreground/25 bg-background p-0.5 font-mono text-[10px] uppercase tracking-[0.1em]">
+              <button
+                type="button"
+                onClick={() => setShowAvg((v) => !v)}
+                aria-pressed={showAvg}
+                className={cn(
+                  'grid h-6 place-items-center px-1.5 transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-foreground',
+                  showAvg
+                    ? 'bg-foreground text-background'
+                    : 'bg-background text-muted-foreground hover:text-foreground',
+                )}
+              >
+                Média
+              </button>
+            </div>
             <Segmented
               label="Período"
               value={range}
