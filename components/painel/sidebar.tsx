@@ -11,13 +11,11 @@ import {
   PanelLeft,
   ScrollText,
   Search,
-  Server,
   Settings,
   Users,
 } from 'lucide-react'
 import { RotorMark } from '@/components/logo'
 import { cn } from '@/lib/utils'
-import { usePainel } from '@/lib/painel/store'
 import { initials } from '@/lib/painel/format'
 
 interface NavItem {
@@ -67,7 +65,6 @@ export function PainelSidebar({
   onNavigate?: () => void
 }) {
   const pathname = usePathname()
-  const { environment, setEnvironment } = usePainel()
 
   return (
     <nav
@@ -155,23 +152,6 @@ export function PainelSidebar({
             <BookOpen className="size-4 shrink-0 text-subtle-foreground" />
             <span>Documentação</span>
           </a>
-          <button
-            type="button"
-            onClick={() => setEnvironment(environment === 'prod' ? 'staging' : 'prod')}
-            className="flex items-center gap-2.5 px-2 py-1.5 text-left text-[13px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
-            aria-label={`Ambiente atual: ${environment}. Alternar ambiente`}
-          >
-            <Server className="size-4 shrink-0 text-subtle-foreground" />
-            <span className="flex-1">Ambiente</span>
-            <span
-              className={cn(
-                'font-mono text-[9px] uppercase tracking-[0.1em]',
-                environment === 'prod' ? 'text-primary' : 'text-subtle-foreground',
-              )}
-            >
-              {environment}
-            </span>
-          </button>
         </div>
       </div>
 
