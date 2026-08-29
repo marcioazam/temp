@@ -153,18 +153,18 @@ export function AreaChart({
               x2={W - PAD}
               y1={y(avg)}
               y2={y(avg)}
-              stroke="var(--primary)"
+              stroke="var(--foreground)"
               strokeWidth="1"
-              strokeOpacity="0.55"
+              strokeOpacity="0.45"
               strokeDasharray="5 4"
             />
             <text
               x={W - PAD}
               y={y(avg) - 5}
               textAnchor="end"
-              className="fill-[var(--primary)] font-mono"
+              className="fill-[var(--foreground)] font-mono"
               fontSize="9"
-              opacity="0.8"
+              opacity="0.6"
             >
               média {fmt(avg)}
             </text>
@@ -181,15 +181,15 @@ export function AreaChart({
                   y={y(v)}
                   width={barW}
                   height={Math.max(1, H - PAD - y(v))}
-                  fill={active ? 'var(--primary)' : 'var(--term-success)'}
-                  fillOpacity={active ? 0.24 : 0.14}
+                  fill={active ? 'var(--foreground)' : 'var(--term-success)'}
+                  fillOpacity={active ? 0.22 : 0.14}
                 />
                 <rect
                   x={cx(i) - barW / 2}
                   y={y(v)}
                   width={barW}
                   height="1.5"
-                  fill={active ? 'var(--primary)' : 'var(--term-success)'}
+                  fill={active ? 'var(--foreground)' : 'var(--term-success)'}
                   fillOpacity={hover === null || active ? 0.9 : 0.45}
                 />
               </g>
@@ -210,7 +210,7 @@ export function AreaChart({
         )}
 
         {hover === null && shape !== 'bars' && (
-          <circle cx={x(peak)} cy={y(values[peak])} r="2.5" fill="var(--primary)" fillOpacity="0.9" />
+          <circle cx={x(peak)} cy={y(values[peak])} r="2.5" fill="var(--foreground)" fillOpacity="0.8" />
         )}
 
         {hover !== null && (
@@ -220,15 +220,15 @@ export function AreaChart({
               x2={cx(hover)}
               y1={PAD}
               y2={H - PAD}
-              stroke="var(--primary)"
+              stroke="var(--foreground)"
               strokeWidth="1"
               strokeOpacity="0.7"
               strokeDasharray="2 3"
             />
             {shape !== 'bars' && (
               <>
-                <circle cx={x(hover)} cy={y(hoverValue)} r="5" fill="var(--primary)" fillOpacity="0.18" />
-                <circle cx={x(hover)} cy={y(hoverValue)} r="2.5" fill="var(--primary)" />
+                <circle cx={x(hover)} cy={y(hoverValue)} r="5" fill="var(--foreground)" fillOpacity="0.2" />
+                <circle cx={x(hover)} cy={y(hoverValue)} r="2.5" fill="var(--foreground)" />
               </>
             )}
           </>
@@ -390,7 +390,7 @@ export function YearHeatmap({ data, className }: { data: number[][]; className?:
                           height: CELL,
                           backgroundColor: heatColors[v],
                           opacity: dimmed ? 0.45 : 1,
-                          boxShadow: active ? '0 0 0 1px var(--primary)' : undefined,
+                          boxShadow: active ? '0 0 0 1px var(--foreground)' : undefined,
                         }}
                       />
                     )
