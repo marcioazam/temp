@@ -402,19 +402,6 @@ export default function ApiKeysPage() {
               />
             </Field>
 
-            <div className="flex flex-col gap-1.5">
-              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Ambiente</span>
-              <Segmented
-                label="Ambiente da chave"
-                value={newEnv}
-                onChange={setNewEnv}
-                options={[
-                  { value: 'prod', label: 'Produção' },
-                  { value: 'staging', label: 'Staging' },
-                ]}
-              />
-            </div>
-
             <fieldset className="flex flex-col gap-1.5">
               <legend className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
                 Escopo
