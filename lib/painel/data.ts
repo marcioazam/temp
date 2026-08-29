@@ -93,6 +93,8 @@ export interface CostMonth {
 }
 
 export interface PainelSettings {
+  firstName: string
+  lastName: string
   workspaceName: string
   defaultEnvironment: KeyEnvironment
   fallbackEnabled: boolean
@@ -240,6 +242,8 @@ export const costHistorySeed: CostMonth[] = [
 ]
 
 export const settingsSeed: PainelSettings = {
+  firstName: 'Ana',
+  lastName: 'Ribeiro',
   workspaceName: 'Nylla Labs',
   defaultEnvironment: 'prod',
   fallbackEnabled: true,

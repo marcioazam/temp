@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { RotateCcw } from 'lucide-react'
 import { PageHeader } from '@/components/painel/page-header'
 import { Field, NativeSelect, SettingRow, TextInput, Toggle } from '@/components/painel/ui/controls'
@@ -28,16 +28,41 @@ function Section({
 }
 
 export default function SettingsPage() {
-  const { state, dispatch } = usePainel()
+  const { state, dispatch, hydrated } = usePainel()
   const s = state.settings
   const [resetOpen, setResetOpen] = useState(false)
+  const [firstName, setFirstName] = useState(s.firstName)
+  const [lastName, setLastName] = useState(s.lastName)
+  const [profileMessage, setProfileMessage] = useState<{ type: 'error' | 'success'; text: string } | null>(null)
   const [passwordOpen, setPasswordOpen] = useState(false)
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
+  useEffect(() => {
+    if (!hydrated) return
+    setFirstName(state.settings.firstName)
+    setLastName(state.settings.lastName)
+  }, [hydrated, state.settings.firstName, state.settings.lastName])
+
   const update = (patch: Partial<typeof s>) => dispatch({ type: 'update_settings', settings: patch })
+
+  const handleProfileSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const normalizedFirstName = firstName.trim().replace(/\s+/g, ' ')
+    const normalizedLastName = lastName.trim().replace(/\s+/g, ' ')
+
+    if (!normalizedFirstName || !normalizedLastName) {
+      setProfileMessage({ type: 'error', text: 'Preencha o nome e o sobrenome.' })
+      return
+    }
+
+    update({ firstName: normalizedFirstName, lastName: normalizedLastName })
+    setFirstName(normalizedFirstName)
+    setLastName(normalizedLastName)
+    setProfileMessage({ type: 'success', text: 'Perfil atualizado.' })
+  }
 
   const closePasswordDialog = () => {
     setPasswordOpen(false)
@@ -77,6 +102,53 @@ export default function SettingsPage() {
 
       <div className="grid items-start gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
+          <Section title="Perfil" description="Atualize como seu nome aparece no painel.">
+            <form onSubmit={handleProfileSubmit} className="flex flex-col gap-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Field label="Nome">
+                  <TextInput
+                    value={firstName}
+                    onChange={(event) => {
+                      setFirstName(event.target.value)
+                      setProfileMessage(null)
+                    }}
+                    autoComplete="given-name"
+                    aria-invalid={profileMessage?.type === 'error'}
+                    aria-describedby={profileMessage ? 'profile-message' : undefined}
+                  />
+                </Field>
+                <Field label="Sobrenome">
+                  <TextInput
+                    value={lastName}
+                    onChange={(event) => {
+                      setLastName(event.target.value)
+                      setProfileMessage(null)
+                    }}
+                    autoComplete="family-name"
+                    aria-invalid={profileMessage?.type === 'error'}
+                    aria-describedby={profileMessage ? 'profile-message' : undefined}
+                  />
+                </Field>
+              </div>
+              <div className="flex items-center justify-between gap-3 border-t border-border/35 pt-3">
+                <p
+                  id="profile-message"
+                  role={profileMessage?.type === 'error' ? 'alert' : 'status'}
+                  aria-live="polite"
+                  className={profileMessage?.type === 'error' ? 'text-[11px] text-destructive' : 'text-[11px] text-primary'}
+                >
+                  {profileMessage?.text}
+                </p>
+                <button
+                  type="submit"
+                  className="ml-auto h-7 shrink-0 border border-primary/50 bg-primary/10 px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/20 focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  Salvar alterações
+                </button>
+              </div>
+            </form>
+          </Section>
+
           <Section title="Roteamento" description="Comportamento do gateway de inferência.">
             <div className="divide-y divide-border/35">
               <SettingRow

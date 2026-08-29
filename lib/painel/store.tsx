@@ -174,7 +174,15 @@ export function PainelProvider({ children }: { children: React.ReactNode }) {
             const seed = seedState.keys.find((s) => s.id === k.id)
             return seed ? { ...seed, ...k, requests30d: k.requests30d ?? seed.requests30d, expiresAt: k.expiresAt ?? seed.expiresAt, rateLimit: k.rateLimit ?? seed.rateLimit } : k
           })
-          dispatch({ type: 'hydrate', state: { ...seedState, ...parsed, keys } })
+          dispatch({
+            type: 'hydrate',
+            state: {
+              ...seedState,
+              ...parsed,
+              keys,
+              settings: { ...seedState.settings, ...parsed.settings },
+            },
+          })
         }
       }
     } catch {
