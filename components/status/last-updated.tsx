@@ -1,8 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { cn } from "@/lib/utils"
 
-export function LastUpdated() {
+export function LastUpdated({ className }: { className?: string }) {
   const [stamp, setStamp] = useState<string | null>(null)
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export function LastUpdated() {
   }, [])
 
   return (
-    <span className="type-micro text-subtle-foreground">
+    <span className={cn("type-micro text-subtle-foreground", className)}>
       {stamp ? `Atualizado em ${stamp}` : "\u00A0"}
     </span>
   )
