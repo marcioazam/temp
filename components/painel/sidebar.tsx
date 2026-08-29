@@ -27,10 +27,7 @@ interface NavItem {
 const groups: { title: string | null; items: NavItem[] }[] = [
   {
     title: null,
-    items: [
-      { href: '/painel/settings', label: 'Configurações', icon: Settings },
-      { href: '/painel/overview', label: 'Visão geral', icon: LayoutDashboard },
-    ],
+    items: [{ href: '/painel/overview', label: 'Visão geral', icon: LayoutDashboard }],
   },
   {
     title: 'API Gateway',
@@ -143,6 +140,30 @@ export function PainelSidebar({
           <p className="px-2 pb-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-subtle-foreground">
             Opções
           </p>
+          <Link
+            href="/painel/settings"
+            onClick={onNavigate}
+            aria-current={pathname === '/painel/settings' ? 'page' : undefined}
+            className={cn(
+              'group relative flex items-center gap-2.5 px-2 py-1.5 text-[13px] transition-colors',
+              pathname === '/painel/settings'
+                ? 'bg-muted text-foreground'
+                : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground',
+            )}
+          >
+            {pathname === '/painel/settings' && (
+              <span className="absolute inset-y-0 left-0 w-px bg-primary" aria-hidden="true" />
+            )}
+            <Settings
+              className={cn(
+                'size-4 shrink-0',
+                pathname === '/painel/settings'
+                  ? 'text-primary'
+                  : 'text-subtle-foreground group-hover:text-muted-foreground',
+              )}
+            />
+            <span>Configurações</span>
+          </Link>
           <a
             href="/docs"
             className="flex items-center gap-2.5 px-2 py-1.5 text-[13px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
