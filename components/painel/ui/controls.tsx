@@ -91,7 +91,7 @@ export function Toggle({
       onClick={() => onChange(!checked)}
       className={cn(
         'relative h-4.5 w-8 shrink-0 border transition-colors focus-visible:outline-1 focus-visible:outline-ring disabled:opacity-50',
-        checked ? 'border-primary bg-primary' : 'border-border bg-muted',
+        checked ? 'border-primary bg-primary/20' : 'border-border bg-muted',
       )}
     >
       <span

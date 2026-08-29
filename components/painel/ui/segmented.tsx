@@ -26,9 +26,9 @@ export function Segmented<T extends string>({
           onClick={() => onChange(o.value)}
           aria-pressed={value === o.value}
           className={cn(
-            'grid h-6 min-w-7 place-items-center px-1.5 transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-primary',
+            'grid h-6 min-w-7 place-items-center px-1.5 transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-foreground',
             value === o.value
-              ? 'bg-primary text-primary-foreground'
+              ? 'bg-foreground text-background'
               : 'bg-background text-muted-foreground hover:text-foreground',
           )}
         >
