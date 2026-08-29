@@ -62,8 +62,8 @@ export default function StatusPage() {
 
       {/* Serviços */}
       <section aria-labelledby="servicos" className="mt-14">
-        <div className="flex items-baseline justify-between gap-6 border-b border-border pb-3">
-          <h2 id="servicos" className="type-micro text-subtle-foreground">
+        <div className="flex items-baseline justify-between gap-6 border-b border-border pb-4">
+          <h2 id="servicos" className="font-mono text-xl font-medium uppercase tracking-[0.08em] text-foreground">
             Serviços
           </h2>
           <p className="type-micro text-subtle-foreground/60">90 dias atrás → hoje</p>
@@ -92,11 +92,12 @@ export default function StatusPage() {
 
       {/* Histórico de incidentes */}
       <section aria-labelledby="incidentes" className="mt-14">
-        <div className="border-b border-border pb-3">
-          <h2 id="incidentes" className="type-micro text-subtle-foreground">
-            Incidentes recentes
-          </h2>
-        </div>
+        <h2
+          id="incidentes"
+          className="border-b border-border pb-4 font-mono text-xl font-medium uppercase tracking-[0.08em] text-foreground"
+        >
+          Incidentes recentes
+        </h2>
         <IncidentHistory incidents={incidents} />
         <p className="type-caption mt-8 w-full text-subtle-foreground/70">
           Incidentes resolvidos permanecem listados por 90 dias. Dúvidas sobre disponibilidade? Escreva para{" "}
