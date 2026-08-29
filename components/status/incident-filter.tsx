@@ -3,11 +3,16 @@
 import { useMemo, useState } from "react"
 import { IncidentEmptyState } from "@/components/status/incident-empty-state"
 import { IncidentHistory } from "@/components/status/incident-history"
+import { StatusPagination } from "@/components/status/pagination"
 import { statusLabels, type Incident } from "@/lib/status-data"
 import { cn } from "@/lib/utils"
 
 type SeverityFilter = Incident["severity"] | "all"
 type ViewMode = "timeline" | "list"
+
+/** Itens por página: incidentes na listagem, blocos de mês na timeline. */
+const LIST_PAGE_SIZE = 5
+const TIMELINE_PAGE_SIZE = 3
 
 const severityOptions: { id: SeverityFilter; label: string }[] = [
   { id: "all", label: "Todos" },
@@ -90,6 +95,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
   const [year, setYear] = useState<string>("all")
   const [month, setMonth] = useState<string>("all")
   const [view, setView] = useState<ViewMode>("timeline")
+  const [page, setPage] = useState(1)
 
   const services = useMemo(
     () =>
@@ -144,13 +150,52 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
     [filtered],
   )
 
+  // Paginação: a timeline pagina blocos de mês; a listagem pagina incidentes.
+  const totalPages = Math.max(
+    1,
+    Math.ceil(
+      view === "list" ? listed.length / LIST_PAGE_SIZE : byMonth.length / TIMELINE_PAGE_SIZE,
+    ),
+  )
+  const currentPage = Math.min(page, totalPages)
+  const pageSize = view === "list" ? LIST_PAGE_SIZE : TIMELINE_PAGE_SIZE
+  const start = (currentPage - 1) * pageSize
+  const pagedListed = listed.slice(start, start + pageSize)
+  const pagedByMonth = byMonth.slice(start, start + pageSize)
+  const visibleCount =
+    view === "list"
+      ? pagedListed.length
+      : pagedByMonth.reduce((total, [, list]) => total + list.length, 0)
+
+  function changeView(next: ViewMode) {
+    setView(next)
+    setPage(1)
+  }
+
+  function selectSeverity(next: SeverityFilter) {
+    setSeverity(next)
+    setPage(1)
+  }
+
+  function selectService(next: string) {
+    setService(next)
+    setPage(1)
+  }
+
+  function selectMonth(next: string) {
+    setMonth(next)
+    setPage(1)
+  }
+
   function selectYear(next: string) {
+    setPage(1)
     setYear(next)
     // Um mês selecionado pode não existir no novo ano; volta para "Todos".
     if (next !== "all" && month !== "all" && !months.includes(`${next}-${month}`)) setMonth("all")
   }
 
   function clearFilters() {
+    setPage(1)
     setSeverity("all")
     setService("all")
     setYear("all")
@@ -182,19 +227,23 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
                 key={option.id}
                 active={severity === option.id}
                 label={option.label}
-                onSelect={() => setSeverity(option.id)}
+                onSelect={() => selectSeverity(option.id)}
               />
             ))}
           </FilterGroup>
 
           <FilterGroup legend="Serviço afetado">
-            <FilterOption active={service === "all"} label="Todos" onSelect={() => setService("all")} />
+            <FilterOption
+              active={service === "all"}
+              label="Todos"
+              onSelect={() => selectService("all")}
+            />
             {services.map((name) => (
               <FilterOption
                 key={name}
                 active={service === name}
                 label={name}
-                onSelect={() => setService(name)}
+                onSelect={() => selectService(name)}
               />
             ))}
           </FilterGroup>
@@ -212,13 +261,13 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
           </FilterGroup>
 
           <FilterGroup legend="Mês">
-            <FilterOption active={month === "all"} label="Todos" onSelect={() => setMonth("all")} />
+            <FilterOption active={month === "all"} label="Todos" onSelect={() => selectMonth("all")} />
             {monthOptions.map((value) => (
               <FilterOption
                 key={value}
                 active={month === value}
                 label={monthName(Number(value))}
-                onSelect={() => setMonth(value)}
+                onSelect={() => selectMonth(value)}
               />
             ))}
           </FilterGroup>
@@ -227,7 +276,9 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
 
       <div className="flex flex-wrap items-center justify-between gap-4 py-4">
         <p aria-live="polite" className="type-micro text-subtle-foreground">
-          Exibindo {filtered.length} de {incidents.length} {incidents.length === 1 ? "incidente" : "incidentes"}
+          Exibindo {visibleCount} de {filtered.length}{" "}
+          {filtered.length === 1 ? "incidente" : "incidentes"}
+          {isFiltered ? ` · ${incidents.length} no total` : ""}
         </p>
 
         <div className="flex items-baseline gap-6" aria-label="Modo de visualização">
@@ -235,13 +286,13 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
             compact
             active={view === "timeline"}
             label="Timeline"
-            onSelect={() => setView("timeline")}
+            onSelect={() => changeView("timeline")}
           />
           <FilterOption
             compact
             active={view === "list"}
             label="Listagem"
-            onSelect={() => setView("list")}
+            onSelect={() => changeView("list")}
           />
         </div>
       </div>
@@ -255,7 +306,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
         </div>
       ) : view === "list" ? (
         <ul className="mt-10 flex flex-col border-t border-border">
-          {listed.map((incident) => (
+          {pagedListed.map((incident) => (
             <li
               key={`${incident.date}-${incident.title}`}
               className="grid gap-x-6 gap-y-2 border-b border-border py-4 md:grid-cols-[5rem_minmax(0,1fr)_auto] md:items-baseline"
@@ -284,7 +335,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
         </ul>
       ) : (
         <div className="mt-10 flex flex-col gap-14">
-          {byMonth.map(([key, monthIncidents]) => (
+          {pagedByMonth.map(([key, monthIncidents]) => (
             <section key={key} aria-label={monthLabel(key)}>
               <h2 className="type-micro border-b border-foreground/20 pb-3 text-subtle-foreground">
                 {monthLabel(key)}
@@ -297,6 +348,15 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
             </section>
           ))}
         </div>
+      )}
+
+      {filtered.length > 0 && (
+        <StatusPagination
+          page={currentPage}
+          totalPages={totalPages}
+          onPageChange={setPage}
+          label="Paginação do histórico"
+        />
       )}
     </div>
   )
