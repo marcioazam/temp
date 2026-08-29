@@ -414,8 +414,8 @@ function RssPanel() {
         Acompanhe incidentes no seu leitor de feeds. Cada atualização de incidente gera uma nova
         entrada com severidade, componentes afetados e histórico completo.
       </p>
-      <CopyRow label="RSS" url="https://verbo.ai/status/feed.rss" />
-      <CopyRow label="Atom" url="https://verbo.ai/status/feed.atom" />
+      <CopyRow label="RSS" url="https://nylla.ai/status/feed.rss" />
+      <CopyRow label="Atom" url="https://nylla.ai/status/feed.atom" />
     </div>
   )
 }
@@ -436,7 +436,7 @@ function JsonPanel() {
         Consulte o estado atual dos serviços e incidentes em formato estruturado. O endpoint pode
         ser usado em automações, dashboards e integrações próprias.
       </p>
-      <CopyRow label="Endpoint JSON" url="https://verbo.ai/status/index.json" />
+      <CopyRow label="Endpoint JSON" url="https://nylla.ai/status/index.json" />
       <div className="border border-border">
         <div className="flex items-center justify-between border-b border-border px-3 py-2">
           <span className="type-micro text-subtle-foreground/60">RESPOSTA</span>
