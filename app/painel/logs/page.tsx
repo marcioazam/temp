@@ -91,10 +91,16 @@ export default function LogsPage() {
     [state.logs, statusFilter, modelFilter, periodFilter, query],
   )
 
-  const totalTokens = useMemo(
-    () => filtered.reduce((acc, log) => acc + log.tokensIn + log.tokensOut, 0),
-    [filtered],
-  )
+  const periodSummary = useMemo(() => {
+    const logsInPeriod = state.logs.filter(
+      (log) => periodFilter === 'all' || log.ageMinutes <= periodMinutes[periodFilter],
+    )
+
+    return {
+      requests: logsInPeriod.length,
+      tokens: logsInPeriod.reduce((total, log) => total + log.tokensIn + log.tokensOut, 0),
+    }
+  }, [state.logs, periodFilter])
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
   const currentPage = Math.min(page, totalPages)
@@ -127,8 +133,8 @@ export default function LogsPage() {
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] leading-none">
         {[
-          { label: 'Requisições', value: `${fmtNumber(filtered.length)} / ${fmtNumber(state.logs.length)}` },
-          { label: 'Tokens', value: fmtCompact(totalTokens) },
+          { label: 'Requisições no período', value: fmtNumber(periodSummary.requests) },
+          { label: 'Tokens no período', value: fmtCompact(periodSummary.tokens) },
         ].map((s) => (
           <div key={s.label} className="flex items-center gap-2">
             <span className="uppercase tracking-[0.12em] text-subtle-foreground">{s.label}</span>
