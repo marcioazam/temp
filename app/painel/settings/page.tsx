@@ -117,6 +117,16 @@ export default function SettingsPage() {
               <SettingRow title="Redação de PII" description="Mascara dados pessoais identificáveis nos logs armazenados.">
                 <Toggle checked={s.piiRedaction} onChange={(v) => update({ piiRedaction: v })} label="Redação de PII" />
               </SettingRow>
+              <SettingRow
+                title="Usar prompts para treinamento"
+                description="Permite que a Nylla use prompts e respostas para melhorar seus modelos. Desativado por padrão."
+              >
+                <Toggle
+                  checked={s.allowPromptTraining ?? false}
+                  onChange={(v) => update({ allowPromptTraining: v })}
+                  label="Usar prompts para treinamento da Nylla"
+                />
+              </SettingRow>
             </div>
           </Section>
 

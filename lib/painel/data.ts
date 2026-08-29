@@ -104,6 +104,7 @@ export interface PainelSettings {
   notifyWeeklyReport: boolean
   retentionDays: number
   piiRedaction: boolean
+  allowPromptTraining: boolean
   ssoRequired: boolean
   monthlyLimit: number
 }
@@ -250,6 +251,7 @@ export const settingsSeed: PainelSettings = {
   notifyWeeklyReport: false,
   retentionDays: 30,
   piiRedaction: true,
+  allowPromptTraining: false,
   ssoRequired: false,
   monthlyLimit: 8000,
 }
