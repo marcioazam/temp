@@ -92,7 +92,7 @@ export default function StatusPage() {
 
       {/* Histórico de incidentes */}
       <section aria-labelledby="incidentes" className="mt-14">
-        <h2 id="incidentes" className="bg-primary px-4 py-4 font-mono text-2xl font-medium uppercase tracking-[0.08em] text-background">
+        <h2 id="incidentes" className="border-b border-border pb-4 font-mono text-2xl font-medium uppercase tracking-[0.08em] text-foreground">
           Incidentes recentes
         </h2>
         <IncidentHistory incidents={incidents} />
