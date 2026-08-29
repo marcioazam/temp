@@ -21,14 +21,17 @@ const rangeLabel: Record<Range, string> = {
   '30d': 'últimos 30 dias',
 }
 
-// Sparklines determinísticos por KPI (tendência de demonstração)
+// Sparklines determinísticos por KPI (tendência de demonstração).
+// `quality: true` = métrica de desempenho, recebe verde (bom) ou vermelho (ruim).
+// `invert: true` = queda é o resultado desejado (latência, tempo de resposta, erros).
+// Volume puro (requisições, tokens) permanece neutro para não estimular consumo.
 const kpis = [
   { label: 'Requisições', value: '452.890', delta: 12.0, spark: [28, 31, 30, 34, 36, 35, 39, 41, 40, 44, 46, 49] },
   { label: 'Tokens', value: '1,8 bi', delta: 8.0, spark: [40, 42, 41, 44, 43, 46, 48, 47, 50, 52, 51, 54] },
-  { label: 'Tempo de resposta', value: '12,4 h', delta: -9.2, spark: [54, 52, 53, 49, 47, 48, 44, 43, 40, 41, 37, 35], invert: true },
-  { label: 'Latência média', value: '428 ms', delta: -6.0, spark: [52, 50, 51, 48, 47, 49, 45, 44, 46, 42, 41, 39], invert: true },
-  { label: 'Taxa de sucesso', value: '98,7%', delta: 0.4, spark: [44, 45, 43, 46, 45, 47, 46, 48, 47, 48, 49, 48] },
-  { label: 'Erros (24h)', value: '214', delta: -18.0, spark: [58, 55, 56, 52, 50, 51, 46, 44, 45, 40, 38, 34], invert: true },
+  { label: 'Tempo de resposta', value: '12,4 h', delta: -9.2, spark: [54, 52, 53, 49, 47, 48, 44, 43, 40, 41, 37, 35], invert: true, quality: true },
+  { label: 'Latência média', value: '428 ms', delta: -6.0, spark: [52, 50, 51, 48, 47, 49, 45, 44, 46, 42, 41, 39], invert: true, quality: true },
+  { label: 'Taxa de sucesso', value: '98,7%', delta: 0.4, spark: [44, 45, 43, 46, 45, 47, 46, 48, 47, 48, 49, 48], quality: true },
+  { label: 'Erros (24h)', value: '214', delta: -18.0, spark: [58, 55, 56, 52, 50, 51, 46, 44, 45, 40, 38, 34], invert: true, quality: true },
 ] as const
 
 function KpiCard({
@@ -37,29 +40,36 @@ function KpiCard({
   delta,
   spark,
   invert = false,
+  quality = false,
 }: {
   label: string
   value: string
   delta: number
   spark: readonly number[]
   invert?: boolean
+  quality?: boolean
 }) {
   // Para métricas em que queda é positiva (latência, erros), o tom acompanha o benefício.
-  const positive = invert ? delta <= 0 : delta >= 0
+  const good = invert ? delta <= 0 : delta >= 0
   return (
     <div className="group flex flex-col gap-2 border border-border/35 bg-muted/20 p-4 transition-colors hover:border-border/60">
       <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{label}</p>
       <div className="flex items-end justify-between gap-3">
         <div className="flex flex-col gap-1.5">
           <p className="font-mono text-xl tabular-nums leading-none text-foreground">{value}</p>
-          <p className="font-mono text-[11px] tabular-nums leading-none text-primary">
+          <p
+            className={cn(
+              'font-mono text-[11px] tabular-nums leading-none',
+              quality ? (good ? 'text-term-success' : 'text-destructive') : 'text-muted-foreground',
+            )}
+          >
             {delta >= 0 ? '+' : ''}
             {delta.toFixed(1).replace('.', ',')}%
           </p>
         </div>
         <Sparkline
           data={[...spark]}
-          tone={positive ? 'up' : 'down'}
+          tone={quality ? (good ? 'up' : 'down') : 'neutral'}
           className="opacity-55 transition-opacity group-hover:opacity-95"
         />
       </div>
@@ -145,7 +155,7 @@ export default function OverviewPage() {
                   <span
                     className={cn(
                       'mt-0.5 flex size-3.5 shrink-0 items-center justify-center rounded-full border',
-                      item.done ? 'border-primary/50 text-primary' : 'border-border',
+                      item.done ? 'border-foreground/50 text-foreground' : 'border-border',
                     )}
                   >
                     {item.done && <Check className="size-2.5" />}
@@ -161,7 +171,15 @@ export default function OverviewPage() {
       <section aria-label="Indicadores">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {kpis.map((k) => (
-            <KpiCard key={k.label} label={k.label} value={k.value} delta={k.delta} spark={k.spark} invert={'invert' in k && k.invert} />
+            <KpiCard
+              key={k.label}
+              label={k.label}
+              value={k.value}
+              delta={k.delta}
+              spark={k.spark}
+              invert={'invert' in k && k.invert}
+              quality={'quality' in k && k.quality}
+            />
           ))}
         </div>
       </section>
@@ -177,7 +195,7 @@ export default function OverviewPage() {
               <span className="tabular-nums text-foreground">
                 {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
               </span>
-              <span className="tabular-nums text-primary">
+              <span className="tabular-nums text-muted-foreground">
                 {periodDelta >= 0 ? '+' : ''}
                 {periodDelta.toFixed(1)}%
               </span>
@@ -270,7 +288,7 @@ export default function OverviewPage() {
           <ul>
             {state.activity.slice(0, 6).map((item) => (
               <li key={item.id} className="flex items-baseline gap-3 px-4 py-2.5">
-                <span className="mt-1 size-1 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                <span className="mt-1 size-1 shrink-0 rounded-full bg-foreground" aria-hidden="true" />
                 <div className="flex min-w-0 flex-1 flex-col">
                   <span className="text-[12px] text-foreground">{item.text}</span>
                   <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
@@ -294,7 +312,7 @@ export default function OverviewPage() {
                 <span className="w-4 font-mono text-[10px] tabular-nums text-subtle-foreground">{i + 1}</span>
                 <span className="min-w-0 flex-1 truncate font-mono text-[12px] text-foreground">{model.name}</span>
                 <div className="hidden h-1 w-24 bg-muted sm:block" aria-hidden="true">
-                  <div className="h-full bg-primary/80" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
+                  <div className="h-full bg-foreground/70" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
                 </div>
                 <span className="w-12 text-right font-mono text-[11px] tabular-nums text-muted-foreground">
                   {fmtPercent(model.trafficPct, 0)}
