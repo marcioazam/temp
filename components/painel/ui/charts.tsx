@@ -299,6 +299,7 @@ export function HBarList({
 // Escala verde derivada de --term-success (#7cd68c) sobre a superfície escura
 const heatColors = ['#161616', '#283929', '#3a593f', '#51855a', '#6db97a']
 const levelRequests = [0, 420, 1180, 2640, 4310]
+const levelTokens = [0, 1_680_000, 4_720_000, 10_560_000, 17_240_000]
 const weekdayLabels = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
 const monthNames = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 
@@ -306,7 +307,15 @@ const CELL = 14
 const GAP = 4
 const PITCH = CELL + GAP
 
-export function YearHeatmap({ data, className }: { data: number[][]; className?: string }) {
+export function YearHeatmap({
+  data,
+  metric = 'requests',
+  className,
+}: {
+  data: number[][]
+  metric?: 'requests' | 'tokens'
+  className?: string
+}) {
   const [hover, setHover] = useState<{ w: number; d: number } | null>(null)
 
   const { cellDate, months } = useMemo(() => {
@@ -373,7 +382,7 @@ export function YearHeatmap({ data, className }: { data: number[][]; className?:
               className="flex"
               style={{ gap: GAP }}
               role="img"
-              aria-label="Atividade de requisições nos últimos 12 meses"
+              aria-label={`Atividade de ${metric === 'requests' ? 'requisições' : 'tokens'} nos últimos 12 meses`}
             >
               {data.map((week, w) => (
                 <div key={w} className="flex flex-col" style={{ gap: GAP }}>
@@ -420,7 +429,11 @@ export function YearHeatmap({ data, className }: { data: number[][]; className?:
                 <span className="text-subtle-foreground">
                   {hovered.date.getDate()} {monthNames[hovered.date.getMonth()]}
                 </span>{' '}
-                {hovered.level === 0 ? 'sem tráfego' : `${fmtCompact(levelRequests[hovered.level])} req`}
+                {hovered.level === 0
+                  ? 'sem tráfego'
+                  : metric === 'requests'
+                    ? `${fmtCompact(levelRequests[hovered.level])} req`
+                    : `${fmtCompact(levelTokens[hovered.level])} tok`}
               </div>
             )}
           </div>

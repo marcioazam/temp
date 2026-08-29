@@ -125,6 +125,7 @@ export default function OverviewPage() {
   const { state, dispatch } = usePainel()
   const [range, setRange] = useState<Range>('7d')
   const [metric, setMetric] = useState<'requests' | 'tokens'>('requests')
+  const [activityMetric, setActivityMetric] = useState<'requests' | 'tokens'>('requests')
   const [shape, setShape] = useState<ChartShape>('area')
   const [showAvg, setShowAvg] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
@@ -283,14 +284,25 @@ export default function OverviewPage() {
       </section>
 
       <section className="border border-border/35 bg-muted/20" aria-label="Atividade anual">
-        <div className="px-4 pb-1 pt-4">
+        <div className="flex items-start justify-between gap-4 px-4 pb-1 pt-4">
           <div className="flex flex-col gap-1.5">
-            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Atividade de requisições</h2>
+            <h2 className="text-[15px] font-medium tracking-tight text-foreground">
+              Atividade de {activityMetric === 'requests' ? 'requisições' : 'tokens'}
+            </h2>
             <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-subtle-foreground">Últimos 12 meses</span>
           </div>
+          <Segmented
+            label="Métrica da atividade anual"
+            value={activityMetric}
+            onChange={setActivityMetric}
+            options={[
+              { value: 'requests', label: 'Req' },
+              { value: 'tokens', label: 'Tokens' },
+            ]}
+          />
         </div>
         <div className="px-4 py-4">
-          <YearHeatmap data={heatmapSeed} />
+          <YearHeatmap data={heatmapSeed} metric={activityMetric} />
         </div>
       </section>
 
