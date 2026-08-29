@@ -180,9 +180,9 @@ export function PainelSidebar({
         </div>
       </div>
 
-      <div className="flex flex-col border-t border-border">
+      <div className="flex flex-col">
         <div className="flex items-center gap-2.5 px-4 py-3">
-          <span className="flex size-6 shrink-0 items-center justify-center border border-border bg-muted font-mono text-[9px] text-muted-foreground">
+          <span className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border bg-muted font-mono text-[9px] text-muted-foreground">
             {initials('Ana Ribeiro')}
           </span>
           <div className="flex min-w-0 flex-col">
