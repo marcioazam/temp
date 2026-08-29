@@ -231,8 +231,20 @@ export function YearHeatmap({ data, className }: { data: number[][]; className?:
 
             {hover && hovered && (
               <div
-                className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap border border-border bg-popover px-2 py-1 font-mono text-[10px] tabular-nums text-foreground"
-                style={{ left: hover.w * PITCH + CELL / 2, top: 16 + hover.d * PITCH - 4 }}
+                className={cn(
+                  'pointer-events-none absolute z-10 whitespace-nowrap border border-border bg-popover px-2 py-1 font-mono text-[10px] tabular-nums text-foreground',
+                  hover.w < 3 ? '' : hover.w > data.length - 4 ? '-translate-x-full' : '-translate-x-1/2',
+                  hover.d < 2 ? '' : '-translate-y-full',
+                )}
+                style={{
+                  left:
+                    hover.w < 3
+                      ? hover.w * PITCH
+                      : hover.w > data.length - 4
+                        ? hover.w * PITCH + CELL
+                        : hover.w * PITCH + CELL / 2,
+                  top: hover.d < 2 ? 16 + (hover.d + 1) * PITCH + 4 : 16 + hover.d * PITCH - 4,
+                }}
                 suppressHydrationWarning
               >
                 <span className="text-subtle-foreground">
