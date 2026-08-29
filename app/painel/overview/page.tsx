@@ -220,9 +220,9 @@ export default function OverviewPage() {
                 onClick={() => setShowAvg((v) => !v)}
                 aria-pressed={showAvg}
                 className={cn(
-                  'grid h-6 place-items-center px-1.5 transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-foreground',
+                  'grid h-6 place-items-center px-1.5 transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-primary',
                   showAvg
-                    ? 'bg-foreground text-background'
+                    ? 'bg-primary text-primary-foreground'
                     : 'bg-background text-muted-foreground hover:text-foreground',
                 )}
               >

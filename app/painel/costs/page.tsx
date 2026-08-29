@@ -119,7 +119,7 @@ export default function CostsPage() {
                 aria-pressed={segment === s.id}
                 className={cn(
                   'px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
-                  segment === s.id ? 'bg-muted text-primary' : 'text-subtle-foreground hover:text-muted-foreground',
+                  segment === s.id ? 'bg-primary text-primary-foreground' : 'text-subtle-foreground hover:text-muted-foreground',
                 )}
               >
                 {s.label}
