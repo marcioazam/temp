@@ -221,7 +221,7 @@ export function PainelSidebar({
               <div className="px-2 pb-2">
                 <Link
                   href="/painel/settings"
-                  className="flex items-center justify-center gap-2 bg-sidebar px-2 py-2 text-[12.5px] font-medium text-white transition-colors hover:bg-muted focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-primary"
+                  className="flex items-center justify-center gap-2 bg-primary px-2 py-2 text-[12.5px] font-medium text-sidebar transition-colors hover:bg-primary/90 focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-primary"
                 >
                   <Sparkles className="size-3.5" aria-hidden="true" />
                   <span>Assinar Plano</span>
