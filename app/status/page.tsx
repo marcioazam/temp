@@ -92,9 +92,11 @@ export default function StatusPage() {
 
       {/* Histórico de incidentes */}
       <section aria-labelledby="incidentes" className="mt-14">
-        <h2 id="incidentes" className="border-b border-border pb-4 font-mono text-xl font-medium uppercase tracking-[0.08em] text-foreground">
-          Incidentes recentes
-        </h2>
+        <div className="border-b border-border pb-3">
+          <h2 id="incidentes" className="type-micro text-subtle-foreground">
+            Incidentes recentes
+          </h2>
+        </div>
         <IncidentHistory incidents={incidents} />
         <p className="type-caption mt-8 w-full text-subtle-foreground/70">
           Incidentes resolvidos permanecem listados por 90 dias. Dúvidas sobre disponibilidade? Escreva para{" "}
