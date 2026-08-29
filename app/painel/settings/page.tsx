@@ -5,7 +5,22 @@ import { RotateCcw } from 'lucide-react'
 import { PageHeader } from '@/components/painel/page-header'
 import { Field, NativeSelect, SettingRow, TextInput, Toggle } from '@/components/painel/ui/controls'
 import { Dialog } from '@/components/painel/ui/dialog'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { resetPainelStorage, usePainel } from '@/lib/painel/store'
+
+const retentionOptions = [
+  { value: '7', label: '7 dias' },
+  { value: '30', label: '30 dias' },
+  { value: '90', label: '90 dias' },
+  { value: '365', label: '1 ano' },
+]
 
 function Section({
   title,
@@ -240,15 +255,24 @@ export default function SettingsPage() {
               </SettingRow>
               <div className="pb-3.5 pt-2">
                 <Field label="Retenção de logs" hint="Logs de requisição são removidos automaticamente após o período.">
-                  <NativeSelect
+                  <Select
+                    items={retentionOptions}
                     value={String(s.retentionDays)}
-                    onChange={(e) => update({ retentionDays: Number(e.target.value) })}
+                    onValueChange={(value) => update({ retentionDays: Number(value) })}
                   >
-                    <option value="7">7 dias</option>
-                    <option value="30">30 dias</option>
-                    <option value="90">90 dias</option>
-                    <option value="365">1 ano</option>
-                  </NativeSelect>
+                    <SelectTrigger className="w-full" aria-label="Retenção de logs">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent align="start" alignItemWithTrigger={false}>
+                      <SelectGroup>
+                        {retentionOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </Field>
               </div>
               <SettingRow title="Redação de PII" description="Mascara dados pessoais identificáveis nos logs armazenados.">
