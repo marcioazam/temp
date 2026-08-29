@@ -1,13 +1,11 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useEffect, useMemo, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import {
   Boxes,
-  ChartColumn,
   CircleDollarSign,
-  CornerDownLeft,
   KeyRound,
   LayoutDashboard,
   ScrollText,
@@ -20,8 +18,8 @@ import {
 import { cn } from '@/lib/utils'
 
 const commands = [
-  { href: '/painel/overview', label: 'Visão geral', group: 'Páginas', icon: LayoutDashboard, keywords: 'dashboard overview inicio' },
-  { href: '/painel/playground', label: 'Playground', group: 'Páginas', icon: SquareTerminal, keywords: 'testar prompt executar' },
+  { href: '/painel/overview', label: 'Visão geral', group: 'Painel', icon: LayoutDashboard, keywords: 'dashboard overview inicio' },
+  { href: '/painel/playground', label: 'Playground', group: 'Painel', icon: SquareTerminal, keywords: 'testar prompt executar' },
   { href: '/painel/providers', label: 'Provedores', group: 'Infraestrutura', icon: Server, keywords: 'openai anthropic google provider' },
   { href: '/painel/models', label: 'Modelos', group: 'Infraestrutura', icon: Boxes, keywords: 'gpt claude gemini modelo' },
   { href: '/painel/api-keys', label: 'Chaves de API', group: 'API Gateway', icon: KeyRound, keywords: 'key token credencial' },
@@ -39,17 +37,25 @@ export function CommandPalette({
   onOpenChange: (open: boolean) => void
 }) {
   const router = useRouter()
+  const pathname = usePathname()
   const [query, setQuery] = useState('')
   const [active, setActive] = useState(0)
-  const inputRef = useRef<HTMLInputElement>(null)
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()
     if (!q) return commands
-    return commands.filter(
-      (c) => c.label.toLowerCase().includes(q) || c.keywords.includes(q),
-    )
+    return commands.filter((c) => c.label.toLowerCase().includes(q) || c.keywords.includes(q))
   }, [query])
+
+  const sections = useMemo(() => {
+    const out: { title: string; items: typeof commands }[] = []
+    for (const cmd of results) {
+      const last = out[out.length - 1]
+      if (last && last.title === cmd.group) last.items.push(cmd)
+      else out.push({ title: cmd.group, items: [cmd] })
+    }
+    return out
+  }, [results])
 
   useEffect(() => {
     if (open) {
@@ -70,13 +76,13 @@ export function CommandPalette({
   return (
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
       <BaseDialog.Portal>
-        <BaseDialog.Backdrop className="fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px] transition-opacity data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
-        <BaseDialog.Popup className="fixed left-1/2 top-[18vh] z-50 w-[min(560px,calc(100vw-2rem))] -translate-x-1/2 border border-border bg-popover shadow-[0_24px_60px_rgba(0,0,0,0.6)] outline-none transition-all data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0">
+        <BaseDialog.Backdrop className="fixed inset-0 z-50 bg-black/70 backdrop-blur-[3px] transition-opacity data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
+        <BaseDialog.Popup className="fixed left-1/2 top-1/2 z-50 w-[min(560px,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 border border-border bg-popover shadow-[0_32px_80px_rgba(0,0,0,0.7)] outline-none transition-all data-[ending-style]:scale-[0.98] data-[ending-style]:opacity-0 data-[starting-style]:scale-[0.98] data-[starting-style]:opacity-0">
           <BaseDialog.Title className="sr-only">Buscar no painel</BaseDialog.Title>
+
           <div className="flex items-center gap-2.5 border-b border-border px-4">
-            <Search className="size-4 shrink-0 text-subtle-foreground" />
+            <Search className="size-4 shrink-0 text-subtle-foreground" aria-hidden="true" />
             <input
-              ref={inputRef}
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -93,38 +99,62 @@ export function CommandPalette({
                   go(results[active].href)
                 }
               }}
-              placeholder="Buscar páginas e ações…"
-              className="h-11 w-full bg-transparent text-sm text-foreground placeholder:text-subtle-foreground focus:outline-none"
-              aria-label="Buscar páginas e ações"
+              placeholder="Buscar páginas do painel…"
+              className="h-12 w-full bg-transparent text-sm text-foreground placeholder:text-subtle-foreground focus:outline-none"
+              aria-label="Buscar páginas do painel"
             />
-            <kbd className="border border-border px-1.5 py-0.5 font-mono text-[9px] uppercase text-subtle-foreground">esc</kbd>
           </div>
-          <ul className="max-h-[300px] overflow-y-auto p-1.5" role="listbox">
+
+          <ul className="max-h-[min(380px,50vh)] overflow-y-auto py-1.5" role="listbox">
             {results.length === 0 && (
-              <li className="px-3 py-6 text-center text-[12px] text-subtle-foreground">Nenhum resultado para &quot;{query}&quot;</li>
+              <li className="px-4 py-8 text-center text-[12px] text-subtle-foreground">
+                Nenhum resultado para &quot;{query}&quot;
+              </li>
             )}
-            {results.map((cmd, i) => {
-              const Icon = cmd.icon
-              return (
-                <li key={cmd.href} role="option" aria-selected={i === active}>
-                  <button
-                    type="button"
-                    onClick={() => go(cmd.href)}
-                    onMouseEnter={() => setActive(i)}
-                    className={cn(
-                      'flex w-full items-center gap-2.5 px-2.5 py-2 text-left text-[13px] transition-colors',
-                      i === active ? 'bg-muted text-foreground' : 'text-muted-foreground',
-                    )}
-                  >
-                    <Icon className={cn('size-4 shrink-0', i === active ? 'text-primary' : 'text-subtle-foreground')} />
-                    <span className="flex-1 truncate">{cmd.label}</span>
-                    <span className="font-mono text-[9px] uppercase tracking-wide text-subtle-foreground">{cmd.group}</span>
-                    {i === active && <CornerDownLeft className="size-3 text-subtle-foreground" />}
-                  </button>
-                </li>
-              )
-            })}
+            {sections.map((section) => (
+              <li key={section.title}>
+                <p className="px-4 pb-1 pt-2 font-mono text-[9px] uppercase tracking-[0.14em] text-subtle-foreground">
+                  {section.title}
+                </p>
+                <ul>
+                  {section.items.map((cmd) => {
+                    const i = results.indexOf(cmd)
+                    const Icon = cmd.icon
+                    const current = pathname === cmd.href
+                    return (
+                      <li key={cmd.href} role="option" aria-selected={i === active}>
+                        <button
+                          type="button"
+                          onClick={() => go(cmd.href)}
+                          onMouseEnter={() => setActive(i)}
+                          className={cn(
+                            'flex w-full items-center gap-2.5 px-4 py-2 text-left text-[13px] transition-colors',
+                            i === active ? 'bg-muted text-foreground' : 'text-muted-foreground',
+                          )}
+                        >
+                          <Icon
+                            className={cn('size-4 shrink-0', i === active ? 'text-primary' : 'text-subtle-foreground')}
+                          />
+                          <span className="flex-1 truncate">{cmd.label}</span>
+                          {current && (
+                            <span className="font-mono text-[9px] uppercase tracking-wide text-subtle-foreground">
+                              Atual
+                            </span>
+                          )}
+                        </button>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </li>
+            ))}
           </ul>
+
+          <div className="flex items-center justify-between border-t border-border px-4 py-2.5 font-mono text-[9px] uppercase tracking-[0.1em] text-subtle-foreground">
+            <span>↑↓ Navegar</span>
+            <span>Enter Selecionar</span>
+            <span>Esc Fechar</span>
+          </div>
         </BaseDialog.Popup>
       </BaseDialog.Portal>
     </BaseDialog.Root>

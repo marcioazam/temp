@@ -2,21 +2,21 @@
 
 import { useEffect, useState } from 'react'
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
+import { PanelLeft, Search } from 'lucide-react'
 import { PainelProvider } from '@/lib/painel/store'
 import { CommandPalette } from './command-palette'
 import { PainelSidebar } from './sidebar'
-import { PainelTopbar } from './topbar'
 
 const COLLAPSE_KEY = 'nylla-painel-sidebar'
 
 export function PainelShell({ children }: { children: React.ReactNode }) {
-  const [collapsed, setCollapsed] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
   useEffect(() => {
     try {
-      setCollapsed(window.localStorage.getItem(COLLAPSE_KEY) === '1')
+      setHidden(window.localStorage.getItem(COLLAPSE_KEY) === '1')
     } catch {
       // storage indisponível
     }
@@ -33,23 +33,26 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  function toggleCollapsed() {
-    setCollapsed((c) => {
-      try {
-        window.localStorage.setItem(COLLAPSE_KEY, c ? '0' : '1')
-      } catch {
-        // ignore
-      }
-      return !c
-    })
+  function setSidebarHidden(next: boolean) {
+    setHidden(next)
+    try {
+      window.localStorage.setItem(COLLAPSE_KEY, next ? '1' : '0')
+    } catch {
+      // ignore
+    }
   }
 
   return (
     <PainelProvider>
       <div className="flex h-dvh overflow-hidden bg-background text-foreground">
-        <div className="hidden md:block">
-          <PainelSidebar collapsed={collapsed} onToggle={toggleCollapsed} />
-        </div>
+        {!hidden && (
+          <div className="hidden shrink-0 md:block">
+            <PainelSidebar
+              onHide={() => setSidebarHidden(true)}
+              onOpenPalette={() => setPaletteOpen(true)}
+            />
+          </div>
+        )}
 
         <BaseDialog.Root open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
           <BaseDialog.Portal>
@@ -57,8 +60,11 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
             <BaseDialog.Popup className="fixed inset-y-0 left-0 z-50 transition-transform data-[ending-style]:-translate-x-full data-[starting-style]:-translate-x-full md:hidden">
               <BaseDialog.Title className="sr-only">Menu de navegação</BaseDialog.Title>
               <PainelSidebar
-                collapsed={false}
-                onToggle={() => setMobileNavOpen(false)}
+                onHide={() => setMobileNavOpen(false)}
+                onOpenPalette={() => {
+                  setMobileNavOpen(false)
+                  setPaletteOpen(true)
+                }}
                 onNavigate={() => setMobileNavOpen(false)}
               />
             </BaseDialog.Popup>
@@ -66,10 +72,6 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
         </BaseDialog.Root>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <PainelTopbar
-            onOpenPalette={() => setPaletteOpen(true)}
-            onOpenMobileNav={() => setMobileNavOpen(true)}
-          />
           <main className="flex-1 overflow-y-auto">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6">
               {children}
@@ -80,6 +82,48 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
             </div>
           </main>
         </div>
+      </div>
+
+      <div className="fixed left-3 top-3 z-40 flex items-center gap-1">
+        <button
+          type="button"
+          onClick={() => setPaletteOpen(true)}
+          className="flex size-7 items-center justify-center border border-border bg-card text-subtle-foreground transition-colors hover:border-muted-foreground/40 hover:text-foreground md:hidden"
+          aria-label="Buscar no painel"
+        >
+          <Search className="size-4" />
+        </button>
+        <button
+          type="button"
+          onClick={() => setMobileNavOpen(true)}
+          className="flex size-7 items-center justify-center border border-border bg-card text-subtle-foreground transition-colors hover:border-muted-foreground/40 hover:text-foreground md:hidden"
+          aria-label="Abrir menu de navegação"
+        >
+          <PanelLeft className="size-4" />
+        </button>
+
+        {hidden && (
+          <>
+            <button
+              type="button"
+              onClick={() => setPaletteOpen(true)}
+              className="hidden size-7 items-center justify-center border border-border bg-card text-subtle-foreground transition-colors hover:border-muted-foreground/40 hover:text-foreground md:flex"
+              aria-label="Buscar no painel (⌘K)"
+              title="Buscar  ⌘K"
+            >
+              <Search className="size-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setSidebarHidden(false)}
+              className="hidden size-7 items-center justify-center border border-border bg-card text-subtle-foreground transition-colors hover:border-muted-foreground/40 hover:text-foreground md:flex"
+              aria-label="Mostrar menu lateral"
+              title="Mostrar menu lateral"
+            >
+              <PanelLeft className="size-4" />
+            </button>
+          </>
+        )}
       </div>
 
       <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
