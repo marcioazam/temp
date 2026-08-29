@@ -5,7 +5,11 @@ import { usePathname } from 'next/navigation'
 import {
   BookOpen,
   Boxes,
+  ChevronRight,
   CircleDollarSign,
+  CircleHelp,
+  CircleUserRound,
+  Contrast,
   KeyRound,
   LayoutDashboard,
   LogOut,
@@ -14,6 +18,7 @@ import {
   ScrollText,
   Search,
   Settings,
+  Sparkles,
   Users,
 } from 'lucide-react'
 import { RotorMark } from '@/components/logo'
@@ -177,7 +182,7 @@ export function PainelSidebar({
       </div>
 
       <div className="flex flex-col">
-        <div className="flex items-center gap-2.5 px-4 py-3">
+        <div className="relative flex items-center gap-2.5 px-4 py-3">
           <span className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border bg-muted font-mono text-[9px] text-muted-foreground">
             {initials('Ana Ribeiro')}
           </span>
@@ -185,7 +190,7 @@ export function PainelSidebar({
             <span className="truncate text-[12px] text-foreground">Ana Ribeiro</span>
             <span className="truncate text-[10px] text-subtle-foreground">ana@nyllalabs.com</span>
           </div>
-          <details className="group/profile relative shrink-0">
+          <details className="group/profile shrink-0">
             <summary
               className="flex size-7 cursor-pointer list-none items-center justify-center text-subtle-foreground transition-colors hover:bg-muted/50 hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary [&::-webkit-details-marker]:hidden"
               aria-label="Abrir opções da conta"
@@ -193,14 +198,67 @@ export function PainelSidebar({
             >
               <MoreHorizontal className="size-4" aria-hidden="true" />
             </summary>
-            <div className="absolute bottom-9 right-0 z-50 w-36 border border-border bg-popover p-1 shadow-lg">
-              <Link
-                href="/"
-                className="flex items-center gap-2 px-2 py-1.5 text-[12px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
-              >
-                <LogOut className="size-3.5" aria-hidden="true" />
-                <span>Sair</span>
-              </Link>
+            <div className="absolute bottom-full left-2 right-2 z-50 mb-1 border border-border bg-popover shadow-lg">
+              <div className="flex flex-col gap-0.5 px-3 pb-3 pt-2.5">
+                <span className="truncate text-[13px] text-foreground">Ana Ribeiro</span>
+                <span className="truncate text-[11px] text-subtle-foreground">ana@nyllalabs.com</span>
+              </div>
+
+              <div className="px-2 pb-2">
+                <Link
+                  href="/painel/settings"
+                  className="flex items-center justify-center gap-2 bg-primary px-2 py-2 text-[12.5px] font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-primary"
+                >
+                  <Sparkles className="size-3.5" aria-hidden="true" />
+                  <span>Migrar para Escala</span>
+                </Link>
+              </div>
+
+              <div className="flex flex-col border-t border-border p-1">
+                <Link
+                  href="/painel/settings"
+                  className="flex items-center gap-2.5 px-2 py-1.5 text-[12.5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  <CircleUserRound className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
+                  <span>Perfil da conta</span>
+                </Link>
+                <Link
+                  href="/painel/api-keys"
+                  className="flex items-center gap-2.5 px-2 py-1.5 text-[12.5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  <KeyRound className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
+                  <span>Chaves de API</span>
+                </Link>
+                <Link
+                  href="/painel/settings"
+                  className="flex items-center gap-2.5 px-2 py-1.5 text-[12.5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  <Contrast className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
+                  <span>Aparência</span>
+                  <span className="ml-auto flex items-center gap-1 text-[11px] text-subtle-foreground">
+                    Escuro
+                    <ChevronRight className="size-3" aria-hidden="true" />
+                  </span>
+                </Link>
+                <a
+                  href="/docs"
+                  className="flex items-center gap-2.5 px-2 py-1.5 text-[12.5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  <CircleHelp className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
+                  <span>Ajuda</span>
+                  <ChevronRight className="ml-auto size-3 text-subtle-foreground" aria-hidden="true" />
+                </a>
+              </div>
+
+              <div className="border-t border-border p-1">
+                <Link
+                  href="/"
+                  className="flex items-center gap-2.5 px-2 py-1.5 text-[12.5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+                >
+                  <LogOut className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
+                  <span>Sair</span>
+                </Link>
+              </div>
             </div>
           </details>
         </div>
