@@ -359,7 +359,7 @@ export default function ApiKeysPage() {
                     className={cn(
                       'flex cursor-pointer items-start gap-2.5 border p-2.5 transition-colors',
                       newScope === s.value
-                        ? 'border-foreground bg-foreground/5'
+                        ? 'border-primary/60 bg-primary/5'
                         : 'border-border bg-background hover:border-foreground/25',
                     )}
                   >
@@ -374,7 +374,7 @@ export default function ApiKeysPage() {
                     <span
                       className={cn(
                         'mt-1 size-1.5 shrink-0 rounded-full',
-                        newScope === s.value ? 'bg-foreground' : 'bg-border',
+                        newScope === s.value ? 'bg-primary' : 'bg-border',
                       )}
                       aria-hidden="true"
                     />
@@ -407,6 +407,7 @@ export default function ApiKeysPage() {
                   type="number"
                   min={1}
                   inputMode="numeric"
+                  className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                   value={newRateLimit}
                   onChange={(e) => setNewRateLimit(e.target.value)}
                   placeholder="Ex.: 600"
