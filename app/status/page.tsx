@@ -96,7 +96,7 @@ export default function StatusPage() {
           Incidentes recentes
         </h2>
         <IncidentHistory incidents={incidents} />
-        <p className="type-caption mt-8 max-w-xl text-subtle-foreground/70">
+        <p className="type-caption mt-8 w-full text-subtle-foreground/70">
           Incidentes resolvidos permanecem listados por 90 dias. Dúvidas sobre disponibilidade? Escreva para{" "}
           <a
             href="mailto:status@nylla.dev"
