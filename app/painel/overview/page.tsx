@@ -105,7 +105,7 @@ export default function OverviewPage() {
         <StatCard label="Taxa de erro" value="0,38%" hint="Dentro do SLO de 1%" hintTone="success" />
       </div>
 
-      <section className="border border-border bg-card" aria-label="Uso">
+      <section className="border border-border bg-muted/25" aria-label="Uso">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3">
           <div className="flex items-center gap-4">
             <p className="text-[13px] text-foreground">Uso</p>

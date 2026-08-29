@@ -21,7 +21,7 @@ export function StatCard({
   }[hintTone]
 
   return (
-    <div className={cn('flex flex-col gap-2 border border-border bg-card p-4', className)}>
+    <div className={cn('flex flex-col gap-2 border border-border bg-muted/25 p-4', className)}>
       <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{label}</p>
       <p className="font-mono text-xl tabular-nums text-foreground">{value}</p>
       {hint && <p className={cn('text-[11px] leading-relaxed', hintClass)}>{hint}</p>}
