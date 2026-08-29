@@ -1,7 +1,7 @@
 'use client'
 
-import { useMemo, useState } from 'react'
-import { Check, Copy, Pencil, Plus, RotateCcw, Search, TriangleAlert } from 'lucide-react'
+import { useState } from 'react'
+import { Check, Copy, Pencil, Plus, RotateCcw, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import type { ApiKey, KeyEnvironment } from '@/lib/painel/data'
@@ -73,9 +73,6 @@ function CopyPrefixButton({ prefix, name }: { prefix: string; name: string }) {
 export default function ApiKeysPage() {
   const { state, dispatch } = usePainel()
 
-  // Listagem
-  const [query, setQuery] = useState('')
-
   // Criação
   const [createOpen, setCreateOpen] = useState(false)
   const [newName, setNewName] = useState('')
@@ -97,14 +94,6 @@ export default function ApiKeysPage() {
   const [neverExpires, setNeverExpires] = useState(false)
 
   const activeKeys = state.keys.filter((k) => !k.revoked)
-
-  const filteredKeys = useMemo(() => {
-    const q = query.trim().toLowerCase()
-    return activeKeys.filter((k) => {
-      if (q && !k.name.toLowerCase().includes(q) && !k.prefix.toLowerCase().includes(q)) return false
-      return true
-    })
-  }, [activeKeys, query])
 
   const hasReachedKeyLimit = activeKeys.length >= 10
 
@@ -221,20 +210,8 @@ export default function ApiKeysPage() {
       </div>
 
       <section className="border border-border/35 bg-muted/20" aria-label="Chaves ativas">
-        <div className="flex flex-wrap items-center justify-between gap-3 px-4 pb-1 pt-4">
+        <div className="px-4 pb-1 pt-4">
           <h2 className="text-[15px] font-medium tracking-tight text-foreground">Chaves ativas</h2>
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="relative">
-              <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground" aria-hidden="true" />
-              <TextInput
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Buscar por nome ou prefixo"
-                className="h-[30px] w-56 pl-8"
-                aria-label="Buscar chaves"
-              />
-            </div>
-          </div>
         </div>
 
         <div className="overflow-x-auto px-4 pb-4 pt-3">
@@ -256,7 +233,7 @@ export default function ApiKeysPage() {
               </tr>
             </thead>
             <tbody>
-              {filteredKeys.map((key) => (
+              {activeKeys.map((key) => (
                 <tr key={key.id} className="group">
                   <td className="py-2.5 pr-4">
                     <div className="flex flex-col gap-0.5">
@@ -312,13 +289,11 @@ export default function ApiKeysPage() {
                   </td>
                 </tr>
               ))}
-              {filteredKeys.length === 0 && (
+              {activeKeys.length === 0 && (
                 <tr>
                   <td colSpan={6} className="py-12 text-center">
                     <p className="text-[13px] text-muted-foreground">
-                      {activeKeys.length === 0
-                        ? 'Nenhuma chave ativa. Crie a primeira chave para começar.'
-                        : 'Nenhuma chave corresponde à busca ou filtro atual.'}
+                      Nenhuma chave ativa. Crie a primeira chave para começar.
                     </p>
                   </td>
                 </tr>
