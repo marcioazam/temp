@@ -1,10 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ConsentedAnalytics } from '@/components/consented-analytics'
-import { CookieConsent } from '@/components/cookie-consent'
 import { LanguageProvider } from '@/components/language-provider'
-import { SiteFooter } from '@/components/site-footer'
-import { SiteHeader } from '@/components/site-header'
+import { SiteChrome } from '@/components/site-chrome'
 import './globals.css'
 
 // Fontes variáveis: o eixo completo de peso fica disponível (400–600),
@@ -35,13 +33,9 @@ export default function RootLayout({
       className={`bg-background ${geist.variable} ${geistMono.variable}`}
     >
       <body className="antialiased">
-        {/* Casca global: mesma navbar e mesmo rodapé em todas as rotas. */}
         <LanguageProvider>
-          <SiteHeader />
-          {children}
-          <SiteFooter />
+          <SiteChrome>{children}</SiteChrome>
         </LanguageProvider>
-        <CookieConsent />
         {process.env.NODE_ENV === 'production' && <ConsentedAnalytics />}
       </body>
     </html>
