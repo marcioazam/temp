@@ -376,7 +376,7 @@ export default function ApiKeysPage() {
                     className={cn(
                       'flex cursor-pointer items-start gap-2.5 border p-2.5 transition-colors',
                       newScope === s.value
-                        ? 'border-primary/50 bg-primary/5'
+                        ? 'border-foreground bg-foreground/5'
                         : 'border-border bg-background hover:border-foreground/25',
                     )}
                   >
@@ -391,7 +391,7 @@ export default function ApiKeysPage() {
                     <span
                       className={cn(
                         'mt-1 size-1.5 shrink-0 rounded-full',
-                        newScope === s.value ? 'bg-primary' : 'bg-border',
+                        newScope === s.value ? 'bg-foreground' : 'bg-border',
                       )}
                       aria-hidden="true"
                     />
@@ -435,7 +435,12 @@ export default function ApiKeysPage() {
               <Button variant="ghost" size="sm" type="button" onClick={closeCreate}>
                 Cancelar
               </Button>
-              <Button size="sm" type="submit" disabled={!newName.trim()}>
+              <Button
+                size="sm"
+                type="submit"
+                disabled={!newName.trim()}
+                className="h-7 rounded-none border border-foreground bg-foreground px-3 font-mono text-[9px] font-semibold uppercase tracking-wide text-background hover:bg-foreground/90"
+              >
                 Criar chave
               </Button>
             </div>
