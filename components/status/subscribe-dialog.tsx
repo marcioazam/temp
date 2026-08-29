@@ -220,8 +220,8 @@ function EmailPanel() {
         <p className="type-label text-foreground">Verifique sua caixa de entrada</p>
         <p className="type-micro leading-relaxed text-subtle-foreground">
           Enviamos um link de confirmação para <span className="text-foreground">{email}</span>.
-          Sua assinatura só é ativada após a confirmação (double opt-in) — isso garante que
-          ninguém cadastre seu endereço sem permissão.
+          Sua assinatura será ativada somente após a confirmação (double opt-in). Assim, seu
+          endereço não poderá ser cadastrado sem autorização.
         </p>
         <button
           type="button"
@@ -331,7 +331,7 @@ function EmailPanel() {
           Assinar
         </button>
         <p className="type-micro text-subtle-foreground/50 normal-case tracking-normal">
-          Cancele quando quiser — todo e-mail inclui link de descadastro em um clique.
+          Cancele quando quiser. Todo e-mail inclui um link para descadastro em um clique.
         </p>
       </div>
     </form>
@@ -382,7 +382,7 @@ function CopyRow({ label, url }: { label: string; url: string }) {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      // clipboard indisponível — sem ação
+      // O clipboard não está disponível. Nenhuma ação é necessária.
     }
   }
 
@@ -529,8 +529,8 @@ function SlackPanel() {
   return (
     <div className="flex flex-col gap-4">
       <p className="type-micro leading-relaxed text-subtle-foreground">
-        Receba incidentes e manutenções diretamente em um canal do seu workspace. As mensagens
-        são atualizadas conforme o incidente evolui — sem ruído de threads duplicadas.
+        Receba incidentes e manutenções diretamente em um canal do seu workspace. Cada mensagem
+        acompanha a evolução do incidente na mesma conversa, sem criar threads duplicadas.
       </p>
       <button
         type="button"
