@@ -63,7 +63,7 @@ export default function OverviewPage() {
       />
 
       {!allDone && (
-        <section className="border border-border/50 bg-muted/25" aria-label="Configuração inicial">
+        <section className="border border-border/35 bg-background/60" aria-label="Configuração inicial">
           <div className="flex items-center justify-between px-4 py-3">
             <p className="text-[13px] text-foreground">Configuração inicial</p>
             <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
