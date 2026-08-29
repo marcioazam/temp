@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { RotateCcw } from 'lucide-react'
 import { PageHeader } from '@/components/painel/page-header'
-import { Field, SettingRow, TextInput, Toggle } from '@/components/painel/ui/controls'
+import { Field, NativeSelect, SettingRow, TextInput, Toggle } from '@/components/painel/ui/controls'
 import { Dialog } from '@/components/painel/ui/dialog'
 import { resetPainelStorage, usePainel } from '@/lib/painel/store'
 
