@@ -1,3 +1,4 @@
+import { IncidentEmptyState } from "@/components/status/incident-empty-state"
 import { statusLabels, type Incident } from "@/lib/status-data"
 
 const severityColor: Record<Incident["severity"], string> = {
@@ -18,9 +19,9 @@ function formatDate(iso: string): string {
 export function IncidentHistory({ incidents }: { incidents: Incident[] }) {
   if (incidents.length === 0) {
     return (
-      <p className="type-body border-b border-border py-6 text-muted-foreground">
-        Nenhum incidente registrado nos últimos 90 dias.
-      </p>
+      <IncidentEmptyState
+        description="Nenhum incidente registrado nos últimos 90 dias."
+      />
     )
   }
 
@@ -50,26 +51,20 @@ export function IncidentHistory({ incidents }: { incidents: Incident[] }) {
               </div>
             </header>
 
-            <ol className="relative mt-7 ml-1 flex flex-col gap-5 border-l border-border pl-7 md:ml-0 md:pl-8">
+            <ol className="relative mt-7 flex flex-col gap-5 before:absolute before:top-0 before:bottom-0 before:left-1 before:w-px before:bg-border">
               {incident.updates.map((update, index) => (
                 <li
                   key={`${update.time}-${update.label}`}
-                  className="relative grid gap-1 md:grid-cols-[4rem_6.5rem_minmax(0,1fr)] md:items-baseline md:gap-4"
+                  className="relative grid gap-1 pl-8 md:grid-cols-[4rem_6.5rem_minmax(0,1fr)] md:items-baseline md:gap-4"
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute top-2 -left-[1.95rem] h-1.5 w-1.5 rounded-full bg-subtle-foreground md:-left-[2.2rem]"
+                    className="absolute top-1.5 left-1 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-subtle-foreground"
+                    style={index === 0 ? { background: severityColor[incident.severity] } : undefined}
                   />
                   <time className="type-label text-subtle-foreground">{update.time}</time>
                   <p className="type-label text-foreground">{update.label}</p>
                   <p className="type-caption min-w-0 text-muted-foreground">{update.body}</p>
-                  {index === 0 && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute top-2 -left-[1.95rem] h-1.5 w-1.5 rounded-full md:-left-[2.2rem]"
-                      style={{ background: severityColor[incident.severity] }}
-                    />
-                  )}
                 </li>
               ))}
             </ol>

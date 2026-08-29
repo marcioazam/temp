@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { LastUpdated } from "@/components/status/last-updated"
 
 const tabs = [
   { label: "Status atual", href: "/status" },
@@ -13,7 +14,10 @@ export function StatusNav() {
   const pathname = usePathname()
 
   return (
-    <nav aria-label="Seções da página de status" className="border-b border-border">
+    <nav
+      aria-label="Seções da página de status"
+      className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-b border-border"
+    >
       <ul className="flex gap-8">
         {tabs.map((tab) => {
           const active = pathname === tab.href
@@ -34,6 +38,7 @@ export function StatusNav() {
           )
         })}
       </ul>
+      <LastUpdated className="pb-3 text-right" />
     </nav>
   )
 }
