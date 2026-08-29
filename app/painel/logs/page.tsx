@@ -5,7 +5,7 @@ import { Check, ChevronLeft, ChevronRight, Copy, RotateCcw, Search, X } from 'lu
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import type { LogEntry } from '@/lib/painel/data'
-import { fmtCompact, fmtLatency, fmtNumber, fmtPercent } from '@/lib/painel/format'
+import { fmtCompact, fmtLatency, fmtNumber } from '@/lib/painel/format'
 import { PageHeader } from '@/components/painel/page-header'
 import { StatusBadge } from '@/components/painel/ui/badge'
 import { Table, TBody, TD, TH, THead, TR } from '@/components/painel/ui/data-table'
@@ -29,12 +29,6 @@ function statusTone(status: number) {
   if (status >= 500) return 'danger' as const
   if (status >= 400) return 'warning' as const
   return 'success' as const
-}
-
-function percentile(sorted: number[], p: number) {
-  if (sorted.length === 0) return 0
-  const idx = Math.min(sorted.length - 1, Math.ceil((p / 100) * sorted.length) - 1)
-  return sorted[Math.max(0, idx)]
 }
 
 function shortDatetime(datetime: string) {
@@ -97,20 +91,10 @@ export default function LogsPage() {
     [state.logs, statusFilter, modelFilter, periodFilter, query],
   )
 
-  const stats = useMemo(() => {
-    const latencies = filtered
-      .filter((l) => l.status < 400)
-      .map((l) => l.latencyMs)
-      .sort((a, b) => a - b)
-    const success = filtered.filter((l) => l.status < 400).length
-    const tokens = filtered.reduce((acc, l) => acc + l.tokensIn + l.tokensOut, 0)
-    return {
-      successRate: filtered.length > 0 ? (success / filtered.length) * 100 : 0,
-      p50: percentile(latencies, 50),
-      p95: percentile(latencies, 95),
-      tokens,
-    }
-  }, [filtered])
+  const totalTokens = useMemo(
+    () => filtered.reduce((acc, log) => acc + log.tokensIn + log.tokensOut, 0),
+    [filtered],
+  )
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
   const currentPage = Math.min(page, totalPages)
@@ -144,10 +128,7 @@ export default function LogsPage() {
       <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] leading-none">
         {[
           { label: 'Requisições', value: `${fmtNumber(filtered.length)} / ${fmtNumber(state.logs.length)}` },
-          { label: 'Taxa de sucesso', value: fmtPercent(stats.successRate) },
-          { label: 'Latência p50', value: fmtLatency(stats.p50) },
-          { label: 'Latência p95', value: fmtLatency(stats.p95) },
-          { label: 'Tokens', value: fmtCompact(stats.tokens) },
+          { label: 'Tokens', value: fmtCompact(totalTokens) },
         ].map((s) => (
           <div key={s.label} className="flex items-center gap-2">
             <span className="uppercase tracking-[0.12em] text-subtle-foreground">{s.label}</span>
