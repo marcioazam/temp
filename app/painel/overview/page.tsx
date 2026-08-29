@@ -102,7 +102,7 @@ export default function OverviewPage() {
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/35 px-4 py-3">
           <div className="flex items-center gap-4">
             <p className="text-[13px] text-foreground">Uso</p>
-            <div className="flex border border-border" role="group" aria-label="Métrica">
+            <div className="flex border border-border/70 bg-background" role="group" aria-label="Métrica">
               {(['requests', 'cost'] as const).map((m) => (
                 <button
                   key={m}
@@ -110,8 +110,10 @@ export default function OverviewPage() {
                   onClick={() => setMetric(m)}
                   aria-pressed={metric === m}
                   className={cn(
-                    'px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
-                    metric === m ? 'bg-muted text-primary' : 'text-subtle-foreground hover:text-muted-foreground',
+                    'min-h-7 px-2.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
+                    metric === m
+                      ? 'bg-foreground text-background'
+                      : 'text-subtle-foreground hover:bg-muted/40 hover:text-foreground',
                   )}
                 >
                   {m === 'requests' ? 'Requisições' : 'Custo'}
@@ -119,7 +121,7 @@ export default function OverviewPage() {
               ))}
             </div>
           </div>
-          <div className="flex border border-border" role="group" aria-label="Período">
+          <div className="flex border border-border/70 bg-background" role="group" aria-label="Período">
             {(['24h', '7d', '30d'] as Range[]).map((r) => (
               <button
                 key={r}
@@ -127,8 +129,10 @@ export default function OverviewPage() {
                 onClick={() => setRange(r)}
                 aria-pressed={range === r}
                 className={cn(
-                  'px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
-                  range === r ? 'bg-muted text-primary' : 'text-subtle-foreground hover:text-muted-foreground',
+                  'min-h-7 px-2.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
+                  range === r
+                    ? 'bg-foreground text-background'
+                    : 'text-subtle-foreground hover:bg-muted/40 hover:text-foreground',
                 )}
               >
                 {r}
