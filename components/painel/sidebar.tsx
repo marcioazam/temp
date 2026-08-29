@@ -7,7 +7,6 @@ import {
   BookOpen,
   Boxes,
   CircleDollarSign,
-  CircleUserRound,
   KeyRound,
   LayoutDashboard,
   LogOut,
@@ -230,8 +229,8 @@ export function PainelSidebar({
                   href="/painel/settings"
                   className="flex items-center gap-2.5 px-2 py-1.5 text-[12.5px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
                 >
-                  <CircleUserRound className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
-                  <span>Perfil da conta</span>
+                  <Settings className="size-3.5 shrink-0 text-subtle-foreground" aria-hidden="true" />
+                  <span>Configurações</span>
                 </Link>
                 <Link
                   href="/painel/api-keys"
