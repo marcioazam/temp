@@ -1,3 +1,4 @@
+import { IncidentEmptyState } from "@/components/status/incident-empty-state"
 import { statusLabels, type Incident } from "@/lib/status-data"
 
 const severityColor: Record<Incident["severity"], string> = {
@@ -18,9 +19,9 @@ function formatDate(iso: string): string {
 export function IncidentHistory({ incidents }: { incidents: Incident[] }) {
   if (incidents.length === 0) {
     return (
-      <p className="type-body border-b border-border py-6 text-muted-foreground">
-        Nenhum incidente registrado nos últimos 90 dias.
-      </p>
+      <IncidentEmptyState
+        description="Nenhum incidente registrado nos últimos 90 dias."
+      />
     )
   }
 

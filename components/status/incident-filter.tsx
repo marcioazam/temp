@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import { IncidentEmptyState } from "@/components/status/incident-empty-state"
 import { IncidentHistory } from "@/components/status/incident-history"
 import { statusLabels, type Incident } from "@/lib/status-data"
 
@@ -223,9 +224,12 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
       </div>
 
       {filtered.length === 0 ? (
-        <p className="type-body mt-8 border-y border-border py-6 text-muted-foreground">
-          Nenhum incidente corresponde aos filtros selecionados.
-        </p>
+        <div className="mt-8 border-t border-border">
+          <IncidentEmptyState
+            title="Nenhum resultado encontrado"
+            description="Não há incidentes que correspondam aos filtros selecionados."
+          />
+        </div>
       ) : view === "list" ? (
         <ul className="mt-10 flex flex-col border-t border-border">
           {listed.map((incident) => (
@@ -265,9 +269,7 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
               {monthIncidents.length > 0 ? (
                 <IncidentHistory incidents={monthIncidents} />
               ) : (
-                <p className="type-caption border-b border-border py-5 text-subtle-foreground/60">
-                  Nenhum incidente reportado.
-                </p>
+                <IncidentEmptyState compact />
               )}
             </section>
           ))}
