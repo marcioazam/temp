@@ -21,7 +21,7 @@ export function StatusPagination({
     <nav
       aria-label={label}
       aria-description={`Página ${page} de ${totalPages}`}
-      className="mt-10 flex items-center justify-between border-t border-border pt-5"
+      className="mt-10 flex items-center justify-between pt-5"
     >
       <PageArrow
         direction="prev"
