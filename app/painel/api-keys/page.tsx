@@ -15,12 +15,6 @@ import { Button } from '@/components/ui/button'
 
 type Expiry = 'never' | '30d' | '90d' | '1y'
 
-const scopeOptions = [
-  { value: 'Completo', description: 'Leitura, inferência e gerenciamento de recursos.' },
-  { value: 'Somente inferência', description: 'Executa modelos, sem acesso administrativo.' },
-  { value: 'Somente leitura', description: 'Consulta métricas e configurações, sem executar.' },
-] as const
-
 const expiryLabel: Record<Expiry, string> = {
   never: 'Nunca',
   '30d': '30 dias',
@@ -86,9 +80,7 @@ export default function ApiKeysPage() {
   const [createOpen, setCreateOpen] = useState(false)
   const [newName, setNewName] = useState('')
   const [newEnv, setNewEnv] = useState<KeyEnvironment>('prod')
-  const [newScope, setNewScope] = useState<string>('Completo')
   const [newExpiry, setNewExpiry] = useState<Expiry>('never')
-  const [newRateLimit, setNewRateLimit] = useState('')
   const [createdKey, setCreatedKey] = useState<string | null>(null)
   const [createdSummary, setCreatedSummary] = useState<ApiKey | null>(null)
   const [copied, setCopied] = useState(false)
@@ -128,20 +120,18 @@ export default function ApiKeysPage() {
     const suffix = randomKeySuffix()
     const envPrefix = newEnv === 'prod' ? 'nyl_live' : 'nyl_test'
     const full = `${envPrefix}_${suffix}`
-    const parsedLimit = Number.parseInt(newRateLimit, 10)
     const key: ApiKey = {
       id: `k_${Date.now()}`,
       name: newName.trim(),
       prefix: `${envPrefix}_${suffix.slice(0, 4)}`,
       environment: newEnv,
-      scope: newScope,
+      scope: 'Completo',
       lastUsed: '—',
       createdBy: 'Ana Ribeiro',
       createdAt: new Date().toLocaleDateString('pt-BR'),
       revoked: false,
       expiresAt: expiryDate(newExpiry),
       requests30d: 0,
-      ...(Number.isFinite(parsedLimit) && parsedLimit > 0 ? { rateLimit: parsedLimit } : {}),
     }
     dispatch({ type: 'create_key', key })
     setCreatedSummary(key)
@@ -164,9 +154,7 @@ export default function ApiKeysPage() {
     setCreatedSummary(null)
     setNewName('')
     setNewEnv('prod')
-    setNewScope('Completo')
     setNewExpiry('never')
-    setNewRateLimit('')
   }
 
   function rotate(key: ApiKey) {
@@ -350,7 +338,7 @@ export default function ApiKeysPage() {
         description={
           createdKey
             ? 'Copie a chave agora. Por segurança, ela não será exibida novamente.'
-            : 'A chave herda as permissões do escopo selecionado.'
+            : 'Defina um nome e a expiração da nova chave.'
         }
       >
         {createdKey ? (
@@ -364,12 +352,10 @@ export default function ApiKeysPage() {
               </Button>
             </div>
             {createdSummary && (
-              <dl className="grid grid-cols-2 gap-x-6 gap-y-2 font-mono text-[11px] sm:grid-cols-4">
+              <dl className="grid grid-cols-2 gap-x-6 gap-y-2 font-mono text-[11px]">
                 {[
                   { dt: 'Ambiente', dd: createdSummary.environment === 'prod' ? 'Produção' : 'Staging' },
-                  { dt: 'Escopo', dd: createdSummary.scope },
                   { dt: 'Expira', dd: createdSummary.expiresAt ?? 'Nunca' },
-                  { dt: 'Rate limit', dd: createdSummary.rateLimit ? `${createdSummary.rateLimit} req/min` : '—' },
                 ].map((row) => (
                   <div key={row.dt} className="flex flex-col gap-0.5">
                     <dt className="text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">{row.dt}</dt>
@@ -404,71 +390,19 @@ export default function ApiKeysPage() {
               />
             </Field>
 
-            <fieldset className="flex flex-col gap-1.5">
-              <legend className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
-                Escopo
-              </legend>
-              <div className="flex flex-col gap-1.5">
-                {scopeOptions.map((s) => (
-                  <label
-                    key={s.value}
-                    className={cn(
-                      'flex cursor-pointer items-start gap-2.5 border p-2.5 transition-colors',
-                      newScope === s.value
-                        ? 'border-primary/60 bg-primary/5'
-                        : 'border-border bg-background hover:border-foreground/25',
-                    )}
-                  >
-                    <input
-                      type="radio"
-                      name="scope"
-                      value={s.value}
-                      checked={newScope === s.value}
-                      onChange={() => setNewScope(s.value)}
-                      className="sr-only"
-                    />
-                    <span
-                      className={cn(
-                        'mt-1 size-1.5 shrink-0 rounded-full',
-                        newScope === s.value ? 'bg-primary' : 'bg-border',
-                      )}
-                      aria-hidden="true"
-                    />
-                    <span className="flex flex-col gap-0.5">
-                      <span className="text-[13px] text-foreground">{s.value}</span>
-                      <span className="text-[11px] leading-relaxed text-muted-foreground">{s.description}</span>
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="flex flex-col gap-1.5">
-                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Expiração</span>
-                <Segmented
-                  label="Expiração da chave"
-                  value={newExpiry}
-                  onChange={setNewExpiry}
-                  options={[
-                    { value: 'never', label: 'Nunca' },
-                    { value: '30d', label: '30d' },
-                    { value: '90d', label: '90d' },
-                    { value: '1y', label: '1 ano' },
-                  ]}
-                />
-              </div>
-              <Field label="Rate limit (req/min)" hint="Opcional. Vazio usa o limite do workspace.">
-                <TextInput
-                  type="number"
-                  min={1}
-                  inputMode="numeric"
-                  className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                  value={newRateLimit}
-                  onChange={(e) => setNewRateLimit(e.target.value)}
-                  placeholder="Ex.: 600"
-                />
-              </Field>
+            <div className="flex flex-col gap-1.5">
+              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Expiração</span>
+              <Segmented
+                label="Expiração da chave"
+                value={newExpiry}
+                onChange={setNewExpiry}
+                options={[
+                  { value: 'never', label: 'Nunca' },
+                  { value: '30d', label: '30d' },
+                  { value: '90d', label: '90d' },
+                  { value: '1y', label: '1 ano' },
+                ]}
+              />
             </div>
 
             <div className="flex justify-end gap-2 pt-1">
