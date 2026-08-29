@@ -63,16 +63,16 @@ export default function OverviewPage() {
       />
 
       {!allDone && (
-        <section className="border border-border bg-card" aria-label="Configuração inicial">
-          <div className="flex items-center justify-between border-b border-border px-4 py-3">
+        <section className="border border-border/50 bg-muted/25" aria-label="Configuração inicial">
+          <div className="flex items-center justify-between border-b border-border/50 px-4 py-3">
             <p className="text-[13px] text-foreground">Configuração inicial</p>
             <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
               {doneCount} de {state.checklist.length}
             </p>
           </div>
-          <ul className="grid gap-px bg-border sm:grid-cols-5">
+          <ul className="grid gap-px bg-border/50 sm:grid-cols-5">
             {state.checklist.map((item) => (
-              <li key={item.id} className="bg-card">
+              <li key={item.id} className="bg-muted/25">
                 <button
                   type="button"
                   disabled={item.done}
