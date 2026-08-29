@@ -94,13 +94,10 @@ export default function ApiKeysPage() {
 
   const hasReachedKeyLimit = activeKeys.length >= 10
 
-  const prodCount = activeKeys.filter((k) => k.environment === 'prod').length
   const totalRequests30d = activeKeys.reduce((acc, k) => acc + (k.requests30d ?? 0), 0)
 
   const stats = [
     { label: 'Chaves ativas', value: String(activeKeys.length) },
-    { label: 'Produção', value: String(prodCount) },
-    { label: 'Staging', value: String(activeKeys.length - prodCount) },
     { label: 'Req. 30d', value: fmtCompact(totalRequests30d) },
   ]
 
