@@ -9,9 +9,9 @@ export function StatusSiteLink() {
       Ir para o Site
       <span
         aria-hidden="true"
-        className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5"
+        className="text-sm leading-none transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
       >
-        ↑
+        ↗
       </span>
     </Link>
   )
