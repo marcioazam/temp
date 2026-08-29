@@ -212,7 +212,7 @@ export default function LogsPage() {
         </span>
       </div>
 
-      <Table>
+      <Table className="border-border/35 bg-muted/20">
         <THead>
           <tr>
             <TH>ID da requisição</TH>
