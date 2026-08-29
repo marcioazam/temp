@@ -5,7 +5,6 @@ import { RotateCcw } from 'lucide-react'
 import { PageHeader } from '@/components/painel/page-header'
 import { Field, SettingRow, TextInput, Toggle } from '@/components/painel/ui/controls'
 import { Dialog } from '@/components/painel/ui/dialog'
-import { fmtCurrency } from '@/lib/painel/format'
 import { resetPainelStorage, usePainel } from '@/lib/painel/store'
 
 function Section({
@@ -35,28 +34,12 @@ export default function SettingsPage() {
 
   const update = (patch: Partial<typeof s>) => dispatch({ type: 'update_settings', settings: patch })
 
-  const stats = [
-    { label: 'Ambiente', value: s.defaultEnvironment === 'prod' ? 'Produção' : 'Staging' },
-    { label: 'Limite mensal', value: fmtCurrency(s.monthlyLimit) },
-    { label: 'Retenção', value: s.retentionDays === 365 ? '1 ano' : `${s.retentionDays} dias` },
-    { label: 'Webhook', value: s.webhookEnabled ? 'Ativo' : 'Inativo' },
-  ]
-
   return (
     <div className="flex flex-col gap-6">
       <PageHeader
         title="Configurações"
         description="Preferências do workspace, roteamento, notificações e governança de dados."
       />
-
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] leading-none">
-        {stats.map((stat) => (
-          <div key={stat.label} className="flex items-center gap-2">
-            <span className="uppercase tracking-[0.12em] text-subtle-foreground">{stat.label}</span>
-            <span className="tabular-nums text-foreground">{stat.value}</span>
-          </div>
-        ))}
-      </div>
 
       <div className="grid items-start gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
