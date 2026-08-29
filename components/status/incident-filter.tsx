@@ -4,6 +4,7 @@ import { useMemo, useState } from "react"
 import { IncidentEmptyState } from "@/components/status/incident-empty-state"
 import { IncidentHistory } from "@/components/status/incident-history"
 import { statusLabels, type Incident } from "@/lib/status-data"
+import { cn } from "@/lib/utils"
 
 type SeverityFilter = Incident["severity"] | "all"
 type ViewMode = "timeline" | "list"
@@ -36,37 +37,56 @@ function dayLabel(iso: string): string {
   return new Date(y, m - 1, d).toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })
 }
 
-/** Botão de opção compartilhado por todos os grupos de filtro. */
+/** Opção compacta compartilhada pelos filtros e pelo seletor de visualização. */
 function FilterOption({
   active,
   label,
   onSelect,
+  compact = false,
 }: {
   active: boolean
   label: string
   onSelect: () => void
+  compact?: boolean
 }) {
   return (
     <button
       type="button"
       aria-pressed={active}
       onClick={onSelect}
-      className={`type-micro border-b pb-1 transition-colors ${
+      className={cn(
+        "type-micro border transition-colors",
+        compact ? "border-x-0 border-t-0 px-0 py-1" : "px-3 py-2",
         active
-          ? "border-foreground text-foreground"
-          : "border-transparent text-subtle-foreground/60 hover:text-muted-foreground"
-      }`}
+          ? compact
+            ? "border-foreground text-foreground"
+            : "border-foreground bg-foreground text-background"
+          : compact
+            ? "border-transparent text-subtle-foreground/60 hover:text-foreground"
+            : "border-border text-subtle-foreground hover:border-muted-foreground hover:text-foreground",
+      )}
     >
       {label}
     </button>
   )
 }
 
-function FilterGroup({ legend, children }: { legend: string; children: React.ReactNode }) {
+function FilterGroup({
+  legend,
+  description,
+  children,
+  className,
+}: {
+  legend: string
+  description: string
+  children: React.ReactNode
+  className?: string
+}) {
   return (
-    <fieldset className="flex flex-wrap items-baseline gap-x-6 gap-y-3">
-      <legend className="type-micro float-left mr-6 w-20 text-subtle-foreground/60">{legend}</legend>
-      {children}
+    <fieldset className={cn("min-w-0", className)}>
+      <legend className="type-label text-foreground">{legend}</legend>
+      <p className="type-micro mt-1 text-subtle-foreground/60">{description}</p>
+      <div className="mt-4 flex flex-wrap gap-2">{children}</div>
     </fieldset>
   )
 }
@@ -146,80 +166,107 @@ export function IncidentFilter({ incidents, months }: { incidents: Incident[]; m
 
   return (
     <div>
-      {/* Controles de filtro */}
-      <div className="mt-10 flex flex-col gap-5 border-y border-border py-5">
-        <FilterGroup legend="Severidade">
-          {severityOptions.map((option) => (
-            <FilterOption
-              key={option.id}
-              active={severity === option.id}
-              label={option.label}
-              onSelect={() => setSeverity(option.id)}
-            />
-          ))}
-        </FilterGroup>
-
-        <FilterGroup legend="Serviço">
-          <FilterOption active={service === "all"} label="Todos" onSelect={() => setService("all")} />
-          {services.map((name) => (
-            <FilterOption
-              key={name}
-              active={service === name}
-              label={name}
-              onSelect={() => setService(name)}
-            />
-          ))}
-        </FilterGroup>
-
-        <FilterGroup legend="Ano">
-          <FilterOption active={year === "all"} label="Todos" onSelect={() => selectYear("all")} />
-          {years.map((value) => (
-            <FilterOption
-              key={value}
-              active={year === value}
-              label={value}
-              onSelect={() => selectYear(value)}
-            />
-          ))}
-        </FilterGroup>
-
-        <FilterGroup legend="Mês">
-          <FilterOption active={month === "all"} label="Todos" onSelect={() => setMonth("all")} />
-          {monthOptions.map((value) => (
-            <FilterOption
-              key={value}
-              active={month === value}
-              label={monthName(Number(value))}
-              onSelect={() => setMonth(value)}
-            />
-          ))}
-        </FilterGroup>
-      </div>
-
-      {/* Resumo do resultado e modo de listagem */}
-      <div className="mt-5 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-          <p aria-live="polite" className="type-micro text-subtle-foreground">
-            {filtered.length} de {incidents.length} {incidents.length === 1 ? "incidente" : "incidentes"}
-          </p>
+      <section aria-labelledby="filtros-heading" className="mt-10 border border-border">
+        <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border px-5 py-4 md:px-6">
+          <div>
+            <h2 id="filtros-heading" className="type-label text-foreground">
+              Filtrar histórico
+            </h2>
+            <p className="type-caption mt-1 text-subtle-foreground/70">
+              Refine os incidentes por categoria, serviço ou período.
+            </p>
+          </div>
           {isFiltered && (
             <button
               type="button"
               onClick={clearFilters}
-              className="type-micro text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
+              className="type-micro border-b border-muted-foreground pb-1 text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
             >
               Limpar filtros
             </button>
           )}
         </div>
 
-        <div className="flex items-baseline gap-x-6">
+        <div className="grid gap-0 md:grid-cols-2">
+          <FilterGroup
+            legend="Severidade"
+            description="Tipo do incidente"
+            className="border-b border-border p-5 md:border-r md:p-6"
+          >
+            {severityOptions.map((option) => (
+              <FilterOption
+                key={option.id}
+                active={severity === option.id}
+                label={option.label}
+                onSelect={() => setSeverity(option.id)}
+              />
+            ))}
+          </FilterGroup>
+
+          <FilterGroup
+            legend="Serviço afetado"
+            description="Área da plataforma"
+            className="border-b border-border p-5 md:p-6"
+          >
+            <FilterOption active={service === "all"} label="Todos" onSelect={() => setService("all")} />
+            {services.map((name) => (
+              <FilterOption
+                key={name}
+                active={service === name}
+                label={name}
+                onSelect={() => setService(name)}
+              />
+            ))}
+          </FilterGroup>
+
+          <FilterGroup
+            legend="Ano"
+            description="Selecione o ano"
+            className="border-b border-border p-5 md:border-b-0 md:border-r md:p-6"
+          >
+            <FilterOption active={year === "all"} label="Todos" onSelect={() => selectYear("all")} />
+            {years.map((value) => (
+              <FilterOption
+                key={value}
+                active={year === value}
+                label={value}
+                onSelect={() => selectYear(value)}
+              />
+            ))}
+          </FilterGroup>
+
+          <FilterGroup legend="Mês" description="Selecione o mês" className="p-5 md:p-6">
+            <FilterOption active={month === "all"} label="Todos" onSelect={() => setMonth("all")} />
+            {monthOptions.map((value) => (
+              <FilterOption
+                key={value}
+                active={month === value}
+                label={monthName(Number(value))}
+                onSelect={() => setMonth(value)}
+              />
+            ))}
+          </FilterGroup>
+        </div>
+      </section>
+
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border py-5">
+        <p aria-live="polite" className="type-micro text-subtle-foreground">
+          Exibindo {filtered.length} de {incidents.length} {incidents.length === 1 ? "incidente" : "incidentes"}
+        </p>
+
+        <div className="flex items-baseline gap-6" aria-label="Modo de visualização">
           <FilterOption
+            compact
             active={view === "timeline"}
             label="Timeline"
             onSelect={() => setView("timeline")}
           />
-          <FilterOption active={view === "list"} label="Listagem" onSelect={() => setView("list")} />
+          <FilterOption
+            compact
+            active={view === "list"}
+            label="Listagem"
+            onSelect={() => setView("list")}
+          />
         </div>
       </div>
 
