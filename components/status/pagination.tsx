@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-/** Paginação minimalista: setas nas extremidades e números centrais. */
+/** Paginação minimalista com navegação anterior e próxima. */
 export function StatusPagination({
   page,
   totalPages,
@@ -17,39 +17,17 @@ export function StatusPagination({
 }) {
   if (totalPages <= 1) return null
 
-  const pages = Array.from({ length: totalPages }, (_, index) => index + 1)
-
   return (
-    <nav aria-label={label} className="mt-10 flex items-center justify-between border-t border-border pt-5">
+    <nav
+      aria-label={label}
+      aria-description={`Página ${page} de ${totalPages}`}
+      className="mt-10 flex items-center justify-between border-t border-border pt-5"
+    >
       <PageArrow
         direction="prev"
         disabled={page === 1}
         onClick={() => onPageChange(page - 1)}
       />
-
-      <ol className="flex items-center gap-1">
-        {pages.map((value) => {
-          const active = value === page
-          return (
-            <li key={value}>
-              <button
-                type="button"
-                aria-current={active ? "page" : undefined}
-                aria-label={`Página ${value}`}
-                onClick={() => onPageChange(value)}
-                className={cn(
-                  "type-micro min-w-8 px-2 py-1.5 text-center transition-colors",
-                  active
-                    ? "bg-foreground text-background"
-                    : "text-subtle-foreground hover:bg-secondary hover:text-foreground",
-                )}
-              >
-                {String(value).padStart(2, "0")}
-              </button>
-            </li>
-          )
-        })}
-      </ol>
 
       <PageArrow
         direction="next"
@@ -92,7 +70,7 @@ function PageArrow({
           strokeWidth={1.5}
         />
       )}
-      <span className="hidden sm:inline">{isPrev ? "Anterior" : "Próxima"}</span>
+      <span className="hidden sm:inline">{isPrev ? "Anterior" : "Próximo"}</span>
       {!isPrev && (
         <Icon
           aria-hidden="true"
