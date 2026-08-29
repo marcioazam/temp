@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Check, ChevronDown, Copy, Plus, RotateCcw, Search, TriangleAlert } from 'lucide-react'
+import { Check, Copy, Plus, RotateCcw, Search, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import type { ApiKey, KeyEnvironment } from '@/lib/painel/data'
@@ -66,7 +66,6 @@ export default function ApiKeysPage() {
   // Listagem
   const [query, setQuery] = useState('')
   const [envFilter, setEnvFilter] = useState<EnvFilter>('all')
-  const [revokedOpen, setRevokedOpen] = useState(false)
 
   // Criação
   const [createOpen, setCreateOpen] = useState(false)
@@ -86,7 +85,6 @@ export default function ApiKeysPage() {
   const [confirmRevoke, setConfirmRevoke] = useState<ApiKey | null>(null)
 
   const activeKeys = state.keys.filter((k) => !k.revoked)
-  const revokedKeys = state.keys.filter((k) => k.revoked)
 
   const filteredKeys = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -302,41 +300,6 @@ export default function ApiKeysPage() {
           </table>
         </div>
       </section>
-
-      {revokedKeys.length > 0 && (
-        <section aria-label="Chaves revogadas" className="border border-border/35 bg-muted/20">
-          <button
-            type="button"
-            onClick={() => setRevokedOpen((o) => !o)}
-            aria-expanded={revokedOpen}
-            className="flex w-full items-center justify-between gap-2 px-4 py-3 text-left"
-          >
-            <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
-              Revogadas · {revokedKeys.length}
-            </span>
-            <ChevronDown
-              className={cn('size-3.5 text-subtle-foreground transition-transform', revokedOpen && 'rotate-180')}
-              aria-hidden="true"
-            />
-          </button>
-          {revokedOpen && (
-            <ul className="px-4 pb-4">
-              {revokedKeys.map((key) => (
-                <li key={key.id} className="flex flex-wrap items-center justify-between gap-2 py-2 opacity-60">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[13px] text-foreground">{key.name}</span>
-                    <span className="font-mono text-[12px] text-subtle-foreground line-through" data-no-translate>
-                      {key.prefix}
-                      {'••••••••'}
-                    </span>
-                  </div>
-                  <span className="font-mono text-[11px] text-subtle-foreground">criada em {key.createdAt}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      )}
 
       <Dialog
         open={createOpen}
