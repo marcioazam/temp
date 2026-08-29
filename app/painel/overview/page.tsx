@@ -314,7 +314,7 @@ export default function OverviewPage() {
               Ver logs <ArrowUpRight className="size-3" />
             </Link>
           </div>
-          <ul className="divide-y divide-border/35">
+          <ul>
             {state.activity.slice(0, 6).map((item) => (
               <li key={item.id} className="flex items-baseline gap-3 px-4 py-2.5">
                 <span className="mt-1 size-1 shrink-0 bg-term-success/70" aria-hidden="true" />
