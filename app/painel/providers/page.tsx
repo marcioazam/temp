@@ -41,7 +41,7 @@ export default function ProvidersPage() {
       <div className="grid gap-4 sm:grid-cols-2">
         {state.providers.map((p) => (
           <section key={p.id} className="flex flex-col border border-border bg-card" aria-label={p.name}>
-            <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
+            <div className="flex items-center justify-between gap-3 px-4 py-3">
               <div className="flex items-center gap-2.5">
                 <span className="flex size-6 items-center justify-center border border-border bg-muted font-mono text-[10px] uppercase text-muted-foreground">
                   {p.name.slice(0, 2)}
@@ -51,7 +51,7 @@ export default function ProvidersPage() {
               <StatusBadge tone={tone[p.status]}>{label[p.status]}</StatusBadge>
             </div>
 
-            <dl className="grid grid-cols-2 gap-px bg-border sm:grid-cols-4">
+            <dl className="grid grid-cols-2 sm:grid-cols-4">
               {[
                 { label: 'Latência', value: p.status === 'paused' ? '—' : fmtLatency(p.latencyMs) },
                 {
@@ -71,7 +71,7 @@ export default function ProvidersPage() {
               ))}
             </dl>
 
-            <div className="mt-auto flex items-center justify-between gap-2 border-t border-border px-4 py-2.5">
+            <div className="mt-auto flex items-center justify-between gap-2 px-4 py-2.5">
               <div className="flex items-center gap-2">
                 <div className="h-1 w-20 bg-muted" aria-hidden="true">
                   <div className="h-full bg-primary/70" style={{ width: `${p.trafficPct}%` }} />

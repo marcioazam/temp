@@ -13,7 +13,6 @@ import {
   Search,
   Server,
   Settings,
-  SquareTerminal,
   Users,
 } from 'lucide-react'
 import { RotorMark } from '@/components/logo'
@@ -32,8 +31,11 @@ const groups: { title: string | null; items: NavItem[] }[] = [
     title: null,
     items: [
       { href: '/painel/overview', label: 'Visão geral', icon: LayoutDashboard },
-      { href: '/painel/playground', label: 'Playground', icon: SquareTerminal },
     ],
+  },
+  {
+    title: 'API Gateway',
+    items: [{ href: '/painel/api-keys', label: 'Chaves de API', icon: KeyRound }],
   },
   {
     title: 'Infraestrutura',
@@ -41,10 +43,6 @@ const groups: { title: string | null; items: NavItem[] }[] = [
       { href: '/painel/providers', label: 'Provedores', icon: Server },
       { href: '/painel/models', label: 'Modelos', icon: Boxes },
     ],
-  },
-  {
-    title: 'API Gateway',
-    items: [{ href: '/painel/api-keys', label: 'Chaves de API', icon: KeyRound }],
   },
   {
     title: 'Observabilidade',

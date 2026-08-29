@@ -157,7 +157,12 @@ export function PainelProvider({ children }: { children: React.ReactNode }) {
       if (raw) {
         const parsed = JSON.parse(raw) as PainelState
         if (parsed && Array.isArray(parsed.keys) && parsed.settings) {
-          dispatch({ type: 'hydrate', state: { ...seedState, ...parsed } })
+          // Mescla campos novos do seed em chaves persistidas de versões anteriores
+          const keys = parsed.keys.map((k) => {
+            const seed = seedState.keys.find((s) => s.id === k.id)
+            return seed ? { ...seed, ...k, requests30d: k.requests30d ?? seed.requests30d, expiresAt: k.expiresAt ?? seed.expiresAt, rateLimit: k.rateLimit ?? seed.rateLimit } : k
+          })
+          dispatch({ type: 'hydrate', state: { ...seedState, ...parsed, keys } })
         }
       }
     } catch {
