@@ -148,13 +148,14 @@ export function PainelSidebar({
             })}
           </div>
         ))}
-      </div>
 
-      <div className="flex flex-col border-t border-border">
-        <div className="flex flex-col py-1">
+        <div className="mt-4 flex flex-col gap-0.5 px-2">
+          <p className="px-2 pb-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-subtle-foreground">
+            Opções
+          </p>
           <a
             href="/docs"
-            className="flex items-center gap-2.5 px-4 py-2 text-[12px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+            className="flex items-center gap-2.5 px-2 py-1.5 text-[13px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
           >
             <BookOpen className="size-4 shrink-0 text-subtle-foreground" />
             <span>Documentação</span>
@@ -162,21 +163,25 @@ export function PainelSidebar({
           <button
             type="button"
             onClick={() => setEnvironment(environment === 'prod' ? 'staging' : 'prod')}
-            className="flex items-center gap-2.5 px-4 py-2 text-left text-[12px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+            className="flex items-center gap-2.5 px-2 py-1.5 text-left text-[13px] text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
             aria-label={`Ambiente atual: ${environment}. Alternar ambiente`}
           >
             <Server className="size-4 shrink-0 text-subtle-foreground" />
             <span className="flex-1">Ambiente</span>
-            <span className={cn(
-              'font-mono text-[9px] uppercase tracking-[0.1em]',
-              environment === 'prod' ? 'text-primary' : 'text-subtle-foreground',
-            )}>
+            <span
+              className={cn(
+                'font-mono text-[9px] uppercase tracking-[0.1em]',
+                environment === 'prod' ? 'text-primary' : 'text-subtle-foreground',
+              )}
+            >
               {environment}
             </span>
           </button>
         </div>
+      </div>
 
-        <div className="flex items-center gap-2.5 border-t border-border px-4 py-3">
+      <div className="flex flex-col border-t border-border">
+        <div className="flex items-center gap-2.5 px-4 py-3">
           <span className="flex size-6 shrink-0 items-center justify-center border border-border bg-muted font-mono text-[9px] text-muted-foreground">
             {initials('Ana Ribeiro')}
           </span>
