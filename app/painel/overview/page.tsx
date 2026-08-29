@@ -166,7 +166,7 @@ export default function OverviewPage() {
       {!allDone && (
         <section className="border border-border/35 bg-muted/20" aria-label="Configuração inicial">
           <div className="flex items-center justify-between px-4 py-3">
-            <p className="text-[13px] text-foreground">Configuração inicial</p>
+            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Configuração inicial</h2>
             <p className="font-mono text-[11px] tabular-nums text-muted-foreground">
               {doneCount} de {state.checklist.length}
             </p>
@@ -211,7 +211,7 @@ export default function OverviewPage() {
         <div className="flex flex-wrap items-end justify-between gap-4 px-4 pb-3 pt-4">
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline gap-2">
-              <h2 className="text-sm font-medium tracking-tight text-foreground">Uso</h2>
+              <h2 className="text-[15px] font-medium tracking-tight text-foreground">Uso</h2>
               <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-subtle-foreground">
                 {rangeLabel[range]}
               </span>
@@ -299,7 +299,7 @@ export default function OverviewPage() {
       <div className="grid gap-4 lg:grid-cols-2">
         <section className="border border-border/35 bg-muted/20" aria-label="Atividade recente">
           <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
-            <p className="text-[13px] text-foreground">Atividade</p>
+            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Atividade</h2>
             <Link href="/painel/logs" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver logs <ArrowUpRight className="size-3" />
             </Link>
@@ -320,7 +320,7 @@ export default function OverviewPage() {
 
         <section className="border border-border/35 bg-muted/20" aria-label="Modelos em alta">
           <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
-            <p className="text-[13px] text-foreground">Modelos em alta</p>
+            <h2 className="text-[15px] font-medium tracking-tight text-foreground">Modelos em alta</h2>
             <Link href="/painel/models" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver todos <ArrowUpRight className="size-3" />
             </Link>
@@ -344,7 +344,7 @@ export default function OverviewPage() {
 
       <section className="border border-border/35 bg-muted/20" aria-label="Provedores">
         <div className="flex items-center justify-between border-b border-border/35 px-4 py-3">
-          <p className="text-[13px] text-foreground">Provedores</p>
+          <h2 className="text-[15px] font-medium tracking-tight text-foreground">Provedores</h2>
           <Link href="/painel/providers" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
             Gerenciar <ArrowUpRight className="size-3" />
           </Link>
