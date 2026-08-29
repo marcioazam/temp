@@ -52,7 +52,7 @@ export function IncidentHistory({ incidents }: { incidents: Incident[] }) {
               {incident.updates.map((update) => (
                 <li key={`${update.time}-${update.label}`} className="flex gap-4">
                   <p className="type-label w-14 shrink-0 text-subtle-foreground">{update.time}</p>
-                  <p className="type-caption max-w-2xl text-muted-foreground">
+                  <p className="type-caption min-w-0 flex-1 text-muted-foreground">
                     <span className="type-label text-foreground">{update.label}</span>
                     <span aria-hidden="true" className="mx-2 text-border">
                       —
