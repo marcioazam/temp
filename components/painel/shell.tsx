@@ -88,7 +88,7 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
         <button
           type="button"
           onClick={() => setPaletteOpen(true)}
-          className="flex size-7 items-center justify-center border border-border bg-card text-subtle-foreground transition-colors hover:border-muted-foreground/40 hover:text-foreground md:hidden"
+          className="flex size-7 items-center justify-center border-0 bg-transparent text-subtle-foreground shadow-none outline-none transition-colors hover:text-foreground focus-visible:text-foreground md:hidden"
           aria-label="Buscar no painel"
         >
           <Search className="size-4" />
@@ -96,7 +96,7 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
         <button
           type="button"
           onClick={() => setMobileNavOpen(true)}
-          className="flex size-7 items-center justify-center border border-border bg-card text-subtle-foreground transition-colors hover:border-muted-foreground/40 hover:text-foreground md:hidden"
+          className="flex size-7 items-center justify-center border-0 bg-transparent text-subtle-foreground shadow-none outline-none transition-colors hover:text-foreground focus-visible:text-foreground md:hidden"
           aria-label="Abrir menu de navegação"
         >
           <PanelLeft className="size-4" />
@@ -107,7 +107,7 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
             <button
               type="button"
               onClick={() => setPaletteOpen(true)}
-              className="hidden size-7 items-center justify-center border border-border bg-card text-subtle-foreground transition-colors hover:border-muted-foreground/40 hover:text-foreground md:flex"
+              className="hidden size-7 items-center justify-center border-0 bg-transparent text-subtle-foreground shadow-none outline-none transition-colors hover:text-foreground focus-visible:text-foreground md:flex"
               aria-label="Buscar no painel (⌘K)"
               title="Buscar  ⌘K"
             >
@@ -116,7 +116,7 @@ export function PainelShell({ children }: { children: React.ReactNode }) {
             <button
               type="button"
               onClick={() => setSidebarHidden(false)}
-              className="hidden size-7 items-center justify-center border border-border bg-card text-subtle-foreground transition-colors hover:border-muted-foreground/40 hover:text-foreground md:flex"
+              className="hidden size-7 items-center justify-center border-0 bg-transparent text-subtle-foreground shadow-none outline-none transition-colors hover:text-foreground focus-visible:text-foreground md:flex"
               aria-label="Mostrar menu lateral"
               title="Mostrar menu lateral"
             >
