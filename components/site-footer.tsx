@@ -6,6 +6,7 @@ const footerLinkClass =
   'transition-colors hover:text-foreground'
 
 const legalLinks = [
+  { label: 'Status', href: '/status' },
   { label: 'Privacidade', href: '/privacidade' },
   { label: 'Termos', href: '/termos' },
   { label: 'Acessibilidade', href: '/acessibilidade' },
@@ -47,7 +48,7 @@ export function SiteFooter() {
             <Link href="/#faq" className={footerLinkClass}>FAQ</Link>
           </nav>
 
-          <nav aria-label="Links legais" className="grid grid-rows-5 gap-y-3">
+          <nav aria-label="Links legais" className="grid grid-rows-6 gap-y-3">
             {legalLinks.map((item) =>
               item.href ? (
                 <Link key={item.label} href={item.href} className={footerLinkClass}>
