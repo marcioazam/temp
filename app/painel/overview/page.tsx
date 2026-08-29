@@ -195,7 +195,7 @@ export default function OverviewPage() {
               <span className="tabular-nums text-foreground">
                 {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
               </span>
-              <span className="tabular-nums text-muted-foreground">
+              <span className="tabular-nums text-term-success">
                 {periodDelta >= 0 ? '+' : ''}
                 {periodDelta.toFixed(1)}%
               </span>
