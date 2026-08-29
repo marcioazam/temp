@@ -8,8 +8,9 @@ import { SiteHeader } from '@/components/site-header'
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const isStatusPage = pathname === '/status' || pathname.startsWith('/status/')
+  const isPainelPage = pathname === '/painel' || pathname.startsWith('/painel/')
 
-  if (isStatusPage) {
+  if (isStatusPage || isPainelPage) {
     return children
   }
 
