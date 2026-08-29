@@ -1,0 +1,116 @@
+'use client'
+
+import { useMemo, useState } from 'react'
+import { Search, X } from 'lucide-react'
+import { PageHeader } from '@/components/painel/page-header'
+import { StatusBadge } from '@/components/painel/ui/badge'
+import { TextInput } from '@/components/painel/ui/controls'
+import { Segmented } from '@/components/painel/ui/segmented'
+import { Button } from '@/components/ui/button'
+import { usePainel } from '@/lib/painel/store'
+import type { ActivityItem } from '@/lib/painel/data'
+
+type KindFilter = 'all' | ActivityItem['kind']
+
+const kindLabels: Record<ActivityItem['kind'], string> = {
+  key: 'Chave',
+  model: 'Modelo',
+  user: 'Usuário',
+  budget: 'Orçamento',
+  provider: 'Provedor',
+}
+
+export default function ActivityLogsPage() {
+  const { state } = usePainel()
+  const [query, setQuery] = useState('')
+  const [kindFilter, setKindFilter] = useState<KindFilter>('all')
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    return state.activity.filter((item) => {
+      if (kindFilter !== 'all' && item.kind !== kindFilter) return false
+      if (q && !`${item.text} ${item.detail}`.toLowerCase().includes(q)) return false
+      return true
+    })
+  }, [state.activity, query, kindFilter])
+
+  const hasActiveFilters = query !== '' || kindFilter !== 'all'
+
+  return (
+    <>
+      <PageHeader
+        title="Logs"
+        description="Registro de atividades do workspace — chaves, modelos, usuários, orçamento e provedores."
+      />
+
+      <div className="flex flex-wrap items-center gap-2">
+        <div className="relative min-w-52 flex-1 sm:max-w-72">
+          <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground" />
+          <TextInput
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Buscar por evento, detalhe…"
+            className="pl-8"
+            aria-label="Buscar atividades"
+          />
+        </div>
+        <Segmented
+          label="Filtrar por tipo"
+          value={kindFilter}
+          onChange={setKindFilter}
+          options={[
+            { value: 'all', label: 'Tudo' },
+            { value: 'key', label: 'Chaves' },
+            { value: 'model', label: 'Modelos' },
+            { value: 'user', label: 'Usuários' },
+            { value: 'budget', label: 'Orçamento' },
+            { value: 'provider', label: 'Provedores' },
+          ]}
+        />
+        {hasActiveFilters && (
+          <Button
+            variant="ghost"
+            size="xs"
+            onClick={() => {
+              setQuery('')
+              setKindFilter('all')
+            }}
+            className="font-mono text-[10px] uppercase tracking-wide"
+          >
+            <X className="size-3" />
+            Limpar filtros
+          </Button>
+        )}
+      </div>
+
+      <div className="flex items-center gap-2 font-mono text-[10px] leading-none">
+        <span className="uppercase tracking-[0.12em] text-subtle-foreground">Eventos</span>
+        <span className="tabular-nums text-foreground">{filtered.length}</span>
+      </div>
+
+      <section className="border border-border/35 bg-muted/20" aria-label="Registro de atividades">
+        {filtered.length === 0 ? (
+          <p className="px-4 py-10 text-center text-[12px] text-muted-foreground">
+            Nenhuma atividade encontrada para os filtros atuais.
+          </p>
+        ) : (
+          <ul className="divide-y divide-border/30">
+            {filtered.map((item) => (
+              <li key={item.id} className="flex items-baseline gap-3 px-4 py-3 transition-colors hover:bg-muted/30">
+                <span className="mt-1 size-1 shrink-0 rounded-full bg-term-success" aria-hidden="true" />
+                <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                  <span className="text-[13px] text-foreground">{item.text}</span>
+                  <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
+                </div>
+                <StatusBadge tone="muted" dot={false} className="hidden shrink-0 sm:inline-flex">
+                  {kindLabels[item.kind]}
+                </StatusBadge>
+                <span className="shrink-0 font-mono text-[10px] text-subtle-foreground">{item.time}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    </>
+  )
+}

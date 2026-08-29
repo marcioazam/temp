@@ -7,12 +7,12 @@ import {
   Activity,
   BookOpen,
   Boxes,
-  CircleDollarSign,
   KeyRound,
   LayoutDashboard,
   LogOut,
   MoreHorizontal,
   PanelLeft,
+  ScrollText,
   Search,
   Settings,
   Sparkles,
@@ -45,7 +45,7 @@ const groups: { title: string | null; items: NavItem[] }[] = [
     title: 'Observabilidade',
     items: [
       { href: '/painel/logs', label: 'Usage', icon: Activity },
-      { href: '/painel/costs', label: 'Custos', icon: CircleDollarSign },
+      { href: '/painel/activity', label: 'Logs', icon: ScrollText },
     ],
   },
 ]

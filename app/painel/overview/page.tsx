@@ -281,7 +281,7 @@ export default function OverviewPage() {
         <section className="border border-border/35 bg-muted/20" aria-label="Atividade recente">
           <div className="flex items-center justify-between px-4 py-3">
             <h2 className="text-base font-medium tracking-tight text-foreground">Atividade</h2>
-            <Link href="/painel/logs" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
+            <Link href="/painel/activity" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver logs <ArrowUpRight className="size-3" />
             </Link>
           </div>
