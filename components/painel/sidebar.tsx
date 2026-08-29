@@ -8,6 +8,8 @@ import {
   CircleDollarSign,
   KeyRound,
   LayoutDashboard,
+  LogOut,
+  MoreHorizontal,
   PanelLeft,
   ScrollText,
   Search,
@@ -179,10 +181,28 @@ export function PainelSidebar({
           <span className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border bg-muted font-mono text-[9px] text-muted-foreground">
             {initials('Ana Ribeiro')}
           </span>
-          <div className="flex min-w-0 flex-col">
+          <div className="flex min-w-0 flex-1 flex-col">
             <span className="truncate text-[12px] text-foreground">Ana Ribeiro</span>
             <span className="truncate text-[10px] text-subtle-foreground">ana@nyllalabs.com</span>
           </div>
+          <details className="group/profile relative shrink-0">
+            <summary
+              className="flex size-7 cursor-pointer list-none items-center justify-center text-subtle-foreground transition-colors hover:bg-muted/50 hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary [&::-webkit-details-marker]:hidden"
+              aria-label="Abrir opções da conta"
+              title="Opções da conta"
+            >
+              <MoreHorizontal className="size-4" aria-hidden="true" />
+            </summary>
+            <div className="absolute bottom-9 right-0 z-50 w-36 border border-border bg-popover p-1 shadow-lg">
+              <Link
+                href="/"
+                className="flex items-center gap-2 px-2 py-1.5 text-[12px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-1 focus-visible:outline-primary"
+              >
+                <LogOut className="size-3.5" aria-hidden="true" />
+                <span>Sair</span>
+              </Link>
+            </div>
+          </details>
         </div>
       </div>
     </nav>
