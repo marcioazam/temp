@@ -54,7 +54,7 @@ export default function StatusPage() {
           className="px-5 py-4 text-background md:px-6 md:py-5"
           style={{ background: overallState.background }}
         >
-          <h1 id="status-geral" className="type-title">
+          <h1 id="status-geral" className="type-title text-background">
             {overallState.label}
           </h1>
         </div>
