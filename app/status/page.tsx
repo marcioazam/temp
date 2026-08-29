@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { IncidentHistory } from "@/components/status/incident-history"
 import { LastUpdated } from "@/components/status/last-updated"
 import { UptimeBar } from "@/components/status/uptime-bar"
+import { RotorMark } from "@/components/logo"
 import { getIncidents, getStatusServices, statusLabels } from "@/lib/status-data"
 
 export const metadata: Metadata = {
@@ -24,10 +25,15 @@ export default function StatusPage() {
   const allOperational = services.every((s) => s.status === "operational")
 
   return (
-    <main className="mx-auto w-full max-w-screen-2xl px-4 pb-24 pt-16 md:px-9 md:pt-24">
+    <main className="mx-auto w-full max-w-screen-2xl px-4 pb-24 pt-8 md:px-9 md:pt-10">
+      <div className="flex items-center gap-2.5 text-foreground" aria-label="Nylla Status">
+        <RotorMark aria-hidden="true" className="h-7 w-7 shrink-0 text-primary" />
+        <span className="type-wordmark text-[1.375rem]">Nylla Status</span>
+      </div>
+
       {/* Estado geral */}
-      <section aria-labelledby="status-geral">
-        <p className="type-eyebrow text-subtle-foreground">Status</p>
+      <section aria-labelledby="status-geral" className="mt-16 md:mt-20">
+        <p className="type-eyebrow text-subtle-foreground">Visão geral</p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h1 id="status-geral" className="type-title flex items-center gap-4 text-foreground">
             <span
