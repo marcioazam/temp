@@ -10,10 +10,49 @@ import { fmtCompact, fmtCurrency, fmtLatency, fmtPercent } from '@/lib/painel/fo
 import { PageHeader } from '@/components/painel/page-header'
 import { StatusBadge } from '@/components/painel/ui/badge'
 import { StatCard } from '@/components/painel/ui/stat-card'
-import { AreaChart, YearHeatmap } from '@/components/painel/ui/charts'
+import { AreaChart, YearHeatmap, type ChartShape } from '@/components/painel/ui/charts'
 import { Button } from '@/components/ui/button'
 
 type Range = '24h' | '7d' | '30d'
+
+const rangeLabel: Record<Range, string> = {
+  '24h': 'últimas 24 horas',
+  '7d': 'últimos 7 dias',
+  '30d': 'últimos 30 dias',
+}
+
+function Segmented<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string
+  value: T
+  options: { value: T; label: string }[]
+  onChange: (v: T) => void
+}) {
+  return (
+    <div className="flex border border-border/70 bg-background" role="group" aria-label={label}>
+      {options.map((o) => (
+        <button
+          key={o.value}
+          type="button"
+          onClick={() => onChange(o.value)}
+          aria-pressed={value === o.value}
+          className={cn(
+            'min-h-7 px-2.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
+            value === o.value
+              ? 'bg-muted/60 text-primary'
+              : 'text-subtle-foreground hover:bg-muted/40 hover:text-foreground',
+          )}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  )
+}
 
 const providerTone = {
   operational: 'success',
@@ -31,11 +70,18 @@ export default function OverviewPage() {
   const { state, dispatch } = usePainel()
   const [range, setRange] = useState<Range>('7d')
   const [metric, setMetric] = useState<'requests' | 'cost'>('requests')
+  const [shape, setShape] = useState<ChartShape>('area')
+  const [showAvg, setShowAvg] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
 
   const series = usageSeries[range]
   const totalRequests = series.reduce((acc, p) => acc + p.requests, 0)
   const totalCost = series.reduce((acc, p) => acc + p.cost, 0)
+
+  const half = Math.floor(series.length / 2)
+  const firstHalf = series.slice(0, half).reduce((acc, p) => acc + p[metric], 0)
+  const secondHalf = series.slice(half).reduce((acc, p) => acc + p[metric], 0)
+  const periodDelta = firstHalf > 0 ? ((secondHalf - firstHalf) / firstHalf) * 100 : 0
   const doneCount = state.checklist.filter((c) => c.done).length
   const allDone = doneCount === state.checklist.length
 
@@ -99,49 +145,77 @@ export default function OverviewPage() {
       )}
 
       <section className="border border-border/35 bg-muted/20" aria-label="Uso">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/35 px-4 py-3">
-          <div className="flex items-center gap-4">
-            <p className="text-[13px] text-foreground">Uso</p>
-            <div className="flex border border-border/70 bg-background" role="group" aria-label="Métrica">
-              {(['requests', 'cost'] as const).map((m) => (
-                <button
-                  key={m}
-                  type="button"
-                  onClick={() => setMetric(m)}
-                  aria-pressed={metric === m}
-                  className={cn(
-                    'min-h-7 px-2.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
-                    metric === m
-                      ? 'bg-foreground text-background'
-                      : 'text-subtle-foreground hover:bg-muted/40 hover:text-foreground',
-                  )}
-                >
-                  {m === 'requests' ? 'Requisições' : 'Custo'}
-                </button>
-              ))}
+        <div className="flex flex-wrap items-end justify-between gap-4 px-4 pb-3 pt-4">
+          <div className="flex flex-col gap-1">
+            <div className="flex items-baseline gap-2">
+              <h2 className="text-sm font-medium tracking-tight text-foreground">Uso</h2>
+              <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-subtle-foreground">
+                {rangeLabel[range]}
+              </span>
             </div>
-          </div>
-          <div className="flex border border-border/70 bg-background" role="group" aria-label="Período">
-            {(['24h', '7d', '30d'] as Range[]).map((r) => (
-              <button
-                key={r}
-                type="button"
-                onClick={() => setRange(r)}
-                aria-pressed={range === r}
+            <div className="flex items-baseline gap-2">
+              <span className="font-mono text-xl tabular-nums leading-none text-foreground">
+                {metric === 'requests' ? fmtCompact(totalRequests) : fmtCurrency(totalCost)}
+              </span>
+              <span
                 className={cn(
-                  'min-h-7 px-2.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
-                  range === r
-                    ? 'bg-muted/60 text-primary'
-                    : 'text-subtle-foreground hover:bg-muted/40 hover:text-foreground',
+                  'font-mono text-[11px] tabular-nums',
+                  periodDelta >= 0 ? 'text-term-success' : 'text-term-error',
                 )}
               >
-                {r}
-              </button>
-            ))}
+                {periodDelta >= 0 ? '+' : ''}
+                {periodDelta.toFixed(1)}%
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <Segmented
+              label="Métrica"
+              value={metric}
+              onChange={setMetric}
+              options={[
+                { value: 'requests', label: 'Req' },
+                { value: 'cost', label: 'Custo' },
+              ]}
+            />
+            <Segmented
+              label="Visualização"
+              value={shape}
+              onChange={setShape}
+              options={[
+                { value: 'area', label: 'Área' },
+                { value: 'line', label: 'Linha' },
+                { value: 'bars', label: 'Barras' },
+              ]}
+            />
+            <button
+              type="button"
+              onClick={() => setShowAvg((v) => !v)}
+              aria-pressed={showAvg}
+              className={cn(
+                'min-h-7 border px-2.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors',
+                showAvg
+                  ? 'border-primary/40 bg-muted/60 text-primary'
+                  : 'border-border/70 bg-background text-subtle-foreground hover:text-foreground',
+              )}
+            >
+              Média
+            </button>
+            <Segmented
+              label="Período"
+              value={range}
+              onChange={setRange}
+              options={[
+                { value: '24h', label: '24h' },
+                { value: '7d', label: '7d' },
+                { value: '30d', label: '30d' },
+              ]}
+            />
           </div>
         </div>
-        <div className="px-4 py-4">
-          <AreaChart data={series} metric={metric} />
+        <div className="px-4 pb-4">
+          <AreaChart data={series} metric={metric} shape={shape} showAverage={showAvg} height={200} />
         </div>
       </section>
 
