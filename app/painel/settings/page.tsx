@@ -88,26 +88,6 @@ export default function SettingsPage() {
             </div>
           </Section>
 
-          <Section title="Webhooks" description="Eventos de uso e incidentes enviados ao seu endpoint.">
-            <div className="divide-y divide-border/35">
-              <SettingRow title="Webhook ativo" description="Envia eventos em tempo real para a URL configurada.">
-                <Toggle checked={s.webhookEnabled} onChange={(v) => update({ webhookEnabled: v })} label="Webhook ativo" />
-              </SettingRow>
-              <div className="pt-3.5">
-                <Field label="URL do webhook">
-                  <TextInput
-                    value={s.webhookUrl}
-                    disabled={!s.webhookEnabled}
-                    onChange={(e) => update({ webhookUrl: e.target.value })}
-                    className="font-mono text-[12px] disabled:opacity-50"
-                  />
-                </Field>
-              </div>
-            </div>
-          </Section>
-        </div>
-
-        <div className="flex flex-col gap-4">
           <Section title="Notificações" description="Escolha o que a equipe recebe por e-mail.">
             <div className="divide-y divide-border/35">
               <SettingRow title="Alertas de orçamento" description="Notifica quando os limites configurados são atingidos.">
@@ -133,6 +113,26 @@ export default function SettingsPage() {
             </div>
           </Section>
 
+          <Section title="Webhooks" description="Eventos de uso e incidentes enviados ao seu endpoint.">
+            <div className="divide-y divide-border/35">
+              <SettingRow title="Webhook ativo" description="Envia eventos em tempo real para a URL configurada.">
+                <Toggle checked={s.webhookEnabled} onChange={(v) => update({ webhookEnabled: v })} label="Webhook ativo" />
+              </SettingRow>
+              <div className="pt-3.5">
+                <Field label="URL do webhook">
+                  <TextInput
+                    value={s.webhookUrl}
+                    disabled={!s.webhookEnabled}
+                    onChange={(e) => update({ webhookUrl: e.target.value })}
+                    className="font-mono text-[12px] disabled:opacity-50"
+                  />
+                </Field>
+              </div>
+            </div>
+          </Section>
+        </div>
+
+        <div className="flex flex-col gap-4">
           <Section title="Dados e segurança" description="Retenção de logs e proteção de dados sensíveis.">
             <div className="divide-y divide-border/35">
               <SettingRow title="Senha" description="Atualize a senha usada para acessar sua conta.">
