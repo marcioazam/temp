@@ -177,7 +177,8 @@ export default function LogsPage() {
             setModelFilter(e.target.value)
             setPage(1)
           }}
-          className="w-auto min-w-44"
+          className="w-auto min-w-44 pr-2.5"
+          showChevron={false}
           aria-label="Filtrar por modelo"
         >
           <option value="all">Todos os modelos</option>

@@ -56,8 +56,9 @@ export function TextArea({
 export function NativeSelect({
   className,
   children,
+  showChevron = true,
   ...props
-}: React.SelectHTMLAttributes<HTMLSelectElement>) {
+}: React.SelectHTMLAttributes<HTMLSelectElement> & { showChevron?: boolean }) {
   return (
     <span className="relative block w-full">
       <select
@@ -69,10 +70,12 @@ export function NativeSelect({
       >
         {children}
       </select>
-      <ChevronDown
-        className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground"
-        aria-hidden="true"
-      />
+      {showChevron && (
+        <ChevronDown
+          className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-subtle-foreground"
+          aria-hidden="true"
+        />
+      )}
     </span>
   )
 }
