@@ -98,13 +98,6 @@ export default function OverviewPage() {
         </section>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Requisições no período" value={fmtCompact(totalRequests)} hint={`Intervalo: ${range}`} />
-        <StatCard label="Custo no período" value={fmtCurrency(totalCost)} hint="+6,2% vs. período anterior" hintTone="warning" />
-        <StatCard label="Latência média" value="486 ms" hint="p95 em 1,42 s" />
-        <StatCard label="Taxa de erro" value="0,38%" hint="Dentro do SLO de 1%" hintTone="success" />
-      </div>
-
       <section className="border border-border bg-muted/25" aria-label="Uso">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3">
           <div className="flex items-center gap-4">
