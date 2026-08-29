@@ -59,7 +59,7 @@ export function AreaChart({
   const W = 720
   const H = height
   const PAD = 10
-  const LEFT = 48
+  const LEFT = 64
   const values = data.map((d) => d[metric])
   const max = Math.max(...values) * 1.15 || 1
   const avg = values.reduce((a, b) => a + b, 0) / (values.length || 1)
@@ -115,8 +115,8 @@ export function AreaChart({
       >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="var(--primary)" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--foreground)" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="var(--foreground)" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -173,23 +173,40 @@ export function AreaChart({
         )}
 
         {shape === 'bars' ? (
-          values.map((v, i) => (
-            <g key={i}>
-              <rect
-                x={cx(i) - barW / 2}
-                y={y(v)}
-                width={barW}
-                height={Math.max(1, H - PAD - y(v))}
-                fill="var(--primary)"
-                fillOpacity={hover === i ? 0.28 : 0.14}
-              />
-              <rect x={cx(i) - barW / 2} y={y(v)} width={barW} height="1.5" fill="var(--primary)" fillOpacity={hover === null || hover === i ? 1 : 0.5} />
-            </g>
-          ))
+          values.map((v, i) => {
+            const active = hover === i
+            return (
+              <g key={i}>
+                <rect
+                  x={cx(i) - barW / 2}
+                  y={y(v)}
+                  width={barW}
+                  height={Math.max(1, H - PAD - y(v))}
+                  fill={active ? 'var(--primary)' : 'var(--foreground)'}
+                  fillOpacity={active ? 0.2 : 0.1}
+                />
+                <rect
+                  x={cx(i) - barW / 2}
+                  y={y(v)}
+                  width={barW}
+                  height="1.5"
+                  fill={active ? 'var(--primary)' : 'var(--foreground)'}
+                  fillOpacity={hover === null || active ? 0.85 : 0.4}
+                />
+              </g>
+            )
+          })
         ) : (
           <>
             {shape === 'area' && <path d={area} fill={`url(#${gradientId})`} />}
-            <path d={line} fill="none" stroke="var(--primary)" strokeWidth="1.5" strokeLinejoin="round" />
+            <path
+              d={line}
+              fill="none"
+              stroke="var(--foreground)"
+              strokeOpacity="0.85"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
           </>
         )}
 
@@ -204,8 +221,9 @@ export function AreaChart({
               x2={cx(hover)}
               y1={PAD}
               y2={H - PAD}
-              stroke="var(--muted-foreground)"
+              stroke="var(--primary)"
               strokeWidth="1"
+              strokeOpacity="0.7"
               strokeDasharray="2 3"
             />
             {shape !== 'bars' && (
@@ -269,7 +287,7 @@ export function HBarList({
             <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{format(item.value)}</span>
           </div>
           <div className="h-1 w-full bg-muted">
-            <div className="h-full bg-primary/70" style={{ width: `${(item.value / max) * 100}%` }} />
+            <div className="h-full bg-foreground/45" style={{ width: `${(item.value / max) * 100}%` }} />
           </div>
         </li>
       ))}
@@ -279,7 +297,8 @@ export function HBarList({
 
 // ── Heatmap anual estilo contribuições ──────────────────────────────────────
 
-const heatColors = ['#161616', '#3d2f12', '#6b4e14', '#a87717', '#f5a524']
+// Escala neutra: intensidade lida pelo brilho, sem semântica de alerta
+const heatColors = ['#161616', '#282828', '#414141', '#636363', '#969696']
 const levelRequests = [0, 420, 1180, 2640, 4310]
 const weekdayLabels = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
 const monthNames = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
@@ -372,7 +391,7 @@ export function YearHeatmap({ data, className }: { data: number[][]; className?:
                           height: CELL,
                           backgroundColor: heatColors[v],
                           opacity: dimmed ? 0.45 : 1,
-                          boxShadow: active ? '0 0 0 1px var(--foreground)' : undefined,
+                          boxShadow: active ? '0 0 0 1px var(--primary)' : undefined,
                         }}
                       />
                     )
