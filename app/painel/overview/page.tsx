@@ -150,7 +150,7 @@ export default function OverviewPage() {
                   <span
                     className={cn(
                       'mt-0.5 flex size-3.5 shrink-0 items-center justify-center rounded-full border',
-                      item.done ? 'border-term-success/50 text-term-success' : 'border-border',
+                      item.done ? 'border-foreground/50 text-foreground' : 'border-border',
                     )}
                   >
                     {item.done && <Check className="size-2.5" />}
