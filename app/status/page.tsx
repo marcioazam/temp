@@ -24,7 +24,7 @@ export default function StatusPage() {
   const allOperational = services.every((s) => s.status === "operational")
 
   return (
-    <main id="status-page" className="mx-auto w-full max-w-screen-2xl px-4 pb-24 pt-16 md:px-9 md:pt-24">
+    <main className="mx-auto w-full max-w-screen-2xl px-4 pb-24 pt-16 md:px-9 md:pt-24">
       {/* Estado geral */}
       <section aria-labelledby="status-geral">
         <p className="type-eyebrow text-subtle-foreground">Status</p>
