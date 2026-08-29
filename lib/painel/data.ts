@@ -220,7 +220,8 @@ export const logsSeed: LogEntry[] = (() => {
     minutes += i < 12 ? Math.floor(rand() * 5) + 1 : i < 80 ? Math.floor(rand() * 90) + 2 : Math.floor(rand() * 240) + 60
     const pick = logModels[Math.floor(rand() * logModels.length)]
     const r = rand()
-    const status = r > 0.94 ? 429 : r > 0.9 ? 500 : r > 0.86 ? 400 : 200
+    // Mantém exemplos dos três grupos visíveis no topo da tabela.
+    const status = i === 0 ? 200 : i === 1 ? 400 : i === 2 ? 500 : r > 0.94 ? 429 : r > 0.9 ? 500 : r > 0.86 ? 400 : 200
     const tokensIn = Math.floor(rand() * 5800) + 200
     const tokensOut = status === 200 ? Math.floor(rand() * 2400) + 60 : 0
     const latencyMs = status === 200 ? Math.floor(rand() * 1800) + 120 : Math.floor(rand() * 400) + 40
