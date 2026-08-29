@@ -10,9 +10,17 @@ import { PageHeader } from '@/components/painel/page-header'
 import { StatusBadge } from '@/components/painel/ui/badge'
 import { Table, TBody, TD, TH, THead, TR } from '@/components/painel/ui/data-table'
 import { Dialog } from '@/components/painel/ui/dialog'
-import { NativeSelect, TextInput } from '@/components/painel/ui/controls'
+import { TextInput } from '@/components/painel/ui/controls'
 import { Segmented } from '@/components/painel/ui/segmented'
 import { Button } from '@/components/ui/button'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const PAGE_SIZE = 30
 
@@ -91,6 +99,13 @@ export default function LogsPage() {
   const models = useMemo(
     () => [...new Set(state.logs.map((l) => l.model))].sort(),
     [state.logs],
+  )
+  const modelOptions = useMemo(
+    () => [
+      { value: 'all', label: 'Todos os modelos' },
+      ...models.map((model) => ({ value: model, label: model })),
+    ],
+    [models],
   )
 
   const filtered = useMemo(
@@ -179,23 +194,27 @@ export default function LogsPage() {
             { value: '5xx', label: '5xx' },
           ]}
         />
-        <NativeSelect
+        <Select
+          items={modelOptions}
           value={modelFilter}
-          onChange={(e) => {
-            setModelFilter(e.target.value)
+          onValueChange={(value) => {
+            setModelFilter(value)
             setPage(1)
           }}
-          className="w-auto min-w-44 pr-2.5"
-          showChevron={false}
-          aria-label="Filtrar por modelo"
         >
-          <option value="all">Todos os modelos</option>
-          {models.map((m) => (
-            <option key={m} value={m}>
-              {m}
-            </option>
-          ))}
-        </NativeSelect>
+          <SelectTrigger className="min-w-44" aria-label="Filtrar por modelo">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent align="start" alignItemWithTrigger={false}>
+            <SelectGroup>
+              {modelOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
         <Segmented
           label="Filtrar por período"
           value={periodFilter}
