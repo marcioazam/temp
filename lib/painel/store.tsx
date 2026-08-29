@@ -18,6 +18,7 @@ type Action =
   | { type: 'create_key'; key: ApiKey }
   | { type: 'revoke_key'; id: string }
   | { type: 'rotate_key'; id: string; prefix: string }
+  | { type: 'update_key_expiration'; id: string; expiresAt: string }
   | { type: 'toggle_model'; id: string }
   | { type: 'set_models_status'; ids: string[]; status: 'active' | 'inactive' }
   | { type: 'toggle_provider'; id: string }
@@ -61,6 +62,17 @@ function reducer(state: PainelState, action: Action): PainelState {
         ...state,
         keys: state.keys.map((k) => (k.id === action.id ? { ...k, prefix: action.prefix, lastUsed: '—' } : k)),
         activity: pushActivity(state, 'Chave rotacionada', state.keys.find((k) => k.id === action.id)?.name ?? '', 'key'),
+      }
+    case 'update_key_expiration':
+      return {
+        ...state,
+        keys: state.keys.map((k) => (k.id === action.id ? { ...k, expiresAt: action.expiresAt } : k)),
+        activity: pushActivity(
+          state,
+          'Expiração da chave alterada',
+          `${state.keys.find((k) => k.id === action.id)?.name ?? ''} · ${action.expiresAt}`,
+          'key',
+        ),
       }
     case 'toggle_model': {
       const model = state.models.find((m) => m.id === action.id)

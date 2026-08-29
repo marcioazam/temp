@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Check, Copy, Plus, RotateCcw, Search, TriangleAlert } from 'lucide-react'
+import { Check, Copy, Pencil, Plus, RotateCcw, Search, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import type { ApiKey, KeyEnvironment } from '@/lib/painel/data'
@@ -34,6 +34,23 @@ function expiryDate(expiry: Expiry): string {
   const d = new Date()
   d.setDate(d.getDate() + days)
   return d.toLocaleDateString('pt-BR')
+}
+
+function toDateInput(value?: string): string {
+  if (!value || value === 'Nunca') return ''
+  const [day, month, year] = value.split('/')
+  return day && month && year ? `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}` : ''
+}
+
+function toDisplayDate(value: string): string {
+  const [year, month, day] = value.split('-')
+  return `${day}/${month}/${year}`
+}
+
+function todayInputValue(): string {
+  const now = new Date()
+  const offset = now.getTimezoneOffset()
+  return new Date(now.getTime() - offset * 60_000).toISOString().slice(0, 10)
 }
 
 function CopyPrefixButton({ prefix, name }: { prefix: string; name: string }) {
@@ -81,6 +98,11 @@ export default function ApiKeysPage() {
   const [rotatedKey, setRotatedKey] = useState<string | null>(null)
   const [rotatedCopied, setRotatedCopied] = useState(false)
   const [confirmRevoke, setConfirmRevoke] = useState<ApiKey | null>(null)
+
+  // Expiração
+  const [editingExpiration, setEditingExpiration] = useState<ApiKey | null>(null)
+  const [expirationDate, setExpirationDate] = useState('')
+  const [neverExpires, setNeverExpires] = useState(false)
 
   const activeKeys = state.keys.filter((k) => !k.revoked)
 
@@ -157,6 +179,29 @@ export default function ApiKeysPage() {
   function closeRotate() {
     setConfirmRotate(null)
     setRotatedKey(null)
+  }
+
+  function openExpirationEditor(key: ApiKey) {
+    const currentDate = toDateInput(key.expiresAt)
+    setEditingExpiration(key)
+    setExpirationDate(currentDate)
+    setNeverExpires(!currentDate)
+  }
+
+  function closeExpirationEditor() {
+    setEditingExpiration(null)
+    setExpirationDate('')
+    setNeverExpires(false)
+  }
+
+  function saveExpiration() {
+    if (!editingExpiration || (!neverExpires && (!expirationDate || expirationDate < todayInputValue()))) return
+    dispatch({
+      type: 'update_key_expiration',
+      id: editingExpiration.id,
+      expiresAt: neverExpires ? 'Nunca' : toDisplayDate(expirationDate),
+    })
+    closeExpirationEditor()
   }
 
   return (
@@ -247,8 +292,19 @@ export default function ApiKeysPage() {
                   <td className="py-2.5 pr-4 text-right font-mono text-[12px] tabular-nums text-muted-foreground">
                     {key.requests30d != null ? fmtCompact(key.requests30d) : '—'}
                   </td>
-                  <td className="py-2.5 pr-4 text-right font-mono text-[12px] text-subtle-foreground">
-                    {key.expiresAt ?? 'Nunca'}
+                  <td className="py-2.5 pr-4">
+                    <div className="flex items-center justify-end gap-1 font-mono text-[12px] text-subtle-foreground">
+                      <span>{key.expiresAt ?? 'Nunca'}</span>
+                      <Button
+                        variant="ghost"
+                        size="icon-xs"
+                        onClick={() => openExpirationEditor(key)}
+                        aria-label={`Alterar expiração da chave ${key.name}`}
+                        title="Alterar expiração"
+                      >
+                        <Pencil className="size-3" />
+                      </Button>
+                    </div>
                   </td>
                   <td className="py-2.5 text-right">
                     <div className="flex items-center justify-end gap-1">
@@ -430,6 +486,61 @@ export default function ApiKeysPage() {
             </div>
           </form>
         )}
+      </Dialog>
+
+      <Dialog
+        open={editingExpiration !== null}
+        onOpenChange={(open) => {
+          if (!open) closeExpirationEditor()
+        }}
+        title="Alterar expiração"
+        description={editingExpiration ? `Defina quando a chave ${editingExpiration.name} deve expirar.` : undefined}
+      >
+        <form
+          className="flex flex-col gap-4 p-5"
+          onSubmit={(event) => {
+            event.preventDefault()
+            saveExpiration()
+          }}
+        >
+          <Field
+            label="Data de expiração"
+            hint={!neverExpires && expirationDate && expirationDate < todayInputValue() ? 'Selecione hoje ou uma data futura.' : undefined}
+          >
+            <TextInput
+              type="date"
+              min={todayInputValue()}
+              value={expirationDate}
+              disabled={neverExpires}
+              onChange={(event) => setExpirationDate(event.target.value)}
+              aria-invalid={!neverExpires && Boolean(expirationDate) && expirationDate < todayInputValue()}
+            />
+          </Field>
+
+          <label className="flex cursor-pointer items-center gap-2 text-[12px] text-muted-foreground">
+            <input
+              type="checkbox"
+              checked={neverExpires}
+              onChange={(event) => setNeverExpires(event.target.checked)}
+              className="size-3.5 rounded-none accent-primary"
+            />
+            Esta chave nunca expira
+          </label>
+
+          <div className="flex justify-end gap-2 pt-1">
+            <Button variant="ghost" size="sm" type="button" onClick={closeExpirationEditor}>
+              Cancelar
+            </Button>
+            <Button
+              size="sm"
+              type="submit"
+              disabled={!neverExpires && (!expirationDate || expirationDate < todayInputValue())}
+              className="h-7 rounded-none border border-foreground bg-foreground! px-3 font-mono text-[10px] font-semibold uppercase tracking-wide text-background! hover:bg-foreground/90!"
+            >
+              Salvar
+            </Button>
+          </div>
+        </form>
       </Dialog>
 
       <Dialog
