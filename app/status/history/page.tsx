@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { IncidentHistory } from "@/components/status/incident-history"
+import { IncidentFilter } from "@/components/status/incident-filter"
 import { LastUpdated } from "@/components/status/last-updated"
 import { StatusNav } from "@/components/status/status-nav"
 import { RotorMark } from "@/components/logo"
-import { getIncidentHistory, HISTORY_MONTHS, type Incident } from "@/lib/status-data"
+import { getIncidentHistory, HISTORY_MONTHS } from "@/lib/status-data"
 
 export const metadata: Metadata = {
   title: "Histórico de incidentes | Nylla Status",
@@ -11,32 +11,15 @@ export const metadata: Metadata = {
     "Histórico completo de incidentes da plataforma Nylla, agrupado por mês: interrupções, degradações e manutenções programadas.",
 }
 
-function monthKey(iso: string): string {
-  return iso.slice(0, 7) // yyyy-mm
-}
-
-function monthLabel(key: string): string {
-  const [y, m] = key.split("-").map(Number)
-  const label = new Date(y, m - 1, 1).toLocaleDateString("pt-BR", {
-    month: "long",
-    year: "numeric",
-  })
-  return label.charAt(0).toUpperCase() + label.slice(1)
-}
-
 export default function StatusHistoryPage() {
   const now = new Date()
   const incidents = getIncidentHistory(now)
 
   // Últimos N meses, do mais recente ao mais antigo, incluindo meses vazios.
-  const byMonth = new Map<string, Incident[]>()
+  const months: string[] = []
   for (let i = 0; i < HISTORY_MONTHS; i++) {
     const d = new Date(now.getFullYear(), now.getMonth() - i, 1)
-    byMonth.set(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`, [])
-  }
-  for (const incident of incidents) {
-    const key = monthKey(incident.date)
-    if (byMonth.has(key)) byMonth.get(key)!.push(incident)
+    months.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`)
   }
 
   return (
@@ -65,22 +48,7 @@ export default function StatusHistoryPage() {
           Últimos {HISTORY_MONTHS} meses, do mais recente ao mais antigo.
         </p>
 
-        <div className="mt-12 flex flex-col gap-14">
-          {Array.from(byMonth.entries()).map(([key, monthIncidents]) => (
-            <section key={key} aria-label={monthLabel(key)}>
-              <h2 className="type-micro border-b border-foreground/20 pb-3 text-subtle-foreground">
-                {monthLabel(key)}
-              </h2>
-              {monthIncidents.length > 0 ? (
-                <IncidentHistory incidents={monthIncidents} />
-              ) : (
-                <p className="type-caption border-b border-border py-5 text-subtle-foreground/60">
-                  Nenhum incidente reportado.
-                </p>
-              )}
-            </section>
-          ))}
-        </div>
+        <IncidentFilter incidents={incidents} months={months} />
 
         <p className="type-caption mt-10 w-full text-subtle-foreground/70">
           Dúvidas sobre disponibilidade? Escreva para{" "}
