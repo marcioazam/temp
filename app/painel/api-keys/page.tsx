@@ -441,14 +441,17 @@ export default function ApiKeysPage() {
             label="Data de expiração"
             hint={!neverExpires && expirationDate && expirationDate < todayInputValue() ? 'Selecione hoje ou uma data futura.' : undefined}
           >
-            <TextInput
-              type="date"
-              min={todayInputValue()}
-              value={expirationDate}
-              disabled={neverExpires}
-              onChange={(event) => setExpirationDate(event.target.value)}
-              aria-invalid={!neverExpires && Boolean(expirationDate) && expirationDate < todayInputValue()}
-            />
+            {neverExpires ? (
+              <TextInput type="text" value="-" disabled aria-label="Data de expiração desabilitada" />
+            ) : (
+              <TextInput
+                type="date"
+                min={todayInputValue()}
+                value={expirationDate}
+                onChange={(event) => setExpirationDate(event.target.value)}
+                aria-invalid={Boolean(expirationDate) && expirationDate < todayInputValue()}
+              />
+            )}
           </Field>
 
           <label className="flex cursor-pointer items-center gap-2 text-[12px] text-muted-foreground">
