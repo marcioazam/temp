@@ -16,7 +16,6 @@ import {
   Search,
   Settings,
   Sparkles,
-  Users,
 } from 'lucide-react'
 import { RotorMark } from '@/components/logo'
 import { cn } from '@/lib/utils'
@@ -48,10 +47,6 @@ const groups: { title: string | null; items: NavItem[] }[] = [
       { href: '/painel/logs', label: 'Logs', icon: ScrollText },
       { href: '/painel/costs', label: 'Custos', icon: CircleDollarSign },
     ],
-  },
-  {
-    title: 'Organização',
-    items: [{ href: '/painel/users', label: 'Usuários', icon: Users }],
   },
 ]
 
