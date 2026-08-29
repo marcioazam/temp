@@ -6,9 +6,8 @@ import { ArrowUpRight, Check, RefreshCw } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import { heatmapSeed, usageSeries } from '@/lib/painel/data'
-import { fmtCompact, fmtCurrency, fmtLatency, fmtPercent } from '@/lib/painel/format'
+import { fmtCompact, fmtPercent } from '@/lib/painel/format'
 import { PageHeader } from '@/components/painel/page-header'
-import { StatusBadge } from '@/components/painel/ui/badge'
 import { StatCard } from '@/components/painel/ui/stat-card'
 import { AreaChart, Sparkline, YearHeatmap, type ChartShape } from '@/components/painel/ui/charts'
 import { Button } from '@/components/ui/button'
@@ -109,11 +108,6 @@ function KpiCard({
   )
 }
 
-const providerTone = {
-  operational: 'success',
-  degraded: 'warning',
-  paused: 'muted',
-} as const
 
 const providerLabel = {
   operational: 'Operacional',
@@ -352,40 +346,6 @@ export default function OverviewPage() {
         </section>
       </div>
 
-      <section className="border border-border/35 bg-muted/20" aria-label="Provedores">
-        <div className="flex items-center justify-between px-4 py-3">
-          <h2 className="text-[15px] font-medium tracking-tight text-foreground">Provedores</h2>
-          <Link href="/painel/providers" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
-            Gerenciar <ArrowUpRight className="size-3" />
-          </Link>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4">
-          {state.providers.map((p) => (
-            <div key={p.id} className="flex flex-col gap-2.5 bg-transparent p-4">
-              <div className="flex items-center justify-between gap-2">
-                <span className="truncate text-[13px] text-foreground">{p.name}</span>
-                <StatusBadge tone={providerTone[p.status]}>{providerLabel[p.status]}</StatusBadge>
-              </div>
-              <dl className="grid grid-cols-3 gap-2 font-mono text-[11px] tabular-nums">
-                <div className="flex flex-col gap-0.5">
-                  <dt className="text-[9px] uppercase tracking-wide text-subtle-foreground">Latência</dt>
-                  <dd className="text-muted-foreground">{p.status === 'paused' ? '—' : fmtLatency(p.latencyMs)}</dd>
-                </div>
-                <div className="flex flex-col gap-0.5">
-                  <dt className="text-[9px] uppercase tracking-wide text-subtle-foreground">Erro</dt>
-                  <dd className={cn(p.errorRate > 1 ? 'text-destructive' : 'text-muted-foreground')}>
-                    {p.status === 'paused' ? '—' : fmtPercent(p.errorRate, 2)}
-                  </dd>
-                </div>
-                <div className="flex flex-col gap-0.5">
-                  <dt className="text-[9px] uppercase tracking-wide text-subtle-foreground">Custo/mês</dt>
-                  <dd className="text-muted-foreground">{fmtCurrency(p.monthCost)}</dd>
-                </div>
-              </dl>
-            </div>
-          ))}
-        </div>
-      </section>
     </>
   )
 }
