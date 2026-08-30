@@ -24,7 +24,7 @@ export interface Model {
   name: string
   displayName: string
   providerId: string
-  type: 'Chat' | 'Embedding' | 'Áudio' | 'Visão'
+  type: 'Linguagem' | 'Embedding' | 'Áudio' | 'Visão'
   catalog: ModelCatalogStatus
   health: ModelHealth
   inputPrice: number // US$ por 1M tokens
@@ -157,7 +157,7 @@ export const providersSeed: Provider[] = [
 
 export const modelsSeed: Model[] = [
   {
-    id: 'gpt-4.1', name: 'gpt-4.1', displayName: 'GPT-4.1', providerId: 'openai', type: 'Chat',
+    id: 'gpt-4.1', name: 'gpt-4.1', displayName: 'GPT-4.1', providerId: 'openai', type: 'Linguagem',
     catalog: 'enabled', health: 'operational', inputPrice: 2.0, outputPrice: 8.0,
     contextTokens: 1_047_576, maxOutputTokens: 32_768, trafficPct: 24,
     requests30d: 412_880, tokens30d: 184_200_000, latencyMs: 620, latencyP95Ms: 1_480,
@@ -166,7 +166,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '06/2025', version: '2026-03-14', gatewayId: 'nylla/openai/gpt-4.1',
   },
   {
-    id: 'gpt-4.1-mini', name: 'gpt-4.1-mini', displayName: 'GPT-4.1 mini', providerId: 'openai', type: 'Chat',
+    id: 'gpt-4.1-mini', name: 'gpt-4.1-mini', displayName: 'GPT-4.1 mini', providerId: 'openai', type: 'Linguagem',
     catalog: 'enabled', health: 'operational', inputPrice: 0.4, outputPrice: 1.6,
     contextTokens: 1_047_576, maxOutputTokens: 32_768, trafficPct: 11,
     requests30d: 268_410, tokens30d: 92_640_000, latencyMs: 310, latencyP95Ms: 720,
@@ -175,7 +175,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '06/2025', version: '2026-03-14', gatewayId: 'nylla/openai/gpt-4.1-mini',
   },
   {
-    id: 'o4-mini', name: 'o4-mini', displayName: 'o4-mini', providerId: 'openai', type: 'Chat',
+    id: 'o4-mini', name: 'o4-mini', displayName: 'o4-mini', providerId: 'openai', type: 'Linguagem',
     catalog: 'restricted', health: 'operational', inputPrice: 1.1, outputPrice: 4.4,
     contextTokens: 200_000, maxOutputTokens: 100_000, trafficPct: 2,
     requests30d: 18_240, tokens30d: 12_480_000, latencyMs: 2_140, latencyP95Ms: 5_600,
@@ -202,7 +202,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '—', version: '2025-06-01', gatewayId: 'nylla/openai/whisper-large-v3',
   },
   {
-    id: 'gpt-4o', name: 'gpt-4o', displayName: 'GPT-4o', providerId: 'openai', type: 'Chat',
+    id: 'gpt-4o', name: 'gpt-4o', displayName: 'GPT-4o', providerId: 'openai', type: 'Linguagem',
     catalog: 'deprecated', health: 'operational', inputPrice: 2.5, outputPrice: 10.0,
     contextTokens: 128_000, maxOutputTokens: 16_384, trafficPct: 1,
     requests30d: 9_640, tokens30d: 4_820_000, latencyMs: 680, latencyP95Ms: 1_620,
@@ -211,7 +211,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '10/2023', version: '2024-11-20', gatewayId: 'nylla/openai/gpt-4o',
   },
   {
-    id: 'claude-sonnet-4-5', name: 'claude-sonnet-4-5', displayName: 'Claude Sonnet 4.5', providerId: 'anthropic', type: 'Chat',
+    id: 'claude-sonnet-4-5', name: 'claude-sonnet-4-5', displayName: 'Claude Sonnet 4.5', providerId: 'anthropic', type: 'Linguagem',
     catalog: 'enabled', health: 'operational', inputPrice: 3.0, outputPrice: 15.0,
     contextTokens: 200_000, maxOutputTokens: 64_000, trafficPct: 19,
     requests30d: 331_450, tokens30d: 168_900_000, latencyMs: 740, latencyP95Ms: 1_910,
@@ -220,7 +220,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '01/2026', version: '2026-02-05', gatewayId: 'nylla/anthropic/claude-sonnet-4-5',
   },
   {
-    id: 'claude-haiku-4-5', name: 'claude-haiku-4-5', displayName: 'Claude Haiku 4.5', providerId: 'anthropic', type: 'Chat',
+    id: 'claude-haiku-4-5', name: 'claude-haiku-4-5', displayName: 'Claude Haiku 4.5', providerId: 'anthropic', type: 'Linguagem',
     catalog: 'enabled', health: 'operational', inputPrice: 1.0, outputPrice: 5.0,
     contextTokens: 200_000, maxOutputTokens: 64_000, trafficPct: 8,
     requests30d: 187_320, tokens30d: 64_100_000, latencyMs: 380, latencyP95Ms: 890,
@@ -229,7 +229,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '01/2026', version: '2026-02-05', gatewayId: 'nylla/anthropic/claude-haiku-4-5',
   },
   {
-    id: 'claude-opus-4-1', name: 'claude-opus-4-1', displayName: 'Claude Opus 4.1', providerId: 'anthropic', type: 'Chat',
+    id: 'claude-opus-4-1', name: 'claude-opus-4-1', displayName: 'Claude Opus 4.1', providerId: 'anthropic', type: 'Linguagem',
     catalog: 'restricted', health: 'operational', inputPrice: 15.0, outputPrice: 75.0,
     contextTokens: 200_000, maxOutputTokens: 32_000, trafficPct: 2,
     requests30d: 12_870, tokens30d: 21_400_000, latencyMs: 1_840, latencyP95Ms: 4_300,
@@ -238,7 +238,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '09/2025', version: '2025-12-18', gatewayId: 'nylla/anthropic/claude-opus-4-1',
   },
   {
-    id: 'gemini-2.5-pro', name: 'gemini-2.5-pro', displayName: 'Gemini 2.5 Pro', providerId: 'google', type: 'Chat',
+    id: 'gemini-2.5-pro', name: 'gemini-2.5-pro', displayName: 'Gemini 2.5 Pro', providerId: 'google', type: 'Linguagem',
     catalog: 'enabled', health: 'degraded', inputPrice: 1.25, outputPrice: 10.0,
     contextTokens: 1_048_576, maxOutputTokens: 65_536, trafficPct: 10,
     requests30d: 204_610, tokens30d: 138_400_000, latencyMs: 890, latencyP95Ms: 3_420,
@@ -247,7 +247,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '01/2026', version: '2026-01-30', gatewayId: 'nylla/google/gemini-2.5-pro',
   },
   {
-    id: 'gemini-2.5-flash', name: 'gemini-2.5-flash', displayName: 'Gemini 2.5 Flash', providerId: 'google', type: 'Chat',
+    id: 'gemini-2.5-flash', name: 'gemini-2.5-flash', displayName: 'Gemini 2.5 Flash', providerId: 'google', type: 'Linguagem',
     catalog: 'enabled', health: 'degraded', inputPrice: 0.3, outputPrice: 2.5,
     contextTokens: 1_048_576, maxOutputTokens: 65_536, trafficPct: 6,
     requests30d: 158_930, tokens30d: 71_800_000, latencyMs: 410, latencyP95Ms: 1_640,
@@ -256,7 +256,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '01/2026', version: '2026-01-30', gatewayId: 'nylla/google/gemini-2.5-flash',
   },
   {
-    id: 'mistral-large', name: 'mistral-large-latest', displayName: 'Mistral Large', providerId: 'mistral', type: 'Chat',
+    id: 'mistral-large', name: 'mistral-large-latest', displayName: 'Mistral Large', providerId: 'mistral', type: 'Linguagem',
     catalog: 'enabled', health: 'operational', inputPrice: 2.0, outputPrice: 6.0,
     contextTokens: 128_000, maxOutputTokens: 32_000, trafficPct: 8,
     requests30d: 142_270, tokens30d: 58_600_000, latencyMs: 520, latencyP95Ms: 1_240,
@@ -274,7 +274,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '11/2025', version: '2026-01-08', gatewayId: 'nylla/mistral/pixtral-large-latest',
   },
   {
-    id: 'llama-3.3-70b', name: 'llama-3.3-70b-versatile', displayName: 'Llama 3.3 70B', providerId: 'groq', type: 'Chat',
+    id: 'llama-3.3-70b', name: 'llama-3.3-70b-versatile', displayName: 'Llama 3.3 70B', providerId: 'groq', type: 'Linguagem',
     catalog: 'enabled', health: 'operational', inputPrice: 0.59, outputPrice: 0.79,
     contextTokens: 128_000, maxOutputTokens: 32_768, trafficPct: 6,
     requests30d: 174_520, tokens30d: 48_300_000, latencyMs: 140, latencyP95Ms: 340,
@@ -283,7 +283,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '12/2024', version: '2025-09-12', gatewayId: 'nylla/groq/llama-3.3-70b-versatile',
   },
   {
-    id: 'command-r-plus', name: 'command-r-plus', displayName: 'Command R+', providerId: 'cohere', type: 'Chat',
+    id: 'command-r-plus', name: 'command-r-plus', displayName: 'Command R+', providerId: 'cohere', type: 'Linguagem',
     catalog: 'deprecated', health: 'down', inputPrice: 2.5, outputPrice: 10.0,
     contextTokens: 128_000, maxOutputTokens: 4_096, trafficPct: 0,
     requests30d: 0, tokens30d: 0, latencyMs: 0, latencyP95Ms: 0,
