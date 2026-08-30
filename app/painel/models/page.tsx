@@ -255,13 +255,21 @@ export default function ModelsPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between border-t border-border/30 px-4 py-2.5">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
-                    Uso 30d
-                  </span>
-                  <span className="font-mono text-[12px] tabular-nums text-term-success">
-                    {fmtPercent(model.trafficPct, 0)}
-                  </span>
+                <div className="flex flex-col gap-2 border-t border-border/30 px-4 py-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                      Uso 30d
+                    </span>
+                    <span className="font-mono text-[12px] tabular-nums text-term-success">
+                      {fmtPercent(model.trafficPct, 0)}
+                    </span>
+                  </div>
+                  <div className="h-0.5 w-full bg-border/50" aria-hidden="true">
+                    <div
+                      className="h-full bg-term-success"
+                      style={{ width: `${Math.min(100, model.trafficPct)}%` }}
+                    />
+                  </div>
                 </div>
 
                 {/* Preço + capacidades em rodapé denso */}
