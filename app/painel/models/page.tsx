@@ -160,100 +160,138 @@ export default function ModelsPage() {
         </p>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {filtered.map((model) => (
-            <button
-              key={model.id}
-              type="button"
-              onClick={() => setDetail(model)}
-              aria-label={`Ver detalhes de ${model.displayName} — ${providerName(model.providerId)}, ${healthMeta[model.health].label}`}
-              className="flex flex-col gap-3 border border-border/35 bg-muted/20 p-4 text-left transition-colors hover:border-border hover:bg-muted/40 focus-visible:outline-1 focus-visible:outline-ring"
-            >
-              <header className="flex items-start justify-between gap-3">
-                <div className="flex min-w-0 flex-col gap-0.5">
-                  <span className="truncate font-mono text-[13px] text-foreground" data-no-translate>
-                    {model.name}
-                  </span>
-                  <span className="truncate text-[11px] text-subtle-foreground">
-                    {providerName(model.providerId)} · {model.type}
-                  </span>
-                </div>
-                <div className="flex shrink-0 flex-col items-end gap-1">
-                  <StatusBadge tone={healthMeta[model.health].tone}>{healthMeta[model.health].label}</StatusBadge>
-                  {model.catalog !== 'enabled' && (
-                    <StatusBadge tone="muted" dot={false}>
-                      {catalogMeta[model.catalog].label}
-                    </StatusBadge>
+          {filtered.map((model) => {
+            const health = healthMeta[model.health]
+            return (
+              <button
+                key={model.id}
+                type="button"
+                onClick={() => setDetail(model)}
+                aria-label={`Ver detalhes de ${model.displayName}: ${providerName(model.providerId)}, ${health.label}`}
+                className={cn(
+                  'group relative flex flex-col text-left transition-all duration-200',
+                  'border border-border/35 bg-card',
+                  'hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_8px_32px_-12px_rgba(245,165,36,0.15)]',
+                  'focus-visible:outline-1 focus-visible:outline-ring',
+                  model.catalog === 'deprecated' && 'opacity-60 hover:opacity-90',
+                )}
+              >
+                {/* Filete de saúde no topo */}
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    'absolute inset-x-0 top-0 h-px transition-colors',
+                    model.health === 'operational' && 'bg-term-success/50 group-hover:bg-primary/60',
+                    model.health === 'degraded' && 'bg-status-warning/70',
+                    model.health === 'down' && 'bg-destructive/60',
                   )}
-                </div>
-              </header>
+                />
 
-              <div className="flex items-end justify-between gap-3 border-t border-border/30 pt-3">
-                <div className="flex flex-col gap-0.5">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Contexto</span>
-                  <span className="font-mono text-[17px] tabular-nums tracking-tight text-foreground">
-                    {fmtTokens(model.contextTokens)}
-                  </span>
-                </div>
-                <div className="flex flex-col items-end gap-0.5">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída máx.</span>
-                  <span className="font-mono text-[13px] tabular-nums text-muted-foreground">
-                    {model.maxOutputTokens > 0 ? `${fmtTokens(model.maxOutputTokens)} tokens` : '—'}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <div className="flex items-baseline justify-between">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Tráfego 30d</span>
-                  <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
-                    {fmtPercent(model.trafficPct, 0)} · {fmtCompact(model.requests30d)} req
-                  </span>
-                </div>
-                <div className="h-1 w-full bg-muted" aria-hidden="true">
-                  <div
-                    className={cn('h-full', model.trafficPct > 0 ? 'bg-foreground/60' : 'bg-transparent')}
-                    style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }}
-                  />
-                </div>
-              </div>
-
-              <dl className="flex items-center justify-between gap-3 border-t border-border/30 pt-3">
-                <div className="flex flex-col gap-0.5">
-                  <dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Entrada /1M</dt>
-                  <dd className="font-mono text-[12px] tabular-nums text-foreground">{fmtCurrency(model.inputPrice)}</dd>
-                </div>
-                <div className="flex flex-col items-end gap-0.5">
-                  <dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída /1M</dt>
-                  <dd className="font-mono text-[12px] tabular-nums text-foreground">
-                    {model.outputPrice > 0 ? fmtCurrency(model.outputPrice) : '—'}
-                  </dd>
-                </div>
-              </dl>
-
-              <div className="flex flex-wrap gap-1">
-                {capabilityLabels
-                  .filter((c) => model.capabilities[c.key])
-                  .map((c) => (
+                <header className="flex items-start justify-between gap-3 p-4 pb-0">
+                  <div className="flex min-w-0 flex-col gap-1">
+                    <span className="truncate font-mono text-[13px] tracking-tight text-foreground transition-colors group-hover:text-primary" data-no-translate>
+                      {model.name}
+                    </span>
+                    <span className="flex items-center gap-1.5 truncate text-[11px] text-subtle-foreground">
+                      {providerName(model.providerId)}
+                      <span className="text-border" aria-hidden="true">/</span>
+                      {model.type}
+                    </span>
+                  </div>
+                  <div className="flex shrink-0 flex-col items-end gap-1">
                     <span
-                      key={c.key}
                       className={cn(
-                        'border px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em]',
-                        c.key === 'vision'
-                          ? 'border-term-success/30 bg-term-success/5 text-term-success'
-                          : 'border-border text-subtle-foreground',
+                        'inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.1em]',
+                        model.health === 'operational' && 'text-term-success',
+                        model.health === 'degraded' && 'text-status-warning',
+                        model.health === 'down' && 'text-destructive',
                       )}
                     >
-                      {c.label}
+                      <span className={cn('size-1 bg-current', model.health !== 'down' && 'animate-pulse')} aria-hidden="true" />
+                      {health.label}
                     </span>
-                  ))}
-              </div>
+                    {model.catalog !== 'enabled' && (
+                      <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-subtle-foreground">
+                        {catalogMeta[model.catalog].label}
+                      </span>
+                    )}
+                  </div>
+                </header>
 
-              <footer className="flex items-center justify-between border-t border-border/30 pt-2.5 font-mono text-[10px] tabular-nums text-subtle-foreground">
-                <span>{model.latencyMs > 0 ? fmtLatency(model.latencyMs) : '—'} média</span>
-                <span>{model.uptimePct > 0 ? `${fmtPercent(model.uptimePct, 2)} uptime` : 'sem tráfego'}</span>
-              </footer>
-            </button>
-          ))}
+                {/* Métrica herói: contexto */}
+                <div className="flex items-end justify-between gap-3 p-4 pb-3">
+                  <div className="flex flex-col">
+                    <span className="font-mono text-[28px] leading-none tabular-nums tracking-tighter text-foreground">
+                      {fmtTokens(model.contextTokens)}
+                    </span>
+                    <span className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-subtle-foreground">
+                      Tokens de contexto
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-end gap-0.5 pb-0.5">
+                    <span className="font-mono text-[13px] tabular-nums text-muted-foreground">
+                      {model.maxOutputTokens > 0 ? fmtTokens(model.maxOutputTokens) : 'n/d'}
+                    </span>
+                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída máx.</span>
+                  </div>
+                </div>
+
+                {/* Tráfego com barra no âmbar da marca */}
+                <div className="flex flex-col gap-1.5 px-4 pb-3">
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Tráfego 30d</span>
+                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                      <span className="text-foreground">{fmtPercent(model.trafficPct, 0)}</span> · {fmtCompact(model.requests30d)} req
+                    </span>
+                  </div>
+                  <div className="h-0.5 w-full bg-border/50" aria-hidden="true">
+                    <div
+                      className={cn('h-full transition-all', model.trafficPct > 0 ? 'bg-primary' : 'bg-transparent')}
+                      style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* Preço + capacidades em rodapé denso */}
+                <div className="mt-auto grid grid-cols-2 gap-px border-t border-border/30 bg-border/20">
+                  <div className="flex flex-col gap-0.5 bg-card px-4 py-2.5">
+                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Entrada /1M</span>
+                    <span className="font-mono text-[12px] tabular-nums text-foreground">{fmtCurrency(model.inputPrice)}</span>
+                  </div>
+                  <div className="flex flex-col gap-0.5 bg-card px-4 py-2.5 text-right">
+                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída /1M</span>
+                    <span className="font-mono text-[12px] tabular-nums text-foreground">
+                      {model.outputPrice > 0 ? fmtCurrency(model.outputPrice) : 'n/d'}
+                    </span>
+                  </div>
+                </div>
+
+                <footer className="flex items-center justify-between border-t border-border/30 px-4 py-2.5">
+                  <div className="flex gap-1">
+                    {capabilityLabels.map((c) => {
+                      const supported = model.capabilities[c.key]
+                      return (
+                        <span
+                          key={c.key}
+                          className={cn(
+                            'px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors',
+                            supported
+                              ? 'bg-primary/10 text-primary'
+                              : 'text-border line-through decoration-border',
+                          )}
+                        >
+                          {c.label}
+                        </span>
+                      )
+                    })}
+                  </div>
+                  <span className="font-mono text-[10px] tabular-nums text-subtle-foreground">
+                    {model.latencyMs > 0 ? fmtLatency(model.latencyMs) : 'sem tráfego'}
+                  </span>
+                </footer>
+              </button>
+            )
+          })}
         </div>
       )}
 
