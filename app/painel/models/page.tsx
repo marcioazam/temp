@@ -182,7 +182,7 @@ export default function ModelsPage() {
                 onClick={() => setDetail(model)}
                 aria-label={`Ver detalhes de ${model.displayName}: ${providerName(model.providerId)}, ${health.label}`}
                 className={cn(
-                  'relative flex flex-col border border-border/40 bg-muted/25 text-left',
+                  'relative flex flex-col border border-border/35 bg-card text-left',
                   'focus-visible:outline-1 focus-visible:outline-ring',
                   model.catalog === 'deprecated' && 'opacity-60',
                 )}
