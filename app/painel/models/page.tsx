@@ -377,7 +377,7 @@ export default function ModelsPage() {
             </div>
 
             {/* Métricas-herói */}
-            <div className="mt-5 grid grid-cols-3 gap-px border-y border-border/35 bg-border/20">
+            <div className="mt-5 grid grid-cols-3 gap-px bg-border/20">
               <div className="flex flex-col gap-1 bg-card px-5 py-4">
                 <span className="font-mono text-[20px] leading-none tabular-nums tracking-tight text-foreground">
                   {fmtTokens(detail.contextTokens)}
