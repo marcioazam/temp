@@ -255,17 +255,17 @@ export default function ModelsPage() {
                   </div>
                 </div>
 
-                {/* Tráfego com barra no âmbar da marca */}
+                {/* Uso do gateway */}
                 <div className="flex flex-col gap-1.5 px-4 pb-3">
                   <div className="flex items-baseline justify-between">
                     <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Tráfego 30d</span>
                     <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
-                      <span className="text-foreground">{fmtPercent(model.trafficPct, 0)}</span> · {fmtCompact(model.requests30d)} req
+                      <span className="text-term-success">{fmtPercent(model.trafficPct, 0)}</span> · {fmtCompact(model.requests30d)} req
                     </span>
                   </div>
                   <div className="h-0.5 w-full bg-border/50" aria-hidden="true">
                     <div
-                      className={cn('h-full', model.trafficPct > 0 ? 'bg-foreground/70' : 'bg-transparent')}
+                      className={cn('h-full', model.trafficPct > 0 ? 'bg-term-success' : 'bg-transparent')}
                       style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }}
                     />
                   </div>
