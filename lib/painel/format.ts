@@ -35,6 +35,12 @@ export function fmtPercent(value: number, digits = 1) {
   return `${value.toLocaleString('pt-BR', { minimumFractionDigits: digits, maximumFractionDigits: digits })}%`
 }
 
+export function fmtTokens(tokens: number) {
+  if (tokens >= 1_000_000) return `${(tokens / 1_000_000).toLocaleString('pt-BR', { maximumFractionDigits: 2 })}M`
+  if (tokens >= 1_000) return `${Math.round(tokens / 1_000)}K`
+  return plain.format(tokens)
+}
+
 export function fmtLatency(ms: number) {
   if (ms >= 1000) return `${(ms / 1000).toLocaleString('pt-BR', { maximumFractionDigits: 2 })} s`
   return `${plain.format(ms)} ms`

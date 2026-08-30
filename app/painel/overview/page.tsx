@@ -105,7 +105,7 @@ export default function OverviewPage() {
   const allDone = doneCount === state.checklist.length
 
   const topModels = [...state.models]
-    .filter((m) => m.status === 'active')
+    .filter((m) => m.catalog === 'enabled')
     .sort((a, b) => b.trafficPct - a.trafficPct)
     .slice(0, 5)
 

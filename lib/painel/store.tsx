@@ -19,8 +19,6 @@ type Action =
   | { type: 'revoke_key'; id: string }
   | { type: 'rotate_key'; id: string; prefix: string }
   | { type: 'update_key_expiration'; id: string; expiresAt: string }
-  | { type: 'toggle_model'; id: string }
-  | { type: 'set_models_status'; ids: string[]; status: 'active' | 'inactive' }
   | { type: 'toggle_provider'; id: string }
   | { type: 'invite_member'; member: Member }
   | { type: 'remove_member'; id: string }
@@ -82,26 +80,6 @@ function reducer(state: PainelState, action: Action): PainelState {
           'Expiração da chave alterada',
           `${state.keys.find((k) => k.id === action.id)?.name ?? ''} · ${action.expiresAt}`,
           'key',
-        ),
-      }
-    case 'toggle_model': {
-      const model = state.models.find((m) => m.id === action.id)
-      const next = model?.status === 'active' ? 'inactive' : 'active'
-      return {
-        ...state,
-        models: state.models.map((m) => (m.id === action.id ? { ...m, status: next } : m)),
-        activity: pushActivity(state, next === 'active' ? 'Modelo ativado' : 'Modelo desativado', `${model?.name ?? ''} por Ana Ribeiro`, 'model'),
-      }
-    }
-    case 'set_models_status':
-      return {
-        ...state,
-        models: state.models.map((m) => (action.ids.includes(m.id) ? { ...m, status: action.status } : m)),
-        activity: pushActivity(
-          state,
-          action.status === 'active' ? 'Modelos ativados em lote' : 'Modelos desativados em lote',
-          `${action.ids.length} modelo(s) por Ana Ribeiro`,
-          'model',
         ),
       }
     case 'toggle_provider': {
@@ -198,6 +176,8 @@ export function PainelProvider({ children }: { children: React.ReactNode }) {
               logs,
               // Mantém a demonstração populada sincronizada com o seed atual.
               activity: seedState.activity,
+              // O catálogo de modelos é definido pelo gateway Nylla, nunca pelo cliente.
+              models: seedState.models,
               settings: { ...seedState.settings, ...parsed.settings },
             },
           })

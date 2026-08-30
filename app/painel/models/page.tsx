@@ -1,258 +1,379 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { X } from 'lucide-react'
+import { Check, Lock, Minus } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
-import type { Model } from '@/lib/painel/data'
-import { fmtCurrency, fmtLatency, fmtPercent } from '@/lib/painel/format'
+import type { Model, ModelCatalogStatus, ModelHealth } from '@/lib/painel/data'
+import { fmtCompact, fmtCurrency, fmtLatency, fmtNumber, fmtPercent, fmtTokens } from '@/lib/painel/format'
 import { PageHeader } from '@/components/painel/page-header'
 import { StatusBadge } from '@/components/painel/ui/badge'
-import { Table, TBody, TD, TH, THead, TR } from '@/components/painel/ui/data-table'
 import { Dialog } from '@/components/painel/ui/dialog'
-import { NativeSelect } from '@/components/painel/ui/controls'
-import { Toggle } from '@/components/painel/ui/controls'
+import { NativeSelect, TextInput } from '@/components/painel/ui/controls'
 import { Button } from '@/components/ui/button'
 
+const healthMeta: Record<ModelHealth, { label: string; tone: 'success' | 'warning' | 'danger' }> = {
+  operational: { label: 'Disponível', tone: 'success' },
+  degraded: { label: 'Degradado', tone: 'warning' },
+  down: { label: 'Indisponível', tone: 'danger' },
+}
+
+const catalogMeta: Record<ModelCatalogStatus, { label: string; hint: string }> = {
+  enabled: { label: 'No catálogo', hint: 'Liberado para uso em todas as chaves do workspace.' },
+  restricted: { label: 'Restrito', hint: 'Liberação sob solicitação à equipe Nylla.' },
+  deprecated: { label: 'Depreciado', hint: 'Descontinuado pelo gateway — migre para um modelo equivalente.' },
+}
+
+const capabilityLabels: { key: keyof Model['capabilities']; label: string }[] = [
+  { key: 'streaming', label: 'Stream' },
+  { key: 'functionCalling', label: 'Tools' },
+  { key: 'vision', label: 'Visão' },
+  { key: 'jsonMode', label: 'JSON' },
+]
+
 export default function ModelsPage() {
-  const { state, dispatch } = usePainel()
+  const { state } = usePainel()
+  const [query, setQuery] = useState('')
   const [providerFilter, setProviderFilter] = useState('all')
   const [typeFilter, setTypeFilter] = useState('all')
-  const [statusFilter, setStatusFilter] = useState('all')
-  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [healthFilter, setHealthFilter] = useState('all')
   const [detail, setDetail] = useState<Model | null>(null)
 
   const providerName = (id: string) => state.providers.find((p) => p.id === id)?.name ?? id
 
-  const filtered = useMemo(
-    () =>
-      state.models.filter(
-        (m) =>
-          (providerFilter === 'all' || m.providerId === providerFilter) &&
-          (typeFilter === 'all' || m.type === typeFilter) &&
-          (statusFilter === 'all' || m.status === statusFilter),
-      ),
-    [state.models, providerFilter, typeFilter, statusFilter],
-  )
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    return state.models.filter(
+      (m) =>
+        (providerFilter === 'all' || m.providerId === providerFilter) &&
+        (typeFilter === 'all' || m.type === typeFilter) &&
+        (healthFilter === 'all' || m.health === healthFilter) &&
+        (q === '' ||
+          m.name.toLowerCase().includes(q) ||
+          m.displayName.toLowerCase().includes(q) ||
+          m.gatewayId.toLowerCase().includes(q) ||
+          providerName(m.providerId).toLowerCase().includes(q)),
+    )
+  }, [state.models, state.providers, query, providerFilter, typeFilter, healthFilter])
 
-  const allSelected = filtered.length > 0 && filtered.every((m) => selected.has(m.id))
+  const hasActiveFilters = query !== '' || providerFilter !== 'all' || typeFilter !== 'all' || healthFilter !== 'all'
+  const available = state.models.filter((m) => m.catalog === 'enabled' && m.health === 'operational').length
+  const degraded = state.models.filter((m) => m.health !== 'operational').length
+  const maxContext = Math.max(...state.models.map((m) => m.contextTokens))
+  const types = [...new Set(state.models.map((m) => m.type))]
 
-  function toggleAll() {
-    setSelected(allSelected ? new Set() : new Set(filtered.map((m) => m.id)))
-  }
-
-  function toggleOne(id: string) {
-    setSelected((prev) => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
-      return next
-    })
-  }
-
-  function batch(status: 'active' | 'inactive') {
-    dispatch({ type: 'set_models_status', ids: [...selected], status })
-    setSelected(new Set())
-  }
+  const summary = [
+    { label: 'Modelos no gateway', value: fmtNumber(state.models.length) },
+    { label: 'Disponíveis agora', value: fmtNumber(available) },
+    { label: 'Com incidente', value: fmtNumber(degraded) },
+    { label: 'Contexto máximo', value: `${fmtTokens(maxContext)} tokens` },
+  ]
 
   return (
     <>
       <PageHeader
         title="Modelos"
-        description="Ative os modelos disponíveis no gateway e acompanhe preço e tráfego de cada um."
+        description="Catálogo somente leitura — os modelos são provisionados e mantidos pelo gateway Nylla. Consulte limites, preço, capacidades e confiabilidade de cada um."
       />
 
-      <div className="flex flex-wrap items-center gap-2">
-        <NativeSelect
-          value={providerFilter}
-          onChange={(e) => setProviderFilter(e.target.value)}
-          className="w-auto min-w-36"
-          aria-label="Filtrar por provedor"
-        >
-          <option value="all">Todos os provedores</option>
-          {state.providers
-            .filter((p) => p.modelsCount > 0)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.name}
-              </option>
-            ))}
-        </NativeSelect>
-        <NativeSelect
-          value={typeFilter}
-          onChange={(e) => setTypeFilter(e.target.value)}
-          className="w-auto min-w-28"
-          aria-label="Filtrar por tipo"
-        >
-          <option value="all">Todos os tipos</option>
-          <option value="Chat">Chat</option>
-          <option value="Embedding">Embedding</option>
-        </NativeSelect>
-        <NativeSelect
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="w-auto min-w-28"
-          aria-label="Filtrar por status"
-        >
-          <option value="all">Todos os status</option>
-          <option value="active">Ativos</option>
-          <option value="inactive">Inativos</option>
-        </NativeSelect>
-        <span className="ml-auto font-mono text-[11px] tabular-nums text-subtle-foreground">
+      <div className="grid gap-px border border-border/35 bg-border/40 sm:grid-cols-2 lg:grid-cols-4">
+        {summary.map((item) => (
+          <div key={item.label} className="flex flex-col gap-1 bg-muted/20 px-4 py-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{item.label}</span>
+            <span className="font-mono text-[18px] tabular-nums tracking-tight text-foreground">{item.value}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+        <TextInput
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Buscar por modelo, provedor ou ID no gateway"
+          aria-label="Buscar modelos"
+          className="sm:max-w-72"
+        />
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="w-44">
+            <NativeSelect
+              value={providerFilter}
+              onChange={(e) => setProviderFilter(e.target.value)}
+              aria-label="Filtrar por provedor"
+            >
+              <option value="all">Todos os provedores</option>
+              {state.providers.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}
+                </option>
+              ))}
+            </NativeSelect>
+          </div>
+          <div className="w-36">
+            <NativeSelect
+              value={typeFilter}
+              onChange={(e) => setTypeFilter(e.target.value)}
+              aria-label="Filtrar por tipo"
+            >
+              <option value="all">Todos os tipos</option>
+              {types.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </NativeSelect>
+          </div>
+          <div className="w-36">
+            <NativeSelect
+              value={healthFilter}
+              onChange={(e) => setHealthFilter(e.target.value)}
+              aria-label="Filtrar por saúde"
+            >
+              <option value="all">Toda a saúde</option>
+              <option value="operational">Disponível</option>
+              <option value="degraded">Degradado</option>
+              <option value="down">Indisponível</option>
+            </NativeSelect>
+          </div>
+          {hasActiveFilters && (
+            <Button
+              variant="ghost"
+              size="xs"
+              onClick={() => {
+                setQuery('')
+                setProviderFilter('all')
+                setTypeFilter('all')
+                setHealthFilter('all')
+              }}
+            >
+              Limpar filtros
+            </Button>
+          )}
+        </div>
+        <span className="font-mono text-[11px] tabular-nums text-subtle-foreground sm:ml-auto">
           {filtered.length} de {state.models.length} modelos
         </span>
       </div>
 
-      {selected.size > 0 && (
-        <div className="flex items-center gap-3 border border-primary/30 bg-primary/5 px-3 py-2">
-          <span className="font-mono text-[11px] tabular-nums text-primary">{selected.size} selecionado(s)</span>
-          <div className="ml-auto flex items-center gap-2">
-            <Button variant="outline" size="xs" onClick={() => batch('active')}>
-              Ativar selecionados
-            </Button>
-            <Button variant="outline" size="xs" onClick={() => batch('inactive')}>
-              Desativar selecionados
-            </Button>
-            <Button variant="ghost" size="icon-xs" onClick={() => setSelected(new Set())} aria-label="Limpar seleção">
-              <X />
-            </Button>
-          </div>
-        </div>
-      )}
-
-      <Table>
-        <THead>
-          <tr>
-            <TH className="w-10">
-              <input
-                type="checkbox"
-                checked={allSelected}
-                onChange={toggleAll}
-                aria-label="Selecionar todos os modelos"
-                className="accent-[#f5a524]"
-              />
-            </TH>
-            <TH>Modelo</TH>
-            <TH className="hidden sm:table-cell">Provedor</TH>
-            <TH className="hidden md:table-cell">Tipo</TH>
-            <TH>Status</TH>
-            <TH className="hidden lg:table-cell">Entrada /1M</TH>
-            <TH className="hidden lg:table-cell">Saída /1M</TH>
-            <TH className="hidden md:table-cell">Tráfego</TH>
-            <TH className="text-right">Ativo</TH>
-          </tr>
-        </THead>
-        <TBody>
+      {filtered.length === 0 ? (
+        <p className="border border-border/35 bg-muted/20 px-4 py-12 text-center text-[12px] text-muted-foreground">
+          Nenhum modelo corresponde aos filtros selecionados.
+        </p>
+      ) : (
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {filtered.map((model) => (
-            <TR key={model.id} onClick={() => setDetail(model)}>
-              <TD onClick={(e) => e.stopPropagation()}>
-                <input
-                  type="checkbox"
-                  checked={selected.has(model.id)}
-                  onChange={() => toggleOne(model.id)}
-                  aria-label={`Selecionar ${model.name}`}
-                  className="accent-[#f5a524]"
-                />
-              </TD>
-              <TD>
-                <span className="font-mono text-[12px]" data-no-translate>{model.name}</span>
-              </TD>
-              <TD className="hidden text-muted-foreground sm:table-cell">{providerName(model.providerId)}</TD>
-              <TD className="hidden text-muted-foreground md:table-cell">{model.type}</TD>
-              <TD>
-                <StatusBadge tone={model.status === 'active' ? 'success' : 'muted'}>
-                  {model.status === 'active' ? 'Ativo' : 'Inativo'}
-                </StatusBadge>
-              </TD>
-              <TD className="hidden font-mono text-[12px] tabular-nums text-muted-foreground lg:table-cell">
-                {fmtCurrency(model.inputPrice)}
-              </TD>
-              <TD className="hidden font-mono text-[12px] tabular-nums text-muted-foreground lg:table-cell">
-                {model.outputPrice > 0 ? fmtCurrency(model.outputPrice) : '—'}
-              </TD>
-              <TD className="hidden md:table-cell">
-                <div className="flex items-center gap-2">
-                  <div className="h-1 w-16 bg-muted">
-                    <div className="h-full bg-foreground/60" style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }} />
-                  </div>
-                  <span className="font-mono text-[11px] tabular-nums text-subtle-foreground">
-                    {fmtPercent(model.trafficPct, 0)}
+            <button
+              key={model.id}
+              type="button"
+              onClick={() => setDetail(model)}
+              aria-label={`Ver detalhes de ${model.displayName} — ${providerName(model.providerId)}, ${healthMeta[model.health].label}`}
+              className="flex flex-col gap-3 border border-border/35 bg-muted/20 p-4 text-left transition-colors hover:border-border hover:bg-muted/40 focus-visible:outline-1 focus-visible:outline-ring"
+            >
+              <header className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 flex-col gap-0.5">
+                  <span className="truncate font-mono text-[13px] text-foreground" data-no-translate>
+                    {model.name}
+                  </span>
+                  <span className="truncate text-[11px] text-subtle-foreground">
+                    {providerName(model.providerId)} · {model.type}
                   </span>
                 </div>
-              </TD>
-              <TD onClick={(e) => e.stopPropagation()}>
-                <div className="flex justify-end">
-                  <Toggle
-                    checked={model.status === 'active'}
-                    onChange={() => dispatch({ type: 'toggle_model', id: model.id })}
-                    label={`${model.status === 'active' ? 'Desativar' : 'Ativar'} ${model.name}`}
+                <div className="flex shrink-0 flex-col items-end gap-1">
+                  <StatusBadge tone={healthMeta[model.health].tone}>{healthMeta[model.health].label}</StatusBadge>
+                  {model.catalog !== 'enabled' && (
+                    <StatusBadge tone="muted" dot={false}>
+                      {catalogMeta[model.catalog].label}
+                    </StatusBadge>
+                  )}
+                </div>
+              </header>
+
+              <div className="flex items-end justify-between gap-3 border-t border-border/30 pt-3">
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Contexto</span>
+                  <span className="font-mono text-[17px] tabular-nums tracking-tight text-foreground">
+                    {fmtTokens(model.contextTokens)}
+                  </span>
+                </div>
+                <div className="flex flex-col items-end gap-0.5">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída máx.</span>
+                  <span className="font-mono text-[13px] tabular-nums text-muted-foreground">
+                    {model.maxOutputTokens > 0 ? `${fmtTokens(model.maxOutputTokens)} tokens` : '—'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <div className="flex items-baseline justify-between">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Tráfego 30d</span>
+                  <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                    {fmtPercent(model.trafficPct, 0)} · {fmtCompact(model.requests30d)} req
+                  </span>
+                </div>
+                <div className="h-1 w-full bg-muted" aria-hidden="true">
+                  <div
+                    className={cn('h-full', model.trafficPct > 0 ? 'bg-foreground/60' : 'bg-transparent')}
+                    style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }}
                   />
                 </div>
-              </TD>
-            </TR>
+              </div>
+
+              <dl className="flex items-center justify-between gap-3 border-t border-border/30 pt-3">
+                <div className="flex flex-col gap-0.5">
+                  <dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Entrada /1M</dt>
+                  <dd className="font-mono text-[12px] tabular-nums text-foreground">{fmtCurrency(model.inputPrice)}</dd>
+                </div>
+                <div className="flex flex-col items-end gap-0.5">
+                  <dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída /1M</dt>
+                  <dd className="font-mono text-[12px] tabular-nums text-foreground">
+                    {model.outputPrice > 0 ? fmtCurrency(model.outputPrice) : '—'}
+                  </dd>
+                </div>
+              </dl>
+
+              <div className="flex flex-wrap gap-1">
+                {capabilityLabels
+                  .filter((c) => model.capabilities[c.key])
+                  .map((c) => (
+                    <span
+                      key={c.key}
+                      className={cn(
+                        'border px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em]',
+                        c.key === 'vision'
+                          ? 'border-term-success/30 bg-term-success/5 text-term-success'
+                          : 'border-border text-subtle-foreground',
+                      )}
+                    >
+                      {c.label}
+                    </span>
+                  ))}
+              </div>
+
+              <footer className="flex items-center justify-between border-t border-border/30 pt-2.5 font-mono text-[10px] tabular-nums text-subtle-foreground">
+                <span>{model.latencyMs > 0 ? fmtLatency(model.latencyMs) : '—'} média</span>
+                <span>{model.uptimePct > 0 ? `${fmtPercent(model.uptimePct, 2)} uptime` : 'sem tráfego'}</span>
+              </footer>
+            </button>
           ))}
-          {filtered.length === 0 && (
-            <TR>
-              <TD colSpan={9} className="py-10 text-center text-subtle-foreground">
-                Nenhum modelo corresponde aos filtros selecionados.
-              </TD>
-            </TR>
-          )}
-        </TBody>
-      </Table>
+        </div>
+      )}
 
       <Dialog
         open={detail !== null}
         onOpenChange={(o) => {
           if (!o) setDetail(null)
         }}
-        title={detail?.name ?? ''}
-        description={detail ? `${providerName(detail.providerId)} · ${detail.type}` : undefined}
+        title={detail?.displayName ?? ''}
+        description={detail ? `${providerName(detail.providerId)} · ${detail.type} · ${healthMeta[detail.health].label}` : undefined}
         side="right"
       >
         {detail && (
           <div className="flex flex-col gap-5 p-5">
-            <div className="grid grid-cols-2 gap-px bg-border">
-              {[
-                { label: 'Status', value: detail.status === 'active' ? 'Ativo' : 'Inativo' },
-                { label: 'Janela de contexto', value: `${detail.contextWindow} tokens` },
-                { label: 'Entrada / 1M tokens', value: fmtCurrency(detail.inputPrice) },
-                { label: 'Saída / 1M tokens', value: detail.outputPrice > 0 ? fmtCurrency(detail.outputPrice) : '—' },
-                { label: 'Latência média', value: fmtLatency(detail.latencyMs) },
-                { label: 'Tráfego do gateway', value: fmtPercent(detail.trafficPct, 0) },
-              ].map((item) => (
-                <div key={item.label} className="flex flex-col gap-1 bg-card p-3">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">{item.label}</span>
-                  <span className="font-mono text-[13px] tabular-nums text-foreground">{item.value}</span>
-                </div>
-              ))}
-            </div>
-
             <div className="flex flex-col gap-2">
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Identificador no gateway</p>
-              <code className="border border-border bg-background px-3 py-2 font-mono text-[12px] text-muted-foreground" data-no-translate>
-                nylla/{detail.id}
+              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">ID no gateway</p>
+              <code
+                className="border border-border bg-background px-3 py-2 font-mono text-[12px] text-muted-foreground"
+                data-no-translate
+              >
+                {detail.gatewayId}
               </code>
             </div>
 
-            <div className="flex items-center justify-between border-t border-border pt-4">
-              <span className="text-[13px] text-foreground">
-                {detail.status === 'active' ? 'Modelo ativo no gateway' : 'Modelo desativado'}
-              </span>
-              <Button
-                variant={detail.status === 'active' ? 'outline' : 'default'}
-                size="sm"
-                onClick={() => {
-                  dispatch({ type: 'toggle_model', id: detail.id })
-                  setDetail({ ...detail, status: detail.status === 'active' ? 'inactive' : 'active' })
-                }}
-              >
-                {detail.status === 'active' ? 'Desativar' : 'Ativar'}
-              </Button>
+            <DetailSection
+              title="Identificação"
+              rows={[
+                ['Nome técnico', detail.name],
+                ['Versão', detail.version],
+                ['Provedor', providerName(detail.providerId)],
+                ['Tipo', detail.type],
+                ['Knowledge cutoff', detail.knowledgeCutoff],
+                ['Catálogo', catalogMeta[detail.catalog].label],
+              ]}
+            />
+
+            <DetailSection
+              title="Limites"
+              rows={[
+                ['Contexto total', `${fmtNumber(detail.contextTokens)} tokens`],
+                ['Saída máxima', detail.maxOutputTokens > 0 ? `${fmtNumber(detail.maxOutputTokens)} tokens` : '—'],
+              ]}
+            />
+
+            <DetailSection
+              title="Preço"
+              rows={[
+                ['Entrada / 1M tokens', fmtCurrency(detail.inputPrice)],
+                ['Saída / 1M tokens', detail.outputPrice > 0 ? fmtCurrency(detail.outputPrice) : '—'],
+              ]}
+            />
+
+            <DetailSection
+              title="Uso nos últimos 30 dias"
+              rows={[
+                ['Tráfego do gateway', fmtPercent(detail.trafficPct, 0)],
+                ['Requisições', fmtNumber(detail.requests30d)],
+                ['Tokens processados', fmtNumber(detail.tokens30d)],
+              ]}
+            />
+
+            <DetailSection
+              title="Confiabilidade"
+              rows={[
+                ['Latência média', detail.latencyMs > 0 ? fmtLatency(detail.latencyMs) : '—'],
+                ['Latência p95', detail.latencyP95Ms > 0 ? fmtLatency(detail.latencyP95Ms) : '—'],
+                ['Taxa de erro', fmtPercent(detail.errorRate, 2)],
+                ['Uptime', detail.uptimePct > 0 ? fmtPercent(detail.uptimePct, 2) : '—'],
+              ]}
+            />
+
+            <div className="flex flex-col gap-2">
+              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Capacidades</p>
+              <ul className="flex flex-col divide-y divide-border/30 border border-border/35">
+                {capabilityLabels.map((c) => {
+                  const supported = detail.capabilities[c.key]
+                  return (
+                    <li key={c.key} className="flex items-center justify-between px-3 py-2">
+                      <span className="text-[12px] text-foreground">{c.label}</span>
+                      {supported ? (
+                        <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-term-success">
+                          <Check className="size-3" /> Suportado
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-subtle-foreground">
+                          <Minus className="size-3" /> Indisponível
+                        </span>
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
             </div>
+
+            <p className="flex items-start gap-2 border-t border-border pt-4 text-[11px] leading-relaxed text-muted-foreground">
+              <Lock className="mt-0.5 size-3 shrink-0" aria-hidden="true" />
+              {catalogMeta[detail.catalog].hint} A configuração dos modelos é gerenciada pelo gateway Nylla e não pode ser
+              alterada no painel.
+            </p>
           </div>
         )}
       </Dialog>
     </>
+  )
+}
+
+function DetailSection({ title, rows }: { title: string; rows: [string, string][] }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{title}</p>
+      <dl className="flex flex-col divide-y divide-border/30 border border-border/35">
+        {rows.map(([label, value]) => (
+          <div key={label} className="flex items-baseline justify-between gap-4 px-3 py-2">
+            <dt className="text-[12px] text-muted-foreground">{label}</dt>
+            <dd className="text-right font-mono text-[12px] tabular-nums text-foreground" data-no-translate>
+              {value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   )
 }
