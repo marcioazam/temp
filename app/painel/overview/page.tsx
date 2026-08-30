@@ -52,7 +52,7 @@ function KpiCard({
   // Para métricas em que queda é positiva (latência, erros), o tom acompanha o benefício.
   const good = invert ? delta <= 0 : delta >= 0
   return (
-    <div className="group flex flex-col gap-2 border border-border/35 bg-muted/20 p-4 transition-colors hover:border-border/60">
+    <div className="flex flex-col gap-2 border border-border/35 bg-muted/20 p-4">
       <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{label}</p>
       <div className="flex items-end justify-between gap-3">
         <div className="flex flex-col gap-1.5">
@@ -70,7 +70,7 @@ function KpiCard({
         <Sparkline
           data={[...spark]}
           tone={quality ? (good ? 'up' : 'down') : 'neutral'}
-          className="opacity-55 transition-opacity group-hover:opacity-95"
+          className="opacity-55"
         />
       </div>
     </div>
