@@ -115,7 +115,7 @@ export default function ApiKeysPage() {
       prefix: `${envPrefix}_${suffix.slice(0, 4)}`,
       environment: newEnv,
       scope: 'Completo',
-      lastUsed: 'Não disponível',
+      lastUsed: '—',
       createdBy: 'Ana Ribeiro',
       createdAt: new Date().toLocaleDateString('pt-BR'),
       revoked: false,
@@ -255,7 +255,7 @@ export default function ApiKeysPage() {
                   </td>
                   <td className="py-2.5 pr-4 font-mono text-[12px] text-subtle-foreground">{key.lastUsed}</td>
                   <td className="py-2.5 pr-4 text-right font-mono text-[12px] tabular-nums text-muted-foreground">
-                    {key.requests30d != null ? fmtCompact(key.requests30d) : 'Não disponível'}
+                    {key.requests30d != null ? fmtCompact(key.requests30d) : '—'}
                   </td>
                   <td className="py-2.5 pr-4">
                     <div className="flex items-center justify-end gap-1 font-mono text-[12px] text-subtle-foreground">
@@ -359,7 +359,7 @@ export default function ApiKeysPage() {
               <TextInput
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
-                placeholder="Ex.: Produção Não disponível API principal"
+                placeholder="Ex.: Produção — API principal"
                 autoFocus
                 required
               />

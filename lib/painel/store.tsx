@@ -68,7 +68,7 @@ function reducer(state: PainelState, action: Action): PainelState {
     case 'rotate_key':
       return {
         ...state,
-        keys: state.keys.map((k) => (k.id === action.id ? { ...k, prefix: action.prefix, lastUsed: 'Não disponível' } : k)),
+        keys: state.keys.map((k) => (k.id === action.id ? { ...k, prefix: action.prefix, lastUsed: '—' } : k)),
         activity: pushActivity(state, 'Chave rotacionada', state.keys.find((k) => k.id === action.id)?.name ?? '', 'key'),
       }
     case 'update_key_expiration':

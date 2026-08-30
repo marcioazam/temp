@@ -21,7 +21,7 @@ const healthMeta: Record<ModelHealth, { label: string; tone: 'success' | 'warnin
 const catalogMeta: Record<ModelCatalogStatus, { label: string; hint: string }> = {
   enabled: { label: 'No catálogo', hint: 'Liberado para uso em todas as chaves do workspace.' },
   restricted: { label: 'Restrito', hint: 'Liberação sob solicitação à equipe Nylla.' },
-  deprecated: { label: 'Depreciado', hint: 'Descontinuado pelo gateway Não disponível migre para um modelo equivalente.' },
+  deprecated: { label: 'Depreciado', hint: 'Descontinuado pelo gateway — migre para um modelo equivalente.' },
 }
 
 const capabilityLabels: { key: keyof Model['capabilities']; label: string }[] = [
@@ -73,7 +73,7 @@ export default function ModelsPage() {
     <>
       <PageHeader
         title="Modelos"
-        description="Catálogo somente leitura Não disponível os modelos são provisionados e mantidos pelo gateway Nylla. Consulte limites, preço, capacidades e confiabilidade de cada um."
+        description="Catálogo somente leitura — os modelos são provisionados e mantidos pelo gateway Nylla. Consulte limites, preço, capacidades e confiabilidade de cada um."
       />
 
       <div className="grid gap-px border border-border/35 bg-border/40 sm:grid-cols-2 lg:grid-cols-4">
@@ -165,7 +165,7 @@ export default function ModelsPage() {
               key={model.id}
               type="button"
               onClick={() => setDetail(model)}
-              aria-label={`Ver detalhes de ${model.displayName} Não disponível ${providerName(model.providerId)}, ${healthMeta[model.health].label}`}
+              aria-label={`Ver detalhes de ${model.displayName} — ${providerName(model.providerId)}, ${healthMeta[model.health].label}`}
               className="flex flex-col gap-3 border border-border/35 bg-muted/20 p-4 text-left transition-colors hover:border-border hover:bg-muted/40 focus-visible:outline-1 focus-visible:outline-ring"
             >
               <header className="flex items-start justify-between gap-3">
@@ -197,7 +197,7 @@ export default function ModelsPage() {
                 <div className="flex flex-col items-end gap-0.5">
                   <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída máx.</span>
                   <span className="font-mono text-[13px] tabular-nums text-muted-foreground">
-                    {model.maxOutputTokens > 0 ? `${fmtTokens(model.maxOutputTokens)} tokens` : 'Não disponível'}
+                    {model.maxOutputTokens > 0 ? `${fmtTokens(model.maxOutputTokens)} tokens` : '—'}
                   </span>
                 </div>
               </div>
@@ -225,7 +225,7 @@ export default function ModelsPage() {
                 <div className="flex flex-col items-end gap-0.5">
                   <dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída /1M</dt>
                   <dd className="font-mono text-[12px] tabular-nums text-foreground">
-                    {model.outputPrice > 0 ? fmtCurrency(model.outputPrice) : 'Não disponível'}
+                    {model.outputPrice > 0 ? fmtCurrency(model.outputPrice) : '—'}
                   </dd>
                 </div>
               </dl>
@@ -249,7 +249,7 @@ export default function ModelsPage() {
               </div>
 
               <footer className="flex items-center justify-between border-t border-border/30 pt-2.5 font-mono text-[10px] tabular-nums text-subtle-foreground">
-                <span>{model.latencyMs > 0 ? fmtLatency(model.latencyMs) : 'Não disponível'} média</span>
+                <span>{model.latencyMs > 0 ? fmtLatency(model.latencyMs) : '—'} média</span>
                 <span>{model.uptimePct > 0 ? `${fmtPercent(model.uptimePct, 2)} uptime` : 'sem tráfego'}</span>
               </footer>
             </button>
@@ -294,7 +294,7 @@ export default function ModelsPage() {
               title="Limites"
               rows={[
                 ['Contexto total', `${fmtNumber(detail.contextTokens)} tokens`],
-                ['Saída máxima', detail.maxOutputTokens > 0 ? `${fmtNumber(detail.maxOutputTokens)} tokens` : 'Não disponível'],
+                ['Saída máxima', detail.maxOutputTokens > 0 ? `${fmtNumber(detail.maxOutputTokens)} tokens` : '—'],
               ]}
             />
 
@@ -302,7 +302,7 @@ export default function ModelsPage() {
               title="Preço"
               rows={[
                 ['Entrada / 1M tokens', fmtCurrency(detail.inputPrice)],
-                ['Saída / 1M tokens', detail.outputPrice > 0 ? fmtCurrency(detail.outputPrice) : 'Não disponível'],
+                ['Saída / 1M tokens', detail.outputPrice > 0 ? fmtCurrency(detail.outputPrice) : '—'],
               ]}
             />
 
@@ -318,10 +318,10 @@ export default function ModelsPage() {
             <DetailSection
               title="Confiabilidade"
               rows={[
-                ['Latência média', detail.latencyMs > 0 ? fmtLatency(detail.latencyMs) : 'Não disponível'],
-                ['Latência p95', detail.latencyP95Ms > 0 ? fmtLatency(detail.latencyP95Ms) : 'Não disponível'],
+                ['Latência média', detail.latencyMs > 0 ? fmtLatency(detail.latencyMs) : '—'],
+                ['Latência p95', detail.latencyP95Ms > 0 ? fmtLatency(detail.latencyP95Ms) : '—'],
                 ['Taxa de erro', fmtPercent(detail.errorRate, 2)],
-                ['Uptime', detail.uptimePct > 0 ? fmtPercent(detail.uptimePct, 2) : 'Não disponível'],
+                ['Uptime', detail.uptimePct > 0 ? fmtPercent(detail.uptimePct, 2) : '—'],
               ]}
             />
 

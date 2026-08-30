@@ -1,4 +1,4 @@
-# Spec : Declaração de Acessibilidade (Nylla)
+# Spec — Declaração de Acessibilidade (Nylla)
 
 Rota: `/acessibilidade`. Padrão visual idêntico a `/privacidade` e `/termos`
 (navbar/footer globais, coluna `max-w-2xl` centrada, títulos mono, prosa +
@@ -13,7 +13,7 @@ linhas rótulo → valor). SOTA 2026, minimalista.
 - **eMAG**: modelo do governo federal, referência complementar.
 - **Internacional**: EN 301 549 e o European Accessibility Act (vigente desde
   28/06/2025) exigem uma *accessibility statement* com componentes definidos.
-- **Modelo W3C de accessibility statement** : componentes esperados:
+- **Modelo W3C de accessibility statement** — componentes esperados:
   1. Compromisso com acessibilidade.
   2. Status de conformidade (total / parcial / não conforme) + norma aplicada.
   3. Conteúdo conhecido como não acessível (barreiras).
@@ -27,7 +27,7 @@ linhas rótulo → valor). SOTA 2026, minimalista.
 
 ## Decisões de conteúdo
 
-- **Meta declarada**: WCAG 2.2 nível AA / NBR 17225 : status **parcialmente
+- **Meta declarada**: WCAG 2.2 nível AA / NBR 17225 — status **parcialmente
   conforme** (postura honesta e defensável; declarar "totalmente conforme" sem
   auditoria é arriscado).
 - **Recursos**: HTML semântico, navegação por teclado, foco visível, contraste

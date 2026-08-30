@@ -1,10 +1,10 @@
-# Spec : Política de Cookies
+# Spec — Política de Cookies
 
 Documento de pesquisa e decisões para `/politica-de-cookies`.
 
 ## 1. Por que existe uma página dedicada
 
-A LGPD não exige documento separado de cookies : bastaria a seção dentro do aviso de
+A LGPD não exige documento separado de cookies — bastaria a seção dentro do aviso de
 privacidade. A página dedicada foi criada por decisão de produto, para o padrão
 GDPR/ePrivacy, que trata a política de cookies como documento **autônomo e acessível**,
 com inventário nominal completo.
@@ -16,7 +16,7 @@ Por cookie, seis campos obrigatórios:
 | Campo | Aplicação na Nylla |
 | --- | --- |
 | Nome | Nome técnico exato (`nylla_consent`) |
-| Provedor | Quem grava : primária (Nylla) ou terceiro nomeado |
+| Provedor | Quem grava — primária (Nylla) ou terceiro nomeado |
 | Finalidade | Linguagem simples, sem jargão |
 | Categoria | Necessário · Análise · Marketing (idênticas ao banner) |
 | Duração | Prazo exato de expiração |
@@ -28,10 +28,10 @@ do banner.
 
 ## 3. Requisitos brasileiros (LGPD)
 
-- Art. 9º : informação clara sobre finalidade e forma do tratamento.
-- Art. 8º, §1º : prova do consentimento (versão, data/hora, método, categorias).
-- Art. 8º, §5º : revogação por procedimento gratuito e facilitado.
-- Marco Civil, art. 15 : registros de acesso guardados 6 meses (não é cookie, mas é
+- Art. 9º — informação clara sobre finalidade e forma do tratamento.
+- Art. 8º, §1º — prova do consentimento (versão, data/hora, método, categorias).
+- Art. 8º, §5º — revogação por procedimento gratuito e facilitado.
+- Marco Civil, art. 15 — registros de acesso guardados 6 meses (não é cookie, mas é
   citado para diferenciar do inventário de cookies).
 
 ## 4. Inventário real (auditado no código)
@@ -70,13 +70,13 @@ entra no inventário com a mesma estrutura de campos, e não como nota de rodap�
   o peso visual de uma tabela.
 - Categorias renderizadas a partir de `CONSENT_CATEGORIES` e prazos a partir de
   `CONSENT_MAX_AGE_DAYS` / `CONSENT_VERSION`, garantindo a paridade exigida entre
-  política e banner por construção : não por revisão manual.
+  política e banner por construção — não por revisão manual.
 - Botão de preferências reutiliza `CookiePreferencesButton`, cumprindo a revogação
   facilitada no próprio documento.
 
 ## 7. Pendências jurídicas
 
-- Revisar a política quando qualquer script de terceiro for adicionado : a entrada
+- Revisar a política quando qualquer script de terceiro for adicionado — a entrada
   correspondente deve ser criada **antes** do deploy.
 - Se um provedor de marketing entrar, atualizar categoria, inventário e a seção de
   transferência internacional.

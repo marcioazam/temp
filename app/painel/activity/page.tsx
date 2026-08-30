@@ -49,7 +49,7 @@ export default function ActivityLogsPage() {
     <>
       <PageHeader
         title="Logs"
-        description="Registro de atividades do workspace : chaves, modelos, usuários, orçamento e provedores."
+        description="Registro de atividades do workspace — chaves, modelos, usuários, orçamento e provedores."
       />
 
       <div className="flex flex-wrap items-center gap-2">
