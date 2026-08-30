@@ -182,7 +182,7 @@ export default function ModelsPage() {
                 onClick={() => setDetail(model)}
                 aria-label={`Ver detalhes de ${model.displayName}: ${providerName(model.providerId)}, ${health.label}`}
                 className={cn(
-                  'relative flex flex-col border border-canvas-ink/15 bg-canvas-paper text-left',
+                  'relative flex flex-col border border-canvas-ink/15 bg-model-surface text-left',
                   'focus-visible:outline-1 focus-visible:outline-ring',
                   model.catalog === 'deprecated' && 'opacity-60',
                 )}
@@ -273,11 +273,11 @@ export default function ModelsPage() {
 
                 {/* Preço + capacidades em rodapé denso */}
                 <div className="mt-auto grid grid-cols-2 gap-px border-t border-canvas-ink/15 bg-canvas-ink/10">
-                  <div className="flex flex-col gap-0.5 bg-canvas-paper px-4 py-2.5">
+                  <div className="flex flex-col gap-0.5 bg-model-surface px-4 py-2.5">
                     <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-canvas-ink/50">Entrada /1M</span>
                     <span className="font-mono text-[12px] tabular-nums text-canvas-ink">{fmtCurrency(model.inputPrice)}</span>
                   </div>
-                  <div className="flex flex-col gap-0.5 bg-canvas-paper px-4 py-2.5 text-right">
+                  <div className="flex flex-col gap-0.5 bg-model-surface px-4 py-2.5 text-right">
                     <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-canvas-ink/50">Saída /1M</span>
                     <span className="font-mono text-[12px] tabular-nums text-canvas-ink">
                       {model.outputPrice > 0 ? fmtCurrency(model.outputPrice) : 'n/d'}
