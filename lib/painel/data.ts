@@ -37,6 +37,7 @@ export interface Model {
   requests30d: number
   tokens30d: number
   latencyMs: number
+  tokensPerSecond?: number
   latencyP95Ms: number
   errorRate: number
   uptimePct: number

@@ -31,6 +31,24 @@ const capabilityLabels: { key: keyof Model['capabilities']; label: string }[] = 
   { key: 'jsonMode', label: 'JSON' },
 ]
 
+const averageTokensPerSecond: Record<string, number> = {
+  'gpt-4.1': 72,
+  'gpt-4.1-mini': 118,
+  'o4-mini': 34,
+  'text-embedding-3': 824,
+  'whisper-large-v3': 51,
+  'gpt-4o': 79,
+  'claude-sonnet-4-5': 68,
+  'claude-haiku-4-5': 126,
+  'claude-opus-4-1': 41,
+  'gemini-2.5-pro': 61,
+  'gemini-2.5-flash': 142,
+  'mistral-large': 86,
+  'pixtral-large': 64,
+  'llama-3.3-70b': 284,
+  'command-r-plus': 0,
+}
+
 export default function ModelsPage() {
   const { state } = usePainel()
   const [query, setQuery] = useState('')
@@ -305,8 +323,13 @@ export default function ModelsPage() {
                       )
                     })}
                   </div>
-                  <span className="font-mono text-[10px] tabular-nums text-subtle-foreground">
-                    {model.latencyMs > 0 ? fmtLatency(model.latencyMs) : 'sem tráfego'}
+                  <span
+                    className="font-mono text-[10px] tabular-nums text-subtle-foreground"
+                    title="Média de tokens gerados por segundo"
+                  >
+                    {averageTokensPerSecond[model.id] > 0
+                      ? `${averageTokensPerSecond[model.id]} tok/s`
+                      : 'sem tráfego'}
                   </span>
                 </footer>
               </button>
