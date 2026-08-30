@@ -438,8 +438,8 @@ export default function ModelsPage() {
               <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
                 Preço por 1M tokens
               </h3>
-              <div className="grid grid-cols-2 gap-px border border-border/35 bg-border/20">
-                <div className="flex flex-col gap-0.5 bg-card px-4 py-3">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="flex flex-col gap-0.5">
                   <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
                     Entrada
                   </span>
@@ -447,7 +447,7 @@ export default function ModelsPage() {
                     {fmtCurrency(detail.inputPrice)}
                   </span>
                 </div>
-                <div className="flex flex-col gap-0.5 bg-card px-4 py-3">
+                <div className="flex flex-col gap-0.5">
                   <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
                     Saída
                   </span>
