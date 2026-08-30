@@ -109,47 +109,48 @@ export default function ActivityLogsPage() {
             Nenhuma atividade encontrada para os filtros atuais.
           </p>
         ) : (
-          <>
-            <ul className="divide-y divide-border/30">
-              {pageItems.map((item) => (
-                <li key={item.id} className="flex items-baseline gap-3 px-4 py-3 transition-colors hover:bg-muted/30">
-                  <span className="mt-1 size-1 shrink-0 rounded-full bg-term-success" aria-hidden="true" />
-                  <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-                    <span className="text-[13px] text-foreground">{item.text}</span>
-                    <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
-                  </div>
-                  <StatusBadge tone="muted" dot={false} className="hidden shrink-0 sm:inline-flex">
-                    {kindLabels[item.kind]}
-                  </StatusBadge>
-                  <time
-                    dateTime={item.occurredAt}
-                    className="shrink-0 font-mono text-[10px] tabular-nums text-subtle-foreground"
-                    title={item.time}
-                  >
-                    {item.occurredAt}
-                  </time>
-                </li>
-              ))}
-            </ul>
-            <footer className="flex items-center justify-between border-t border-border/30 px-4 py-2.5">
-              <span className="font-mono text-[10px] tabular-nums text-subtle-foreground">
-                {firstItem}–{lastItem} de {filtered.length} eventos
-              </span>
-              <div className="flex items-center gap-1">
-                <Button variant="outline" size="xs" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}>
-                  Anterior
-                </Button>
-                <span className="min-w-12 text-center font-mono text-[10px] tabular-nums text-subtle-foreground">
-                  {currentPage}/{pageCount}
-                </span>
-                <Button variant="outline" size="xs" disabled={currentPage === pageCount} onClick={() => setPage(currentPage + 1)}>
-                  Próxima
-                </Button>
-              </div>
-            </footer>
-          </>
+          <ul className="divide-y divide-border/30">
+            {pageItems.map((item) => (
+              <li key={item.id} className="flex items-baseline gap-3 px-4 py-3 transition-colors hover:bg-muted/30">
+                <span className="mt-1 size-1 shrink-0 rounded-full bg-term-success" aria-hidden="true" />
+                <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                  <span className="text-[13px] text-foreground">{item.text}</span>
+                  <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
+                </div>
+                <StatusBadge tone="muted" dot={false} className="hidden shrink-0 sm:inline-flex">
+                  {kindLabels[item.kind]}
+                </StatusBadge>
+                <time
+                  dateTime={item.occurredAt}
+                  className="shrink-0 font-mono text-[10px] tabular-nums text-subtle-foreground"
+                  title={item.time}
+                >
+                  {item.occurredAt}
+                </time>
+              </li>
+            ))}
+          </ul>
         )}
       </section>
+
+      {filtered.length > 0 && (
+        <footer className="flex items-center justify-between px-1 py-1">
+          <span className="font-mono text-[10px] tabular-nums text-subtle-foreground">
+            {firstItem}–{lastItem} de {filtered.length} eventos
+          </span>
+          <div className="flex items-center gap-1">
+            <Button variant="outline" size="xs" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}>
+              Anterior
+            </Button>
+            <span className="min-w-12 text-center font-mono text-[10px] tabular-nums text-subtle-foreground">
+              {currentPage}/{pageCount}
+            </span>
+            <Button variant="outline" size="xs" disabled={currentPage === pageCount} onClick={() => setPage(currentPage + 1)}>
+              Próxima
+            </Button>
+          </div>
+        </footer>
+      )}
     </>
   )
 }
