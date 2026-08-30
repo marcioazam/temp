@@ -255,22 +255,6 @@ export default function ModelsPage() {
                   </div>
                 </div>
 
-                {/* Uso do gateway */}
-                <div className="flex flex-col gap-1.5 px-4 pb-3">
-                  <div className="flex items-baseline justify-between">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Tráfego 30d</span>
-                    <span className="font-mono text-[11px] tabular-nums text-foreground/60">
-                      <span className="text-term-success">{fmtPercent(model.trafficPct, 0)}</span> · {fmtCompact(model.requests30d)} req
-                    </span>
-                  </div>
-                  <div className="h-0.5 w-full bg-border/50" aria-hidden="true">
-                    <div
-                      className={cn('h-full', model.trafficPct > 0 ? 'bg-term-success' : 'bg-transparent')}
-                      style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }}
-                    />
-                  </div>
-                </div>
-
                 {/* Preço + capacidades em rodapé denso */}
                 <div className="mt-auto grid grid-cols-2 gap-px border-t border-border/30 bg-border/20">
                   <div className="flex flex-col gap-0.5 bg-card px-4 py-2.5">
