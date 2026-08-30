@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Check, Lock, Minus } from 'lucide-react'
+import { Check, Copy as CopyIcon, Lock, Minus } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import type { Model, ModelCatalogStatus, ModelHealth } from '@/lib/painel/data'
@@ -329,95 +329,213 @@ export default function ModelsPage() {
           if (!o) setDetail(null)
         }}
         title={detail?.displayName ?? ''}
-        description={detail ? `${providerName(detail.providerId)} · ${detail.type} · ${healthMeta[detail.health].label}` : undefined}
+        description={detail ? providerName(detail.providerId) : undefined}
         side="right"
+        showHeaderBorder={false}
       >
         {detail && (
-          <div className="flex flex-col gap-5 p-5">
-            <div className="flex flex-col gap-2">
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">ID no gateway</p>
-              <code
-                className="border border-border bg-background px-3 py-2 font-mono text-[12px] text-muted-foreground"
-                data-no-translate
+          <div className="flex flex-col">
+            {/* Status + identidade */}
+            <div className="flex items-center justify-between gap-3 px-5 pb-4">
+              <div className="flex flex-wrap items-center gap-1.5">
+                {detail.categories.map((category) => (
+                  <span
+                    key={category}
+                    className="bg-foreground/8 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-foreground"
+                  >
+                    {category}
+                  </span>
+                ))}
+              </div>
+              <span
+                className={cn(
+                  'inline-flex shrink-0 items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.1em]',
+                  detail.health === 'operational' && 'text-term-success',
+                  detail.health === 'degraded' && 'text-status-warning',
+                  detail.health === 'down' && 'text-destructive',
+                )}
               >
-                {detail.gatewayId}
-              </code>
+                <span
+                  className={cn('size-1 bg-current', detail.health !== 'down' && 'animate-pulse')}
+                  aria-hidden="true"
+                />
+                {healthMeta[detail.health].label}
+              </span>
             </div>
 
-            <DetailSection
-              title="Identificação"
-              rows={[
-                ['Nome técnico', detail.name],
-                ['Versão', detail.version],
-                ['Provedor', providerName(detail.providerId)],
-                ['Tipo', detail.type],
-                ['Knowledge cutoff', detail.knowledgeCutoff],
-                ['Catálogo', catalogMeta[detail.catalog].label],
-              ]}
-            />
+            {/* ID no gateway */}
+            <div className="mx-5 flex items-center justify-between gap-3 border border-border/35 bg-muted/20 px-3 py-2.5">
+              <div className="flex min-w-0 flex-col gap-0.5">
+                <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                  ID no gateway
+                </span>
+                <code className="truncate font-mono text-[12px] text-foreground" data-no-translate>
+                  {detail.gatewayId}
+                </code>
+              </div>
+              <CopyIdButton value={detail.gatewayId} />
+            </div>
 
-            <DetailSection
-              title="Limites"
-              rows={[
-                ['Contexto total', `${fmtNumber(detail.contextTokens)} tokens`],
-                ['Saída máxima', detail.maxOutputTokens > 0 ? `${fmtNumber(detail.maxOutputTokens)} tokens` : '—'],
-              ]}
-            />
+            {/* Métricas-herói */}
+            <div className="mt-5 grid grid-cols-3 gap-px border-y border-border/35 bg-border/20">
+              <div className="flex flex-col gap-1 bg-card px-5 py-4">
+                <span className="font-mono text-[20px] leading-none tabular-nums tracking-tight text-foreground">
+                  {fmtTokens(detail.contextTokens)}
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                  Contexto
+                </span>
+              </div>
+              <div className="flex flex-col gap-1 bg-card px-5 py-4">
+                <span className="font-mono text-[20px] leading-none tabular-nums tracking-tight text-foreground">
+                  {detail.maxOutputTokens > 0 ? fmtTokens(detail.maxOutputTokens) : '—'}
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                  Saída máx.
+                </span>
+              </div>
+              <div className="flex flex-col gap-1 bg-card px-5 py-4">
+                <span
+                  className={cn(
+                    'font-mono text-[20px] leading-none tabular-nums tracking-tight',
+                    averageTokensPerSecond[detail.id] > 0 ? 'text-term-success' : 'text-subtle-foreground',
+                  )}
+                >
+                  {averageTokensPerSecond[detail.id] > 0 ? averageTokensPerSecond[detail.id] : '—'}
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                  tok/s médio
+                </span>
+              </div>
+            </div>
 
-            <DetailSection
-              title="Preço"
-              rows={[
-                ['Entrada / 1M tokens', fmtCurrency(detail.inputPrice)],
-                ['Saída / 1M tokens', detail.outputPrice > 0 ? fmtCurrency(detail.outputPrice) : '—'],
-              ]}
-            />
+            {/* Uso 30d */}
+            <section className="flex flex-col gap-3 px-5 py-5" aria-label="Uso nos últimos 30 dias">
+              <div className="flex items-baseline justify-between">
+                <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Uso 30d</h3>
+                <span className="font-mono text-[13px] tabular-nums text-term-success">
+                  {fmtPercent(detail.trafficPct, 0)}
+                </span>
+              </div>
+              <div className="h-0.5 w-full bg-border/50" aria-hidden="true">
+                <div
+                  className="h-full bg-term-success"
+                  style={{ width: `${Math.min(100, detail.trafficPct)}%` }}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                  {fmtCompact(detail.requests30d)} requisições
+                </span>
+                <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                  {fmtCompact(detail.tokens30d)} tokens
+                </span>
+              </div>
+            </section>
 
-            <DetailSection
-              title="Uso nos últimos 30 dias"
-              rows={[
-                ['Tráfego do gateway', fmtPercent(detail.trafficPct, 0)],
-                ['Requisições', fmtNumber(detail.requests30d)],
-                ['Tokens processados', fmtNumber(detail.tokens30d)],
-              ]}
-            />
+            {/* Preço */}
+            <section className="flex flex-col gap-2.5 border-t border-border/35 px-5 py-5" aria-label="Preço">
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
+                Preço por 1M tokens
+              </h3>
+              <div className="grid grid-cols-2 gap-px border border-border/35 bg-border/20">
+                <div className="flex flex-col gap-0.5 bg-card px-4 py-3">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                    Entrada
+                  </span>
+                  <span className="font-mono text-[15px] tabular-nums text-foreground">
+                    {fmtCurrency(detail.inputPrice)}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-0.5 bg-card px-4 py-3">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                    Saída
+                  </span>
+                  <span className="font-mono text-[15px] tabular-nums text-foreground">
+                    {detail.outputPrice > 0 ? fmtCurrency(detail.outputPrice) : '—'}
+                  </span>
+                </div>
+              </div>
+            </section>
 
-            <DetailSection
-              title="Confiabilidade"
-              rows={[
-                ['Latência média', detail.latencyMs > 0 ? fmtLatency(detail.latencyMs) : '—'],
-                ['Latência p95', detail.latencyP95Ms > 0 ? fmtLatency(detail.latencyP95Ms) : '—'],
-                ['Taxa de erro', fmtPercent(detail.errorRate, 2)],
-                ['Uptime', detail.uptimePct > 0 ? fmtPercent(detail.uptimePct, 2) : '—'],
-              ]}
-            />
+            {/* Confiabilidade */}
+            <section className="flex flex-col gap-2.5 border-t border-border/35 px-5 py-5" aria-label="Confiabilidade">
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
+                Confiabilidade
+              </h3>
+              <dl className="grid grid-cols-2 gap-x-6 gap-y-3">
+                {(
+                  [
+                    ['Latência média', detail.latencyMs > 0 ? fmtLatency(detail.latencyMs) : '—'],
+                    ['Latência p95', detail.latencyP95Ms > 0 ? fmtLatency(detail.latencyP95Ms) : '—'],
+                    ['Taxa de erro', fmtPercent(detail.errorRate, 2)],
+                    ['Uptime', detail.uptimePct > 0 ? fmtPercent(detail.uptimePct, 2) : '—'],
+                  ] as [string, string][]
+                ).map(([label, value]) => (
+                  <div key={label} className="flex flex-col gap-0.5">
+                    <dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                      {label}
+                    </dt>
+                    <dd className="font-mono text-[13px] tabular-nums text-foreground" data-no-translate>
+                      {value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
 
-            <div className="flex flex-col gap-2">
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">Capacidades</p>
-              <ul className="flex flex-col divide-y divide-border/30 border border-border/35">
+            {/* Capacidades */}
+            <section className="flex flex-col gap-2.5 border-t border-border/35 px-5 py-5" aria-label="Capacidades">
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
+                Capacidades
+              </h3>
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
                 {capabilityLabels.map((c) => {
                   const supported = detail.capabilities[c.key]
                   return (
-                    <li key={c.key} className="flex items-center justify-between px-3 py-2">
-                      <span className="text-[12px] text-foreground">{c.label}</span>
+                    <li key={c.key} className="flex items-center justify-between gap-2">
+                      <span className={cn('text-[12px]', supported ? 'text-foreground' : 'text-subtle-foreground')}>
+                        {c.label}
+                      </span>
                       {supported ? (
-                        <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-term-success">
-                          <Check className="size-3" /> Suportado
-                        </span>
+                        <Check className="size-3 text-term-success" aria-label="Suportado" />
                       ) : (
-                        <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-subtle-foreground">
-                          <Minus className="size-3" /> Indisponível
-                        </span>
+                        <Minus className="size-3 text-border" aria-label="Indisponível" />
                       )}
                     </li>
                   )
                 })}
               </ul>
-            </div>
+            </section>
 
-            <p className="flex items-start gap-2 border-t border-border pt-4 text-[11px] leading-relaxed text-muted-foreground">
+            {/* Especificações */}
+            <section className="flex flex-col gap-2.5 border-t border-border/35 px-5 py-5" aria-label="Especificações">
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
+                Especificações
+              </h3>
+              <dl className="flex flex-col gap-2">
+                {(
+                  [
+                    ['Nome técnico', detail.name],
+                    ['Versão', detail.version],
+                    ['Knowledge cutoff', detail.knowledgeCutoff],
+                    ['Catálogo', catalogMeta[detail.catalog].label],
+                  ] as [string, string][]
+                ).map(([label, value]) => (
+                  <div key={label} className="flex items-baseline justify-between gap-4">
+                    <dt className="text-[12px] text-muted-foreground">{label}</dt>
+                    <dd className="text-right font-mono text-[12px] tabular-nums text-foreground" data-no-translate>
+                      {value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+
+            <p className="mx-5 mb-5 flex items-start gap-2 border-t border-border/35 pt-4 text-[11px] leading-relaxed text-subtle-foreground">
               <Lock className="mt-0.5 size-3 shrink-0" aria-hidden="true" />
-              {catalogMeta[detail.catalog].hint} A configuração dos modelos é gerenciada pelo gateway Nylla e não pode ser
-              alterada no painel.
+              {catalogMeta[detail.catalog].hint} A configuração é gerenciada pelo gateway Nylla e não pode ser alterada
+              no painel.
             </p>
           </div>
         )}
@@ -426,20 +544,20 @@ export default function ModelsPage() {
   )
 }
 
-function DetailSection({ title, rows }: { title: string; rows: [string, string][] }) {
+function CopyIdButton({ value }: { value: string }) {
+  const [copied, setCopied] = useState(false)
   return (
-    <div className="flex flex-col gap-2">
-      <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{title}</p>
-      <dl className="flex flex-col divide-y divide-border/30 border border-border/35">
-        {rows.map(([label, value]) => (
-          <div key={label} className="flex items-baseline justify-between gap-4 px-3 py-2">
-            <dt className="text-[12px] text-muted-foreground">{label}</dt>
-            <dd className="text-right font-mono text-[12px] tabular-nums text-foreground" data-no-translate>
-              {value}
-            </dd>
-          </div>
-        ))}
-      </dl>
-    </div>
+    <button
+      type="button"
+      onClick={() => {
+        navigator.clipboard.writeText(value)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 1600)
+      }}
+      className="flex size-7 shrink-0 items-center justify-center border border-border/35 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-1 focus-visible:outline-ring"
+      aria-label={copied ? 'ID copiado' : 'Copiar ID do gateway'}
+    >
+      {copied ? <Check className="size-3.5 text-term-success" /> : <CopyIcon className="size-3.5" />}
+    </button>
   )
 }
