@@ -19,12 +19,14 @@ export interface Provider {
   trafficPct: number
 }
 
+export type ModelCategory = 'Texto' | 'Código' | 'Raciocínio' | 'Visão' | 'Áudio' | 'Embedding'
+
 export interface Model {
   id: string
   name: string
   displayName: string
   providerId: string
-  type: 'Linguagem' | 'Embedding' | 'Áudio' | 'Visão'
+  categories: ModelCategory[]
   catalog: ModelCatalogStatus
   health: ModelHealth
   inputPrice: number // US$ por 1M tokens
@@ -157,7 +159,7 @@ export const providersSeed: Provider[] = [
 
 export const modelsSeed: Model[] = [
   {
-    id: 'gpt-4.1', name: 'gpt-4.1', displayName: 'GPT-4.1', providerId: 'openai', type: 'Linguagem',
+    id: 'gpt-4.1', name: 'gpt-4.1', displayName: 'GPT-4.1', providerId: 'openai', categories: ['Texto', 'Código', 'Visão'],
     catalog: 'enabled', health: 'operational', inputPrice: 2.0, outputPrice: 8.0,
     contextTokens: 1_047_576, maxOutputTokens: 32_768, trafficPct: 24,
     requests30d: 412_880, tokens30d: 184_200_000, latencyMs: 620, latencyP95Ms: 1_480,
@@ -166,7 +168,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '06/2025', version: '2026-03-14', gatewayId: 'nylla/openai/gpt-4.1',
   },
   {
-    id: 'gpt-4.1-mini', name: 'gpt-4.1-mini', displayName: 'GPT-4.1 mini', providerId: 'openai', type: 'Linguagem',
+    id: 'gpt-4.1-mini', name: 'gpt-4.1-mini', displayName: 'GPT-4.1 mini', providerId: 'openai', categories: ['Texto', 'Código', 'Visão'],
     catalog: 'enabled', health: 'operational', inputPrice: 0.4, outputPrice: 1.6,
     contextTokens: 1_047_576, maxOutputTokens: 32_768, trafficPct: 11,
     requests30d: 268_410, tokens30d: 92_640_000, latencyMs: 310, latencyP95Ms: 720,
@@ -175,7 +177,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '06/2025', version: '2026-03-14', gatewayId: 'nylla/openai/gpt-4.1-mini',
   },
   {
-    id: 'o4-mini', name: 'o4-mini', displayName: 'o4-mini', providerId: 'openai', type: 'Linguagem',
+    id: 'o4-mini', name: 'o4-mini', displayName: 'o4-mini', providerId: 'openai', categories: ['Texto', 'Código', 'Raciocínio'],
     catalog: 'restricted', health: 'operational', inputPrice: 1.1, outputPrice: 4.4,
     contextTokens: 200_000, maxOutputTokens: 100_000, trafficPct: 2,
     requests30d: 18_240, tokens30d: 12_480_000, latencyMs: 2_140, latencyP95Ms: 5_600,
@@ -184,7 +186,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '06/2025', version: '2026-01-22', gatewayId: 'nylla/openai/o4-mini',
   },
   {
-    id: 'text-embedding-3', name: 'text-embedding-3-large', displayName: 'Embedding 3 large', providerId: 'openai', type: 'Embedding',
+    id: 'text-embedding-3', name: 'text-embedding-3-large', displayName: 'Embedding 3 large', providerId: 'openai', categories: ['Embedding'],
     catalog: 'enabled', health: 'operational', inputPrice: 0.13, outputPrice: 0,
     contextTokens: 8_192, maxOutputTokens: 0, trafficPct: 3,
     requests30d: 96_720, tokens30d: 41_300_000, latencyMs: 90, latencyP95Ms: 210,
@@ -193,7 +195,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '09/2024', version: '2025-02-10', gatewayId: 'nylla/openai/text-embedding-3-large',
   },
   {
-    id: 'whisper-large-v3', name: 'whisper-large-v3', displayName: 'Whisper large v3', providerId: 'openai', type: 'Áudio',
+    id: 'whisper-large-v3', name: 'whisper-large-v3', displayName: 'Whisper large v3', providerId: 'openai', categories: ['Áudio'],
     catalog: 'enabled', health: 'operational', inputPrice: 0.06, outputPrice: 0,
     contextTokens: 448, maxOutputTokens: 448, trafficPct: 1,
     requests30d: 24_180, tokens30d: 2_140_000, latencyMs: 1_260, latencyP95Ms: 3_100,
@@ -202,7 +204,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '—', version: '2025-06-01', gatewayId: 'nylla/openai/whisper-large-v3',
   },
   {
-    id: 'gpt-4o', name: 'gpt-4o', displayName: 'GPT-4o', providerId: 'openai', type: 'Linguagem',
+    id: 'gpt-4o', name: 'gpt-4o', displayName: 'GPT-4o', providerId: 'openai', categories: ['Texto', 'Código', 'Visão'],
     catalog: 'deprecated', health: 'operational', inputPrice: 2.5, outputPrice: 10.0,
     contextTokens: 128_000, maxOutputTokens: 16_384, trafficPct: 1,
     requests30d: 9_640, tokens30d: 4_820_000, latencyMs: 680, latencyP95Ms: 1_620,
@@ -211,7 +213,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '10/2023', version: '2024-11-20', gatewayId: 'nylla/openai/gpt-4o',
   },
   {
-    id: 'claude-sonnet-4-5', name: 'claude-sonnet-4-5', displayName: 'Claude Sonnet 4.5', providerId: 'anthropic', type: 'Linguagem',
+    id: 'claude-sonnet-4-5', name: 'claude-sonnet-4-5', displayName: 'Claude Sonnet 4.5', providerId: 'anthropic', categories: ['Texto', 'Código', 'Raciocínio', 'Visão'],
     catalog: 'enabled', health: 'operational', inputPrice: 3.0, outputPrice: 15.0,
     contextTokens: 200_000, maxOutputTokens: 64_000, trafficPct: 19,
     requests30d: 331_450, tokens30d: 168_900_000, latencyMs: 740, latencyP95Ms: 1_910,
@@ -220,7 +222,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '01/2026', version: '2026-02-05', gatewayId: 'nylla/anthropic/claude-sonnet-4-5',
   },
   {
-    id: 'claude-haiku-4-5', name: 'claude-haiku-4-5', displayName: 'Claude Haiku 4.5', providerId: 'anthropic', type: 'Linguagem',
+    id: 'claude-haiku-4-5', name: 'claude-haiku-4-5', displayName: 'Claude Haiku 4.5', providerId: 'anthropic', categories: ['Texto', 'Código', 'Visão'],
     catalog: 'enabled', health: 'operational', inputPrice: 1.0, outputPrice: 5.0,
     contextTokens: 200_000, maxOutputTokens: 64_000, trafficPct: 8,
     requests30d: 187_320, tokens30d: 64_100_000, latencyMs: 380, latencyP95Ms: 890,
@@ -229,7 +231,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '01/2026', version: '2026-02-05', gatewayId: 'nylla/anthropic/claude-haiku-4-5',
   },
   {
-    id: 'claude-opus-4-1', name: 'claude-opus-4-1', displayName: 'Claude Opus 4.1', providerId: 'anthropic', type: 'Linguagem',
+    id: 'claude-opus-4-1', name: 'claude-opus-4-1', displayName: 'Claude Opus 4.1', providerId: 'anthropic', categories: ['Texto', 'Código', 'Raciocínio', 'Visão'],
     catalog: 'restricted', health: 'operational', inputPrice: 15.0, outputPrice: 75.0,
     contextTokens: 200_000, maxOutputTokens: 32_000, trafficPct: 2,
     requests30d: 12_870, tokens30d: 21_400_000, latencyMs: 1_840, latencyP95Ms: 4_300,
@@ -238,7 +240,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '09/2025', version: '2025-12-18', gatewayId: 'nylla/anthropic/claude-opus-4-1',
   },
   {
-    id: 'gemini-2.5-pro', name: 'gemini-2.5-pro', displayName: 'Gemini 2.5 Pro', providerId: 'google', type: 'Linguagem',
+    id: 'gemini-2.5-pro', name: 'gemini-2.5-pro', displayName: 'Gemini 2.5 Pro', providerId: 'google', categories: ['Texto', 'Código', 'Raciocínio', 'Visão'],
     catalog: 'enabled', health: 'degraded', inputPrice: 1.25, outputPrice: 10.0,
     contextTokens: 1_048_576, maxOutputTokens: 65_536, trafficPct: 10,
     requests30d: 204_610, tokens30d: 138_400_000, latencyMs: 890, latencyP95Ms: 3_420,
@@ -247,7 +249,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '01/2026', version: '2026-01-30', gatewayId: 'nylla/google/gemini-2.5-pro',
   },
   {
-    id: 'gemini-2.5-flash', name: 'gemini-2.5-flash', displayName: 'Gemini 2.5 Flash', providerId: 'google', type: 'Linguagem',
+    id: 'gemini-2.5-flash', name: 'gemini-2.5-flash', displayName: 'Gemini 2.5 Flash', providerId: 'google', categories: ['Texto', 'Código', 'Raciocínio', 'Visão'],
     catalog: 'enabled', health: 'degraded', inputPrice: 0.3, outputPrice: 2.5,
     contextTokens: 1_048_576, maxOutputTokens: 65_536, trafficPct: 6,
     requests30d: 158_930, tokens30d: 71_800_000, latencyMs: 410, latencyP95Ms: 1_640,
@@ -256,7 +258,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '01/2026', version: '2026-01-30', gatewayId: 'nylla/google/gemini-2.5-flash',
   },
   {
-    id: 'mistral-large', name: 'mistral-large-latest', displayName: 'Mistral Large', providerId: 'mistral', type: 'Linguagem',
+    id: 'mistral-large', name: 'mistral-large-latest', displayName: 'Mistral Large', providerId: 'mistral', categories: ['Texto', 'Código'],
     catalog: 'enabled', health: 'operational', inputPrice: 2.0, outputPrice: 6.0,
     contextTokens: 128_000, maxOutputTokens: 32_000, trafficPct: 8,
     requests30d: 142_270, tokens30d: 58_600_000, latencyMs: 520, latencyP95Ms: 1_240,
@@ -265,7 +267,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '11/2025', version: '2026-01-08', gatewayId: 'nylla/mistral/mistral-large-latest',
   },
   {
-    id: 'pixtral-large', name: 'pixtral-large-latest', displayName: 'Pixtral Large', providerId: 'mistral', type: 'Visão',
+    id: 'pixtral-large', name: 'pixtral-large-latest', displayName: 'Pixtral Large', providerId: 'mistral', categories: ['Texto', 'Visão'],
     catalog: 'enabled', health: 'operational', inputPrice: 2.0, outputPrice: 6.0,
     contextTokens: 128_000, maxOutputTokens: 32_000, trafficPct: 3,
     requests30d: 46_180, tokens30d: 24_900_000, latencyMs: 740, latencyP95Ms: 1_980,
@@ -274,7 +276,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '11/2025', version: '2026-01-08', gatewayId: 'nylla/mistral/pixtral-large-latest',
   },
   {
-    id: 'llama-3.3-70b', name: 'llama-3.3-70b-versatile', displayName: 'Llama 3.3 70B', providerId: 'groq', type: 'Linguagem',
+    id: 'llama-3.3-70b', name: 'llama-3.3-70b-versatile', displayName: 'Llama 3.3 70B', providerId: 'groq', categories: ['Texto', 'Código'],
     catalog: 'enabled', health: 'operational', inputPrice: 0.59, outputPrice: 0.79,
     contextTokens: 128_000, maxOutputTokens: 32_768, trafficPct: 6,
     requests30d: 174_520, tokens30d: 48_300_000, latencyMs: 140, latencyP95Ms: 340,
@@ -283,7 +285,7 @@ export const modelsSeed: Model[] = [
     knowledgeCutoff: '12/2024', version: '2025-09-12', gatewayId: 'nylla/groq/llama-3.3-70b-versatile',
   },
   {
-    id: 'command-r-plus', name: 'command-r-plus', displayName: 'Command R+', providerId: 'cohere', type: 'Linguagem',
+    id: 'command-r-plus', name: 'command-r-plus', displayName: 'Command R+', providerId: 'cohere', categories: ['Texto'],
     catalog: 'deprecated', health: 'down', inputPrice: 2.5, outputPrice: 10.0,
     contextTokens: 128_000, maxOutputTokens: 4_096, trafficPct: 0,
     requests30d: 0, tokens30d: 0, latencyMs: 0, latencyP95Ms: 0,

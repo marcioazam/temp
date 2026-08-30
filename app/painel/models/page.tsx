@@ -46,12 +46,13 @@ export default function ModelsPage() {
     return state.models.filter(
       (m) =>
         (providerFilter === 'all' || m.providerId === providerFilter) &&
-        (typeFilter === 'all' || m.type === typeFilter) &&
+        (typeFilter === 'all' || m.categories.includes(typeFilter as Model['categories'][number])) &&
         (healthFilter === 'all' || m.health === healthFilter) &&
         (q === '' ||
           m.name.toLowerCase().includes(q) ||
           m.displayName.toLowerCase().includes(q) ||
           m.gatewayId.toLowerCase().includes(q) ||
+          m.categories.some((category) => category.toLowerCase().includes(q)) ||
           providerName(m.providerId).toLowerCase().includes(q)),
     )
   }, [state.models, state.providers, query, providerFilter, typeFilter, healthFilter])
@@ -60,7 +61,7 @@ export default function ModelsPage() {
   const available = state.models.filter((m) => m.catalog === 'enabled' && m.health === 'operational').length
   const degraded = state.models.filter((m) => m.health !== 'operational').length
   const maxContext = Math.max(...state.models.map((m) => m.contextTokens))
-  const types = [...new Set(state.models.map((m) => m.type))]
+  const types = [...new Set(state.models.flatMap((m) => m.categories))]
 
   const summary = [
     { label: 'Modelos', value: fmtNumber(state.models.length), suffix: 'no gateway' },
@@ -120,13 +121,13 @@ export default function ModelsPage() {
               ))}
             </NativeSelect>
           </div>
-          <div className="w-36">
+          <div className="w-44">
             <NativeSelect
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              aria-label="Filtrar por tipo"
+              aria-label="Filtrar por categoria"
             >
-              <option value="all">Todos os tipos</option>
+              <option value="all">Todas as categorias</option>
               {types.map((t) => (
                 <option key={t} value={t}>
                   {t}
@@ -202,10 +203,18 @@ export default function ModelsPage() {
                     <span className="truncate font-mono text-[13px] tracking-tight text-foreground" data-no-translate>
                       {model.name}
                     </span>
-                    <span className="flex items-center gap-1.5 truncate text-[11px] text-subtle-foreground">
+                    <span className="truncate text-[11px] text-subtle-foreground">
                       {providerName(model.providerId)}
-                      <span className="text-border" aria-hidden="true">/</span>
-                      {model.type}
+                    </span>
+                    <span className="flex flex-wrap gap-1 pt-1">
+                      {model.categories.map((category) => (
+                        <span
+                          key={category}
+                          className="border border-border/40 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-muted-foreground"
+                        >
+                          {category}
+                        </span>
+                      ))}
                     </span>
                   </div>
                   <div className="flex shrink-0 flex-col items-end gap-1">
