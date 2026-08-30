@@ -9,7 +9,6 @@ import { fmtCompact, fmtCurrency, fmtLatency, fmtNumber, fmtPercent, fmtTokens }
 import { PageHeader } from '@/components/painel/page-header'
 import { StatusBadge } from '@/components/painel/ui/badge'
 import { Dialog } from '@/components/painel/ui/dialog'
-import { Sparkline } from '@/components/painel/ui/charts'
 import { NativeSelect, TextInput } from '@/components/painel/ui/controls'
 import { Button } from '@/components/ui/button'
 
@@ -64,34 +63,10 @@ export default function ModelsPage() {
   const types = [...new Set(state.models.map((m) => m.type))]
 
   const summary = [
-    {
-      label: 'Modelos no gateway',
-      value: fmtNumber(state.models.length),
-      delta: 7.1,
-      spark: [10, 10, 11, 11, 12, 12, 12, 13, 13, 14, 14, 15],
-      tone: 'neutral' as const,
-    },
-    {
-      label: 'Disponíveis agora',
-      value: fmtNumber(available),
-      delta: 12.5,
-      spark: [6, 6, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9],
-      tone: 'up' as const,
-    },
-    {
-      label: 'Com incidente',
-      value: fmtNumber(degraded),
-      delta: -25,
-      spark: [6, 5, 5, 4, 5, 4, 4, 3, 4, 3, 3, 3],
-      tone: 'up' as const,
-    },
-    {
-      label: 'Contexto máximo',
-      value: `${fmtTokens(maxContext)} tokens`,
-      delta: 0,
-      spark: [8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9],
-      tone: 'neutral' as const,
-    },
+    { label: 'Modelos no gateway', value: fmtNumber(state.models.length), hint: 'Catálogo total' },
+    { label: 'Disponíveis agora', value: fmtNumber(available), hint: 'Operacionais' },
+    { label: 'Com incidente', value: fmtNumber(degraded), hint: 'Requerem atenção' },
+    { label: 'Contexto máximo', value: `${fmtTokens(maxContext)} tokens`, hint: 'Maior janela' },
   ]
 
   return (
@@ -105,26 +80,22 @@ export default function ModelsPage() {
         {summary.map((item) => (
           <article
             key={item.label}
-            className="group flex min-h-28 flex-col justify-between border border-border/35 bg-muted/20 p-4 transition-colors hover:border-border/60"
+            className="group relative flex min-h-28 flex-col justify-between overflow-hidden border border-border/35 bg-transparent p-4 transition-colors hover:border-primary/35"
           >
+            <span
+              className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100"
+              aria-hidden="true"
+            />
             <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
               {item.label}
             </p>
-            <div className="flex items-end justify-between gap-3">
-              <div className="flex min-w-0 flex-col gap-1.5">
-                <p className="truncate font-mono text-xl tabular-nums leading-none tracking-tight text-foreground">
-                  {item.value}
-                </p>
-                <p className="font-mono text-[11px] tabular-nums leading-none text-term-success">
-                  {item.delta > 0 ? '+' : ''}
-                  {item.delta.toFixed(1).replace('.', ',')}%
-                </p>
-              </div>
-              <Sparkline
-                data={item.spark}
-                tone={item.tone}
-                className="shrink-0 opacity-55 transition-opacity group-hover:opacity-95"
-              />
+            <div className="flex flex-col gap-1.5">
+              <p className="font-mono text-2xl tabular-nums leading-none tracking-tight text-foreground">
+                {item.value}
+              </p>
+              <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-subtle-foreground">
+                {item.hint}
+              </p>
             </div>
           </article>
         ))}
