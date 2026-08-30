@@ -306,7 +306,10 @@ export default function ModelsPage() {
                     ))}
                   </div>
                   <span
-                    className="font-mono text-[10px] tabular-nums text-subtle-foreground"
+                    className={cn(
+                      'font-mono text-[10px] tabular-nums',
+                      averageTokensPerSecond[model.id] > 0 ? 'text-term-success' : 'text-subtle-foreground',
+                    )}
                     title="Média de tokens gerados por segundo"
                   >
                     {averageTokensPerSecond[model.id] > 0
