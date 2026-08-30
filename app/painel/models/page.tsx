@@ -182,7 +182,7 @@ export default function ModelsPage() {
                 onClick={() => setDetail(model)}
                 aria-label={`Ver detalhes de ${model.displayName}: ${providerName(model.providerId)}, ${health.label}`}
                 className={cn(
-                  'relative flex flex-col border border-canvas-ink/15 bg-model-surface text-left',
+                  'relative flex flex-col border border-border/35 bg-card text-left',
                   'focus-visible:outline-1 focus-visible:outline-ring',
                   model.catalog === 'deprecated' && 'opacity-60',
                 )}
@@ -192,7 +192,7 @@ export default function ModelsPage() {
                   aria-hidden="true"
                   className={cn(
                     'absolute inset-x-0 top-0 h-px',
-                    model.health === 'operational' && 'bg-model-success/70',
+                    model.health === 'operational' && 'bg-term-success/70',
                     model.health === 'degraded' && 'bg-status-warning/70',
                     model.health === 'down' && 'bg-destructive/60',
                   )}
@@ -200,17 +200,17 @@ export default function ModelsPage() {
 
                 <header className="flex items-start justify-between gap-3 p-4 pb-0">
                   <div className="flex min-w-0 flex-col gap-1">
-                    <span className="truncate font-mono text-[13px] tracking-tight text-canvas-ink" data-no-translate>
+                    <span className="truncate font-mono text-[13px] tracking-tight text-foreground" data-no-translate>
                       {model.name}
                     </span>
-                    <span className="truncate text-[11px] text-canvas-ink/55">
+                    <span className="truncate text-[11px] text-subtle-foreground">
                       {providerName(model.providerId)}
                     </span>
                     <span className="flex flex-wrap gap-1 pt-1">
                       {model.categories.map((category) => (
                         <span
                           key={category}
-                          className="border border-canvas-ink/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-canvas-ink/65"
+                          className="border border-border/30 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-muted-foreground"
                         >
                           {category}
                         </span>
@@ -221,7 +221,7 @@ export default function ModelsPage() {
                     <span
                       className={cn(
                         'inline-flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.1em]',
-                        model.health === 'operational' && 'text-model-success',
+                        model.health === 'operational' && 'text-term-success',
                         model.health === 'degraded' && 'text-status-warning',
                         model.health === 'down' && 'text-destructive',
                       )}
@@ -230,7 +230,7 @@ export default function ModelsPage() {
                       {health.label}
                     </span>
                     {model.catalog !== 'enabled' && (
-                      <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-canvas-ink/50">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-subtle-foreground">
                         {catalogMeta[model.catalog].label}
                       </span>
                     )}
@@ -240,52 +240,52 @@ export default function ModelsPage() {
                 {/* Métrica herói: contexto */}
                 <div className="flex items-end justify-between gap-3 p-4 pb-3">
                   <div className="flex flex-col">
-                    <span className="font-mono text-[28px] leading-none tabular-nums tracking-tighter text-canvas-ink">
+                    <span className="font-mono text-[28px] leading-none tabular-nums tracking-tighter text-foreground">
                       {fmtTokens(model.contextTokens)}
                     </span>
-                    <span className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-canvas-ink/50">
+                    <span className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-subtle-foreground">
                       Tokens de contexto
                     </span>
                   </div>
                   <div className="flex flex-col items-end gap-0.5 pb-0.5">
-                    <span className="font-mono text-[13px] tabular-nums text-canvas-ink/70">
+                    <span className="font-mono text-[13px] tabular-nums text-muted-foreground">
                       {model.maxOutputTokens > 0 ? fmtTokens(model.maxOutputTokens) : 'n/d'}
                     </span>
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-canvas-ink/50">Saída máx.</span>
+                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída máx.</span>
                   </div>
                 </div>
 
                 {/* Uso do gateway */}
                 <div className="flex flex-col gap-1.5 px-4 pb-3">
                   <div className="flex items-baseline justify-between">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-canvas-ink/50">Tráfego 30d</span>
-                    <span className="font-mono text-[11px] tabular-nums text-canvas-ink/60">
-                      <span className="text-model-success">{fmtPercent(model.trafficPct, 0)}</span> · {fmtCompact(model.requests30d)} req
+                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Tráfego 30d</span>
+                    <span className="font-mono text-[11px] tabular-nums text-foreground/60">
+                      <span className="text-term-success">{fmtPercent(model.trafficPct, 0)}</span> · {fmtCompact(model.requests30d)} req
                     </span>
                   </div>
-                  <div className="h-0.5 w-full bg-canvas-ink/15" aria-hidden="true">
+                  <div className="h-0.5 w-full bg-border/50" aria-hidden="true">
                     <div
-                      className={cn('h-full', model.trafficPct > 0 ? 'bg-model-success' : 'bg-transparent')}
+                      className={cn('h-full', model.trafficPct > 0 ? 'bg-term-success' : 'bg-transparent')}
                       style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }}
                     />
                   </div>
                 </div>
 
                 {/* Preço + capacidades em rodapé denso */}
-                <div className="mt-auto grid grid-cols-2 gap-px border-t border-canvas-ink/15 bg-canvas-ink/10">
-                  <div className="flex flex-col gap-0.5 bg-model-surface px-4 py-2.5">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-canvas-ink/50">Entrada /1M</span>
-                    <span className="font-mono text-[12px] tabular-nums text-canvas-ink">{fmtCurrency(model.inputPrice)}</span>
+                <div className="mt-auto grid grid-cols-2 gap-px border-t border-border/30 bg-border/20">
+                  <div className="flex flex-col gap-0.5 bg-card px-4 py-2.5">
+                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Entrada /1M</span>
+                    <span className="font-mono text-[12px] tabular-nums text-foreground">{fmtCurrency(model.inputPrice)}</span>
                   </div>
-                  <div className="flex flex-col gap-0.5 bg-model-surface px-4 py-2.5 text-right">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-canvas-ink/50">Saída /1M</span>
-                    <span className="font-mono text-[12px] tabular-nums text-canvas-ink">
+                  <div className="flex flex-col gap-0.5 bg-card px-4 py-2.5 text-right">
+                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída /1M</span>
+                    <span className="font-mono text-[12px] tabular-nums text-foreground">
                       {model.outputPrice > 0 ? fmtCurrency(model.outputPrice) : 'n/d'}
                     </span>
                   </div>
                 </div>
 
-                <footer className="flex items-center justify-between border-t border-canvas-ink/15 px-4 py-2.5">
+                <footer className="flex items-center justify-between border-t border-border/30 px-4 py-2.5">
                   <div className="flex gap-1">
                     {capabilityLabels.map((c) => {
                       const supported = model.capabilities[c.key]
@@ -295,8 +295,8 @@ export default function ModelsPage() {
                           className={cn(
                             'px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em]',
                             supported
-                              ? 'bg-canvas-ink/8 text-canvas-ink'
-                              : 'text-canvas-ink/25 line-through decoration-canvas-ink/25',
+                              ? 'bg-foreground/8 text-foreground'
+                              : 'text-border line-through decoration-border',
                           )}
                         >
                           {c.label}
@@ -304,7 +304,7 @@ export default function ModelsPage() {
                       )
                     })}
                   </div>
-                  <span className="font-mono text-[10px] tabular-nums text-canvas-ink/50">
+                  <span className="font-mono text-[10px] tabular-nums text-subtle-foreground">
                     {model.latencyMs > 0 ? fmtLatency(model.latencyMs) : 'sem tráfego'}
                   </span>
                 </footer>

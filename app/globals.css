@@ -47,8 +47,6 @@
   --color-chrome-fg: var(--chrome-fg);
   --color-canvas-ink: var(--canvas-ink);
   --color-canvas-paper: var(--canvas-paper);
-  --color-model-success: var(--model-success);
-  --color-model-surface: var(--model-surface);
   --radius-sm: 0rem;
   --radius-md: 0rem;
   --radius-lg: 0rem;
@@ -123,8 +121,6 @@
   /* Superfícies claras (arte pintada do hero/CTA) */
   --canvas-ink: #171612;
   --canvas-paper: #f4f3f1;
-  --model-success: #16733a;
-  --model-surface: #e6e7e8;
   }
 
 @layer base {
