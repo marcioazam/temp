@@ -1,4 +1,4 @@
-// Camada de dados mock do Painel Nylla — todos os valores são de demonstração.
+// Camada de dados mock do Painel Nylla · todos os valores são de demonstração.
 
 export type ProviderStatus = 'operational' | 'degraded' | 'paused'
 export type ModelCatalogStatus = 'enabled' | 'restricted' | 'deprecated'
@@ -199,7 +199,7 @@ export const modelsSeed: Model[] = [
     requests30d: 24_180, tokens30d: 2_140_000, latencyMs: 1_260, latencyP95Ms: 3_100,
     errorRate: 0.31, uptimePct: 99.87,
     capabilities: { streaming: false, functionCalling: false, vision: false, jsonMode: true },
-    knowledgeCutoff: '—', version: '2025-06-01', gatewayId: 'nylla/openai/whisper-large-v3',
+    knowledgeCutoff: '·', version: '2025-06-01', gatewayId: 'nylla/openai/whisper-large-v3',
   },
   {
     id: 'gpt-4o', name: 'gpt-4o', displayName: 'GPT-4o', providerId: 'openai', type: 'Chat',
@@ -294,11 +294,11 @@ export const modelsSeed: Model[] = [
 ]
 
 export const keysSeed: ApiKey[] = [
-  { id: 'k1', name: 'Produção — API principal', prefix: 'nyl_live_4f2a', environment: 'prod', scope: 'Completo', lastUsed: 'há 2 min', createdBy: 'Ana Ribeiro', createdAt: '12/01/2026', revoked: false, expiresAt: 'Nunca', requests30d: 284_120, rateLimit: 600 },
-  { id: 'k2', name: 'CI/CD — Deploy pipeline', prefix: 'nyl_live_9c81', environment: 'prod', scope: 'Somente inferência', lastUsed: 'há 34 min', createdBy: 'Bruno Costa', createdAt: '03/02/2026', revoked: false, expiresAt: '03/02/2027', requests30d: 96_480, rateLimit: 300 },
-  { id: 'k3', name: 'Staging — testes de agente', prefix: 'nyl_test_b7e3', environment: 'staging', scope: 'Completo', lastUsed: 'há 3 h', createdBy: 'Camila Souza', createdAt: '18/03/2026', revoked: false, expiresAt: '16/06/2026', requests30d: 41_305 },
+  { id: 'k1', name: 'Produção · API principal', prefix: 'nyl_live_4f2a', environment: 'prod', scope: 'Completo', lastUsed: 'há 2 min', createdBy: 'Ana Ribeiro', createdAt: '12/01/2026', revoked: false, expiresAt: 'Nunca', requests30d: 284_120, rateLimit: 600 },
+  { id: 'k2', name: 'CI/CD · Deploy pipeline', prefix: 'nyl_live_9c81', environment: 'prod', scope: 'Somente inferência', lastUsed: 'há 34 min', createdBy: 'Bruno Costa', createdAt: '03/02/2026', revoked: false, expiresAt: '03/02/2027', requests30d: 96_480, rateLimit: 300 },
+  { id: 'k3', name: 'Staging · testes de agente', prefix: 'nyl_test_b7e3', environment: 'staging', scope: 'Completo', lastUsed: 'há 3 h', createdBy: 'Camila Souza', createdAt: '18/03/2026', revoked: false, expiresAt: '16/06/2026', requests30d: 41_305 },
   { id: 'k4', name: 'Playground local', prefix: 'nyl_test_2d09', environment: 'staging', scope: 'Somente leitura', lastUsed: 'há 2 dias', createdBy: 'Diego Martins', createdAt: '02/05/2026', revoked: false, expiresAt: 'Nunca', requests30d: 2_940 },
-  { id: 'k5', name: 'Legado — app mobile v1', prefix: 'nyl_live_77aa', environment: 'prod', scope: 'Completo', lastUsed: 'há 3 meses', createdBy: 'Ana Ribeiro', createdAt: '20/08/2025', revoked: true },
+  { id: 'k5', name: 'Legado · app mobile v1', prefix: 'nyl_live_77aa', environment: 'prod', scope: 'Completo', lastUsed: 'há 3 meses', createdBy: 'Ana Ribeiro', createdAt: '20/08/2025', revoked: true },
 ]
 
 export const membersSeed: Member[] = [
@@ -307,7 +307,7 @@ export const membersSeed: Member[] = [
   { id: 'u3', name: 'Camila Souza', email: 'camila@nyllalabs.com', role: 'Developer', status: 'active', spend: 986.02, lastAccess: 'há 1 h' },
   { id: 'u4', name: 'Diego Martins', email: 'diego@nyllalabs.com', role: 'Developer', status: 'active', spend: 754.9, lastAccess: 'há 4 h' },
   { id: 'u5', name: 'Elena Prado', email: 'elena@nyllalabs.com', role: 'Developer', status: 'active', spend: 512.33, lastAccess: 'ontem' },
-  { id: 'u6', name: 'Felipe Nunes', email: 'felipe@nyllalabs.com', role: 'Viewer', status: 'invited', spend: 0, lastAccess: '—' },
+  { id: 'u6', name: 'Felipe Nunes', email: 'felipe@nyllalabs.com', role: 'Viewer', status: 'invited', spend: 0, lastAccess: '·' },
   { id: 'u7', name: 'Gabriela Lima', email: 'gabriela@nyllalabs.com', role: 'Viewer', status: 'active', spend: 370.64, lastAccess: 'há 2 dias' },
 ]
 
@@ -399,36 +399,36 @@ export const budgetsSeed: BudgetAlert[] = [
 ]
 
 export const activitySeed: ActivityItem[] = [
-  { id: 'a1', text: 'Chave criada', detail: 'CI/CD — Deploy pipeline por Bruno Costa', time: 'há 34 min', occurredAt: '29/08/2026 14:30:05', kind: 'key' },
+  { id: 'a1', text: 'Chave criada', detail: 'CI/CD · Deploy pipeline por Bruno Costa', time: 'há 34 min', occurredAt: '29/08/2026 14:30:05', kind: 'key' },
   { id: 'a2', text: 'Modelo ativado', detail: 'gemini-2.5-flash por Camila Souza', time: 'há 2 h', occurredAt: '29/08/2026 13:04:18', kind: 'model' },
   { id: 'a3', text: 'Usuário convidado', detail: 'felipe@nyllalabs.com como Viewer', time: 'há 5 h', occurredAt: '29/08/2026 09:42:51', kind: 'user' },
   { id: 'a4', text: 'Alerta de orçamento', detail: '70% do limite mensal atingido', time: 'ontem', occurredAt: '28/08/2026 18:17:09', kind: 'budget' },
-  { id: 'a5', text: 'Provedor degradado', detail: 'Google Gemini — latência elevada', time: 'ontem', occurredAt: '28/08/2026 11:26:43', kind: 'provider' },
-  { id: 'a6', text: 'Chave revogada', detail: 'Legado — app mobile v1 por Ana Ribeiro', time: 'há 3 dias', occurredAt: '26/08/2026 16:08:22', kind: 'key' },
+  { id: 'a5', text: 'Provedor degradado', detail: 'Google Gemini · latência elevada', time: 'ontem', occurredAt: '28/08/2026 11:26:43', kind: 'provider' },
+  { id: 'a6', text: 'Chave revogada', detail: 'Legado · app mobile v1 por Ana Ribeiro', time: 'há 3 dias', occurredAt: '26/08/2026 16:08:22', kind: 'key' },
   { id: 'a7', text: 'Modelo desativado', detail: 'mistral-large-latest por Bruno Costa', time: 'há 3 dias', occurredAt: '26/08/2026 11:42:10', kind: 'model' },
   { id: 'a8', text: 'Permissão alterada', detail: 'Camila Souza agora é Admin', time: 'há 4 dias', occurredAt: '25/08/2026 17:31:44', kind: 'user' },
   { id: 'a9', text: 'Orçamento atualizado', detail: 'Limite mensal alterado para R$ 8.000', time: 'há 4 dias', occurredAt: '25/08/2026 14:09:27', kind: 'budget' },
-  { id: 'a10', text: 'Provedor recuperado', detail: 'Google Gemini — operação normalizada', time: 'há 5 dias', occurredAt: '24/08/2026 22:54:03', kind: 'provider' },
-  { id: 'a11', text: 'Chave rotacionada', detail: 'Produção — backend principal por Ana Ribeiro', time: 'há 5 dias', occurredAt: '24/08/2026 16:20:36', kind: 'key' },
+  { id: 'a10', text: 'Provedor recuperado', detail: 'Google Gemini · operação normalizada', time: 'há 5 dias', occurredAt: '24/08/2026 22:54:03', kind: 'provider' },
+  { id: 'a11', text: 'Chave rotacionada', detail: 'Produção · backend principal por Ana Ribeiro', time: 'há 5 dias', occurredAt: '24/08/2026 16:20:36', kind: 'key' },
   { id: 'a12', text: 'Modelo ativado', detail: 'claude-sonnet-4-5 por Camila Souza', time: 'há 6 dias', occurredAt: '23/08/2026 13:48:19', kind: 'model' },
   { id: 'a13', text: 'Usuário removido', detail: 'lucas@nyllalabs.com removido do workspace', time: 'há 6 dias', occurredAt: '23/08/2026 10:15:52', kind: 'user' },
   { id: 'a14', text: 'Alerta de orçamento', detail: '50% do limite mensal atingido', time: 'há 7 dias', occurredAt: '22/08/2026 19:06:14', kind: 'budget' },
-  { id: 'a15', text: 'Falha no provedor', detail: 'OpenAI — erro elevado em requisições', time: 'há 8 dias', occurredAt: '21/08/2026 23:41:08', kind: 'provider' },
-  { id: 'a16', text: 'Chave criada', detail: 'Analytics — pipeline de dados por Bruno Costa', time: 'há 8 dias', occurredAt: '21/08/2026 15:27:33', kind: 'key' },
+  { id: 'a15', text: 'Falha no provedor', detail: 'OpenAI · erro elevado em requisições', time: 'há 8 dias', occurredAt: '21/08/2026 23:41:08', kind: 'provider' },
+  { id: 'a16', text: 'Chave criada', detail: 'Analytics · pipeline de dados por Bruno Costa', time: 'há 8 dias', occurredAt: '21/08/2026 15:27:33', kind: 'key' },
   { id: 'a17', text: 'Modelo configurado', detail: 'gpt-4.1-mini definido como fallback', time: 'há 9 dias', occurredAt: '20/08/2026 12:02:46', kind: 'model' },
   { id: 'a18', text: 'Usuário convidado', detail: 'marina@nyllalabs.com como Developer', time: 'há 10 dias', occurredAt: '19/08/2026 18:36:21', kind: 'user' },
   { id: 'a19', text: 'Limite rígido ativado', detail: 'Bloqueio configurado em 100% do orçamento', time: 'há 10 dias', occurredAt: '19/08/2026 09:51:05', kind: 'budget' },
   { id: 'a20', text: 'Provedor adicionado', detail: 'Anthropic conectado ao gateway', time: 'há 11 dias', occurredAt: '18/08/2026 16:44:57', kind: 'provider' },
-  { id: 'a21', text: 'Chave revogada', detail: 'Staging — integração legada por Ana Ribeiro', time: 'há 12 dias', occurredAt: '17/08/2026 21:18:40', kind: 'key' },
+  { id: 'a21', text: 'Chave revogada', detail: 'Staging · integração legada por Ana Ribeiro', time: 'há 12 dias', occurredAt: '17/08/2026 21:18:40', kind: 'key' },
   { id: 'a22', text: 'Modelo desativado', detail: 'gemini-1.5-pro removido do roteamento', time: 'há 12 dias', occurredAt: '17/08/2026 13:29:11', kind: 'model' },
   { id: 'a23', text: 'Permissão alterada', detail: 'Felipe Martins agora é Viewer', time: 'há 13 dias', occurredAt: '16/08/2026 17:05:38', kind: 'user' },
   { id: 'a24', text: 'Orçamento atualizado', detail: 'Notificação de 80% ativada', time: 'há 14 dias', occurredAt: '15/08/2026 11:47:26', kind: 'budget' },
-  { id: 'a25', text: 'Provedor degradado', detail: 'Anthropic — aumento de latência', time: 'há 15 dias', occurredAt: '14/08/2026 20:33:49', kind: 'provider' },
-  { id: 'a26', text: 'Chave criada', detail: 'Desenvolvimento — SDK web por Camila Souza', time: 'há 16 dias', occurredAt: '13/08/2026 14:12:07', kind: 'key' },
+  { id: 'a25', text: 'Provedor degradado', detail: 'Anthropic · aumento de latência', time: 'há 15 dias', occurredAt: '14/08/2026 20:33:49', kind: 'provider' },
+  { id: 'a26', text: 'Chave criada', detail: 'Desenvolvimento · SDK web por Camila Souza', time: 'há 16 dias', occurredAt: '13/08/2026 14:12:07', kind: 'key' },
   { id: 'a27', text: 'Modelo ativado', detail: 'claude-haiku-4-5 por Bruno Costa', time: 'há 17 dias', occurredAt: '12/08/2026 10:58:32', kind: 'model' },
   { id: 'a28', text: 'Usuário convidado', detail: 'joana@nyllalabs.com como Viewer', time: 'há 18 dias', occurredAt: '11/08/2026 16:26:54', kind: 'user' },
   { id: 'a29', text: 'Alerta de anomalia', detail: 'Custo diário 42% acima da média', time: 'há 19 dias', occurredAt: '10/08/2026 08:39:17', kind: 'budget' },
-  { id: 'a30', text: 'Provedor recuperado', detail: 'OpenAI — operação normalizada', time: 'há 20 dias', occurredAt: '09/08/2026 19:14:28', kind: 'provider' },
+  { id: 'a30', text: 'Provedor recuperado', detail: 'OpenAI · operação normalizada', time: 'há 20 dias', occurredAt: '09/08/2026 19:14:28', kind: 'provider' },
 ]
 
 export const costHistorySeed: CostMonth[] = [

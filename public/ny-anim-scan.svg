@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 74 49" width="1480" height="980" shape-rendering="crispEdges" role="img" aria-label="ny pixel monogram">
-<title>ny — scan</title>
+<title>ny : scan</title>
 <style>
   #base{opacity:1;animation:dim 3s ease-in-out infinite}
   #scan path{fill:#fff;opacity:0;animation:scan 3s linear infinite}

@@ -83,7 +83,7 @@ export function PainelSidebar({
         <Link
           href="/"
           className="flex min-w-0 shrink items-center gap-2.5 text-foreground"
-          aria-label="Nylla — voltar ao site"
+          aria-label="Nylla : voltar ao site"
         >
           <RotorMark aria-hidden="true" className="size-7 shrink-0 text-primary" />
           <span className="type-wordmark whitespace-nowrap text-[1.1875rem]">Nylla</span>

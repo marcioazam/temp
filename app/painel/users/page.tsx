@@ -38,7 +38,7 @@ export default function UsersPage() {
         role: inviteRole,
         status: 'invited',
         spend: 0,
-        lastAccess: '—',
+        lastAccess: 'Não disponível',
       },
     })
     setInviteOpen(false)
@@ -114,7 +114,7 @@ export default function UsersPage() {
                   </StatusBadge>
                 </TD>
                 <TD className="hidden font-mono text-[12px] tabular-nums text-muted-foreground md:table-cell">
-                  {member.spend > 0 ? fmtCurrency(member.spend) : '—'}
+                  {member.spend > 0 ? fmtCurrency(member.spend) : 'Não disponível'}
                 </TD>
                 <TD className="hidden font-mono text-[11px] text-subtle-foreground lg:table-cell">{member.lastAccess}</TD>
                 <TD>
