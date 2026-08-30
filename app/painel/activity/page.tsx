@@ -5,6 +5,7 @@ import { Search, X } from 'lucide-react'
 import { PageHeader } from '@/components/painel/page-header'
 import { StatusBadge } from '@/components/painel/ui/badge'
 import { TextInput } from '@/components/painel/ui/controls'
+import { Table, TBody, TD, TH, THead, TR } from '@/components/painel/ui/data-table'
 import { Segmented } from '@/components/painel/ui/segmented'
 import { Button } from '@/components/ui/button'
 import { usePainel } from '@/lib/painel/store'
@@ -103,35 +104,50 @@ export default function ActivityLogsPage() {
         <span className="tabular-nums text-foreground">{filtered.length}</span>
       </div>
 
-      <section className="border border-border/35 bg-muted/20" aria-label="Registro de atividades">
-        {filtered.length === 0 ? (
-          <p className="px-4 py-10 text-center text-[12px] text-muted-foreground">
-            Nenhuma atividade encontrada para os filtros atuais.
-          </p>
-        ) : (
-          <ul className="divide-y divide-border/30">
-            {pageItems.map((item) => (
-              <li key={item.id} className="flex items-baseline gap-3 px-4 py-3 transition-colors hover:bg-muted/30">
-                <span className="mt-1 size-1 shrink-0 rounded-full bg-term-success" aria-hidden="true" />
-                <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-                  <span className="text-[13px] text-foreground">{item.text}</span>
-                  <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
+      <Table className="border-border/35 bg-muted/20">
+        <THead>
+          <tr>
+            <TH>Evento</TH>
+            <TH className="hidden md:table-cell">Detalhes</TH>
+            <TH>Categoria</TH>
+            <TH className="text-right">Data/hora</TH>
+          </tr>
+        </THead>
+        <TBody>
+          {pageItems.map((item) => (
+            <TR key={item.id}>
+              <TD>
+                <div className="flex items-center gap-3">
+                  <span className="size-1 shrink-0 rounded-full bg-term-success" aria-hidden="true" />
+                  <span>{item.text}</span>
                 </div>
-                <StatusBadge tone="muted" dot={false} className="hidden shrink-0 sm:inline-flex">
-                  {kindLabels[item.kind]}
-                </StatusBadge>
+              </TD>
+              <TD className="hidden max-w-md truncate text-[11px] text-subtle-foreground md:table-cell">
+                {item.detail}
+              </TD>
+              <TD>
+                <StatusBadge tone="muted" dot={false}>{kindLabels[item.kind]}</StatusBadge>
+              </TD>
+              <TD className="text-right">
                 <time
                   dateTime={item.occurredAt}
-                  className="shrink-0 font-mono text-[10px] tabular-nums text-subtle-foreground"
+                  className="font-mono text-[11px] tabular-nums text-subtle-foreground"
                   title={item.time}
                 >
                   {item.occurredAt}
                 </time>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+              </TD>
+            </TR>
+          ))}
+          {pageItems.length === 0 && (
+            <TR>
+              <TD colSpan={4} className="py-10 text-center text-[12px] text-muted-foreground">
+                Nenhuma atividade encontrada para os filtros atuais.
+              </TD>
+            </TR>
+          )}
+        </TBody>
+      </Table>
 
       {filtered.length > 0 && (
         <footer className="flex items-center justify-between px-1 py-1">
