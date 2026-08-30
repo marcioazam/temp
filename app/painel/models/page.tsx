@@ -181,19 +181,17 @@ export default function ModelsPage() {
                 onClick={() => setDetail(model)}
                 aria-label={`Ver detalhes de ${model.displayName}: ${providerName(model.providerId)}, ${health.label}`}
                 className={cn(
-                  'group relative flex flex-col text-left transition-all duration-200',
-                  'border border-border/35 bg-card',
-                  'hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_8px_32px_-12px_rgba(245,165,36,0.15)]',
+                  'relative flex flex-col border border-border/35 bg-card text-left',
                   'focus-visible:outline-1 focus-visible:outline-ring',
-                  model.catalog === 'deprecated' && 'opacity-60 hover:opacity-90',
+                  model.catalog === 'deprecated' && 'opacity-60',
                 )}
               >
                 {/* Filete de saúde no topo */}
                 <span
                   aria-hidden="true"
                   className={cn(
-                    'absolute inset-x-0 top-0 h-px transition-colors',
-                    model.health === 'operational' && 'bg-term-success/50 group-hover:bg-primary/60',
+                    'absolute inset-x-0 top-0 h-px',
+                    model.health === 'operational' && 'bg-term-success/50',
                     model.health === 'degraded' && 'bg-status-warning/70',
                     model.health === 'down' && 'bg-destructive/60',
                   )}
@@ -201,7 +199,7 @@ export default function ModelsPage() {
 
                 <header className="flex items-start justify-between gap-3 p-4 pb-0">
                   <div className="flex min-w-0 flex-col gap-1">
-                    <span className="truncate font-mono text-[13px] tracking-tight text-foreground transition-colors group-hover:text-primary" data-no-translate>
+                    <span className="truncate font-mono text-[13px] tracking-tight text-foreground" data-no-translate>
                       {model.name}
                     </span>
                     <span className="flex items-center gap-1.5 truncate text-[11px] text-subtle-foreground">
@@ -258,7 +256,7 @@ export default function ModelsPage() {
                   </div>
                   <div className="h-0.5 w-full bg-border/50" aria-hidden="true">
                     <div
-                      className={cn('h-full transition-all', model.trafficPct > 0 ? 'bg-primary' : 'bg-transparent')}
+                      className={cn('h-full', model.trafficPct > 0 ? 'bg-foreground/70' : 'bg-transparent')}
                       style={{ width: `${Math.min(100, model.trafficPct * 4)}%` }}
                     />
                   </div>
@@ -286,9 +284,9 @@ export default function ModelsPage() {
                         <span
                           key={c.key}
                           className={cn(
-                            'px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors',
+                            'px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em]',
                             supported
-                              ? 'bg-primary/10 text-primary'
+                              ? 'bg-foreground/8 text-foreground'
                               : 'text-border line-through decoration-border',
                           )}
                         >
