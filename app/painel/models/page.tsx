@@ -76,9 +76,9 @@ export default function ModelsPage() {
         description="Consulte limites, preços, capacidades e confiabilidade dos modelos provisionados e mantidos pelo gateway Nylla. Este catálogo é somente leitura."
       />
 
-      <div className="grid gap-px border border-border/35 bg-border/40 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-px border border-border/35 bg-transparent sm:grid-cols-2 lg:grid-cols-4">
         {summary.map((item) => (
-          <div key={item.label} className="flex flex-col gap-1 bg-muted/20 px-4 py-3">
+          <div key={item.label} className="flex flex-col gap-1 bg-transparent px-4 py-3">
             <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{item.label}</span>
             <span className="font-mono text-[18px] tabular-nums tracking-tight text-foreground">{item.value}</span>
           </div>
