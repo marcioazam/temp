@@ -224,16 +224,6 @@ export default function ModelsPage() {
                     <span className="truncate text-[11px] text-subtle-foreground">
                       {providerName(model.providerId)}
                     </span>
-                    <span className="flex flex-wrap gap-1 pt-1">
-                      {model.categories.map((category) => (
-                        <span
-                          key={category}
-                          className="border border-border/30 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-muted-foreground"
-                        >
-                          {category}
-                        </span>
-                      ))}
-                    </span>
                   </div>
                   <div className="flex shrink-0 flex-col items-end gap-1">
                     <span
@@ -305,23 +295,15 @@ export default function ModelsPage() {
                 </div>
 
                 <footer className="flex items-center justify-between border-t border-border/30 px-4 py-2.5">
-                  <div className="flex gap-1">
-                    {capabilityLabels.map((c) => {
-                      const supported = model.capabilities[c.key]
-                      return (
-                        <span
-                          key={c.key}
-                          className={cn(
-                            'px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em]',
-                            supported
-                              ? 'bg-foreground/8 text-foreground'
-                              : 'text-border line-through decoration-border',
-                          )}
-                        >
-                          {c.label}
-                        </span>
-                      )
-                    })}
+                  <div className="flex flex-wrap gap-1">
+                    {model.categories.map((category) => (
+                      <span
+                        key={category}
+                        className="bg-foreground/8 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-foreground"
+                      >
+                        {category}
+                      </span>
+                    ))}
                   </div>
                   <span
                     className="font-mono text-[10px] tabular-nums text-subtle-foreground"
