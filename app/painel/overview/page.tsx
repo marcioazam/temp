@@ -24,7 +24,7 @@ const rangeLabel: Record<Range, string> = {
 // Sparklines determinísticos por KPI (tendência de demonstração).
 // `quality: true` = métrica de desempenho, recebe verde (bom) ou vermelho (ruim).
 // `invert: true` = queda é o resultado desejado (latência, tempo de resposta, erros).
-// Volume puro (requisições, tokens) permanece neutro para não estimular consumo.
+// Volume puro (requisições, tokens) usa verde na variação, independentemente do sinal.
 const kpis = [
   { label: 'Requisições', value: '452.890', delta: 12.0, spark: [28, 31, 30, 34, 36, 35, 39, 41, 40, 44, 46, 49] },
   { label: 'Tokens', value: '1,8 bi', delta: 8.0, spark: [40, 42, 41, 44, 43, 46, 48, 47, 50, 52, 51, 54] },
@@ -52,7 +52,7 @@ function KpiCard({
   // Para métricas em que queda é positiva (latência, erros), o tom acompanha o benefício.
   const good = invert ? delta <= 0 : delta >= 0
   return (
-    <div className="group flex flex-col gap-2 border border-border/35 bg-muted/20 p-4 transition-colors hover:border-border/60">
+    <div className="flex flex-col gap-2 border border-border/35 bg-muted/20 p-4">
       <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">{label}</p>
       <div className="flex items-end justify-between gap-3">
         <div className="flex flex-col gap-1.5">
@@ -60,7 +60,7 @@ function KpiCard({
           <p
             className={cn(
               'font-mono text-[11px] tabular-nums leading-none',
-              quality ? (good ? 'text-term-success' : 'text-destructive') : 'text-muted-foreground',
+              quality ? (good ? 'text-term-success' : 'text-destructive') : 'text-term-success',
             )}
           >
             {delta >= 0 ? '+' : ''}
@@ -70,7 +70,7 @@ function KpiCard({
         <Sparkline
           data={[...spark]}
           tone={quality ? (good ? 'up' : 'down') : 'neutral'}
-          className="opacity-55 transition-opacity group-hover:opacity-95"
+          className="opacity-55"
         />
       </div>
     </div>
@@ -105,7 +105,7 @@ export default function OverviewPage() {
   const allDone = doneCount === state.checklist.length
 
   const topModels = [...state.models]
-    .filter((m) => m.status === 'active')
+    .filter((m) => m.catalog === 'enabled')
     .sort((a, b) => b.trafficPct - a.trafficPct)
     .slice(0, 5)
 
@@ -155,7 +155,7 @@ export default function OverviewPage() {
                   <span
                     className={cn(
                       'mt-0.5 flex size-3.5 shrink-0 items-center justify-center rounded-full border',
-                      item.done ? 'border-foreground/50 text-foreground' : 'border-border',
+                      item.done ? 'border-term-success text-term-success' : 'border-border',
                     )}
                   >
                     {item.done && <Check className="size-2.5" />}
@@ -195,7 +195,7 @@ export default function OverviewPage() {
               <span className="tabular-nums text-foreground">
                 {metric === 'requests' ? fmtCompact(totalRequests) : `${fmtCompact(totalTokens)} tok`}
               </span>
-              <span className="tabular-nums text-muted-foreground">
+              <span className="tabular-nums text-term-success">
                 {periodDelta >= 0 ? '+' : ''}
                 {periodDelta.toFixed(1)}%
               </span>
@@ -281,14 +281,14 @@ export default function OverviewPage() {
         <section className="border border-border/35 bg-muted/20" aria-label="Atividade recente">
           <div className="flex items-center justify-between px-4 py-3">
             <h2 className="text-base font-medium tracking-tight text-foreground">Atividade</h2>
-            <Link href="/painel/logs" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
+            <Link href="/painel/activity" className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-primary">
               Ver logs <ArrowUpRight className="size-3" />
             </Link>
           </div>
           <ul>
             {state.activity.slice(0, 6).map((item) => (
               <li key={item.id} className="flex items-baseline gap-3 px-4 py-2.5">
-                <span className="mt-1 size-1 shrink-0 rounded-full bg-foreground" aria-hidden="true" />
+                <span className="mt-1 size-1 shrink-0 rounded-full bg-term-success" aria-hidden="true" />
                 <div className="flex min-w-0 flex-1 flex-col">
                   <span className="text-[12px] text-foreground">{item.text}</span>
                   <span className="truncate text-[11px] text-subtle-foreground">{item.detail}</span>
@@ -312,7 +312,7 @@ export default function OverviewPage() {
                 <span className="w-4 font-mono text-[10px] tabular-nums text-subtle-foreground">{i + 1}</span>
                 <span className="min-w-0 flex-1 truncate font-mono text-[12px] text-foreground">{model.name}</span>
                 <div className="hidden h-1 w-24 bg-muted sm:block" aria-hidden="true">
-                  <div className="h-full bg-foreground/70" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
+                  <div className="h-full bg-term-success" style={{ width: `${(model.trafficPct / topModels[0].trafficPct) * 100}%` }} />
                 </div>
                 <span className="w-12 text-right font-mono text-[11px] tabular-nums text-muted-foreground">
                   {fmtPercent(model.trafficPct, 0)}

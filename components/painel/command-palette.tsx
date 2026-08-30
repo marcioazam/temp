@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import {
+  Activity,
   Boxes,
-  CircleDollarSign,
   KeyRound,
   LayoutDashboard,
   ScrollText,
@@ -19,8 +19,8 @@ const commands = [
   { href: '/painel/overview', label: 'Visão geral', group: 'Painel', icon: LayoutDashboard, keywords: 'dashboard overview inicio' },
   { href: '/painel/models', label: 'Modelos', group: 'Infraestrutura', icon: Boxes, keywords: 'gpt claude gemini modelo' },
   { href: '/painel/api-keys', label: 'Chaves de API', group: 'API Gateway', icon: KeyRound, keywords: 'key token credencial' },
-  { href: '/painel/logs', label: 'Logs', group: 'Observabilidade', icon: ScrollText, keywords: 'requisições requests historico' },
-  { href: '/painel/costs', label: 'Custos', group: 'Observabilidade', icon: CircleDollarSign, keywords: 'gastos billing orçamento custo' },
+  { href: '/painel/logs', label: 'Usage', group: 'Observabilidade', icon: Activity, keywords: 'usage requisições requests historico logs' },
+  { href: '/painel/activity', label: 'Logs', group: 'Observabilidade', icon: ScrollText, keywords: 'atividade eventos auditoria logs' },
   { href: '/painel/users', label: 'Usuários', group: 'Organização', icon: Users, keywords: 'equipe membros time convite' },
   { href: '/painel/settings', label: 'Configurações', group: 'Organização', icon: Settings, keywords: 'ajustes settings webhook retenção' },
 ]

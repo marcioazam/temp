@@ -1,7 +1,8 @@
 // Camada de dados mock do Painel Nylla — todos os valores são de demonstração.
 
 export type ProviderStatus = 'operational' | 'degraded' | 'paused'
-export type ModelStatus = 'active' | 'inactive'
+export type ModelCatalogStatus = 'enabled' | 'restricted' | 'deprecated'
+export type ModelHealth = 'operational' | 'degraded' | 'down'
 export type KeyEnvironment = 'prod' | 'staging'
 export type MemberRole = 'Owner' | 'Admin' | 'Developer' | 'Viewer'
 export type MemberStatus = 'active' | 'invited'
@@ -18,17 +19,37 @@ export interface Provider {
   trafficPct: number
 }
 
+export type ModelCategory = 'Texto' | 'Código' | 'Raciocínio' | 'Visão' | 'Áudio' | 'Embedding'
+
 export interface Model {
   id: string
   name: string
+  displayName: string
   providerId: string
-  type: 'Chat' | 'Embedding' | 'Áudio' | 'Visão'
-  status: ModelStatus
+  categories: ModelCategory[]
+  catalog: ModelCatalogStatus
+  health: ModelHealth
   inputPrice: number // US$ por 1M tokens
   outputPrice: number
-  contextWindow: string
+  contextTokens: number
+  maxOutputTokens: number
   trafficPct: number
+  requests30d: number
+  tokens30d: number
   latencyMs: number
+  tokensPerSecond?: number
+  latencyP95Ms: number
+  errorRate: number
+  uptimePct: number
+  capabilities: {
+    streaming: boolean
+    functionCalling: boolean
+    vision: boolean
+    jsonMode: boolean
+  }
+  knowledgeCutoff: string
+  version: string
+  gatewayId: string
 }
 
 export interface ApiKey {
@@ -85,6 +106,7 @@ export interface ActivityItem {
   text: string
   detail: string
   time: string
+  occurredAt: string
   kind: 'key' | 'model' | 'user' | 'budget' | 'provider'
 }
 
@@ -137,16 +159,141 @@ export const providersSeed: Provider[] = [
 ]
 
 export const modelsSeed: Model[] = [
-  { id: 'gpt-4.1', name: 'gpt-4.1', providerId: 'openai', type: 'Chat', status: 'active', inputPrice: 2.0, outputPrice: 8.0, contextWindow: '1M', trafficPct: 24, latencyMs: 620 },
-  { id: 'gpt-4.1-mini', name: 'gpt-4.1-mini', providerId: 'openai', type: 'Chat', status: 'active', inputPrice: 0.4, outputPrice: 1.6, contextWindow: '1M', trafficPct: 11, latencyMs: 310 },
-  { id: 'text-embedding-3', name: 'text-embedding-3-large', providerId: 'openai', type: 'Embedding', status: 'active', inputPrice: 0.13, outputPrice: 0, contextWindow: '8K', trafficPct: 3, latencyMs: 90 },
-  { id: 'claude-sonnet-4-5', name: 'claude-sonnet-4-5', providerId: 'anthropic', type: 'Chat', status: 'active', inputPrice: 3.0, outputPrice: 15.0, contextWindow: '200K', trafficPct: 19, latencyMs: 740 },
-  { id: 'claude-haiku-4-5', name: 'claude-haiku-4-5', providerId: 'anthropic', type: 'Chat', status: 'active', inputPrice: 1.0, outputPrice: 5.0, contextWindow: '200K', trafficPct: 8, latencyMs: 380 },
-  { id: 'gemini-2.5-pro', name: 'gemini-2.5-pro', providerId: 'google', type: 'Chat', status: 'active', inputPrice: 1.25, outputPrice: 10.0, contextWindow: '1M', trafficPct: 10, latencyMs: 890 },
-  { id: 'gemini-2.5-flash', name: 'gemini-2.5-flash', providerId: 'google', type: 'Chat', status: 'active', inputPrice: 0.3, outputPrice: 2.5, contextWindow: '1M', trafficPct: 6, latencyMs: 410 },
-  { id: 'mistral-large', name: 'mistral-large-latest', providerId: 'mistral', type: 'Chat', status: 'active', inputPrice: 2.0, outputPrice: 6.0, contextWindow: '128K', trafficPct: 8, latencyMs: 520 },
-  { id: 'llama-3.3-70b', name: 'llama-3.3-70b-versatile', providerId: 'groq', type: 'Chat', status: 'active', inputPrice: 0.59, outputPrice: 0.79, contextWindow: '128K', trafficPct: 6, latencyMs: 140 },
-  { id: 'command-r-plus', name: 'command-r-plus', providerId: 'cohere', type: 'Chat', status: 'inactive', inputPrice: 2.5, outputPrice: 10.0, contextWindow: '128K', trafficPct: 0, latencyMs: 480 },
+  {
+    id: 'gpt-4.1', name: 'gpt-4.1', displayName: 'GPT-4.1', providerId: 'openai', categories: ['Texto', 'Código', 'Visão'],
+    catalog: 'enabled', health: 'operational', inputPrice: 2.0, outputPrice: 8.0,
+    contextTokens: 1_047_576, maxOutputTokens: 32_768, trafficPct: 24,
+    requests30d: 412_880, tokens30d: 184_200_000, latencyMs: 620, latencyP95Ms: 1_480,
+    errorRate: 0.12, uptimePct: 99.98,
+    capabilities: { streaming: true, functionCalling: true, vision: true, jsonMode: true },
+    knowledgeCutoff: '06/2025', version: '2026-03-14', gatewayId: 'nylla/openai/gpt-4.1',
+  },
+  {
+    id: 'gpt-4.1-mini', name: 'gpt-4.1-mini', displayName: 'GPT-4.1 mini', providerId: 'openai', categories: ['Texto', 'Código', 'Visão'],
+    catalog: 'enabled', health: 'operational', inputPrice: 0.4, outputPrice: 1.6,
+    contextTokens: 1_047_576, maxOutputTokens: 32_768, trafficPct: 11,
+    requests30d: 268_410, tokens30d: 92_640_000, latencyMs: 310, latencyP95Ms: 720,
+    errorRate: 0.08, uptimePct: 99.99,
+    capabilities: { streaming: true, functionCalling: true, vision: true, jsonMode: true },
+    knowledgeCutoff: '06/2025', version: '2026-03-14', gatewayId: 'nylla/openai/gpt-4.1-mini',
+  },
+  {
+    id: 'o4-mini', name: 'o4-mini', displayName: 'o4-mini', providerId: 'openai', categories: ['Texto', 'Código', 'Raciocínio'],
+    catalog: 'restricted', health: 'operational', inputPrice: 1.1, outputPrice: 4.4,
+    contextTokens: 200_000, maxOutputTokens: 100_000, trafficPct: 2,
+    requests30d: 18_240, tokens30d: 12_480_000, latencyMs: 2_140, latencyP95Ms: 5_600,
+    errorRate: 0.21, uptimePct: 99.9,
+    capabilities: { streaming: true, functionCalling: true, vision: false, jsonMode: true },
+    knowledgeCutoff: '06/2025', version: '2026-01-22', gatewayId: 'nylla/openai/o4-mini',
+  },
+  {
+    id: 'text-embedding-3', name: 'text-embedding-3-large', displayName: 'Embedding 3 large', providerId: 'openai', categories: ['Embedding'],
+    catalog: 'enabled', health: 'operational', inputPrice: 0.13, outputPrice: 0,
+    contextTokens: 8_192, maxOutputTokens: 0, trafficPct: 3,
+    requests30d: 96_720, tokens30d: 41_300_000, latencyMs: 90, latencyP95Ms: 210,
+    errorRate: 0.02, uptimePct: 100,
+    capabilities: { streaming: false, functionCalling: false, vision: false, jsonMode: false },
+    knowledgeCutoff: '09/2024', version: '2025-02-10', gatewayId: 'nylla/openai/text-embedding-3-large',
+  },
+  {
+    id: 'whisper-large-v3', name: 'whisper-large-v3', displayName: 'Whisper large v3', providerId: 'openai', categories: ['Áudio'],
+    catalog: 'enabled', health: 'operational', inputPrice: 0.06, outputPrice: 0,
+    contextTokens: 448, maxOutputTokens: 448, trafficPct: 1,
+    requests30d: 24_180, tokens30d: 2_140_000, latencyMs: 1_260, latencyP95Ms: 3_100,
+    errorRate: 0.31, uptimePct: 99.87,
+    capabilities: { streaming: false, functionCalling: false, vision: false, jsonMode: true },
+    knowledgeCutoff: '—', version: '2025-06-01', gatewayId: 'nylla/openai/whisper-large-v3',
+  },
+  {
+    id: 'gpt-4o', name: 'gpt-4o', displayName: 'GPT-4o', providerId: 'openai', categories: ['Texto', 'Código', 'Visão'],
+    catalog: 'deprecated', health: 'operational', inputPrice: 2.5, outputPrice: 10.0,
+    contextTokens: 128_000, maxOutputTokens: 16_384, trafficPct: 1,
+    requests30d: 9_640, tokens30d: 4_820_000, latencyMs: 680, latencyP95Ms: 1_620,
+    errorRate: 0.14, uptimePct: 99.95,
+    capabilities: { streaming: true, functionCalling: true, vision: true, jsonMode: true },
+    knowledgeCutoff: '10/2023', version: '2024-11-20', gatewayId: 'nylla/openai/gpt-4o',
+  },
+  {
+    id: 'claude-sonnet-4-5', name: 'claude-sonnet-4-5', displayName: 'Claude Sonnet 4.5', providerId: 'anthropic', categories: ['Texto', 'Código', 'Raciocínio', 'Visão'],
+    catalog: 'enabled', health: 'operational', inputPrice: 3.0, outputPrice: 15.0,
+    contextTokens: 200_000, maxOutputTokens: 64_000, trafficPct: 19,
+    requests30d: 331_450, tokens30d: 168_900_000, latencyMs: 740, latencyP95Ms: 1_910,
+    errorRate: 0.07, uptimePct: 99.99,
+    capabilities: { streaming: true, functionCalling: true, vision: true, jsonMode: true },
+    knowledgeCutoff: '01/2026', version: '2026-02-05', gatewayId: 'nylla/anthropic/claude-sonnet-4-5',
+  },
+  {
+    id: 'claude-haiku-4-5', name: 'claude-haiku-4-5', displayName: 'Claude Haiku 4.5', providerId: 'anthropic', categories: ['Texto', 'Código', 'Visão'],
+    catalog: 'enabled', health: 'operational', inputPrice: 1.0, outputPrice: 5.0,
+    contextTokens: 200_000, maxOutputTokens: 64_000, trafficPct: 8,
+    requests30d: 187_320, tokens30d: 64_100_000, latencyMs: 380, latencyP95Ms: 890,
+    errorRate: 0.09, uptimePct: 99.97,
+    capabilities: { streaming: true, functionCalling: true, vision: true, jsonMode: true },
+    knowledgeCutoff: '01/2026', version: '2026-02-05', gatewayId: 'nylla/anthropic/claude-haiku-4-5',
+  },
+  {
+    id: 'claude-opus-4-1', name: 'claude-opus-4-1', displayName: 'Claude Opus 4.1', providerId: 'anthropic', categories: ['Texto', 'Código', 'Raciocínio', 'Visão'],
+    catalog: 'restricted', health: 'operational', inputPrice: 15.0, outputPrice: 75.0,
+    contextTokens: 200_000, maxOutputTokens: 32_000, trafficPct: 2,
+    requests30d: 12_870, tokens30d: 21_400_000, latencyMs: 1_840, latencyP95Ms: 4_300,
+    errorRate: 0.11, uptimePct: 99.94,
+    capabilities: { streaming: true, functionCalling: true, vision: true, jsonMode: true },
+    knowledgeCutoff: '09/2025', version: '2025-12-18', gatewayId: 'nylla/anthropic/claude-opus-4-1',
+  },
+  {
+    id: 'gemini-2.5-pro', name: 'gemini-2.5-pro', displayName: 'Gemini 2.5 Pro', providerId: 'google', categories: ['Texto', 'Código', 'Raciocínio', 'Visão'],
+    catalog: 'enabled', health: 'degraded', inputPrice: 1.25, outputPrice: 10.0,
+    contextTokens: 1_048_576, maxOutputTokens: 65_536, trafficPct: 10,
+    requests30d: 204_610, tokens30d: 138_400_000, latencyMs: 890, latencyP95Ms: 3_420,
+    errorRate: 1.84, uptimePct: 98.62,
+    capabilities: { streaming: true, functionCalling: true, vision: true, jsonMode: true },
+    knowledgeCutoff: '01/2026', version: '2026-01-30', gatewayId: 'nylla/google/gemini-2.5-pro',
+  },
+  {
+    id: 'gemini-2.5-flash', name: 'gemini-2.5-flash', displayName: 'Gemini 2.5 Flash', providerId: 'google', categories: ['Texto', 'Código', 'Raciocínio', 'Visão'],
+    catalog: 'enabled', health: 'degraded', inputPrice: 0.3, outputPrice: 2.5,
+    contextTokens: 1_048_576, maxOutputTokens: 65_536, trafficPct: 6,
+    requests30d: 158_930, tokens30d: 71_800_000, latencyMs: 410, latencyP95Ms: 1_640,
+    errorRate: 1.42, uptimePct: 98.94,
+    capabilities: { streaming: true, functionCalling: true, vision: true, jsonMode: true },
+    knowledgeCutoff: '01/2026', version: '2026-01-30', gatewayId: 'nylla/google/gemini-2.5-flash',
+  },
+  {
+    id: 'mistral-large', name: 'mistral-large-latest', displayName: 'Mistral Large', providerId: 'mistral', categories: ['Texto', 'Código'],
+    catalog: 'enabled', health: 'operational', inputPrice: 2.0, outputPrice: 6.0,
+    contextTokens: 128_000, maxOutputTokens: 32_000, trafficPct: 8,
+    requests30d: 142_270, tokens30d: 58_600_000, latencyMs: 520, latencyP95Ms: 1_240,
+    errorRate: 0.21, uptimePct: 99.93,
+    capabilities: { streaming: true, functionCalling: true, vision: false, jsonMode: true },
+    knowledgeCutoff: '11/2025', version: '2026-01-08', gatewayId: 'nylla/mistral/mistral-large-latest',
+  },
+  {
+    id: 'pixtral-large', name: 'pixtral-large-latest', displayName: 'Pixtral Large', providerId: 'mistral', categories: ['Texto', 'Visão'],
+    catalog: 'enabled', health: 'operational', inputPrice: 2.0, outputPrice: 6.0,
+    contextTokens: 128_000, maxOutputTokens: 32_000, trafficPct: 3,
+    requests30d: 46_180, tokens30d: 24_900_000, latencyMs: 740, latencyP95Ms: 1_980,
+    errorRate: 0.26, uptimePct: 99.89,
+    capabilities: { streaming: true, functionCalling: true, vision: true, jsonMode: true },
+    knowledgeCutoff: '11/2025', version: '2026-01-08', gatewayId: 'nylla/mistral/pixtral-large-latest',
+  },
+  {
+    id: 'llama-3.3-70b', name: 'llama-3.3-70b-versatile', displayName: 'Llama 3.3 70B', providerId: 'groq', categories: ['Texto', 'Código'],
+    catalog: 'enabled', health: 'operational', inputPrice: 0.59, outputPrice: 0.79,
+    contextTokens: 128_000, maxOutputTokens: 32_768, trafficPct: 6,
+    requests30d: 174_520, tokens30d: 48_300_000, latencyMs: 140, latencyP95Ms: 340,
+    errorRate: 0.05, uptimePct: 99.99,
+    capabilities: { streaming: true, functionCalling: true, vision: false, jsonMode: true },
+    knowledgeCutoff: '12/2024', version: '2025-09-12', gatewayId: 'nylla/groq/llama-3.3-70b-versatile',
+  },
+  {
+    id: 'command-r-plus', name: 'command-r-plus', displayName: 'Command R+', providerId: 'cohere', categories: ['Texto'],
+    catalog: 'deprecated', health: 'down', inputPrice: 2.5, outputPrice: 10.0,
+    contextTokens: 128_000, maxOutputTokens: 4_096, trafficPct: 0,
+    requests30d: 0, tokens30d: 0, latencyMs: 0, latencyP95Ms: 0,
+    errorRate: 0, uptimePct: 0,
+    capabilities: { streaming: true, functionCalling: true, vision: false, jsonMode: false },
+    knowledgeCutoff: '03/2024', version: '2024-08-30', gatewayId: 'nylla/cohere/command-r-plus',
+  },
 ]
 
 export const keysSeed: ApiKey[] = [
@@ -220,7 +367,8 @@ export const logsSeed: LogEntry[] = (() => {
     minutes += i < 12 ? Math.floor(rand() * 5) + 1 : i < 80 ? Math.floor(rand() * 90) + 2 : Math.floor(rand() * 240) + 60
     const pick = logModels[Math.floor(rand() * logModels.length)]
     const r = rand()
-    const status = r > 0.94 ? 429 : r > 0.9 ? 500 : r > 0.86 ? 400 : 200
+    // Mantém exemplos dos três grupos visíveis no topo da tabela.
+    const status = i === 0 ? 200 : i === 1 ? 400 : i === 2 ? 500 : r > 0.94 ? 429 : r > 0.9 ? 500 : r > 0.86 ? 400 : 200
     const tokensIn = Math.floor(rand() * 5800) + 200
     const tokensOut = status === 200 ? Math.floor(rand() * 2400) + 60 : 0
     const latencyMs = status === 200 ? Math.floor(rand() * 1800) + 120 : Math.floor(rand() * 400) + 40
@@ -254,12 +402,36 @@ export const budgetsSeed: BudgetAlert[] = [
 ]
 
 export const activitySeed: ActivityItem[] = [
-  { id: 'a1', text: 'Chave criada', detail: 'CI/CD — Deploy pipeline por Bruno Costa', time: 'há 34 min', kind: 'key' },
-  { id: 'a2', text: 'Modelo ativado', detail: 'gemini-2.5-flash por Camila Souza', time: 'há 2 h', kind: 'model' },
-  { id: 'a3', text: 'Usuário convidado', detail: 'felipe@nyllalabs.com como Viewer', time: 'há 5 h', kind: 'user' },
-  { id: 'a4', text: 'Alerta de orçamento', detail: '70% do limite mensal atingido', time: 'ontem', kind: 'budget' },
-  { id: 'a5', text: 'Provedor degradado', detail: 'Google Gemini — latência elevada', time: 'ontem', kind: 'provider' },
-  { id: 'a6', text: 'Chave revogada', detail: 'Legado — app mobile v1 por Ana Ribeiro', time: 'há 3 dias', kind: 'key' },
+  { id: 'a1', text: 'Chave criada', detail: 'CI/CD — Deploy pipeline por Bruno Costa', time: 'há 34 min', occurredAt: '29/08/2026 14:30:05', kind: 'key' },
+  { id: 'a2', text: 'Modelo ativado', detail: 'gemini-2.5-flash por Camila Souza', time: 'há 2 h', occurredAt: '29/08/2026 13:04:18', kind: 'model' },
+  { id: 'a3', text: 'Usuário convidado', detail: 'felipe@nyllalabs.com como Viewer', time: 'há 5 h', occurredAt: '29/08/2026 09:42:51', kind: 'user' },
+  { id: 'a4', text: 'Alerta de orçamento', detail: '70% do limite mensal atingido', time: 'ontem', occurredAt: '28/08/2026 18:17:09', kind: 'budget' },
+  { id: 'a5', text: 'Provedor degradado', detail: 'Google Gemini — latência elevada', time: 'ontem', occurredAt: '28/08/2026 11:26:43', kind: 'provider' },
+  { id: 'a6', text: 'Chave revogada', detail: 'Legado — app mobile v1 por Ana Ribeiro', time: 'há 3 dias', occurredAt: '26/08/2026 16:08:22', kind: 'key' },
+  { id: 'a7', text: 'Modelo desativado', detail: 'mistral-large-latest por Bruno Costa', time: 'há 3 dias', occurredAt: '26/08/2026 11:42:10', kind: 'model' },
+  { id: 'a8', text: 'Permissão alterada', detail: 'Camila Souza agora é Admin', time: 'há 4 dias', occurredAt: '25/08/2026 17:31:44', kind: 'user' },
+  { id: 'a9', text: 'Orçamento atualizado', detail: 'Limite mensal alterado para R$ 8.000', time: 'há 4 dias', occurredAt: '25/08/2026 14:09:27', kind: 'budget' },
+  { id: 'a10', text: 'Provedor recuperado', detail: 'Google Gemini — operação normalizada', time: 'há 5 dias', occurredAt: '24/08/2026 22:54:03', kind: 'provider' },
+  { id: 'a11', text: 'Chave rotacionada', detail: 'Produção — backend principal por Ana Ribeiro', time: 'há 5 dias', occurredAt: '24/08/2026 16:20:36', kind: 'key' },
+  { id: 'a12', text: 'Modelo ativado', detail: 'claude-sonnet-4-5 por Camila Souza', time: 'há 6 dias', occurredAt: '23/08/2026 13:48:19', kind: 'model' },
+  { id: 'a13', text: 'Usuário removido', detail: 'lucas@nyllalabs.com removido do workspace', time: 'há 6 dias', occurredAt: '23/08/2026 10:15:52', kind: 'user' },
+  { id: 'a14', text: 'Alerta de orçamento', detail: '50% do limite mensal atingido', time: 'há 7 dias', occurredAt: '22/08/2026 19:06:14', kind: 'budget' },
+  { id: 'a15', text: 'Falha no provedor', detail: 'OpenAI — erro elevado em requisições', time: 'há 8 dias', occurredAt: '21/08/2026 23:41:08', kind: 'provider' },
+  { id: 'a16', text: 'Chave criada', detail: 'Analytics — pipeline de dados por Bruno Costa', time: 'há 8 dias', occurredAt: '21/08/2026 15:27:33', kind: 'key' },
+  { id: 'a17', text: 'Modelo configurado', detail: 'gpt-4.1-mini definido como fallback', time: 'há 9 dias', occurredAt: '20/08/2026 12:02:46', kind: 'model' },
+  { id: 'a18', text: 'Usuário convidado', detail: 'marina@nyllalabs.com como Developer', time: 'há 10 dias', occurredAt: '19/08/2026 18:36:21', kind: 'user' },
+  { id: 'a19', text: 'Limite rígido ativado', detail: 'Bloqueio configurado em 100% do orçamento', time: 'há 10 dias', occurredAt: '19/08/2026 09:51:05', kind: 'budget' },
+  { id: 'a20', text: 'Provedor adicionado', detail: 'Anthropic conectado ao gateway', time: 'há 11 dias', occurredAt: '18/08/2026 16:44:57', kind: 'provider' },
+  { id: 'a21', text: 'Chave revogada', detail: 'Staging — integração legada por Ana Ribeiro', time: 'há 12 dias', occurredAt: '17/08/2026 21:18:40', kind: 'key' },
+  { id: 'a22', text: 'Modelo desativado', detail: 'gemini-1.5-pro removido do roteamento', time: 'há 12 dias', occurredAt: '17/08/2026 13:29:11', kind: 'model' },
+  { id: 'a23', text: 'Permissão alterada', detail: 'Felipe Martins agora é Viewer', time: 'há 13 dias', occurredAt: '16/08/2026 17:05:38', kind: 'user' },
+  { id: 'a24', text: 'Orçamento atualizado', detail: 'Notificação de 80% ativada', time: 'há 14 dias', occurredAt: '15/08/2026 11:47:26', kind: 'budget' },
+  { id: 'a25', text: 'Provedor degradado', detail: 'Anthropic — aumento de latência', time: 'há 15 dias', occurredAt: '14/08/2026 20:33:49', kind: 'provider' },
+  { id: 'a26', text: 'Chave criada', detail: 'Desenvolvimento — SDK web por Camila Souza', time: 'há 16 dias', occurredAt: '13/08/2026 14:12:07', kind: 'key' },
+  { id: 'a27', text: 'Modelo ativado', detail: 'claude-haiku-4-5 por Bruno Costa', time: 'há 17 dias', occurredAt: '12/08/2026 10:58:32', kind: 'model' },
+  { id: 'a28', text: 'Usuário convidado', detail: 'joana@nyllalabs.com como Viewer', time: 'há 18 dias', occurredAt: '11/08/2026 16:26:54', kind: 'user' },
+  { id: 'a29', text: 'Alerta de anomalia', detail: 'Custo diário 42% acima da média', time: 'há 19 dias', occurredAt: '10/08/2026 08:39:17', kind: 'budget' },
+  { id: 'a30', text: 'Provedor recuperado', detail: 'OpenAI — operação normalizada', time: 'há 20 dias', occurredAt: '09/08/2026 19:14:28', kind: 'provider' },
 ]
 
 export const costHistorySeed: CostMonth[] = [

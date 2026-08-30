@@ -162,8 +162,8 @@ export default function LogsPage() {
   return (
     <>
       <PageHeader
-        title="Logs"
-        description="Todas as requisições roteadas pelo gateway, com status, latência e tokens por chamada."
+        title="Usage"
+        description="Usage de requisições roteadas pelo gateway, com status, latência e tokens por chamada."
       />
 
       <div className="flex flex-wrap items-center gap-2">

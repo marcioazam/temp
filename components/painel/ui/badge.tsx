@@ -1,11 +1,12 @@
 import { cn } from '@/lib/utils'
 
-type Tone = 'success' | 'warning' | 'danger' | 'muted' | 'primary'
+type Tone = 'success' | 'warning' | 'danger' | 'server' | 'muted' | 'primary'
 
 const tones: Record<Tone, string> = {
-  success: 'text-primary border-primary/30 bg-primary/5',
-  warning: 'text-primary border-primary/30 bg-primary/5',
+  success: 'text-term-success border-term-success/30 bg-term-success/5',
+  warning: 'text-status-warning border-status-warning/40 bg-status-warning/10',
   danger: 'text-destructive border-destructive/30 bg-destructive/5',
+  server: 'text-status-server border-status-server/30 bg-status-server/5',
   muted: 'text-muted-foreground border-border bg-transparent',
   primary: 'text-primary border-primary/40 bg-primary/10',
 }

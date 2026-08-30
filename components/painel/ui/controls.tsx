@@ -101,13 +101,13 @@ export function Toggle({
       onClick={() => onChange(!checked)}
       className={cn(
         'relative h-4.5 w-8 shrink-0 border transition-colors focus-visible:outline-1 focus-visible:outline-ring disabled:opacity-50',
-        checked ? 'border-primary bg-primary/20' : 'border-border bg-muted',
+        checked ? 'border-foreground bg-foreground/20' : 'border-border bg-muted',
       )}
     >
       <span
         className={cn(
           'absolute top-1/2 size-3 -translate-y-1/2 transition-all',
-          checked ? 'left-[calc(100%-0.875rem)] bg-primary' : 'left-0.5 bg-muted-foreground',
+          checked ? 'left-[calc(100%-0.875rem)] bg-foreground' : 'left-0.5 bg-muted-foreground',
         )}
       />
     </button>

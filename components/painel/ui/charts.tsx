@@ -116,8 +116,8 @@ export function AreaChart({
       >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--foreground)" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="var(--foreground)" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--term-success)" stopOpacity="0.28" />
+            <stop offset="100%" stopColor="var(--term-success)" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -183,15 +183,15 @@ export function AreaChart({
                   y={y(v)}
                   width={barW}
                   height={Math.max(1, H - PAD - y(v))}
-                  fill="var(--foreground)"
-                  fillOpacity={active ? 0.24 : 0.14}
+                  fill="var(--term-success)"
+                  fillOpacity={active ? 0.32 : 0.2}
                 />
                 <rect
                   x={cx(i) - barW / 2}
                   y={y(v)}
                   width={barW}
                   height="1.5"
-                  fill="var(--foreground)"
+                  fill="var(--term-success)"
                   fillOpacity={hover === null || active ? 0.9 : 0.45}
                 />
               </g>
@@ -203,8 +203,8 @@ export function AreaChart({
             <path
               d={line}
               fill="none"
-              stroke="var(--foreground)"
-              strokeOpacity="0.85"
+              stroke="var(--term-success)"
+              strokeOpacity="0.95"
               strokeWidth="1.5"
               strokeLinejoin="round"
             />
@@ -212,7 +212,7 @@ export function AreaChart({
         )}
 
         {hover === null && shape !== 'bars' && (
-          <circle cx={x(peak)} cy={y(values[peak])} r="2.5" fill="var(--foreground)" fillOpacity="0.8" />
+          <circle cx={x(peak)} cy={y(values[peak])} r="2.5" fill="var(--term-success)" fillOpacity="0.9" />
         )}
 
         {hover !== null && (
@@ -298,8 +298,8 @@ export function HBarList({
 
 // ── Heatmap anual estilo contribuições ──────────────────────────────────────
 
-// Escala neutra (cinza → claro): intensidade de uso sem sinalizar recompensa
-const heatColors = ['#161616', '#2b2b2b', '#454545', '#6a6a6a', '#9c9c9c']
+// Escala sempre verde: a intensidade varia sem alterar o significado da cor.
+const heatColors = ['#102017', '#173522', '#245332', '#397a49', 'var(--term-success)']
 const levelRequests = [0, 420, 1180, 2640, 4310]
 const levelTokens = [0, 1_680_000, 4_720_000, 10_560_000, 17_240_000]
 const weekdayLabels = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']
