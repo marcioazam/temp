@@ -73,7 +73,7 @@ export default function ModelsPage() {
     <>
       <PageHeader
         title="Modelos"
-        description="Catálogo somente leitura — os modelos são provisionados e mantidos pelo gateway Nylla. Consulte limites, preço, capacidades e confiabilidade de cada um."
+        description="Consulte limites, preços, capacidades e confiabilidade dos modelos provisionados e mantidos pelo gateway Nylla. Este catálogo é somente leitura."
       />
 
       <div className="grid gap-px border border-border/35 bg-border/40 sm:grid-cols-2 lg:grid-cols-4">
