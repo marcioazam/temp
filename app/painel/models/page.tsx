@@ -80,12 +80,8 @@ export default function ModelsPage() {
         {summary.map((item) => (
           <article
             key={item.label}
-            className="group relative flex min-h-24 flex-col justify-between overflow-hidden border border-border/35 bg-transparent px-4 py-3.5 transition-colors hover:border-primary/35"
+            className="flex min-h-24 flex-col justify-between border border-border/35 bg-transparent px-4 py-3.5"
           >
-            <span
-              className="absolute inset-y-0 left-0 w-px origin-bottom scale-y-0 bg-primary transition-transform duration-300 group-hover:scale-y-100"
-              aria-hidden="true"
-            />
             <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
               {item.label}
             </p>
