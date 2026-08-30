@@ -63,10 +63,10 @@ export default function ModelsPage() {
   const types = [...new Set(state.models.map((m) => m.type))]
 
   const summary = [
-    { label: 'Modelos no gateway', value: fmtNumber(state.models.length), hint: 'Catálogo total' },
-    { label: 'Disponíveis agora', value: fmtNumber(available), hint: 'Operacionais' },
-    { label: 'Com incidente', value: fmtNumber(degraded), hint: 'Requerem atenção' },
-    { label: 'Contexto máximo', value: `${fmtTokens(maxContext)} tokens`, hint: 'Maior janela' },
+    { label: 'Modelos', value: fmtNumber(state.models.length), suffix: 'no gateway' },
+    { label: 'Disponíveis', value: fmtNumber(available), suffix: 'agora' },
+    { label: 'Incidentes', value: fmtNumber(degraded), suffix: 'modelos' },
+    { label: 'Contexto máximo', value: fmtTokens(maxContext), suffix: 'tokens' },
   ]
 
   return (
@@ -80,21 +80,21 @@ export default function ModelsPage() {
         {summary.map((item) => (
           <article
             key={item.label}
-            className="group relative flex min-h-28 flex-col justify-between overflow-hidden border border-border/35 bg-transparent p-4 transition-colors hover:border-primary/35"
+            className="group relative flex min-h-24 flex-col justify-between overflow-hidden border border-border/35 bg-transparent px-4 py-3.5 transition-colors hover:border-primary/35"
           >
             <span
-              className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100"
+              className="absolute inset-y-0 left-0 w-px origin-bottom scale-y-0 bg-primary transition-transform duration-300 group-hover:scale-y-100"
               aria-hidden="true"
             />
             <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
               {item.label}
             </p>
-            <div className="flex flex-col gap-1.5">
+            <div className="flex items-baseline gap-2">
               <p className="font-mono text-2xl tabular-nums leading-none tracking-tight text-foreground">
                 {item.value}
               </p>
-              <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-subtle-foreground">
-                {item.hint}
+              <p className="whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.1em] text-subtle-foreground">
+                {item.suffix}
               </p>
             </div>
           </article>
