@@ -373,11 +373,11 @@ export default function ModelsPage() {
         {detail && (
           <div className="flex flex-col">
             {/* Status */}
-            <div className="flex items-center gap-1.5 px-5 pb-4 font-mono text-[9px] uppercase tracking-[0.1em]">
-              <span className="text-subtle-foreground">Status:</span>
+            <div className="flex items-center gap-2 px-5 pb-4">
+              <span className="text-[11px] text-muted-foreground">Status</span>
               <span
                 className={cn(
-                  'inline-flex shrink-0 items-center gap-1.5',
+                  'inline-flex shrink-0 items-center gap-1.5 bg-muted/55 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.08em]',
                   detail.health === 'operational' && 'text-term-success',
                   detail.health === 'degraded' && 'text-status-warning',
                   detail.health === 'down' && 'text-destructive',
