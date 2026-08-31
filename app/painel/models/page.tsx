@@ -69,6 +69,18 @@ const modelParameters: Record<string, string> = {
   'command-r-plus': '104 bi',
 }
 
+const modelArchitecture: Record<string, string> = {
+  'whisper-large-v3': 'Transformer encoder-decoder',
+  'text-embedding-3': 'Transformer embedding',
+}
+
+const modelQuantization: Record<string, string> = {
+  'mistral-large': 'FP8',
+  'pixtral-large': 'FP8',
+  'llama-3.3-70b': 'FP8',
+  'command-r-plus': 'FP8',
+}
+
 function formatDateBr(value: string) {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value)
   return match ? `${match[3]}/${match[2]}/${match[1]}` : value
@@ -510,10 +522,18 @@ export default function ModelsPage() {
             </section>
 
             {/* Especificações */}
-            <section className="flex flex-col gap-2.5 border-t border-border/35 px-5 py-5" aria-label="Especificações">
+            <section className="flex flex-col gap-3 border-t border-border/35 px-5 py-5" aria-label="Especificações">
               <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
                 Especificações
               </h3>
+              <div className="flex flex-wrap gap-2">
+                <span className="bg-muted/70 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.06em] text-muted-foreground">
+                  Arquitetura: <strong className="font-medium text-foreground">{modelArchitecture[detail.id] ?? 'Transformer'}</strong>
+                </span>
+                <span className="bg-muted/70 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.06em] text-muted-foreground">
+                  Quantização: <strong className="font-medium text-foreground">{modelQuantization[detail.id] ?? 'Não divulgada'}</strong>
+                </span>
+              </div>
               <dl className="flex flex-col gap-2">
                 {(
                   [
