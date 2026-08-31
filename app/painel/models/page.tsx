@@ -5,7 +5,7 @@ import { Check, Copy as CopyIcon, Lock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import type { Model, ModelCatalogStatus, ModelHealth } from '@/lib/painel/data'
-import { fmtCompact, fmtCurrency, fmtLatency, fmtNumber, fmtPercent, fmtTokens } from '@/lib/painel/format'
+import { fmtCompact, fmtCurrency, fmtNumber, fmtPercent, fmtTokens } from '@/lib/painel/format'
 import { PageHeader } from '@/components/painel/page-header'
 import { StatusBadge } from '@/components/painel/ui/badge'
 import { Dialog } from '@/components/painel/ui/dialog'
@@ -347,7 +347,7 @@ export default function ModelsPage() {
                       'font-mono text-[10px] tabular-nums',
                       averageTokensPerSecond[model.id] > 0 ? 'text-term-success' : 'text-subtle-foreground',
                     )}
-                    title="Média de tokens gerados por segundo"
+                    title="M��dia de tokens gerados por segundo"
                   >
                     {averageTokensPerSecond[model.id] > 0
                       ? `${averageTokensPerSecond[model.id]} tok/s`
@@ -501,32 +501,6 @@ export default function ModelsPage() {
                   </span>
                 </div>
               </div>
-            </section>
-
-            {/* Confiabilidade */}
-            <section className="flex flex-col gap-2.5 border-t border-border/35 px-5 py-5" aria-label="Confiabilidade">
-              <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
-                Confiabilidade
-              </h3>
-              <dl className="grid grid-cols-2 gap-x-6 gap-y-3">
-                {(
-                  [
-                    ['Latência média', detail.latencyMs > 0 ? fmtLatency(detail.latencyMs) : '—'],
-                    ['Latência p95', detail.latencyP95Ms > 0 ? fmtLatency(detail.latencyP95Ms) : '—'],
-                    ['Taxa de erro', fmtPercent(detail.errorRate, 2)],
-                    ['Uptime', detail.uptimePct > 0 ? fmtPercent(detail.uptimePct, 2) : '—'],
-                  ] as [string, string][]
-                ).map(([label, value]) => (
-                  <div key={label} className="flex flex-col gap-0.5">
-                    <dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
-                      {label}
-                    </dt>
-                    <dd className="font-mono text-[13px] tabular-nums text-foreground" data-no-translate>
-                      {value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
             </section>
 
             {/* Capacidades */}
