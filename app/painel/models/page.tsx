@@ -372,18 +372,8 @@ export default function ModelsPage() {
       >
         {detail && (
           <div className="flex flex-col">
-            {/* Status + identidade */}
-            <div className="flex items-center justify-between gap-3 px-5 pb-4">
-              <div className="flex flex-wrap items-center gap-1.5">
-                {detail.categories.map((category) => (
-                  <span
-                    key={category}
-                    className="bg-foreground/8 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-foreground"
-                  >
-                    {category}
-                  </span>
-                ))}
-              </div>
+            {/* Status */}
+            <div className="flex justify-end px-5 pb-4">
               <span
                 className={cn(
                   'inline-flex shrink-0 items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.1em]',
