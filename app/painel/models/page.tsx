@@ -432,7 +432,7 @@ export default function ModelsPage() {
                 </span>
               </div>
               <div className="flex flex-col gap-1 bg-card px-5 py-4">
-                <span className="font-mono text-[20px] leading-none tabular-nums tracking-tight text-foreground">
+                <span className="whitespace-nowrap font-mono text-[14px] leading-none tabular-nums tracking-tight text-foreground">
                   {modelParameters[detail.id]}
                 </span>
                 <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
