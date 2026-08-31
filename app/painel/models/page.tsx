@@ -49,6 +49,24 @@ const averageTokensPerSecond: Record<string, number> = {
   'command-r-plus': 0,
 }
 
+const modelParameters: Record<string, string> = {
+  'gpt-4.1': 'Não divulgado',
+  'gpt-4.1-mini': 'Não divulgado',
+  'o4-mini': 'Não divulgado',
+  'text-embedding-3': 'Não divulgado',
+  'whisper-large-v3': '1,55 bi',
+  'gpt-4o': 'Não divulgado',
+  'claude-sonnet-4-5': 'Não divulgado',
+  'claude-haiku-4-5': 'Não divulgado',
+  'claude-opus-4-1': 'Não divulgado',
+  'gemini-2.5-pro': 'Não divulgado',
+  'gemini-2.5-flash': 'Não divulgado',
+  'mistral-large': '123 bi',
+  'pixtral-large': '124 bi',
+  'llama-3.3-70b': '70 bi',
+  'command-r-plus': '104 bi',
+}
+
 export default function ModelsPage() {
   const { state } = usePainel()
   const [query, setQuery] = useState('')
@@ -255,11 +273,23 @@ export default function ModelsPage() {
                       Tokens de contexto
                     </span>
                   </div>
-                  <div className="flex flex-col items-end gap-0.5 pb-0.5">
-                    <span className="font-mono text-[13px] tabular-nums text-muted-foreground">
-                      {model.maxOutputTokens > 0 ? fmtTokens(model.maxOutputTokens) : 'n/d'}
-                    </span>
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída máx.</span>
+                  <div className="flex flex-col items-end gap-2 pb-0.5">
+                    <div className="flex flex-col items-end gap-0.5">
+                      <span className="font-mono text-[13px] tabular-nums text-foreground">
+                        {modelParameters[model.id]}
+                      </span>
+                      <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                        Parâmetros
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end gap-0.5">
+                      <span className="font-mono text-[13px] tabular-nums text-muted-foreground">
+                        {model.maxOutputTokens > 0 ? fmtTokens(model.maxOutputTokens) : 'n/d'}
+                      </span>
+                      <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                        Saída máx.
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -377,7 +407,7 @@ export default function ModelsPage() {
             </div>
 
             {/* Métricas-herói */}
-            <div className="mt-5 grid grid-cols-3 gap-px bg-border/20">
+            <div className="mt-5 grid grid-cols-2 gap-px bg-border/20 sm:grid-cols-4">
               <div className="flex flex-col gap-1 bg-card px-5 py-4">
                 <span className="font-mono text-[20px] leading-none tabular-nums tracking-tight text-foreground">
                   {fmtTokens(detail.contextTokens)}
@@ -392,6 +422,14 @@ export default function ModelsPage() {
                 </span>
                 <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
                   Saída máx.
+                </span>
+              </div>
+              <div className="flex flex-col gap-1 bg-card px-5 py-4">
+                <span className="font-mono text-[20px] leading-none tabular-nums tracking-tight text-foreground">
+                  {modelParameters[detail.id]}
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                  Parâmetros
                 </span>
               </div>
               <div className="flex flex-col gap-1 bg-card px-5 py-4">
