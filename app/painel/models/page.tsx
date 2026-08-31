@@ -533,7 +533,7 @@ export default function ModelsPage() {
               </dl>
             </section>
 
-            <div className="mx-5 mb-5 flex items-start gap-2 border border-border/50 bg-muted/35 p-3 text-[11px] leading-relaxed text-muted-foreground">
+            <div className="mx-5 mb-5 flex items-start gap-2 border border-border/50 bg-muted/55 p-3 text-[11px] leading-relaxed text-muted-foreground">
               <Lock className="mt-0.5 size-3 shrink-0 text-subtle-foreground" aria-hidden="true" />
               <p>
                 {catalogMeta[detail.catalog].hint} A configuração é gerenciada pelo gateway Nylla e não pode ser
