@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Check, Copy as CopyIcon, Lock, Minus } from 'lucide-react'
+import { Check, Copy as CopyIcon, Lock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import type { Model, ModelCatalogStatus, ModelHealth } from '@/lib/painel/data'
@@ -24,12 +24,14 @@ const catalogMeta: Record<ModelCatalogStatus, { label: string; hint: string }> =
   deprecated: { label: 'Depreciado', hint: 'Descontinuado pelo gateway — migre para um modelo equivalente.' },
 }
 
-const capabilityLabels: { key: keyof Model['capabilities']; label: string }[] = [
-  { key: 'streaming', label: 'Stream' },
-  { key: 'functionCalling', label: 'Tools' },
-  { key: 'vision', label: 'Visão' },
-  { key: 'jsonMode', label: 'JSON' },
-]
+const categoryLabels: Record<Model['categories'][number], string> = {
+  Texto: 'Chat',
+  Código: 'Programação',
+  Raciocínio: 'Raciocínio',
+  Visão: 'Visão',
+  Áudio: 'Áudio e transcrição',
+  Embedding: 'Embeddings',
+}
 
 const averageTokensPerSecond: Record<string, number> = {
   'gpt-4.1': 72,
@@ -528,21 +530,12 @@ export default function ModelsPage() {
                 Capacidades
               </h3>
               <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
-                {capabilityLabels.map((c) => {
-                  const supported = detail.capabilities[c.key]
-                  return (
-                    <li key={c.key} className="flex items-center justify-between gap-2">
-                      <span className={cn('text-[12px]', supported ? 'text-foreground' : 'text-subtle-foreground')}>
-                        {c.label}
-                      </span>
-                      {supported ? (
-                        <Check className="size-3 text-term-success" aria-label="Suportado" />
-                      ) : (
-                        <Minus className="size-3 text-border" aria-label="Indisponível" />
-                      )}
-                    </li>
-                  )
-                })}
+                {detail.categories.map((category) => (
+                  <li key={category} className="flex items-center justify-between gap-2">
+                    <span className="text-[12px] text-foreground">{categoryLabels[category]}</span>
+                    <Check className="size-3 text-term-success" aria-label="Suportado" />
+                  </li>
+                ))}
               </ul>
             </section>
 
