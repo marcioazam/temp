@@ -373,10 +373,11 @@ export default function ModelsPage() {
         {detail && (
           <div className="flex flex-col">
             {/* Status */}
-            <div className="flex justify-end px-5 pb-4">
+            <div className="flex items-center gap-1.5 px-5 pb-4 font-mono text-[9px] uppercase tracking-[0.1em]">
+              <span className="text-subtle-foreground">Status:</span>
               <span
                 className={cn(
-                  'inline-flex shrink-0 items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.1em]',
+                  'inline-flex shrink-0 items-center gap-1.5',
                   detail.health === 'operational' && 'text-term-success',
                   detail.health === 'degraded' && 'text-status-warning',
                   detail.health === 'down' && 'text-destructive',
