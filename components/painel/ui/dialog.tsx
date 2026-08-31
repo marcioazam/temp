@@ -58,7 +58,7 @@ export function Dialog({
               <X className="size-4" />
             </BaseDialog.Close>
           </div>
-          <div className="flex-1 overflow-y-auto">{children}</div>
+          <div className="docs-scrollbar flex-1 overflow-y-auto">{children}</div>
         </BaseDialog.Popup>
       </BaseDialog.Portal>
     </BaseDialog.Root>

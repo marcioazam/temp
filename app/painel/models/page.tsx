@@ -1,11 +1,11 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Check, Copy as CopyIcon, Lock, Minus } from 'lucide-react'
+import { Check, Copy as CopyIcon, Lock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePainel } from '@/lib/painel/store'
 import type { Model, ModelCatalogStatus, ModelHealth } from '@/lib/painel/data'
-import { fmtCompact, fmtCurrency, fmtLatency, fmtNumber, fmtPercent, fmtTokens } from '@/lib/painel/format'
+import { fmtCompact, fmtCurrency, fmtNumber, fmtPercent, fmtTokens } from '@/lib/painel/format'
 import { PageHeader } from '@/components/painel/page-header'
 import { StatusBadge } from '@/components/painel/ui/badge'
 import { Dialog } from '@/components/painel/ui/dialog'
@@ -24,12 +24,14 @@ const catalogMeta: Record<ModelCatalogStatus, { label: string; hint: string }> =
   deprecated: { label: 'Depreciado', hint: 'Descontinuado pelo gateway — migre para um modelo equivalente.' },
 }
 
-const capabilityLabels: { key: keyof Model['capabilities']; label: string }[] = [
-  { key: 'streaming', label: 'Stream' },
-  { key: 'functionCalling', label: 'Tools' },
-  { key: 'vision', label: 'Visão' },
-  { key: 'jsonMode', label: 'JSON' },
-]
+const categoryLabels: Record<Model['categories'][number], string> = {
+  Texto: 'Chat',
+  Código: 'Programação',
+  Raciocínio: 'Raciocínio',
+  Visão: 'Visão',
+  Áudio: 'Áudio e transcrição',
+  Embedding: 'Embeddings',
+}
 
 const averageTokensPerSecond: Record<string, number> = {
   'gpt-4.1': 72,
@@ -47,6 +49,41 @@ const averageTokensPerSecond: Record<string, number> = {
   'pixtral-large': 64,
   'llama-3.3-70b': 284,
   'command-r-plus': 0,
+}
+
+const modelParameters: Record<string, string> = {
+  'gpt-4.1': 'Não divulgado',
+  'gpt-4.1-mini': 'Não divulgado',
+  'o4-mini': 'Não divulgado',
+  'text-embedding-3': 'Não divulgado',
+  'whisper-large-v3': '1,55 bi',
+  'gpt-4o': 'Não divulgado',
+  'claude-sonnet-4-5': 'Não divulgado',
+  'claude-haiku-4-5': 'Não divulgado',
+  'claude-opus-4-1': 'Não divulgado',
+  'gemini-2.5-pro': 'Não divulgado',
+  'gemini-2.5-flash': 'Não divulgado',
+  'mistral-large': '123 bi',
+  'pixtral-large': '124 bi',
+  'llama-3.3-70b': '70 bi',
+  'command-r-plus': '104 bi',
+}
+
+const modelArchitecture: Record<string, string> = {
+  'whisper-large-v3': 'Transformer encoder-decoder',
+  'text-embedding-3': 'Transformer embedding',
+}
+
+const modelQuantization: Record<string, string> = {
+  'mistral-large': 'FP8',
+  'pixtral-large': 'FP8',
+  'llama-3.3-70b': 'FP8',
+  'command-r-plus': 'FP8',
+}
+
+function formatDateBr(value: string) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value)
+  return match ? `${match[3]}/${match[2]}/${match[1]}` : value
 }
 
 export default function ModelsPage() {
@@ -255,11 +292,23 @@ export default function ModelsPage() {
                       Tokens de contexto
                     </span>
                   </div>
-                  <div className="flex flex-col items-end gap-0.5 pb-0.5">
-                    <span className="font-mono text-[13px] tabular-nums text-muted-foreground">
-                      {model.maxOutputTokens > 0 ? fmtTokens(model.maxOutputTokens) : 'n/d'}
-                    </span>
-                    <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">Saída máx.</span>
+                  <div className="flex flex-col items-end gap-2 pb-0.5">
+                    <div className="flex flex-col items-end gap-0.5">
+                      <span className="font-mono text-[13px] tabular-nums text-foreground">
+                        {modelParameters[model.id]}
+                      </span>
+                      <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                        Parâmetros
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end gap-0.5">
+                      <span className="font-mono text-[13px] tabular-nums text-muted-foreground">
+                        {model.maxOutputTokens > 0 ? fmtTokens(model.maxOutputTokens) : 'n/d'}
+                      </span>
+                      <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                        Saída máx.
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -310,7 +359,7 @@ export default function ModelsPage() {
                       'font-mono text-[10px] tabular-nums',
                       averageTokensPerSecond[model.id] > 0 ? 'text-term-success' : 'text-subtle-foreground',
                     )}
-                    title="Média de tokens gerados por segundo"
+                    title="M��dia de tokens gerados por segundo"
                   >
                     {averageTokensPerSecond[model.id] > 0
                       ? `${averageTokensPerSecond[model.id]} tok/s`
@@ -335,21 +384,12 @@ export default function ModelsPage() {
       >
         {detail && (
           <div className="flex flex-col">
-            {/* Status + identidade */}
-            <div className="flex items-center justify-between gap-3 px-5 pb-4">
-              <div className="flex flex-wrap items-center gap-1.5">
-                {detail.categories.map((category) => (
-                  <span
-                    key={category}
-                    className="bg-foreground/8 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-foreground"
-                  >
-                    {category}
-                  </span>
-                ))}
-              </div>
+            {/* Status */}
+            <div className="flex items-center gap-2 px-5 pb-4">
+              <span className="text-[11px] text-muted-foreground">Status</span>
               <span
                 className={cn(
-                  'inline-flex shrink-0 items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.1em]',
+                  'inline-flex shrink-0 items-center gap-1.5 bg-muted/55 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.08em]',
                   detail.health === 'operational' && 'text-term-success',
                   detail.health === 'degraded' && 'text-status-warning',
                   detail.health === 'down' && 'text-destructive',
@@ -377,7 +417,7 @@ export default function ModelsPage() {
             </div>
 
             {/* Métricas-herói */}
-            <div className="mt-5 grid grid-cols-3 gap-px bg-border/20">
+            <div className="mt-5 grid grid-cols-2 sm:grid-cols-4">
               <div className="flex flex-col gap-1 bg-card px-5 py-4">
                 <span className="font-mono text-[20px] leading-none tabular-nums tracking-tight text-foreground">
                   {fmtTokens(detail.contextTokens)}
@@ -392,6 +432,14 @@ export default function ModelsPage() {
                 </span>
                 <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
                   Saída máx.
+                </span>
+              </div>
+              <div className="flex flex-col gap-1 bg-card px-5 py-4">
+                <span className="whitespace-nowrap font-mono text-[14px] leading-none tabular-nums tracking-tight text-foreground">
+                  {modelParameters[detail.id]}
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
+                  Parâmetros
                 </span>
               </div>
               <div className="flex flex-col gap-1 bg-card px-5 py-4">
@@ -458,66 +506,39 @@ export default function ModelsPage() {
               </div>
             </section>
 
-            {/* Confiabilidade */}
-            <section className="flex flex-col gap-2.5 border-t border-border/35 px-5 py-5" aria-label="Confiabilidade">
-              <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
-                Confiabilidade
-              </h3>
-              <dl className="grid grid-cols-2 gap-x-6 gap-y-3">
-                {(
-                  [
-                    ['Latência média', detail.latencyMs > 0 ? fmtLatency(detail.latencyMs) : '—'],
-                    ['Latência p95', detail.latencyP95Ms > 0 ? fmtLatency(detail.latencyP95Ms) : '—'],
-                    ['Taxa de erro', fmtPercent(detail.errorRate, 2)],
-                    ['Uptime', detail.uptimePct > 0 ? fmtPercent(detail.uptimePct, 2) : '—'],
-                  ] as [string, string][]
-                ).map(([label, value]) => (
-                  <div key={label} className="flex flex-col gap-0.5">
-                    <dt className="font-mono text-[9px] uppercase tracking-[0.12em] text-subtle-foreground">
-                      {label}
-                    </dt>
-                    <dd className="font-mono text-[13px] tabular-nums text-foreground" data-no-translate>
-                      {value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </section>
-
             {/* Capacidades */}
             <section className="flex flex-col gap-2.5 border-t border-border/35 px-5 py-5" aria-label="Capacidades">
               <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
                 Capacidades
               </h3>
               <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
-                {capabilityLabels.map((c) => {
-                  const supported = detail.capabilities[c.key]
-                  return (
-                    <li key={c.key} className="flex items-center justify-between gap-2">
-                      <span className={cn('text-[12px]', supported ? 'text-foreground' : 'text-subtle-foreground')}>
-                        {c.label}
-                      </span>
-                      {supported ? (
-                        <Check className="size-3 text-term-success" aria-label="Suportado" />
-                      ) : (
-                        <Minus className="size-3 text-border" aria-label="Indisponível" />
-                      )}
-                    </li>
-                  )
-                })}
+                {detail.categories.map((category) => (
+                  <li key={category} className="flex items-center justify-between gap-2">
+                    <span className="text-[12px] text-foreground">{categoryLabels[category]}</span>
+                    <Check className="size-3 text-term-success" aria-label="Suportado" />
+                  </li>
+                ))}
               </ul>
             </section>
 
             {/* Especificações */}
-            <section className="flex flex-col gap-2.5 border-t border-border/35 px-5 py-5" aria-label="Especificações">
+            <section className="flex flex-col gap-3 border-t border-border/35 px-5 py-5" aria-label="Especificações">
               <h3 className="font-mono text-[10px] uppercase tracking-[0.12em] text-subtle-foreground">
                 Especificações
               </h3>
+              <div className="flex flex-wrap gap-2">
+                <span className="bg-muted/70 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.06em] text-muted-foreground">
+                  Arquitetura: <strong className="font-medium text-foreground">{modelArchitecture[detail.id] ?? 'Transformer'}</strong>
+                </span>
+                <span className="bg-muted/70 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.06em] text-muted-foreground">
+                  Quantização: <strong className="font-medium text-foreground">{modelQuantization[detail.id] ?? 'Não divulgada'}</strong>
+                </span>
+              </div>
               <dl className="flex flex-col gap-2">
                 {(
                   [
                     ['Nome técnico', detail.name],
-                    ['Versão', detail.version],
+                    ['Versão', formatDateBr(detail.version)],
                     ['Knowledge cutoff', detail.knowledgeCutoff],
                     ['Catálogo', catalogMeta[detail.catalog].label],
                   ] as [string, string][]
@@ -532,11 +553,13 @@ export default function ModelsPage() {
               </dl>
             </section>
 
-            <p className="mx-5 mb-5 flex items-start gap-2 border-t border-border/35 pt-4 text-[11px] leading-relaxed text-subtle-foreground">
-              <Lock className="mt-0.5 size-3 shrink-0" aria-hidden="true" />
-              {catalogMeta[detail.catalog].hint} A configuração é gerenciada pelo gateway Nylla e não pode ser alterada
-              no painel.
-            </p>
+            <div className="mx-5 mb-5 flex items-start gap-2 border border-border/50 bg-muted/55 p-3 text-[11px] leading-relaxed text-muted-foreground">
+              <Lock className="mt-0.5 size-3 shrink-0 text-subtle-foreground" aria-hidden="true" />
+              <p>
+                {catalogMeta[detail.catalog].hint} A configuração é gerenciada pelo gateway Nylla e não pode ser
+                alterada no painel.
+              </p>
+            </div>
           </div>
         )}
       </Dialog>
